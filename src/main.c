@@ -26,7 +26,7 @@ static void				ft_initwin(void)
 	int dy = 1;
 
 	texturebuf = malloc(sizeof(Uint32) * 500 * 500);
-	tmp = texturebuf;
+	tmp = texturebuf + 30;
 	//memset(texturebuf, 0xd0, 1000);
 
 	SDL_Init(SDL_INIT_VIDEO);
@@ -53,7 +53,11 @@ static void				ft_initwin(void)
 		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_d)
 			dx = 1, dy = 0;
 		tmp += dx + (dy *500);
-		memcpy(tmp, &(color), 4);
+		if (tmp > (Uint32*)texturebuf && tmp < (Uint32*)texturebuf + (500 * 500))
+		{
+
+			memcpy(tmp, &(color), 4);
+		}
 		SDL_UpdateTexture(tex, NULL, texturebuf, 500 * sizeof(Uint32));
 		SDL_RenderCopy(rd, tex, NULL, NULL);
 		SDL_RenderPresent(rd);
