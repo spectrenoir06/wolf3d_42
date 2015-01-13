@@ -21,6 +21,7 @@ static void				ft_initwin(void)
 	SDL_Renderer		*rd;
 	Uint32				*texturebuf;
 
+	texturebuf = 0;
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_SHOWN, &win, &rd);
 	tex = SDL_CreateTexture(rd, SDL_PIXELFORMAT_RGBA8888,
