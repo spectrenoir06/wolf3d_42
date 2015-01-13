@@ -35,8 +35,16 @@ STATIC_DIR	= static
 CC			= gcc
 FLAGS		= -Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
-SDL			= -F framework -I framework/SDL2.framework/Headers/ -framework SDL2
 
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	SDL	= -lSDL2
+endif
+
+ifeq ($(UNAME_S),Darwin)
+	SDL	= -F framework -I framework/SDL2.framework/Headers/ -framework SDL2
+endif
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
 all: $(STATIC_EXE) $(DEBUG_EXE)

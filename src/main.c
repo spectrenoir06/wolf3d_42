@@ -10,62 +10,104 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SDL.h"
+#include "SDL2/SDL.h"
+#include "wolf3d.h"
 #include <stdio.h>
 
-static void				ft_initwin(void)
+void	game_init_sdl(t_game *game)
 {
-	SDL_Window			*win;
-	SDL_Event			event;
-	SDL_Texture			*tex;
-	SDL_Renderer		*rd;
-	void				*texturebuf;
-	Uint32              *tmp;
-	int color = 0xFF00FF << 8;
-	int dx = 0;
-	int dy = 1;
+	game->win_lx = WIN_X;
+	game->win_ly = WIN_Y;
+	SDL_CreateWindowAndRenderer(game->win_lx,
+								game->win_ly,
+								SDL_WINDOW_SHOWN,
+								&game->win,
+								&game->rd);
+	game->tex = SDL_CreateTexture(	game->rd,
+									SDL_PIXELFORMAT_ARGB8888,
+									SDL_TEXTUREACCESS_STREAMING,
+									game->win_lx,
+									game->win_ly);
+	if (game->win == NULL)
+	{
+		printf("Wolf3D: Error windows can't load\n");
+		exit(1);
+	}
+			game->text_buf = malloc(sizeof(Uint32) * game->win_lx * game->win_ly);
+	if (game->text_buf == NULL)
+	{
+		printf("Wolf3D: Error can't allocate buffer\n");
+		exit(1);
+	}
+	memset(game->text_buf, 0XD0, game->win_lx * game->win_ly * sizeof(Uint32));
 
-	texturebuf = malloc(sizeof(Uint32) * 500 * 500);
-	tmp = texturebuf + 30;
-	//memset(texturebuf, 0xd0, 1000);
+}
+
+int		main(void)
+{
+
+	SDL_Event	event;
+	t_game		game;
+	t_color		color;
+
+	color.a = 255;
+	color.r = 255;
+	color.g = 255;
+	color.b = 255;
+
+	game.x = 10;
+	game.y = 10;
+
+	game.dx = 0;
+	game.dy = 0;
 
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_SHOWN, &win, &rd);
-	tex = SDL_CreateTexture(rd, SDL_PIXELFORMAT_RGBA8888,
-							SDL_TEXTUREACCESS_STREAMING, 500, 500);
-	if (win == NULL)
-		printf("Wolf3D: Error => windows cant load\n");
+	game_init_sdl(&game);
+
 	while (42)
 	{
 		SDL_PollEvent(&event);
-		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
-		{
-			SDL_DestroyWindow(win);
-			SDL_Quit();
-			exit(0);
-		}
-		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_w)
-			dy = -1, dx = 0;
-		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_s)
-			dy = 1 , dx = 0;
-		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_a)
-			dx = -1, dy = 0;
-		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_d)
-			dx = 1, dy = 0;
-		tmp += dx + (dy *500);
-		if (tmp > (Uint32*)texturebuf && tmp < (Uint32*)texturebuf + (500 * 500))
-		{
 
-			memcpy(tmp, &(color), 4);
-		}
-		SDL_UpdateTexture(tex, NULL, texturebuf, 500 * sizeof(Uint32));
-		SDL_RenderCopy(rd, tex, NULL, NULL);
-		SDL_RenderPresent(rd);
+		if (event.type == SDL_KEYDOWN)
+			game_key_down(&game, &event);
+		game.x += game.dx;
+		game.y += game.dy;
+		game_draw_pixel(&game, game.x, game.y, color);
+		game_draw_all(&game);
 	}
+	return (0);
 }
 
-int						main(void)
+void	game_key_down(t_game *game, SDL_Event *event)
 {
-	ft_initwin();
-	return (0);
+	if (event->key.keysym.sym == SDLK_ESCAPE)
+	{
+		SDL_DestroyWindow(game->win);
+		SDL_Quit();
+		exit(0);
+	}
+	else if (event->key.keysym.sym == SDLK_w)
+		game->dy = -1, game->dx = 0;
+	else if (event->key.keysym.sym == SDLK_s)
+		game->dy = 1 , game->dx = 0;
+	else if (event->key.keysym.sym == SDLK_a)
+		game->dx = -1, game->dy = 0;
+	else if (event->key.keysym.sym == SDLK_d)
+		game->dx = 1, game->dy = 0;
+}
+
+void	game_draw_all(t_game *game)
+{
+	SDL_UpdateTexture(game->tex, NULL, game->text_buf, game->win_lx * sizeof(Uint32));
+	SDL_RenderCopy(game->rd, game->tex, NULL, NULL);
+	SDL_RenderPresent(game->rd);
+}
+
+void	game_draw_pixel(t_game *game, int x, int y, t_color c)
+{
+	if (x >= 0
+		&& x < game->win_lx
+		&& y >=0
+		&& y < game->win_ly)
+		memcpy(&game->text_buf[x + (y * game->win_lx)], &c, 4);
 }
