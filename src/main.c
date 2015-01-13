@@ -19,9 +19,16 @@ static void				ft_initwin(void)
 	SDL_Event			event;
 	SDL_Texture			*tex;
 	SDL_Renderer		*rd;
-	Uint32				*texturebuf;
+	void				*texturebuf;
+	Uint32              *tmp;
+	int color = 0xFF00FF << 8;
+	int dx = 0;
+	int dy = 1;
 
-	texturebuf = 0;
+	texturebuf = malloc(sizeof(Uint32) * 500 * 500);
+	tmp = texturebuf;
+	//memset(texturebuf, 0xd0, 1000);
+
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_SHOWN, &win, &rd);
 	tex = SDL_CreateTexture(rd, SDL_PIXELFORMAT_RGBA8888,
@@ -37,6 +44,16 @@ static void				ft_initwin(void)
 			SDL_Quit();
 			exit(0);
 		}
+		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_w)
+			dy = -1, dx = 0;
+		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_s)
+			dy = 1 , dx = 0;
+		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_a)
+			dx = -1, dy = 0;
+		else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_d)
+			dx = 1, dy = 0;
+		tmp += dx + (dy *500);
+		memcpy(tmp, &(color), 4);
 		SDL_UpdateTexture(tex, NULL, texturebuf, 500 * sizeof(Uint32));
 		SDL_RenderCopy(rd, tex, NULL, NULL);
 		SDL_RenderPresent(rd);
