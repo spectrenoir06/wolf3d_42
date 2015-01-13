@@ -39,7 +39,7 @@ SDL			= -F framework -I framework/SDL2.framework/Headers/ -framework SDL2
 
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
-all: $(STATIC_EXE)
+all: $(STATIC_EXE) $(DEBUG_EXE)
 
 debug: $(DEBUG_EXE)
 
