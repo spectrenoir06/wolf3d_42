@@ -1,3 +1,5 @@
+static
+debug
 *.o
 *.a
 *.so
