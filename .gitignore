@@ -1,0 +1,5 @@
+*.o
+*.a
+*.so
+wolf3d
+wolf3d_debug
