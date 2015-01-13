@@ -1,38 +1,49 @@
-#include <SDL2/SDL.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adoussau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/01/13 16:55:44 by adoussau          #+#    #+#             */
+/*   Updated: 2015/01/13 16:55:46 by adoussau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "SDL.h"
 #include <stdio.h>
 
-int main(void)
+static void				ft_initwin(void)
 {
-    /* Initialisation simple */
-    if (SDL_Init(SDL_INIT_VIDEO) != 0 )
-    {
-        fprintf(stdout,"Échec de l'initialisation de la SDL (%s)\n",SDL_GetError());
-        return -1;
-    }
+	SDL_Window			*win;
+	SDL_Event			event;
+	SDL_Texture			*tex;
+	SDL_Renderer		*rd;
+	Uint32				*texturebuf;
 
-{
-    /* Création de la fenêtre */
-    SDL_Window* pWindow = NULL;
-    pWindow = SDL_CreateWindow("Ma première application SDL2",SDL_WINDOWPOS_UNDEFINED,
-    SDL_WINDOWPOS_UNDEFINED,
-    640,
-    480,
-    SDL_WINDOW_SHOWN);
-
-    if( pWindow )
-    {
-        SDL_Delay(3000); /* Attendre trois secondes, que l'utilisateur voie la fenêtre */
-
-        SDL_DestroyWindow(pWindow);
-    }
-    else
-    {
-        fprintf(stderr,"Erreur de création de la fenêtre: %s\n",SDL_GetError());
-    }
+	SDL_Init(SDL_INIT_VIDEO);
+	SDL_CreateWindowAndRenderer(500, 500, SDL_WINDOW_SHOWN, &win, &rd);
+	tex = SDL_CreateTexture(rd, SDL_PIXELFORMAT_RGBA8888,
+							SDL_TEXTUREACCESS_STREAMING, 500, 500);
+	if (win == NULL)
+		printf("Wolf3D: Error => windows cant load\n");
+	while (42)
+	{
+		SDL_PollEvent(&event);
+		if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)
+		{
+			SDL_DestroyWindow(win);
+			SDL_Quit();
+			exit(0);
+		}
+		SDL_UpdateTexture(tex, NULL, texturebuf, 500 * sizeof(Uint32));
+		SDL_RenderCopy(rd, tex, NULL, NULL);
+		SDL_RenderPresent(rd);
+	}
 }
 
-SDL_Quit();
-
-return 0;
+int						main(void)
+{
+	ft_initwin();
+	return (0);
 }

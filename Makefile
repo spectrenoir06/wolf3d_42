@@ -31,12 +31,11 @@ HEAD_DIR	= includes
 SRC_DIR		= src
 DEBUG_DIR	= debug
 STATIC_DIR	= static
-LIBFT_HEAD	= libft/includes/
 
 CC			= gcc
 FLAGS		= -Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
-SDL			= -F framework -framework SDL2
+SDL			= -F framework -I framework/SDL2.framework/Headers/ -framework SDL2
 
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
@@ -64,7 +63,7 @@ clean:
 fclean: clean
 	rm -f $(STATIC_EXE) $(DEBUG_EXE)
 
-norme: normeLibft
+norme:
 	$(NORMINETTE) $(SRC_DIR)/ $(HEAD_DIR)/
 
 re: fclean
