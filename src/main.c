@@ -64,8 +64,8 @@ void	game_init_map(t_game *game)
 		}
 		x++;
 	}
-	game->player.x = 200;
-	game->player.y = 200;
+	game->player.x = 2;
+	game->player.y = 2;
 	game->player.dir_x = -1;
 	game->player.dir_y = 0;
 }
@@ -170,22 +170,29 @@ void	game_render(t_game *game)
 	color.g = 255;
 	color.b = 255;
 
+	t_color		color1;
+
+	color1.a = 255;
+	color1.r = 0;
+	color1.g = 255;
+	color1.b = 255;
+
 	while (x < game->win_lx)
 	{
-		float cameraX = (2.0 * x / (float)game->win_lx) - 1;
-		int rayPosX = game->player.x;
-		int rayPosY = game->player.y;
-		int rayDirX = game->player.dir_x + (game->plane_x * cameraX);
-		int rayDirY = game->player.dir_y + (game->plane_y * cameraX);
+		double cameraX = (x / (float)game->win_lx - 1);
+		double rayPosX = game->player.x;
+		double rayPosY = game->player.y;
+		double rayDirX = game->player.dir_x + game->plane_x * cameraX;
+		double rayDirY = game->player.dir_y + game->plane_y * cameraX;
 
-		int mapX = rayPosX/100;
-		int mapY = rayPosY/100;
+		int mapX = (int)rayPosX;
+		int mapY = (int)rayPosY;
 
-		int deltaDistX = sqrt(1 + (rayDirY * rayDirY ) / (rayDirX * rayDirX));
-		int deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+		double deltaDistX = sqrt(1 + (rayDirY * rayDirY ) / (rayDirX * rayDirX));
+		double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
 
-		int sideDistX;
-		int sideDistY;
+		double sideDistX;
+		double sideDistY;
 
 		int stepX;
 		int stepY;
@@ -193,7 +200,7 @@ void	game_render(t_game *game)
 		int hit = 0;
 		int side;
 
-		int perpWallDist;
+		double perpWallDist;
 
 		if (rayDirX<0){
 			stepX=-1;// vecteur de direction
@@ -247,14 +254,16 @@ void	game_render(t_game *game)
 			drawStart = 0;
 		}
 		if (drawEnd >= game->win_ly) {
-			drawEnd = game->win_ly-1;
+			drawEnd = game->win_ly - 1;
 		}
 
 		y = 0;
 		while (y < drawEnd)
 		{
-			game_draw_pixel(game, x, y, color);
+			game_draw_pixel(game, x, y, side ? color : color1);
+			y++;
 		}
+		x++;
 	}
 }
 

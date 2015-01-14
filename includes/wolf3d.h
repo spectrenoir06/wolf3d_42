@@ -18,8 +18,8 @@
 
 typedef struct	s_player
 {
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 	int		dir_x;
 	int		dir_y;
 }				t_player;
