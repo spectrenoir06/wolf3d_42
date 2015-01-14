@@ -64,6 +64,10 @@ void	game_init_map(t_game *game)
 		}
 		x++;
 	}
+	game->player.x = 200;
+	game->player.y = 200;
+	game->player.dir_x = 0;
+	game->player.dir_y = 1;
 }
 
 void	draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
@@ -108,7 +112,7 @@ void	game_draw_map(t_game *game)
 		while (y < 10)
 		{
 			//game_draw_pixel(game, x, y , color);
-			draw_rect(game, x * 10, y * 10, 10, 10, (game->map[x + (y * 10)] ? color1 : color2));
+			draw_rect(game, x * 100, y * 100, 100, 100, (game->map[x + (y * 10)] ? color1 : color2));
 			y++;
 		}
 		x++;
@@ -120,12 +124,12 @@ int		main(void)
 
 	SDL_Event	event;
 	t_game		game;
-	/*t_color		color;
+	t_color		color;
 
 	color.a = 255;
 	color.r = 255;
 	color.g = 255;
-	color.b = 255;*/
+	color.b = 255;
 
 	game.x = 10;
 	game.y = 10;
@@ -143,13 +147,79 @@ int		main(void)
 
 		if (event.type == SDL_KEYDOWN)
 			game_key_down(&game, &event);
-		game.x += game.dx;
-		game.y += game.dy;
-		//game_draw_pixel(&game, game.x, game.y, color);
-		game_draw_map(&game);
+
+
+
+		//game_draw_map(&game);
+		//draw_rect(&game, game.player.x, game.player.y, 50 , 50, color);
 		game_draw_all(&game);
 	}
 	return (0);
+}
+
+void	game_render(t_game *game)
+{
+	int x = 0;
+	int y = 0;
+
+	int camera_x = (2 * x / game->win_lx)-1;
+	int ray_pos_x = game->player.x;
+	int ray_pos_y = game->player.y;
+	int ray_dir_x = game->player.dir_x * camera_x;
+	int ray_dir_y = game->player.dir_y * camera_x;
+
+	int mapx = game->player.x / 100;
+	int mapy = game->player.x / 100;
+
+	int sideDistX;
+	int sideDistY;
+
+	int deltaDistX = sqrt(1+(ray_dir_y * ray_dir_y)/(ray_dir_x * ray_dir_x));
+	int deltaDistY = sqrt(1+(ray_dir_x * ray_dir_x)/(ray_dir_y * ray_dir_y));
+
+	int stepX;
+	int stepY;
+
+	int hit = 0;
+	int side;
+
+	while (x <= game->win_lx)
+	{
+
+		if (ray_dir_x<0){
+			stepX=-1;// vecteur de direction
+			sideDistX = (ray_pos_x - mapx) * deltaDistX;// distance
+		} else{
+			stepX = 1;
+			sideDistX = (mapx + 1.0 - ray_pos_x) * deltaDistX;
+		}
+		if (ray_dir_y < 0){
+			stepY = -1;
+			sideDistY = (ray_pos_y - mapy) * deltaDistY;
+		} else{
+			stepY = 1;
+			sideDistY = (mapy + 1.0 - ray_pos_y) * deltaDistY;
+		}
+
+		while (hit == 0) {
+
+			//Passe  la case suivante sur X ou Y
+			if (sideDistX < sideDistY) {
+				sideDistX += deltaDistX;// agrandis le rayon
+				mapx += stepX;// prochaine case ou case prcdente sur X
+				side = 0;// orientation du mur
+			} else {
+				sideDistY += deltaDistY;// agrandis le rayon
+				mapy += stepY;// prochaine case ou case prcdente sur Y
+				side = 1;// orientation du mur
+			}
+
+			// si le rayon rencontre un mur
+			if (game->map[x + (y * 10)]>0) {
+				hit=1;// stoppe la boucle
+			}
+	}
+}
 }
 
 void	game_key_down(t_game *game, SDL_Event *event)
@@ -160,14 +230,14 @@ void	game_key_down(t_game *game, SDL_Event *event)
 		SDL_Quit();
 		exit(0);
 	}
-	else if (event->key.keysym.sym == SDLK_w)
-		game->dy = -1, game->dx = 0;
-	else if (event->key.keysym.sym == SDLK_s)
-		game->dy = 1 , game->dx = 0;
-	else if (event->key.keysym.sym == SDLK_a)
-		game->dx = -1, game->dy = 0;
-	else if (event->key.keysym.sym == SDLK_d)
-		game->dx = 1, game->dy = 0;
+	if (event->key.keysym.sym == SDLK_w)
+		game->player.y--;
+	if (event->key.keysym.sym == SDLK_s)
+		game->player.y++;
+	if (event->key.keysym.sym == SDLK_a)
+		game->player.x--;
+	if (event->key.keysym.sym == SDLK_d)
+		game->player.x++;
 }
 
 void	game_draw_all(t_game *game)
