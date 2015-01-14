@@ -24,7 +24,7 @@ void	game_init_sdl(t_game *game)
 								&game->win,
 								&game->rd);
 	game->tex = SDL_CreateTexture(	game->rd,
-									SDL_PIXELFORMAT_ARGB8888,
+									SDL_PIXELFORMAT_BGRA8888,
 									SDL_TEXTUREACCESS_STREAMING,
 									game->win_lx,
 									game->win_ly);
@@ -50,7 +50,7 @@ void	game_init_map(t_game *game)
 
 	x = 0;
 	y = 0;
-	game->map = malloc(sizeof(char) * 100);
+	game->map = (Uint8*)malloc(sizeof(Uint8) * 100);
 	while (x < 10)
 	{
 		y = 0;
@@ -66,7 +66,7 @@ void	game_init_map(t_game *game)
 	}
 }
 
-void	draw_rect(t_game *game, int x, int y, int lx, int ly)
+void	draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
 {
 	int a = x;
 	int b = y;
@@ -76,10 +76,10 @@ void	draw_rect(t_game *game, int x, int y, int lx, int ly)
 		b = y;
 		while (b < (y + ly))
 		{
-			game->map[x + (y * 10)] = 1;
-			y++;
+			game_draw_pixel(game, a, b , c);
+			b++;
 		}
-		x++;
+		a++;
 	}
 }
 
@@ -88,12 +88,27 @@ void	game_draw_map(t_game *game)
 	int x = 0;
 	int y = 0;
 
+	t_color		color1;
+	t_color		color2;
+
+	color1.a = 255;
+	color1.r = 000;
+	color1.g = 000;
+	color1.b = 255;
+
+
+	color2.a = 255;
+	color2.r = 255;
+	color2.g = 000;
+	color2.b = 000;
+
 	while (x < 10)
 	{
 		y = 0;
 		while (y < 10)
 		{
-			draw_rect(game, x * 10, y * 10, 10, 10);
+			//game_draw_pixel(game, x, y , color);
+			draw_rect(game, x * 10, y * 10, 10, 10, (game->map[x + (y * 10)] ? color1 : color2));
 			y++;
 		}
 		x++;
@@ -131,7 +146,7 @@ int		main(void)
 		game.x += game.dx;
 		game.y += game.dy;
 		//game_draw_pixel(&game, game.x, game.y, color);
-		//game_draw_map(&game);
+		game_draw_map(&game);
 		game_draw_all(&game);
 	}
 	return (0);
