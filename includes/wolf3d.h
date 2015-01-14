@@ -13,8 +13,8 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define WIN_X 320
-# define WIN_Y 240
+# define WIN_X 800
+# define WIN_Y 480
 
 typedef struct	s_player
 {
@@ -38,8 +38,8 @@ typedef struct s_game
 	int					y;
 	Uint8				*map;
 	t_player			player;
-	double					plane_x;
-	double					plane_y;
+	double				plane_x;
+	double				plane_y;
 
 }						t_game;
 

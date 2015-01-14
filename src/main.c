@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SDL.h"
+#ifndef __APPLE__
+	#include "SDL2/SDL.h"
+#else
+	#include <SDL2/SDL.h>
+#endif
+
 #include "wolf3d.h"
 #include <stdio.h>
+#include <math.h>
 
 void	game_init_sdl(t_game *game)
 {
@@ -50,16 +56,16 @@ void	game_init_map(t_game *game)
 
 	x = 0;
 	y = 0;
-	game->map = (Uint8*)malloc(sizeof(Uint8) * 100);
-	while (x < 10)
+	game->map = (Uint8*)malloc(sizeof(Uint8) * 30 * 30);
+	while (x < 30)
 	{
 		y = 0;
-		while (y < 10)
+		while (y < 30)
 		{
-			if (x == 0 || x == 10 || y == 0 || y == 10)
-				game->map[x + (y * 10)] = 1;
+			if (x == 0 || x == 29 || y == 0 || y == 29 || rand()%100 > 80)
+				game->map[x + (y * 30)] = 1;
 			else
-				game->map[x + (y * 10)] = 0;
+				game->map[x + (y * 30)] = 0;
 			y++;
 		}
 		x++;
@@ -71,6 +77,8 @@ void	game_init_map(t_game *game)
 	game->player.y = 5;
 	game->player.dir_x = -1;
 	game->player.dir_y = 0;
+	game->plane_x = 0;
+	game->plane_y = 0.66;
 }
 
 void	draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
@@ -98,24 +106,24 @@ void	game_draw_map(t_game *game)
 	t_color		color1;
 	t_color		color2;
 
-	color1.a = 255;
+	color1.a = 30;
 	color1.r = 000;
 	color1.g = 000;
 	color1.b = 255;
 
 
-	color2.a = 255;
+	color2.a = 30;
 	color2.r = 255;
 	color2.g = 000;
 	color2.b = 000;
 
-	while (x < 10)
+	while (x < 30)
 	{
 		y = 0;
-		while (y < 10)
+		while (y < 30)
 		{
 			//game_draw_pixel(game, x, y , color);
-			draw_rect(game, x * 10, y * 10, 10, 10, (game->map[x + (y * 10)] ? color1 : color2));
+			draw_rect(game, x * 4, y * 4, 4, 4, (game->map[x + (y * 30)] ? color1 : color2));
 			y++;
 		}
 		x++;
@@ -127,12 +135,8 @@ int		main(void)
 
 	SDL_Event	event;
 	t_game		game;
-	t_color		color;
-
-	color.a = 255;
-	color.r = 255;
-	color.g = 255;
-	color.b = 255;
+	t_color		color = {0xFF,0xFF,0xFF,0xFF};
+	t_color		color2 = {0xFF,0x00,0x00,0xFF};
 
 	game.x = 10;
 	game.y = 10;
@@ -143,17 +147,24 @@ int		main(void)
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);
 	game_init_map(&game);
-
+	game_render(&game);
+	game_draw_map(&game);
+	draw_rect(&game, game.player.x * 4, game.player.y * 4, 2 , 2, color);
+	draw_rect(&game, game.player.x * 4 + (game.player.dir_x * 4), game.player.y * 4 + (game.player.dir_y * 4), 2 , 2, color2);
+	game_draw_all(&game);
 	while (42)
 	{
 		SDL_PollEvent(&event);
 
 		if (event.type == SDL_KEYDOWN)
+		{
 			game_key_down(&game, &event);
-		game_render(&game);
-		game_draw_map(&game);
-		draw_rect(&game, game.player.x * 10, game.player.y * 10, 5 , 5, color);
-		game_draw_all(&game);
+			game_render(&game);
+			game_draw_map(&game);
+			draw_rect(&game, game.player.x * 4, game.player.y * 4, 2 , 2, color);
+			draw_rect(&game, game.player.x * 4 + (game.player.dir_x * 4), game.player.y * 4 + (game.player.dir_y * 4), 2 , 2, color2);
+			game_draw_all(&game);
+		}
 	}
 	return (0);
 }
@@ -241,7 +252,7 @@ void	game_render(t_game *game)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (game->map[mapX + (mapY * 10)] > 0) hit = 1;
+			if (game->map[mapX + (mapY * 30)] > 0) hit = 1;
 		}
 		//Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
 		if (side == 0)
@@ -276,20 +287,31 @@ void	game_render(t_game *game)
 				SDL_Quit();
 				exit(0);
 			}
-			if (event->key.keysym.sym == SDLK_w)
-				game->player.y -= 0.01;
-			if (event->key.keysym.sym == SDLK_s)
-				game->player.y += 0.01;
-			if (event->key.keysym.sym == SDLK_a)
-				game->player.x -= 0.01;
-			if (event->key.keysym.sym == SDLK_d)
-				game->player.x += 0.01;
-			if (event->key.keysym.sym == SDLK_q)
-				game->player.dir_x += 0.01,
-				game->player.dir_y -= 0.01;
-			if (event->key.keysym.sym == SDLK_e)
-				game->player.dir_x = 0,
-				game->player.dir_y = 1;
+			if (event->key.keysym.sym == SDLK_UP)
+				game->player.x += game->player.dir_x * 0.1,
+				game->player.y += game->player.dir_y * 0.1;
+			if (event->key.keysym.sym == SDLK_DOWN)
+				game->player.x -= game->player.dir_x * 0.1,
+				game->player.y -= game->player.dir_y * 0.1;
+			if (event->key.keysym.sym == SDLK_RIGHT)
+			{
+				double oldDirX = game->player.dir_x;
+				game->player.dir_x = game->player.dir_x * cos(-0.02) - game->player.dir_y * sin(-0.02);
+				game->player.dir_y = oldDirX * sin(-0.02) + game->player.dir_y * cos(-0.02);
+				double oldPlaneX = game->plane_x;
+				game->plane_x = game->plane_x * cos(-0.02) - game->plane_y * sin(-0.02);
+				game->plane_y = oldPlaneX * sin(-0.02) + game->plane_y * cos(-0.02);
+			}
+			if (event->key.keysym.sym == SDLK_LEFT)
+			{
+				double oldDirX = game->player.dir_x;
+				game->player.dir_x = game->player.dir_x * cos(0.02) - game->player.dir_y * sin(0.02);
+				game->player.dir_y = oldDirX * sin(0.02) + game->player.dir_y * cos(0.02);
+				double oldPlaneX = game->plane_x;
+				game->plane_x = game->plane_x * cos(0.02) - game->plane_y * sin(0.02);
+				game->plane_y = oldPlaneX * sin(0.02) + game->plane_y * cos(0.02);
+			}
+
 			//printf("%f, %f \n",game->player.x, game->player.y);
 		}
 
