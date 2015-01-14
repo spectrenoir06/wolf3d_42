@@ -66,8 +66,8 @@ void	game_init_map(t_game *game)
 	}
 	game->player.x = 200;
 	game->player.y = 200;
-	game->player.dir_x = 0;
-	game->player.dir_y = 1;
+	game->player.dir_x = -1;
+	game->player.dir_y = 0;
 }
 
 void	draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
@@ -175,14 +175,14 @@ void	game_render(t_game *game)
 		float cameraX = (2.0 * x / (float)game->win_lx) - 1;
 		int rayPosX = game->player.x;
 		int rayPosY = game->player.y;
-		int rayDirX = game->player.dir_x + game->plane_x * cameraX;
-		int rayDirY =  game->player.y + game->plane_y * cameraX;
+		int rayDirX = game->player.dir_x + (game->plane_x * cameraX);
+		int rayDirY = game->player.dir_y + (game->plane_y * cameraX);
 
 		int mapX = rayPosX/100;
 		int mapY = rayPosY/100;
 
-		int deltaDistX = sqrt(1+(rayDirY*rayDirY)/(rayDirX*rayDirX));;
-		int deltaDistY = sqrt(1+(rayDirX*rayDirX)/(rayDirY*rayDirY));
+		int deltaDistX = sqrt(1 + (rayDirY * rayDirY ) / (rayDirX * rayDirX));
+		int deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
 
 		int sideDistX;
 		int sideDistY;
