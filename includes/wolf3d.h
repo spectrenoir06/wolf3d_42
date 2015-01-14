@@ -28,8 +28,8 @@ typedef struct s_game
 	int					dy;
 	int					x;
 	int					y;
-
-}		t_game;
+	Uint16				*map;
+}						t_game;
 
 typedef struct 		s_color
 {

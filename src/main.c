@@ -43,6 +43,63 @@ void	game_init_sdl(t_game *game)
 
 }
 
+void	game_init_map(t_game *game)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	game->map = malloc(sizeof(char) * 100);
+	while (x < 10)
+	{
+		y = 0;
+		while (y < 10)
+		{
+			if (x == 0 || x == 9 || y == 0 || y == 9)
+				game->map[x + (y * 10)] = 1;
+			else
+				game->map[x + (y * 10)] = 0;
+			y++;
+		}
+		x++;
+	}
+}
+
+void	draw_rect(t_game *game, int x, int y, int lx, int ly)
+{
+	int a = x;
+	int b = y;
+
+	while (a < (x + lx))
+	{
+		b = y;
+		while (b < (y + ly))
+		{
+			game->map[x + (y * 10)] = 1;
+			y++;
+		}
+		x++;
+	}
+}
+
+void	game_draw_map(t_game *game)
+{
+	int x = 0;
+	int y = 0;
+
+	while (x < 10)
+	{
+		y = 0;
+		while (y < 10)
+		{
+			draw_rect(game, x * 10, y * 10, 10, 10);
+			y++;
+		}
+		x++;
+	}
+}
+
 int		main(void)
 {
 
@@ -63,6 +120,7 @@ int		main(void)
 
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);
+	game_init_map(&game);
 
 	while (42)
 	{
@@ -72,7 +130,8 @@ int		main(void)
 			game_key_down(&game, &event);
 		game.x += game.dx;
 		game.y += game.dy;
-		game_draw_pixel(&game, game.x, game.y, color);
+		//game_draw_pixel(&game, game.x, game.y, color);
+		game_draw_map(&game);
 		game_draw_all(&game);
 	}
 	return (0);
