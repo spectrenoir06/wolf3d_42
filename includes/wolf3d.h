@@ -39,7 +39,6 @@ typedef struct 		s_color
 	unsigned char	b;
 }					t_color;
 
-#include "SDL2/SDL.h"
 #include "wolf3d.h"
 #include <stdio.h>
 

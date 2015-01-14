@@ -15,15 +15,6 @@ DEBUG_EXE	= wolf3d_debug
 
 SRC		=	main.c
 
-UNAME_S := $(shell uname -s)
-
-ifeq ($(UNAME_S),Linux)
-
-endif
-ifeq ($(UNAME_S),Darwin)
-
-endif
-
 STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
 
@@ -43,7 +34,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	SDL	= -F framework -I framework/SDL2.framework/Headers/ -framework SDL2
+	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2
 endif
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SDL2/SDL.h"
+#include "SDL.h"
 #include "wolf3d.h"
 #include <stdio.h>
 
@@ -105,12 +105,12 @@ int		main(void)
 
 	SDL_Event	event;
 	t_game		game;
-	t_color		color;
+	/*t_color		color;
 
 	color.a = 255;
 	color.r = 255;
 	color.g = 255;
-	color.b = 255;
+	color.b = 255;*/
 
 	game.x = 10;
 	game.y = 10;
@@ -131,7 +131,7 @@ int		main(void)
 		game.x += game.dx;
 		game.y += game.dy;
 		//game_draw_pixel(&game, game.x, game.y, color);
-		game_draw_map(&game);
+		//game_draw_map(&game);
 		game_draw_all(&game);
 	}
 	return (0);
