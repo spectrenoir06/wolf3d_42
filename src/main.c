@@ -56,7 +56,7 @@ void	game_init_map(t_game *game)
 		y = 0;
 		while (y < 10)
 		{
-			if (x == 0 || x == 9 || y == 0 || y == 9)
+			if (x == 0 || x == 4 || y == 0 || y == 4)
 				game->map[x + (y * 10)] = 1;
 			else
 				game->map[x + (y * 10)] = 0;
@@ -64,8 +64,9 @@ void	game_init_map(t_game *game)
 		}
 		x++;
 	}
-	game->player.x = 200;
-	game->player.y = 200;
+	game->map[2 + ( 2 * 10)] = 1;
+	game->player.x = 10;
+	game->player.y = 10;
 	game->player.dir_x = -1;
 	game->player.dir_y = 0;
 }
@@ -112,7 +113,7 @@ void	game_draw_map(t_game *game)
 		while (y < 10)
 		{
 			//game_draw_pixel(game, x, y , color);
-			draw_rect(game, x * 100, y * 100, 100, 100, (game->map[x + (y * 10)] ? color1 : color2));
+			draw_rect(game, x * 10, y * 10, 10, 10, (game->map[x + (y * 10)] ? color1 : color2));
 			y++;
 		}
 		x++;
@@ -124,12 +125,12 @@ int		main(void)
 
 	SDL_Event	event;
 	t_game		game;
-	//t_color		color;
+	t_color		color;
 
-	/*color.a = 255;
+	color.a = 255;
 	color.r = 255;
 	color.g = 255;
-	color.b = 255;*/
+	color.b = 255;
 
 	game.x = 10;
 	game.y = 10;
@@ -150,9 +151,10 @@ int		main(void)
 
 
 
-		//game_draw_map(&game);
-		//draw_rect(&game, game.player.x, game.player.y, 50 , 50, color);
+
 		game_render(&game);
+		game_draw_map(&game);
+		draw_rect(&game, game.player.x, game.player.y, 5 , 5, color);
 		game_draw_all(&game);
 	}
 	return (0);
@@ -169,17 +171,23 @@ void	game_render(t_game *game)
 	color.r = 0;
 	color.g = 255;
 	color.b = 255;
+	t_color		color2;
+
+	color2.a = 255;
+	color2.r = 255;
+	color2.g = 0;
+	color2.b = 0;
 
 	while (x < game->win_lx)
 	{
 		float cameraX = (2.0 * x / (float)game->win_lx) - 1;
 		int rayPosX = game->player.x;
 		int rayPosY = game->player.y;
-		int rayDirX = game->player.dir_x + (game->plane_x * cameraX);
-		int rayDirY = game->player.dir_y + (game->plane_y * cameraX);
+		float rayDirX = game->player.dir_x + ((float)game->plane_x * cameraX);
+		float rayDirY = game->player.dir_y + ((float)game->plane_y * cameraX);
 
-		int mapX = rayPosX/100;
-		int mapY = rayPosY/100;
+		int mapX = rayPosX/10;
+		int mapY = rayPosY/10;
 
 		int deltaDistX = sqrt(1 + (rayDirY * rayDirY ) / (rayDirX * rayDirX));
 		int deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
@@ -228,17 +236,17 @@ void	game_render(t_game *game)
 			{
 				hit=1;
 			}
-			if (side == 0)
-			{
-				perpWallDist = abs((mapX-rayPosX+(1-stepX)/2)/rayDirX);
-			}
-			else
-			{
-				perpWallDist = abs((mapY-rayPosY+(1-stepY)/2)/rayDirY);
-			}
+		}
+		if (side == 0)
+		{
+			perpWallDist = abs((mapX-rayPosX+(1-stepX)/2)/rayDirX);
+		}
+		else
+		{
+			perpWallDist = abs((mapY-rayPosY+(1-stepY)/2)/rayDirY);
 		}
 
-		int hauteurLigne = abs(game->win_ly / perpWallDist);
+		int hauteurLigne = abs((float)game->win_ly / (float)perpWallDist);
 
 		int drawStart = (-hauteurLigne / 2.0 + game->win_ly / 2.0);
 		int drawEnd = (hauteurLigne / 2 + game->win_ly / 2.0);
@@ -253,8 +261,11 @@ void	game_render(t_game *game)
 		y = 0;
 		while (y < drawEnd)
 		{
-			game_draw_pixel(game, x, y, color);
+			game_draw_pixel(game, x, y, side ? color : color2);
+			//game_draw_all(game);
+			y++;
 		}
+		x++;
 	}
 }
 
@@ -274,6 +285,13 @@ void	game_key_down(t_game *game, SDL_Event *event)
 		game->player.x--;
 	if (event->key.keysym.sym == SDLK_d)
 		game->player.x++;
+	if (event->key.keysym.sym == SDLK_q)
+			game->player.dir_x = 1,
+			game->player.dir_y = 0;
+	if (event->key.keysym.sym == SDLK_e)
+				game->player.dir_x = 0,
+				game->player.dir_y = 1;
+	printf("%d, %d \n",game->player.x, game->player.y);
 }
 
 void	game_draw_all(t_game *game)
