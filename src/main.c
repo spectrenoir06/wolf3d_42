@@ -124,12 +124,12 @@ int		main(void)
 
 	SDL_Event	event;
 	t_game		game;
-	t_color		color;
+	//t_color		color;
 
-	color.a = 255;
+	/*color.a = 255;
 	color.r = 255;
 	color.g = 255;
-	color.b = 255;
+	color.b = 255;*/
 
 	game.x = 10;
 	game.y = 10;
@@ -152,6 +152,7 @@ int		main(void)
 
 		//game_draw_map(&game);
 		//draw_rect(&game, game.player.x, game.player.y, 50 , 50, color);
+		game_render(&game);
 		game_draw_all(&game);
 	}
 	return (0);
@@ -159,67 +160,102 @@ int		main(void)
 
 void	game_render(t_game *game)
 {
-	int x = 0;
-	int y = 0;
+	int	x = 0;
+	int	y = 0;
 
-	int camera_x = (2 * x / game->win_lx)-1;
-	int ray_pos_x = game->player.x;
-	int ray_pos_y = game->player.y;
-	int ray_dir_x = game->player.dir_x * camera_x;
-	int ray_dir_y = game->player.dir_y * camera_x;
+	t_color		color;
 
-	int mapx = game->player.x / 100;
-	int mapy = game->player.x / 100;
+	color.a = 255;
+	color.r = 0;
+	color.g = 255;
+	color.b = 255;
 
-	int sideDistX;
-	int sideDistY;
-
-	int deltaDistX = sqrt(1+(ray_dir_y * ray_dir_y)/(ray_dir_x * ray_dir_x));
-	int deltaDistY = sqrt(1+(ray_dir_x * ray_dir_x)/(ray_dir_y * ray_dir_y));
-
-	int stepX;
-	int stepY;
-
-	int hit = 0;
-	int side;
-
-	while (x <= game->win_lx)
+	while (x < game->win_lx)
 	{
+		float cameraX = (2.0 * x / (float)game->win_lx) - 1;
+		int rayPosX = game->player.x;
+		int rayPosY = game->player.y;
+		int rayDirX = game->player.dir_x + game->plane_x * cameraX;
+		int rayDirY =  game->player.y + game->plane_y * cameraX;
 
-		if (ray_dir_x<0){
+		int mapX = rayPosX/100;
+		int mapY = rayPosY/100;
+
+		int deltaDistX = sqrt(1+(rayDirY*rayDirY)/(rayDirX*rayDirX));;
+		int deltaDistY = sqrt(1+(rayDirX*rayDirX)/(rayDirY*rayDirY));
+
+		int sideDistX;
+		int sideDistY;
+
+		int stepX;
+		int stepY;
+
+		int hit = 0;
+		int side;
+
+		int perpWallDist;
+
+		if (rayDirX<0){
 			stepX=-1;// vecteur de direction
-			sideDistX = (ray_pos_x - mapx) * deltaDistX;// distance
+			sideDistX = (rayPosX - mapX) * deltaDistX;// distance
 		} else{
 			stepX = 1;
-			sideDistX = (mapx + 1.0 - ray_pos_x) * deltaDistX;
+		 	sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
 		}
-		if (ray_dir_y < 0){
+		if (rayDirY < 0){
 			stepY = -1;
-			sideDistY = (ray_pos_y - mapy) * deltaDistY;
+			sideDistY = (rayPosY - mapY) * deltaDistY;
 		} else{
 			stepY = 1;
-			sideDistY = (mapy + 1.0 - ray_pos_y) * deltaDistY;
+			sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
 		}
 
-		while (hit == 0) {
-
-			//Passe  la case suivante sur X ou Y
-			if (sideDistX < sideDistY) {
-				sideDistX += deltaDistX;// agrandis le rayon
-				mapx += stepX;// prochaine case ou case prcdente sur X
-				side = 0;// orientation du mur
-			} else {
-				sideDistY += deltaDistY;// agrandis le rayon
-				mapy += stepY;// prochaine case ou case prcdente sur Y
-				side = 1;// orientation du mur
+		while (!hit)
+		{
+			if (sideDistX<sideDistY)
+			{
+				sideDistX += deltaDistX;
+				mapX += stepX;
+				side = 0;
 			}
-
-			// si le rayon rencontre un mur
-			if (game->map[x + (y * 10)]>0) {
-				hit=1;// stoppe la boucle
+			else
+			{
+				sideDistY += deltaDistY;
+				mapY += stepY;
+				side = 1;
 			}
+			if (game->map[mapX + (mapY * 10)] > 0)
+			{
+				hit=1;
+			}
+			if (side == 0)
+			{
+				perpWallDist = abs((mapX-rayPosX+(1-stepX)/2)/rayDirX);
+			}
+			else
+			{
+				perpWallDist = abs((mapY-rayPosY+(1-stepY)/2)/rayDirY);
+			}
+		}
+
+		int hauteurLigne = abs(game->win_ly / perpWallDist);
+
+		int drawStart = (-hauteurLigne / 2.0 + game->win_ly / 2.0);
+		int drawEnd = (hauteurLigne / 2 + game->win_ly / 2.0);
+
+		if (drawStart < 0) {
+			drawStart = 0;
+		}
+		if (drawEnd >= game->win_ly) {
+			drawEnd = game->win_ly-1;
+		}
+
+		y = 0;
+		while (y < drawEnd)
+		{
+			game_draw_pixel(game, x, y, color);
+		}
 	}
-}
 }
 
 void	game_key_down(t_game *game, SDL_Event *event)
@@ -249,9 +285,6 @@ void	game_draw_all(t_game *game)
 
 void	game_draw_pixel(t_game *game, int x, int y, t_color c)
 {
-	if (x >= 0
-		&& x < game->win_lx
-		&& y >=0
-		&& y < game->win_ly)
+	if (x >= 0 && x < game->win_lx && y >=0 && y < game->win_ly)
 		memcpy(&game->text_buf[x + (y * game->win_lx)], &c, 4);
 }

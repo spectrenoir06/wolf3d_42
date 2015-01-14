@@ -38,6 +38,8 @@ typedef struct s_game
 	int					y;
 	Uint8				*map;
 	t_player			player;
+	int					plane_x;
+	int					plane_y;
 
 }						t_game;
 
@@ -56,5 +58,6 @@ void	game_init_sdl(t_game *game);
 void	game_key_down(t_game *game, SDL_Event *event);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, int x, int y, t_color c);
+void	game_render(t_game *game);
 
 #endif
