@@ -70,13 +70,13 @@ void	game_init_map(t_game *game)
 	game->map.color_mur2.b = 255;
 
 	game->map.color_ceil.a = 255;
-	game->map.color_ceil.r = 0;
+	game->map.color_ceil.r = 180;
 	game->map.color_ceil.g = 100;
 	game->map.color_ceil.b = 255;
 
 	game->map.color_floor.a = 255;
 	game->map.color_floor.r = 100;
-	game->map.color_floor.g = 100;
+	game->map.color_floor.g = 000;
 	game->map.color_floor.b = 255;
 
 	game->map.lx = 30;
@@ -285,10 +285,10 @@ void	game_render(t_game *game)
 		if(drawEnd >= game->sdl.ly)drawEnd = game->sdl.ly - 1;
 
 		//draw the pixels of the stripe as a vertical line
-		int y = 2;
+		int y = 0;
 		while (y < drawStart)
 		{
-			game_draw_pixel(game,x,y, game->map.color_mur1);
+			game_draw_pixel(game,x,y, game->map.color_ceil);
 			y++;
 		}
 		y = drawStart;
@@ -297,12 +297,12 @@ void	game_render(t_game *game)
 			game_draw_pixel(game,x,y,side ? game->map.color_mur1 : game->map.color_mur2);
 			y++;
 		}
-		/*
+
 		while (y < game->sdl.ly)
 		{
 			game_draw_pixel(game,x,y, game->map.color_floor);
 			y++;
-		}*/
+		}
 	}
 }
 
@@ -347,7 +347,7 @@ void	game_render(t_game *game)
 			SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 			SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 			SDL_RenderPresent(game->sdl.rd);
-			bzero(game->sdl.text_buf, sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
+			//bzero(game->sdl.text_buf, sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
 		}
 
 		void	game_draw_pixel(t_game *game, int x, int y, t_color c)
