@@ -16,32 +16,31 @@
 # define WIN_X 800
 # define WIN_Y 600
 
-typedef struct	s_player
+typedef struct s_vect2di
 {
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-}				t_player;
+	int		x;
+	int		y;
+}				t_vect2di;
 
-typedef struct s_game
+typedef struct s_vect2dd
 {
-	SDL_Window			*win;
-	SDL_Texture			*tex;
-	SDL_Renderer		*rd;
-	int					win_lx;
-	int					win_ly;
-	Uint32				*text_buf;
-	int					dx;
-	int					dy;
-	int					x;
-	int					y;
-	Uint8				*map;
-	t_player			player;
-	double				plane_x;
-	double				plane_y;
+	double		x;
+	double		y;
+}				t_vect2dd;
 
-}						t_game;
+typedef struct s_vect3di
+{
+	int		x;
+	int		y;
+	int		z;
+}				t_vect3di;
+
+typedef struct s_vect3dd
+{
+	double		x;
+	double		y;
+	double		z;
+}				t_vect3dd;
 
 typedef struct 		s_color
 {
@@ -50,6 +49,44 @@ typedef struct 		s_color
 	unsigned char	g;
 	unsigned char	b;
 }					t_color;
+
+typedef struct	s_player
+{
+	t_vect3dd	pos;
+	t_vect2dd	dir;
+	t_vect2dd	plane;
+}				t_player;
+
+
+typedef struct s_sdl
+{
+	SDL_Window			*win;
+	SDL_Texture			*tex;
+	SDL_Renderer		*rd;
+	Uint32				*text_buf;
+	int					lx;
+	int					ly;
+
+}			t_sdl;
+
+typedef struct s_map
+{
+	int			lx;
+	int			ly;
+	Uint8		*data;
+	t_color		color_mur1;
+	t_color		color_mur2;
+	t_color		color_ceil;
+	t_color		color_floor;
+}				t_map;
+
+typedef struct s_game
+{
+	t_sdl				sdl;
+	t_player			player;
+	t_map				map;
+
+}						t_game;
 
 #include "wolf3d.h"
 #include <stdio.h>
