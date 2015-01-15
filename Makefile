@@ -46,10 +46,10 @@ $(DEBUG_EXE): $(DEBUG_OBJ)
 	$(CC) -I $(HEAD_DIR) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ)
-	$(CC) -O3 -I $(HEAD_DIR) -o $@ $(STATIC_OBJ) $(SDL) $(FLAGS)
+	$(CC) -I $(HEAD_DIR) -o $@ $(STATIC_OBJ) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -O3 -I $(HEAD_DIR) -o $@ -c $< $(SDL) $(FLAGS)
+	$(CC) -I $(HEAD_DIR) -o $@ -c $< $(SDL) $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -I $(HEAD_DIR) -o $@ -c $< $(SDL) $(FLAGS) -g

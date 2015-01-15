@@ -44,10 +44,10 @@ typedef struct s_vect3dd
 
 typedef struct 		s_color
 {
-	unsigned char	a;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	unsigned char	a;
 }					t_color;
 
 typedef struct	s_player

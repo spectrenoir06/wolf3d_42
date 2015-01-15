@@ -34,7 +34,7 @@ void	game_init_sdl(t_game *game)
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
-			SDL_PIXELFORMAT_BGRA8888,
+			SDL_PIXELFORMAT_ABGR8888,
 			SDL_TEXTUREACCESS_STREAMING,
 			game->sdl.lx,
 			game->sdl.ly);
@@ -60,24 +60,24 @@ void	game_init_map(t_game *game)
 	y = 0;
 
 	game->map.color_mur1.a = 255;
-	game->map.color_mur1.r = 255;
-	game->map.color_mur1.g = 0;
-	game->map.color_mur1.b = 0;
+	game->map.color_mur1.r = 147;
+	game->map.color_mur1.g = 101;
+	game->map.color_mur1.b = 36;
 
 	game->map.color_mur2.a = 255;
-	game->map.color_mur2.r = 0;
-	game->map.color_mur2.g = 0;
-	game->map.color_mur2.b = 255;
+	game->map.color_mur2.r = 86;
+	game->map.color_mur2.g = 59;
+	game->map.color_mur2.b = 21;
 
 	game->map.color_ceil.a = 255;
-	game->map.color_ceil.r = 180;
-	game->map.color_ceil.g = 100;
-	game->map.color_ceil.b = 255;
+	game->map.color_ceil.r = 53;
+	game->map.color_ceil.g = 193;
+	game->map.color_ceil.b = 206;
 
 	game->map.color_floor.a = 255;
-	game->map.color_floor.r = 100;
-	game->map.color_floor.g = 000;
-	game->map.color_floor.b = 255;
+	game->map.color_floor.r = 92;
+	game->map.color_floor.g = 167;
+	game->map.color_floor.b = 98;
 
 	game->map.lx = 30;
 	game->map.ly = 30;
@@ -167,7 +167,7 @@ int		main(void)
 	game.player.dir.x = 0;
 	game.player.dir.y = 0;
 
-	double dt = 0;
+	//double dt = 0;
 
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);
@@ -190,10 +190,10 @@ int		main(void)
 			draw_rect(&game, game.player.pos.x * 4 + (game.player.dir.x * 4), game.player.pos.y * 4 + (game.player.dir.y * 4), 2 , 2, color2);
 			game_draw_all(&game);
 		}
-		tv2 = tv1;
-		gettimeofday(&tv1, NULL);
-		dt = ((tv1.tv_sec - tv2.tv_sec) + ((tv1.tv_usec - tv2.tv_usec) / 1000000.0)); //frametime is the time this frame has taken, in seconds
-		printf("%f , dt = %f\n",1 / dt, dt); //FPS counter
+		//tv2 = tv1;
+		//gettimeofday(&tv1, NULL);
+		//dt = ((tv1.tv_sec - tv2.tv_sec) + ((tv1.tv_usec - tv2.tv_usec) / 1000000.0)); //frametime is the time this frame has taken, in seconds
+		//printf("%f , dt = %f\n",1 / dt, dt); //FPS counter
 	}
 	return (0);
 }
@@ -353,7 +353,7 @@ void	game_render(t_game *game)
 		void	game_draw_pixel(t_game *game, int x, int y, t_color c)
 		{
 			if (x >= 0 && x < game->sdl.lx && y >=0 && y < game->sdl.ly)
-				memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &c, 4);
+				memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &c, 3);
 		}
 
 		/*void	game_draw_text(t_game *game)
