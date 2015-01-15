@@ -96,8 +96,8 @@ void	game_init_map(t_game *game)
 		x++;
 	}
 
-	game->player.pos.x = 5;
-	game->player.pos.y = 5;
+	game->player.pos.x = 5.3;
+	game->player.pos.y = 5.3;
 	game->player.dir.x = -1;
 	game->player.dir.y = 0;
 	game->player.plane.x = 0;
