@@ -14,7 +14,7 @@
 # define WOLF3D_H
 
 # define WIN_X 800
-# define WIN_Y 480
+# define WIN_Y 600
 
 typedef struct	s_player
 {

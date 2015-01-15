@@ -19,6 +19,10 @@
 #include "wolf3d.h"
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
+#include <sys/time.h>
+
+struct timeval tv1, tv2;
 
 void	game_init_sdl(t_game *game)
 {
@@ -144,6 +148,8 @@ int		main(void)
 	game.dx = 0;
 	game.dy = 0;
 
+	double dt = 0;
+
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);
 	game_init_map(&game);
@@ -165,6 +171,10 @@ int		main(void)
 			draw_rect(&game, game.player.x * 4 + (game.player.dir_x * 4), game.player.y * 4 + (game.player.dir_y * 4), 2 , 2, color2);
 			game_draw_all(&game);
 		}
+		tv2 = tv1;
+		gettimeofday(&tv1, NULL);
+		dt = ((tv1.tv_sec - tv2.tv_sec) + ((tv1.tv_usec - tv2.tv_usec) / 1000000.0)); //frametime is the time this frame has taken, in seconds
+		printf("%f , dt = %f\n",1 / dt, dt); //FPS counter
 	}
 	return (0);
 }
@@ -328,3 +338,8 @@ void	game_render(t_game *game)
 			if (x >= 0 && x < game->win_lx && y >=0 && y < game->win_ly)
 				memcpy(&game->text_buf[x + (y * game->win_lx)], &c, 4);
 		}
+
+		/*void	game_draw_text(t_game *game)
+		{
+
+		}*/
