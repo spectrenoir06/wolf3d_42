@@ -13,6 +13,12 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+# ifndef __APPLE__
+#  include "SDL2/SDL.h"
+# else
+#  include <SDL2/SDL.h>
+# endif
+
 # define WIN_X 800
 # define WIN_Y 600
 
@@ -85,6 +91,7 @@ typedef struct s_game
 	t_sdl				sdl;
 	t_player			player;
 	t_map				map;
+	double				dt;
 
 }						t_game;
 
@@ -96,5 +103,8 @@ void	game_key_down(t_game *game, SDL_Event *event);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, int x, int y, t_color c);
 void	game_render(t_game *game);
+void	game_init_map(t_game *game);
+void	game_draw_map(t_game *game);
+void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
 
 #endif
