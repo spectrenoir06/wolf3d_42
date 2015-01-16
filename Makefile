@@ -39,10 +39,10 @@ ifeq ($(UNAME_S),Darwin)
 endif
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
-all: $(STATIC_EXE) $(DEBUG_EXE)
-
+all: $(STATIC_EXE)
+	@echo "je suis Charlie (realease)"
 debug: $(DEBUG_EXE)
-
+	@echo "je suis Charlie (debug)"
 $(DEBUG_EXE): $(DEBUG_OBJ)
 	$(CC) -I $(HEAD_DIR) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(SDL) $(FLAGS) -g
 
