@@ -18,6 +18,8 @@
 
 struct timeval tv1, tv2;
 
+
+
 int		main(void)
 {
 
@@ -33,6 +35,23 @@ int		main(void)
 	game.player.dir.y = 0;
 
 	game.dt = 0;
+
+	int i = 0;
+	int j = 0;
+
+	while (i<256)
+	{
+		j = 0;
+		while (j<256)
+		{
+			game.texture[i][j].r = i;
+			game.texture[i][j].g = j;
+			game.texture[i][j].b = 0;
+			j++;
+		}
+		i++;
+	}
+
 
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);

@@ -277,6 +277,18 @@ void	game_render(t_game *game)
 		int drawEnd = lineHeight / 2 + game->sdl.ly / 2;
 		if(drawEnd >= game->sdl.ly)drawEnd = game->sdl.ly - 1;
 
+
+		double wallX;
+		if (side == 1)
+			 wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;
+		else
+			wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
+		wallX -= floor(wallX);
+
+		int texX = wallX * texWidth;
+		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+		if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+
 		//draw the pixels of the stripe as a vertical line
 		int y = 0;
 		while (y < drawStart)

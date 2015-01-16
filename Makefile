@@ -6,7 +6,7 @@
 #    By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 10:11:24 by adoussau          #+#    #+#              #
-#    Updated: 2014/11/28 15:13:43 by adoussau         ###   ########.fr        #
+#    Updated: 2015/01/16 17:07:27 by adoussau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ DEBUG_DIR	= debug
 STATIC_DIR	= static
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		=   ##-Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
 
 UNAME_S := $(shell uname -s)

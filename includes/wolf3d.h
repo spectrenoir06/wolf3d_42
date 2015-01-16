@@ -92,6 +92,7 @@ typedef struct s_game
 	t_player			player;
 	t_map				map;
 	double				dt;
+	t_color				texture[256][256];
 
 }						t_game;
 
