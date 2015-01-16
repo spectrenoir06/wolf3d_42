@@ -39,18 +39,20 @@ int		main(void)
 	int i = 0;
 	int j = 0;
 
+	SDL_SetRelativeMouseMode(1);
+
 	SDL_Surface *imageDeFond = SDL_LoadBMP("img/stones.bmp");
 	//SDL_LockSurface(imageDeFond);
 
 
-	while (i<256)
+	while (i<512)
 	{
 		j = 0;
-		while (j<256)
+		while (j<512)
 		{
-			game.texture[i][j].r = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256)];
-			game.texture[i][j].g = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256) + 1];
-			game.texture[i][j].b = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256) + 2];
+			game.texture[i][j].r = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512)];
+			game.texture[i][j].g = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512) + 1];
+			game.texture[i][j].b = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512) + 2];
 			j++;
 		}
 		i++;
@@ -73,15 +75,16 @@ int		main(void)
 
 		SDL_PollEvent(&event);
 
-		if (event.type == SDL_KEYDOWN)
-
+		if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEMOTION)
+		{
 			game_key_down(&game, &event);
+
 			game_render(&game);
 			game_draw_map(&game);
 			game_draw_rect(&game, game.player.pos.x * 4, game.player.pos.y * 4, 2 , 2, color);
 			game_draw_rect(&game, game.player.pos.x * 4 + (game.player.dir.x * 4), game.player.pos.y * 4 + (game.player.dir.y * 4), 2 , 2, color2);
 			game_draw_all(&game);
-		//}
+		}
 		//printf("%f ; %f\n",game.player.plane.x, game.player.plane.y);
 
 		/*game_render(&game);

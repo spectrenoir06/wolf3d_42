@@ -143,6 +143,19 @@ void	game_draw_map(t_game *game)
 
 void	game_key_down(t_game *game, SDL_Event *event)
 {
+	//printf("%c\n", event->key.keysym.sym);
+	if (event->type == SDL_MOUSEMOTION)
+	{
+		double motion = -event->motion.xrel / 200.0;
+		printf("%f \n",motion);
+		double oldDirX = game->player.dir.x;
+		game->player.dir.x = game->player.dir.x * cos(motion) - game->player.dir.y * sin(motion);
+		game->player.dir.y = oldDirX * sin(motion) + game->player.dir.y * cos(motion);
+		double oldPlaneX = game->player.plane.x;
+		game->player.plane.x = game->player.plane.x * cos(motion) - game->player.plane.y * sin(motion);
+		game->player.plane.y = oldPlaneX * sin(motion) + game->player.plane.y * cos(motion);
+		event->motion.xrel=0;
+	}
 	if (event->key.keysym.sym == SDLK_ESCAPE)
 	{
 		SDL_DestroyWindow(game->sdl.win);
@@ -285,9 +298,9 @@ void	game_render(t_game *game)
 			wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
 		wallX -= floor(wallX);
 
-		int texX = wallX * 256;
-		if(side == 0 && rayDirX > 0) texX = 256 - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = 256 - texX - 1;
+		int texX = wallX * 512;
+		if(side == 0 && rayDirX > 0) texX = 512 - texX - 1;
+		if(side == 1 && rayDirY < 0) texX = 512 - texX - 1;
 
 		//draw the pixels of the stripe as a vertical line
 		int y = 0;
@@ -299,14 +312,14 @@ void	game_render(t_game *game)
 		y = drawStart;
 		while (y < drawEnd)
 		{
-			int texY = (y - drawStart) * 256 / (drawEnd - drawStart);
+			int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
 			t_color color = game->texture[texX][texY];
 
 			if(side == 1)
 			{
-				color.r = color.r >> 2;
-				color.g = color.g >> 2;
-				color.b = color.b >> 2;
+				color.r = color.r >> 1;
+				color.g = color.g >> 1;
+				color.b = color.b >> 1;
 			}
 			game_draw_pixel(game,x,y,color);
 			y++;

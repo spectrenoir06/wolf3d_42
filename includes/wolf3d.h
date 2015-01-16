@@ -20,7 +20,7 @@
 # endif
 
 # define WIN_X 800
-# define WIN_Y 600
+# define WIN_Y 480
 
 typedef struct s_vect2di
 {
@@ -92,7 +92,7 @@ typedef struct s_game
 	t_player			player;
 	t_map				map;
 	double				dt;
-	t_color				texture[256][256];
+	t_color				texture[512][512];
 
 }						t_game;
 
