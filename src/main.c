@@ -39,14 +39,18 @@ int		main(void)
 	int i = 0;
 	int j = 0;
 
+	SDL_Surface *imageDeFond = SDL_LoadBMP("img/stones.bmp");
+	//SDL_LockSurface(imageDeFond);
+
+
 	while (i<256)
 	{
 		j = 0;
 		while (j<256)
 		{
-			game.texture[i][j].r = i;
-			game.texture[i][j].g = j;
-			game.texture[i][j].b = 0;
+			game.texture[i][j].r = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256)];
+			game.texture[i][j].g = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256) + 1];
+			game.texture[i][j].b = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 256) + 2];
 			j++;
 		}
 		i++;

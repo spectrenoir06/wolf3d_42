@@ -285,9 +285,9 @@ void	game_render(t_game *game)
 			wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
 		wallX -= floor(wallX);
 
-		int texX = wallX * texWidth;
-		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+		int texX = wallX * 256;
+		if(side == 0 && rayDirX > 0) texX = 256 - texX - 1;
+		if(side == 1 && rayDirY < 0) texX = 256 - texX - 1;
 
 		//draw the pixels of the stripe as a vertical line
 		int y = 0;
@@ -299,7 +299,16 @@ void	game_render(t_game *game)
 		y = drawStart;
 		while (y < drawEnd)
 		{
-			game_draw_pixel(game,x,y,side ? game->map.color_mur1 : game->map.color_mur2);
+			int texY = (y - drawStart) * 256 / (drawEnd - drawStart);
+			t_color color = game->texture[texX][texY];
+
+			if(side == 1)
+			{
+				color.r = color.r >> 2;
+				color.g = color.g >> 2;
+				color.b = color.b >> 2;
+			}
+			game_draw_pixel(game,x,y,color);
 			y++;
 		}
 
