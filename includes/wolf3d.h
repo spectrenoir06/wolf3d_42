@@ -19,8 +19,8 @@
 #  include <SDL2/SDL.h>
 # endif
 
-# define WIN_X 1600
-# define WIN_Y 900
+# define WIN_X 800
+# define WIN_Y 480
 
 typedef enum KEY KEY;
 enum KEY
@@ -30,7 +30,9 @@ enum KEY
 	LEFT	= 2,
 	RIGHT	= 3,
 	MOUSE_X = 4,
-	MOUSE_Y = 5
+	MOUSE_Y = 5,
+	TURN_LEFT = 6,
+	TURN_RIGHT = 7
 };
 
 typedef struct s_vect2di

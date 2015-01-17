@@ -159,57 +159,30 @@ void	game_key_down(t_game *game)
 	}
 
 	if (game->input[UP])
-	{
-		// new_pos_x = game->player.pos.x + (game->player.dir.x * game->dt * 5);
-		// new_pos_y = game->player.pos.y + (game->player.dir.y * game->dt * 5);
-		//
-		// if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
-		// {
-		// 	game->player.pos.x = new_pos_x;
-		// 	game->player.pos.y = new_pos_y;
-		// }
 		player_move(game, &(game->player), UP);
-	}
 	if (game->input[DOWN])
-	{
-		// new_pos_x = game->player.pos.x - (game->player.dir.x * game->dt * 5);
-		// new_pos_y = game->player.pos.y - (game->player.dir.y * game->dt * 5);
-		//
-		// 	if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
-		// 	{
-		// 		game->player.pos.x = new_pos_x;
-		// 		game->player.pos.y = new_pos_y;
-		// 	}
 		player_move(game, &(game->player), DOWN);
-	}
 	if (game->input[RIGHT])
-	{
-		// new_pos_x = game->player.pos.x + (game->player.dir.x * game->dt * 5);
-		// new_pos_y = game->player.pos.y + (game->player.dir.y * game->dt * 5);
-		//
-		// if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
-		// {
-		// 	game->player.pos.x = new_pos_x;
-		// 	game->player.pos.y = new_pos_y;
-		// }
 		player_move(game, &(game->player), RIGHT);
-		/*
+	if (game->input[LEFT])
+		player_move(game, &(game->player), LEFT);
+	if (game->input[TURN_LEFT])
+	{
+		 double oldDirX = game->player.dir.x;
+		 game->player.dir.x = game->player.dir.x * cos(game->dt) - game->player.dir.y * sin(game->dt);
+		 game->player.dir.y = oldDirX * sin(game->dt) + game->player.dir.y * cos(game->dt);
+		 double oldPlaneX = game->player.plane.x;
+		 game->player.plane.x = game->player.plane.x * cos(game->dt) - game->player.plane.y * sin(game->dt);
+		 game->player.plane.y = oldPlaneX * sin(game->dt) + game->player.plane.y * cos(game->dt);
+	}
+	if (game->input[TURN_RIGHT])
+	{
 		double oldDirX = game->player.dir.x;
 		game->player.dir.x = game->player.dir.x * cos(-game->dt) - game->player.dir.y * sin(-game->dt);
 		game->player.dir.y = oldDirX * sin(-game->dt) + game->player.dir.y * cos(-game->dt);
 		double oldPlaneX = game->player.plane.x;
 		game->player.plane.x = game->player.plane.x * cos(-game->dt) - game->player.plane.y * sin(-game->dt);
-		game->player.plane.y = oldPlaneX * sin(-game->dt) + game->player.plane.y * cos(-game->dt);*/
-	}
-	if (game->input[LEFT])
-	{
-		// double oldDirX = game->player.dir.x;
-		// game->player.dir.x = game->player.dir.x * cos(game->dt) - game->player.dir.y * sin(game->dt);
-		// game->player.dir.y = oldDirX * sin(game->dt) + game->player.dir.y * cos(game->dt);
-		// double oldPlaneX = game->player.plane.x;
-		// game->player.plane.x = game->player.plane.x * cos(game->dt) - game->player.plane.y * sin(game->dt);
-		// game->player.plane.y = oldPlaneX * sin(game->dt) + game->player.plane.y * cos(game->dt);
-		player_move(game, &(game->player), LEFT);
+		game->player.plane.y = oldPlaneX * sin(-game->dt) + game->player.plane.y * cos(-game->dt);
 	}
 
 	//printf("%f, %f \n",game->player.pos.x, game->player.pos.y);
@@ -382,14 +355,18 @@ int		game_event_handler(t_game *game)
 	}
 	if (event.type == SDL_KEYDOWN)
 	{
-		if (event.key.keysym.sym == SDLK_UP)
+		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
 			game->input[UP] = 1;
-		else if (event.key.keysym.sym == SDLK_DOWN)
+		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[DOWN] = 1;
-		else if (event.key.keysym.sym == SDLK_LEFT)
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[LEFT] = 1;
-		else if (event.key.keysym.sym == SDLK_RIGHT)
+		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
 			game->input[RIGHT] = 1;
+		else if (event.key.keysym.sym == SDLK_a)
+			game->input[TURN_LEFT] = 1;
+		else if (event.key.keysym.sym == SDLK_e)
+			game->input[TURN_RIGHT] = 1;
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			SDL_DestroyWindow(game->sdl.win);
@@ -400,14 +377,18 @@ int		game_event_handler(t_game *game)
 	}
 	else if (event.type == SDL_KEYUP)
 	{
-		if (event.key.keysym.sym == SDLK_UP)
+		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
 			game->input[UP] = 0;
-			else if (event.key.keysym.sym == SDLK_DOWN)
+			else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[DOWN] = 0;
-		else if (event.key.keysym.sym == SDLK_LEFT)
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[LEFT] = 0;
-		else if (event.key.keysym.sym == SDLK_RIGHT)
+		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
 			game->input[RIGHT] = 0;
+		else if (event.key.keysym.sym == SDLK_a)
+			game->input[TURN_LEFT] = 0;
+		else if (event.key.keysym.sym == SDLK_e)
+			game->input[TURN_RIGHT] = 0;
 	}
 	return (0);
 }

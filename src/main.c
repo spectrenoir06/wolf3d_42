@@ -57,23 +57,17 @@ int		main(void)
 
 
 
-		if (game_event_handler(&game) || 1)
+		game_event_handler(&game);
 		{
-			game_key_down(&game);
-			game_render(&game);
-			game_draw_map(&game);
+			game_key_down(&game);	// update player
+			game_render(&game);		// update screen
+			game_draw_map(&game);	// update minimap
 			game_draw_rect(&game, game.player.pos.x * 4, game.player.pos.y * 4, 2 , 2, color);
 			game_draw_rect(&game, game.player.pos.x * 4 + (game.player.dir.x * 4), game.player.pos.y * 4 + (game.player.dir.y * 4), 2 , 2, color2);
-			game_draw_all(&game);
+			game_draw_all(&game);	// update screen
 		}
-		//printf("%f ; %f\n",game.player.plane.x, game.player.plane.y);
+		//printf("%f ; %f\n",1/game.dt, game.dt);
 
-		/*game_render(&game);
-					game_draw_map(&game);
-					game_draw_rect(&game, game.player.pos.x * 4, game.player.pos.y * 4, 2 , 2, color);
-					game_draw_rect(&game, game.player.pos.x * 4 + (game.player.dir.x * 4), game.player.pos.y * 4 + (game.player.dir.y * 4), 2 , 2, color2);
-					game_draw_all(&game);*
-		//printf("%f , dt = %f\n",1 / dt, dt); //FPS counter*/
 	}
 	return (0);
 }

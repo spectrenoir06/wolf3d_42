@@ -17,14 +17,18 @@ SRC		=	main.c		\
 			game.c		\
 			player.c	\
 			vect.c
-
-STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
-DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
+			
+##HEADFILES = wolf3d.h
 
 HEAD_DIR	= includes
 SRC_DIR		= src
 DEBUG_DIR	= debug
 STATIC_DIR	= static
+C_HEAD_DIR	= debug
+
+STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
+DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
+##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
 
 CC			= gcc
 FLAGS		=   ##-Wall -Wextra -Werror
@@ -39,16 +43,17 @@ endif
 ifeq ($(UNAME_S),Darwin)
 	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2
 endif
+
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
 all: $(STATIC_EXE)
 	@echo "je suis Charlie (realease)"
 debug: $(DEBUG_EXE)
 	@echo "je suis Charlie (debug)"
-$(DEBUG_EXE): $(DEBUG_OBJ)
+$(DEBUG_EXE): $(DEBUG_OBJ) ##$(HEADER_OBJ))
 	$(CC) -I $(HEAD_DIR) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(SDL) $(FLAGS) -g
 
-$(STATIC_EXE): $(STATIC_OBJ)
+$(STATIC_EXE): $(STATIC_OBJ) $(HEADFILES)
 	$(CC) -I $(HEAD_DIR) -o $@ $(STATIC_OBJ) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
@@ -56,6 +61,9 @@ $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -I $(HEAD_DIR) -o $@ -c $< $(SDL) $(FLAGS) -g
+	
+##$(HEAD_DIR))/%.h.gch: $(HEAD_DIR))/%.h
+##	$(CC) -I $(HEAD_DIR) -o $@ -c $<
 
 .PHONY: clean fclean re debug norme
 
