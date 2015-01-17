@@ -14,7 +14,9 @@ STATIC_EXE	= wolf3d
 DEBUG_EXE	= wolf3d_debug
 
 SRC		=	main.c		\
-			game.c
+			game.c		\
+			player.c	\
+			vect.c
 
 STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
