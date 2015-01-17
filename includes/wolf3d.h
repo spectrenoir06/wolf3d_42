@@ -19,8 +19,19 @@
 #  include <SDL2/SDL.h>
 # endif
 
-# define WIN_X 800
-# define WIN_Y 480
+# define WIN_X 1600
+# define WIN_Y 900
+
+typedef enum KEY KEY;
+enum KEY
+{
+    UP		= 0,
+	DOWN	= 1,
+	LEFT	= 2,
+	RIGHT	= 3,
+	MOUSE_X = 4,
+	MOUSE_Y = 5
+};
 
 typedef struct s_vect2di
 {
@@ -93,6 +104,7 @@ typedef struct s_game
 	t_map				map;
 	double				dt;
 	t_color				texture[512][512];
+	Sint16				input[10];
 
 }						t_game;
 
@@ -100,12 +112,13 @@ typedef struct s_game
 #include <stdio.h>
 
 void	game_init_sdl(t_game *game);
-void	game_key_down(t_game *game, SDL_Event *event);
+void	game_key_down(t_game *game);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, int x, int y, t_color c);
 void	game_render(t_game *game);
 void	game_init_map(t_game *game);
 void	game_draw_map(t_game *game);
 void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
+int		game_event_handler(t_game *game);
 
 #endif

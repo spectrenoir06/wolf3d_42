@@ -84,6 +84,12 @@ void	game_init_map(t_game *game)
 		x++;
 	}
 
+	x = 0;
+
+	while (x < 10)
+	{
+		game->input[x++] = 0;
+	}
 	game->player.pos.x = 5.3;
 	game->player.pos.y = 5.3;
 	game->player.dir.x = -1;
@@ -141,34 +147,35 @@ void	game_draw_map(t_game *game)
 	}
 }
 
-void	game_key_down(t_game *game, SDL_Event *event)
+void	game_key_down(t_game *game)
 {
-	//printf("%c\n", event->key.keysym.sym);
-	if (event->type == SDL_MOUSEMOTION)
+
+	if (game->input[MOUSE_X])
 	{
-		double motion = -event->motion.xrel / 200.0;
-		printf("%f \n",motion);
+		double motion = -game->input[MOUSE_X] / 200.0;
+		//printf("%f \n",motion);
 		double oldDirX = game->player.dir.x;
 		game->player.dir.x = game->player.dir.x * cos(motion) - game->player.dir.y * sin(motion);
 		game->player.dir.y = oldDirX * sin(motion) + game->player.dir.y * cos(motion);
 		double oldPlaneX = game->player.plane.x;
 		game->player.plane.x = game->player.plane.x * cos(motion) - game->player.plane.y * sin(motion);
 		game->player.plane.y = oldPlaneX * sin(motion) + game->player.plane.y * cos(motion);
-		event->motion.xrel=0;
+		game->input[MOUSE_X] = 0;
 	}
-	if (event->key.keysym.sym == SDLK_ESCAPE)
+
+	if (game->input[UP])
 	{
-		SDL_DestroyWindow(game->sdl.win);
-		SDL_Quit();
-		exit(0);
-	}
-	if (event->key.keysym.sym == SDLK_UP)
-		game->player.pos.x += game->player.dir.x * game->dt * 5,
+		//printf("go up\n");
+		game->player.pos.x += game->player.dir.x * game->dt * 5;
 		game->player.pos.y += game->player.dir.y * game->dt * 5;
-	if (event->key.keysym.sym == SDLK_DOWN)
-		game->player.pos.x -= game->player.dir.x * game->dt * 5,
+	}
+	if (game->input[DOWN])
+	{
+		printf("go down\n");
+		game->player.pos.x -= game->player.dir.x * game->dt * 5;
 		game->player.pos.y -= game->player.dir.y * game->dt * 5;
-	if (event->key.keysym.sym == SDLK_RIGHT)
+	}
+	if (game->input[RIGHT])
 	{
 		double oldDirX = game->player.dir.x;
 		game->player.dir.x = game->player.dir.x * cos(-0.02) - game->player.dir.y * sin(-0.02);
@@ -177,7 +184,7 @@ void	game_key_down(t_game *game, SDL_Event *event)
 		game->player.plane.x = game->player.plane.x * cos(-0.02) - game->player.plane.y * sin(-0.02);
 		game->player.plane.y = oldPlaneX * sin(-0.02) + game->player.plane.y * cos(-0.02);
 	}
-	if (event->key.keysym.sym == SDLK_LEFT)
+	if (game->input[LEFT])
 	{
 		double oldDirX = game->player.dir.x;
 		game->player.dir.x = game->player.dir.x * cos(0.02) - game->player.dir.y * sin(0.02);
@@ -331,4 +338,51 @@ void	game_render(t_game *game)
 			y++;
 		}
 	}
+}
+
+int		game_event_handler(t_game *game)
+{
+	 SDL_Event event;
+
+	 SDL_PollEvent(&event);
+	if (event.type == SDL_MOUSEMOTION)
+	{
+		game->input[MOUSE_X] = event.motion.xrel;
+		game->input[MOUSE_Y] = event.motion.yrel;
+		return (1);
+	}
+	else if (event.type == SDL_KEYDOWN)
+	{
+		if (event.key.keysym.sym == SDLK_UP)
+			game->input[UP] = 1;
+		else if (event.key.keysym.sym == SDLK_DOWN)
+			game->input[DOWN] = 1;
+		else if (event.key.keysym.sym == SDLK_LEFT)
+			game->input[LEFT] = 1;
+		else if (event.key.keysym.sym == SDLK_RIGHT)
+			game->input[RIGHT] = 1;
+		else if (event.key.keysym.sym == SDLK_ESCAPE)
+		{
+			SDL_DestroyWindow(game->sdl.win);
+			SDL_Quit();
+			exit(0);
+		}
+		return (1);
+	}
+	else if (event.type == SDL_KEYUP)
+	{
+		if (event.key.keysym.sym == SDLK_UP)
+		{
+			//printf("key up 0\n");
+			game->input[UP] = 0;
+		}
+			else if (event.key.keysym.sym == SDLK_DOWN)
+			game->input[DOWN] = 0;
+		else if (event.key.keysym.sym == SDLK_LEFT)
+			game->input[LEFT] = 0;
+		else if (event.key.keysym.sym == SDLK_RIGHT)
+			game->input[RIGHT] = 0;
+		return (1);
+	}
+	return (0);
 }
