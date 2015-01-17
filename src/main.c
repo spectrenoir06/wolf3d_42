@@ -41,24 +41,6 @@ int		main(void)
 
 	SDL_SetRelativeMouseMode(1);
 
-	SDL_Surface *imageDeFond = SDL_LoadBMP("img/stones.bmp");
-	//SDL_LockSurface(imageDeFond);
-
-
-	while (i<512)
-	{
-		j = 0;
-		while (j<512)
-		{
-			game.texture[i][j].r = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512)];
-			game.texture[i][j].g = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512) + 1];
-			game.texture[i][j].b = ((Uint8*)(imageDeFond->pixels))[i * 3 + (j * 3 * 512) + 2];
-			j++;
-		}
-		i++;
-	}
-
-
 	SDL_Init(SDL_INIT_VIDEO);
 	game_init_sdl(&game);
 	game_init_map(&game);

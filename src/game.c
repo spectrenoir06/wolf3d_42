@@ -46,16 +46,9 @@ void	game_init_map(t_game *game)
 
 	x = 0;
 	y = 0;
-
-	game->map.color_mur1.a = 255;
-	game->map.color_mur1.r = 147;
-	game->map.color_mur1.g = 101;
-	game->map.color_mur1.b = 36;
-
-	game->map.color_mur2.a = 255;
-	game->map.color_mur2.r = 86;
-	game->map.color_mur2.g = 59;
-	game->map.color_mur2.b = 21;
+	game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
+	game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
+	game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
 
 	game->map.color_ceil.a = 255;
 	game->map.color_ceil.r = 53;
@@ -76,7 +69,7 @@ void	game_init_map(t_game *game)
 		while (y < game->map.ly)
 		{
 			if (x == 0 || x == game->map.lx - 1 || y == 0 || y == game->map.ly - 1 || rand()%100 > 90)
-				game->map.data[x + (y * game->map.lx)] = 1;
+				game->map.data[x + (y * game->map.lx)] = (rand()%100 > 50 ? 1 : 2);
 			else
 				game->map.data[x + (y * game->map.lx)] = 0;
 			y++;
@@ -226,6 +219,7 @@ void	game_draw_pixel(t_game *game, int x, int y, t_color c)
 void	game_render(t_game *game)
 {
 	int	x = 0;
+	int wall_nb;
 
 	for(x = 0; x < game->sdl.lx; x++)
 	{
@@ -292,7 +286,11 @@ void	game_render(t_game *game)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (game->map.data[mapX + (mapY * game->map.lx)] > 0) hit = 1;
+			if (game->map.data[mapX + (mapY * game->map.lx)] > 0)
+			{
+				wall_nb = game->map.data[mapX + (mapY * game->map.lx)];
+				hit = 1;
+			}
 		}
 		//Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
 		if (side == 0)
@@ -331,11 +329,14 @@ void	game_render(t_game *game)
 			y++;
 		}
 		y = drawStart;
-		while (y < drawEnd)
+		while (y <= drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
 			//int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
-			t_color color = game->texture[texX][texY];
+			t_color color;
+			color.r = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512)];
+			color.g = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
+			color.b = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
 
 			if(side == 1)
 			{

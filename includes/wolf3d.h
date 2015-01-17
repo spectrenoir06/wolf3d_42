@@ -91,8 +91,7 @@ typedef struct s_map
 	int			lx;
 	int			ly;
 	Uint8		*data;
-	t_color		color_mur1;
-	t_color		color_mur2;
+	SDL_Surface *textures[10];
 	t_color		color_ceil;
 	t_color		color_floor;
 }				t_map;
