@@ -59,7 +59,7 @@ int		main(void)
 
 		game_event_handler(&game);
 		{
-			game_key_down(&game);	// update player
+			player_update(&game.player, &game);	// update player
 			game_render(&game);		// update screen
 			game_draw_map(&game);	// update minimap
 			game_draw_rect(&game, game.player.pos.x * 4, game.player.pos.y * 4, 2 , 2, color);

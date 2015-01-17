@@ -13,7 +13,7 @@
 #include "wolf3d.h"
 #include <math.h>
 
-void	player_move(t_game *game, t_player *player, KEY dir)
+void	player_move(t_player *player, t_game *game, KEY dir)
 {
 	t_vect2dd	new;
 	t_vect2dd	tmp_dir;
@@ -45,4 +45,52 @@ void	player_move(t_game *game, t_player *player, KEY dir)
 		player->pos.x = new.x;
 		player->pos.y = new.y;
 	}
+}
+
+void	player_update(t_player *player, t_game *game)
+{
+	double new_pos_x;
+	double new_pos_y;
+
+	if (game->input[MOUSE_X])
+	{
+		double motion = -game->input[MOUSE_X] / 200.0;
+		//printf("%f \n",motion);
+		double oldDirX = game->player.dir.x;
+		game->player.dir.x = game->player.dir.x * cos(motion) - game->player.dir.y * sin(motion);
+		game->player.dir.y = oldDirX * sin(motion) + game->player.dir.y * cos(motion);
+		double oldPlaneX = game->player.plane.x;
+		game->player.plane.x = game->player.plane.x * cos(motion) - game->player.plane.y * sin(motion);
+		game->player.plane.y = oldPlaneX * sin(motion) + game->player.plane.y * cos(motion);
+		game->input[MOUSE_X] = 0;
+	}
+
+	if (game->input[UP])
+		player_move(&(game->player), game, UP);
+	if (game->input[DOWN])
+		player_move(&(game->player), game, DOWN);
+	if (game->input[RIGHT])
+		player_move(&(game->player), game, RIGHT);
+	if (game->input[LEFT])
+		player_move(&(game->player), game, LEFT);
+	if (game->input[TURN_LEFT])
+	{
+		 double oldDirX = game->player.dir.x;
+		 game->player.dir.x = game->player.dir.x * cos(game->dt) - game->player.dir.y * sin(game->dt);
+		 game->player.dir.y = oldDirX * sin(game->dt) + game->player.dir.y * cos(game->dt);
+		 double oldPlaneX = game->player.plane.x;
+		 game->player.plane.x = game->player.plane.x * cos(game->dt) - game->player.plane.y * sin(game->dt);
+		 game->player.plane.y = oldPlaneX * sin(game->dt) + game->player.plane.y * cos(game->dt);
+	}
+	if (game->input[TURN_RIGHT])
+	{
+		double oldDirX = game->player.dir.x;
+		game->player.dir.x = game->player.dir.x * cos(-game->dt) - game->player.dir.y * sin(-game->dt);
+		game->player.dir.y = oldDirX * sin(-game->dt) + game->player.dir.y * cos(-game->dt);
+		double oldPlaneX = game->player.plane.x;
+		game->player.plane.x = game->player.plane.x * cos(-game->dt) - game->player.plane.y * sin(-game->dt);
+		game->player.plane.y = oldPlaneX * sin(-game->dt) + game->player.plane.y * cos(-game->dt);
+	}
+
+	//printf("%f, %f \n",game->player.pos.x, game->player.pos.y);
 }

@@ -122,7 +122,8 @@ void	game_draw_map(t_game *game);
 void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
 int		game_event_handler(t_game *game);
 
-void	player_move(t_game *game, t_player *player, KEY dir);
+void	player_update(t_player *player, t_game *game);
+void	player_move(t_player *player,t_game *game, KEY dir);
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
