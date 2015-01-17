@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -182,21 +182,30 @@ void	game_key_down(t_game *game)
 	}
 	if (game->input[RIGHT])
 	{
+		new_pos_x = game->player.pos.x + (game->player.dir.x * game->dt * 5);
+		new_pos_y = game->player.pos.y + (game->player.dir.y * game->dt * 5);
+
+		if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
+		{
+			game->player.pos.x = new_pos_x;
+			game->player.pos.y = new_pos_y;
+		}
+		/*
 		double oldDirX = game->player.dir.x;
-		game->player.dir.x = game->player.dir.x * cos(-0.02) - game->player.dir.y * sin(-0.02);
-		game->player.dir.y = oldDirX * sin(-0.02) + game->player.dir.y * cos(-0.02);
+		game->player.dir.x = game->player.dir.x * cos(-game->dt) - game->player.dir.y * sin(-game->dt);
+		game->player.dir.y = oldDirX * sin(-game->dt) + game->player.dir.y * cos(-game->dt);
 		double oldPlaneX = game->player.plane.x;
-		game->player.plane.x = game->player.plane.x * cos(-0.02) - game->player.plane.y * sin(-0.02);
-		game->player.plane.y = oldPlaneX * sin(-0.02) + game->player.plane.y * cos(-0.02);
+		game->player.plane.x = game->player.plane.x * cos(-game->dt) - game->player.plane.y * sin(-game->dt);
+		game->player.plane.y = oldPlaneX * sin(-game->dt) + game->player.plane.y * cos(-game->dt);*/
 	}
 	if (game->input[LEFT])
 	{
 		double oldDirX = game->player.dir.x;
-		game->player.dir.x = game->player.dir.x * cos(0.02) - game->player.dir.y * sin(0.02);
-		game->player.dir.y = oldDirX * sin(0.02) + game->player.dir.y * cos(0.02);
+		game->player.dir.x = game->player.dir.x * cos(game->dt) - game->player.dir.y * sin(game->dt);
+		game->player.dir.y = oldDirX * sin(game->dt) + game->player.dir.y * cos(game->dt);
 		double oldPlaneX = game->player.plane.x;
-		game->player.plane.x = game->player.plane.x * cos(0.02) - game->player.plane.y * sin(0.02);
-		game->player.plane.y = oldPlaneX * sin(0.02) + game->player.plane.y * cos(0.02);
+		game->player.plane.x = game->player.plane.x * cos(game->dt) - game->player.plane.y * sin(game->dt);
+		game->player.plane.y = oldPlaneX * sin(game->dt) + game->player.plane.y * cos(game->dt);
 	}
 
 	//printf("%f, %f \n",game->player.pos.x, game->player.pos.y);
