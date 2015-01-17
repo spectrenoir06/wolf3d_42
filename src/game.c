@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -75,7 +75,7 @@ void	game_init_map(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			if (x == 0 || x == game->map.lx - 1 || y == 0 || y == game->map.ly - 1 || rand()%100 > 80)
+			if (x == 0 || x == game->map.lx - 1 || y == 0 || y == game->map.ly - 1 || rand()%100 > 90)
 				game->map.data[x + (y * game->map.lx)] = 1;
 			else
 				game->map.data[x + (y * game->map.lx)] = 0;
@@ -293,9 +293,11 @@ void	game_render(t_game *game)
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + game->sdl.ly / 2;
-		if(drawStart < 0)drawStart = 0;
+		if(drawStart < 0)
+			drawStart = 0;
 		int drawEnd = lineHeight / 2 + game->sdl.ly / 2;
-		if(drawEnd >= game->sdl.ly)drawEnd = game->sdl.ly - 1;
+		if(drawEnd >= game->sdl.ly)
+			drawEnd = game->sdl.ly - 1;
 
 
 		double wallX;
@@ -319,7 +321,8 @@ void	game_render(t_game *game)
 		y = drawStart;
 		while (y < drawEnd)
 		{
-			int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
+			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
+			//int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
 			t_color color = game->texture[texX][texY];
 
 			if(side == 1)
@@ -351,7 +354,7 @@ int		game_event_handler(t_game *game)
 		game->input[MOUSE_Y] = event.motion.yrel;
 		return (1);
 	}
-	else if (event.type == SDL_KEYDOWN)
+	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP)
 			game->input[UP] = 1;
@@ -382,7 +385,6 @@ int		game_event_handler(t_game *game)
 			game->input[LEFT] = 0;
 		else if (event.key.keysym.sym == SDLK_RIGHT)
 			game->input[RIGHT] = 0;
-		return (1);
 	}
 	return (0);
 }

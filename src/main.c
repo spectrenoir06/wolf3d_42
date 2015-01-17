@@ -75,7 +75,7 @@ int		main(void)
 
 
 
-		if (game_event_handler(&game))
+		if (game_event_handler(&game) || 1)
 		{
 			game_key_down(&game);
 			game_render(&game);
