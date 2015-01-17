@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_FULLSCREEN,
+			SDL_WINDOW_SHOWN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
