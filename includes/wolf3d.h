@@ -25,7 +25,7 @@
 typedef enum KEY KEY;
 enum KEY
 {
-    UP		= 0,
+	UP		= 0,
 	DOWN	= 1,
 	LEFT	= 2,
 	RIGHT	= 3,
@@ -119,5 +119,9 @@ void	game_init_map(t_game *game);
 void	game_draw_map(t_game *game);
 void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
 int		game_event_handler(t_game *game);
+
+void	player_move(t_game *game, t_player *player, KEY dir);
+
+t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
 #endif
