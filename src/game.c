@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_FULLSCREEN,
+			SDL_WINDOW_SHOWN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -149,6 +149,8 @@ void	game_draw_map(t_game *game)
 
 void	game_key_down(t_game *game)
 {
+	double new_pos_x;
+	double new_pos_y;
 
 	if (game->input[MOUSE_X])
 	{
@@ -165,15 +167,25 @@ void	game_key_down(t_game *game)
 
 	if (game->input[UP])
 	{
-		//printf("go up\n");
-		game->player.pos.x += game->player.dir.x * game->dt * 5;
-		game->player.pos.y += game->player.dir.y * game->dt * 5;
+		new_pos_x = game->player.pos.x + (game->player.dir.x * game->dt * 5);
+		new_pos_y = game->player.pos.y + (game->player.dir.y * game->dt * 5);
+
+		if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
+		{
+			game->player.pos.x = new_pos_x;
+			game->player.pos.y = new_pos_y;
+		}
 	}
 	if (game->input[DOWN])
 	{
-		printf("go down\n");
-		game->player.pos.x -= game->player.dir.x * game->dt * 5;
-		game->player.pos.y -= game->player.dir.y * game->dt * 5;
+		new_pos_x = game->player.pos.x - (game->player.dir.x * game->dt * 5);
+		new_pos_y = game->player.pos.y - (game->player.dir.y * game->dt * 5);
+
+			if (game->map.data[(int)new_pos_x + ((int)new_pos_y * game->map.lx)] == 0)
+			{
+				game->player.pos.x = new_pos_x;
+				game->player.pos.y = new_pos_y;
+			}
 	}
 	if (game->input[RIGHT])
 	{
@@ -375,10 +387,7 @@ int		game_event_handler(t_game *game)
 	else if (event.type == SDL_KEYUP)
 	{
 		if (event.key.keysym.sym == SDLK_UP)
-		{
-			//printf("key up 0\n");
 			game->input[UP] = 0;
-		}
 			else if (event.key.keysym.sym == SDLK_DOWN)
 			game->input[DOWN] = 0;
 		else if (event.key.keysym.sym == SDLK_LEFT)
