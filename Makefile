@@ -26,6 +26,10 @@ DEBUG_DIR	= debug
 STATIC_DIR	= static
 C_HEAD_DIR	= debug
 
+LIBFT_STATIC= libft/libft.a
+LIBFT_DEBUG	= libft/libft_debug.a
+LIBFT_HEAD	= libft/includes/
+
 STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
 ##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
@@ -61,7 +65,13 @@ $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -I $(HEAD_DIR) -o $@ -c $< $(SDL) $(FLAGS) -g
-	
+
+$(LIBFT_STATIC):
+	make -C libft/ libft.a
+
+$(LIBFT_DEBUG):
+	make -C libft/ libft_debug.a
+
 ##$(HEAD_DIR))/%.h.gch: $(HEAD_DIR))/%.h
 ##	$(CC) -I $(HEAD_DIR) -o $@ -c $<
 
