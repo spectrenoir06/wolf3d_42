@@ -129,4 +129,6 @@ void	player_move(t_player *player,t_game *game, KEY dir);
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
+int		map_load(t_game *game, t_map *map, char *path);
+
 #endif

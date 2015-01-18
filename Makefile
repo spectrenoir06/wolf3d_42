@@ -16,7 +16,8 @@ DEBUG_EXE	= wolf3d_debug
 SRC		=	main.c		\
 			game.c		\
 			player.c	\
-			vect.c
+			vect.c		\
+			map.c
 			
 ##HEADFILES = wolf3d.h
 

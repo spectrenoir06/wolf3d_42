@@ -65,22 +65,24 @@ void	game_init_map(t_game *game)
 	game->map.color_floor.g = 167;
 	game->map.color_floor.b = 98;
 
-	game->map.lx = 30;
-	game->map.ly = 30;
-	game->map.data = (Uint8*)malloc(sizeof(Uint8) * game->map.lx * game->map.ly);
-	while (x < game->map.lx)
-	{
-		y = 0;
-		while (y < game->map.ly)
-		{
-			if (x == 0 || x == game->map.lx - 1 || y == 0 || y == game->map.ly - 1 || rand()%100 > 90)
-				game->map.data[x + (y * game->map.lx)] = (rand()%100 > 50 ? 1 : 2);
-			else
-				game->map.data[x + (y * game->map.lx)] = 0;
-			y++;
-		}
-		x++;
-	}
+//	game->map.lx = 30;
+//	game->map.ly = 30;
+//	game->map.data = (Uint8*)malloc(sizeof(Uint8) * game->map.lx * game->map.ly);
+//	while (x < game->map.lx)
+//	{
+//		y = 0;
+//		while (y < game->map.ly)
+//		{
+//			if (x == 0 || x == game->map.lx - 1 || y == 0 || y == game->map.ly - 1 || rand()%100 > 90)
+//				game->map.data[x + (y * game->map.lx)] = (rand()%100 > 50 ? 1 : 2);
+//			else
+//				game->map.data[x + (y * game->map.lx)] = 0;
+//			y++;
+//		}
+//		x++;
+//	}
+
+	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
 
 	x = 0;
 

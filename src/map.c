@@ -56,6 +56,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 		return (ret);
 	if ((ret = read(fd, &textures, sizeof(Uint32))) <= 0)
 		return (ret);
+	printf("%d %d %d \n", map->lx, map->ly, textures);
 	i = 0;
 	while (i < textures)
 	{
