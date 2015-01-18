@@ -305,27 +305,27 @@ int		game_event_handler(t_game *game)
 
 	if (!SDL_PollEvent(&event))
 		return (0);
-	if (event.type == SDL_MOUSEMOTION)
-	{
-		printf("Mouse %d\n", event.motion.xrel * 1000);
-		if (event.motion.xrel * 1000 > SINT16_MIN && event.motion.xrel * 1000 < SINT16_MAX)
-			game->input[ROT_Z] = event.motion.xrel * 1000;
-		//game->input[ROT_Y] = event.motion.yrel *1000;
-		return (1);
-	}
+//	if (event.type == SDL_MOUSEMOTION)
+//	{
+//		printf("Mouse %d\n", event.motion.xrel * 1000);
+//		if (event.motion.xrel * 1000 > SINT16_MIN && event.motion.xrel * 1000 < SINT16_MAX)
+//			game->input[ROT_Z] = event.motion.xrel * 1000;
+//		//game->input[ROT_Y] = event.motion.yrel *1000;
+//		return (1);
+//	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
 			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[MOV_Y] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
-			game->input[MOV_X] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
-			game->input[MOV_X] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_a)
+			game->input[MOV_X] = SINT16_MIN;
+		else if (event.key.keysym.sym == SDLK_d)
+			game->input[MOV_X] = SINT16_MAX;
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[ROT_Z] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_e)
+		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
@@ -342,13 +342,13 @@ int		game_event_handler(t_game *game)
 			game->input[MOV_Y] = 0;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[MOV_Y] = 0;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
-			game->input[MOV_X] = 0;
-		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
-			game->input[MOV_X] = 0;
 		else if (event.key.keysym.sym == SDLK_a)
+			game->input[MOV_X] = 0;
+		else if (event.key.keysym.sym == SDLK_d)
+			game->input[MOV_X] = 0;
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[ROT_Z] = 0;
-		else if (event.key.keysym.sym == SDLK_e)
+		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
 			game->input[ROT_Z] = 0;
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
