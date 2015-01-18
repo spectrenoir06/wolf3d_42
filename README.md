@@ -1,7 +1,7 @@
 # wolf3d_42
 
-- [ ] create json to binaire (lua || python)
-- [ ] dev map loader
+- [x] create json to binaire (lua || python)
+- [x] dev map loader
 - [ ] add floor
 - [ ] add ceil
 - [ ] add skybox
@@ -13,8 +13,6 @@
 - [ ] add gui
 - [ ] add menu
 - [ ] add multimode (wolfenstein, 42stein, ...)
-- [x] add convertisseur tiled -> wolf3d
-- [x] add map loader
 - [ ] mode souris + clavier
 - [ ] mode full clavier
 - [x] mode gamepad
