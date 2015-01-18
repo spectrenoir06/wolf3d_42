@@ -10,10 +10,13 @@
   <tile id="2">
    <image width="512" height="512" source="textures/2.bmp"/>
   </tile>
+  <tile id="3">
+   <image width="512" height="512" source="textures/3.bmp"/>
+  </tile>
  </tileset>
  <layer name="Calque de Tile 1" width="42" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt10sOwjAMBNCQ3P/ObFhZtvHU30pZWEIFkpeJKelea+2X1Gd4Xed1Ro6JXL956hllrFtzWuab4ETz3My1aieS+cQ8vWvq2PfJedIzQtZ9LjrP6c7s81ekU8o4sr+i9l26NiFPz7n7/Mo6x9MMue9bxzukop1R+845ObfmtM7l7U9q5exVeUrj09yynej/kdSTUr92PRdrRksWE42IE31fG1P6fSO9VZUn553qpK+nOq1ZdjoRI+rkxkXm8pTVKXkQp2dNFc6IzL3ObB/q7PJx1ihjpROd78m9JirPf+dX6zMD6pB6seNcJ+0JdU10Up/k7K5DMuM+8wVSuQiY
+   eJztl0sOwyAMREng/mfuKhKyjBn/CERdzKKIlMd4IM5dSrkP0fWCqmLun/M7nMg+HnGcO2VY8tPDlLVHlBNdy/NsX+8vcaLra2qW5ac1YxY/kXeQJ+fSvjV7RHMXyZmVix05o/2MUhZnZYTM5X73XKf2fTM/qT9RnGieGxHl5P6nlvWclBnN5wpO6mErc06u7ty7ITLPbTIu1R2pU0Tf0fOMfPXWHeFE3tUaP6W6a7yx9IlcLjk/I+9WTz9Lzw+tiTZP3PMjdtRPjk+TT68snMi9lME5y8vIx5WciLj7SHMvIflbIYQTGTuJE+lHd+Dczc83hJ4jTT+U8U2QcX4zarCKc7aG1CPvximNPZzody4VOhfl7Nef+enltJwjC6dGGXe6VPcT9AMEXwk9
   </data>
  </layer>
 </map>
