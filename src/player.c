@@ -15,8 +15,8 @@
 
 void	player_init(t_player *player)
 {
-	player->pos.x = 10;
-	player->pos.y = 10;
+	player->pos.x = 5;
+	player->pos.y = 5;
 	player->dir.x = 0;
 	player->dir.y = 0;
 }
