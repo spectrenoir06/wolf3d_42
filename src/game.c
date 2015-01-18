@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_FULLSCREEN,
+			SDL_WINDOW_SHOWN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -305,19 +305,20 @@ int		game_event_handler(t_game *game)
 
 	if (!SDL_PollEvent(&event))
 		return (0);
-//	if (event.type == SDL_MOUSEMOTION)
-//	{
-//		game->input[ROT_X] = event.motion.xrel;
-//		game->input[ROT_Y] = event.motion.yrel;
-//		return (1);
-//	}
+	if (event.type == SDL_MOUSEMOTION)
+	{
+		printf("Mouse %d\n", event.motion.xrel);
+		game->input[ROT_Z] = event.motion.xrel *100;
+		//game->input[ROT_Y] = event.motion.yrel *1000;
+		return (1);
+	}
 	if (event.type == SDL_KEYDOWN)
 	{
-		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
+		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
 			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[MOV_Y] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
 			game->input[MOV_X] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
 			game->input[MOV_X] = SINT16_MAX;
@@ -336,11 +337,11 @@ int		game_event_handler(t_game *game)
 	}
 	else if (event.type == SDL_KEYUP)
 	{
-		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
+		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
 			game->input[MOV_Y] = 0;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[MOV_Y] = 0;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
+		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_a)
 			game->input[MOV_X] = 0;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
 			game->input[MOV_X] = 0;

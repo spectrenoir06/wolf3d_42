@@ -41,13 +41,13 @@ void	player_update(t_player *player, t_game *game)
 	double new_pos_x;
 	double new_pos_y;
 
-//	if (game->input[MOUSE_X])
+//	if (game->input[ROT_Z])
 //	{
-//		double motion = (-game->input[_X] / 100.0) * 2 * M_PI * game->dt;
+//		double motion = (-game->input[ROT_Z] / 100.0) * 2 * M_PI * game->dt;
 //		//printf("%f \n",motion);
 //		player->dir = vect2dd_rotate(player->dir, motion);
 //		player->plane = vect2dd_rotate(player->plane, motion);
-//		game->input[MOUSE_X] = 0;
+//		game->input[ROT_Z] = 0;
 //	}
 
 	if (game->input[MOV_Y])

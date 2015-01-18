@@ -19,8 +19,8 @@
 #  include <SDL2/SDL.h>
 # endif
 
-# define WIN_X 1600
-# define WIN_Y 900
+# define WIN_X 800
+# define WIN_Y 480
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768
 # define DSINT16_MAX 32767.0

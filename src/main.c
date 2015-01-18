@@ -38,7 +38,6 @@ int		main(void)
 	int j = 0;
 
 	SDL_SetRelativeMouseMode(1);
-
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 		return (EXIT_FAILURE);
 
