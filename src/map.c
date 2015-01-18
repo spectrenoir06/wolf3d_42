@@ -116,7 +116,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 	i = 0;
 	while (i < textures)
 	{
-		ft_kebab(buff, "img/", ft_itoa(i), ".bmp", NULL);
+		ft_kebab(buff, "modes/1/maps/1/textures/", ft_itoa(i), ".bmp", NULL);
 		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
