@@ -54,14 +54,10 @@ void	player_update(t_player *player, t_game *game)
 
 	if (game->input[MOUSE_X])
 	{
-		double motion = -game->input[MOUSE_X] / 200.0;
+		double motion = (-game->input[MOUSE_X] / 100.0) * 2 * M_PI * game->dt;
 		//printf("%f \n",motion);
-		double oldDirX = game->player.dir.x;
-		game->player.dir.x = game->player.dir.x * cos(motion) - game->player.dir.y * sin(motion);
-		game->player.dir.y = oldDirX * sin(motion) + game->player.dir.y * cos(motion);
-		double oldPlaneX = game->player.plane.x;
-		game->player.plane.x = game->player.plane.x * cos(motion) - game->player.plane.y * sin(motion);
-		game->player.plane.y = oldPlaneX * sin(motion) + game->player.plane.y * cos(motion);
+		player->dir = vect2dd_rotate(player->dir, motion);
+		player->plane = vect2dd_rotate(player->plane, motion);
 		game->input[MOUSE_X] = 0;
 	}
 
@@ -75,21 +71,15 @@ void	player_update(t_player *player, t_game *game)
 		player_move(&(game->player), game, LEFT);
 	if (game->input[TURN_LEFT])
 	{
-		 double oldDirX = game->player.dir.x;
-		 game->player.dir.x = game->player.dir.x * cos(game->dt) - game->player.dir.y * sin(game->dt);
-		 game->player.dir.y = oldDirX * sin(game->dt) + game->player.dir.y * cos(game->dt);
-		 double oldPlaneX = game->player.plane.x;
-		 game->player.plane.x = game->player.plane.x * cos(game->dt) - game->player.plane.y * sin(game->dt);
-		 game->player.plane.y = oldPlaneX * sin(game->dt) + game->player.plane.y * cos(game->dt);
+		double motion = M_PI_2 * game->dt;
+		player->dir = vect2dd_rotate(player->dir, motion);
+		player->plane = vect2dd_rotate(player->plane, motion);
 	}
 	if (game->input[TURN_RIGHT])
 	{
-		double oldDirX = game->player.dir.x;
-		game->player.dir.x = game->player.dir.x * cos(-game->dt) - game->player.dir.y * sin(-game->dt);
-		game->player.dir.y = oldDirX * sin(-game->dt) + game->player.dir.y * cos(-game->dt);
-		double oldPlaneX = game->player.plane.x;
-		game->player.plane.x = game->player.plane.x * cos(-game->dt) - game->player.plane.y * sin(-game->dt);
-		game->player.plane.y = oldPlaneX * sin(-game->dt) + game->player.plane.y * cos(-game->dt);
+		double motion = -M_PI_2 * game->dt;
+		player->dir = vect2dd_rotate(player->dir, motion);
+		player->plane = vect2dd_rotate(player->plane, motion);
 	}
 
 	//printf("%f, %f \n",game->player.pos.x, game->player.pos.y);
