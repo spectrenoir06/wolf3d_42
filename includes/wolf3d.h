@@ -19,26 +19,22 @@
 #  include <SDL2/SDL.h>
 # endif
 
-# define WIN_X 800
-# define WIN_Y 480
+# define WIN_X 1600
+# define WIN_Y 900
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768
+# define DSINT16_MAX 32767.0
 
 typedef enum KEY KEY;
 enum KEY
 {
-	UP		= 0,
-	DOWN	= 1,
-	LEFT	= 2,
-	RIGHT	= 3,
-	MOUSE_X = 4,
-	MOUSE_Y = 5,
-	TURN_LEFT = 6,
-	TURN_RIGHT = 7,
-	STICK_X		= 8,
-	STICK_Y		= 9,
-	CSTICK_X	= 10,
-	CSTICK_Y	= 11,
+	MOV_X	= 0,
+	MOV_Y	= 1,
+	MOV_Z	= 2,
+	ROT_X	= 3,
+	ROT_Y	= 4,
+	ROT_Z	= 5,
+	USE		= 6
 };
 
 typedef struct s_vect2di

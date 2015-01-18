@@ -18,7 +18,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&game->sdl.win,
 			&game->sdl.rd);
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -305,26 +305,26 @@ int		game_event_handler(t_game *game)
 
 	if (!SDL_PollEvent(&event))
 		return (0);
-	if (event.type == SDL_MOUSEMOTION)
-	{
-		game->input[MOUSE_X] = event.motion.xrel;
-		game->input[MOUSE_Y] = event.motion.yrel;
-		return (1);
-	}
+//	if (event.type == SDL_MOUSEMOTION)
+//	{
+//		game->input[ROT_X] = event.motion.xrel;
+//		game->input[ROT_Y] = event.motion.yrel;
+//		return (1);
+//	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
-			game->input[UP] = 1;
+			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-			game->input[DOWN] = 1;
+			game->input[MOV_Y] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
-			game->input[LEFT] = 1;
+			game->input[MOV_X] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
-			game->input[RIGHT] = 1;
+			game->input[MOV_X] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_a)
-			game->input[TURN_LEFT] = 1;
+			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_e)
-			game->input[TURN_RIGHT] = 1;
+			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			SDL_JoystickClose(0);
@@ -337,33 +337,33 @@ int		game_event_handler(t_game *game)
 	else if (event.type == SDL_KEYUP)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
-			game->input[UP] = 0;
+			game->input[MOV_Y] = 0;
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-			game->input[DOWN] = 0;
+			game->input[MOV_Y] = 0;
 		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
-			game->input[LEFT] = 0;
+			game->input[MOV_X] = 0;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_d)
-			game->input[RIGHT] = 0;
+			game->input[MOV_X] = 0;
 		else if (event.key.keysym.sym == SDLK_a)
-			game->input[TURN_LEFT] = 0;
+			game->input[ROT_Z] = 0;
 		else if (event.key.keysym.sym == SDLK_e)
-			game->input[TURN_RIGHT] = 0;
+			game->input[ROT_Z] = 0;
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
 	{
-		//printf("Button = %d\n", event.jbutton.button);
+		printf("Button = %d\n", event.jbutton.button);
 		if (event.jbutton.button == 11)
-			game->input[UP] = SINT16_MAX;
+			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.jbutton.button == 12)
-			game->input[DOWN] = 1;
+			game->input[MOV_Y] = SINT16_MIN;
 		else if (event.jbutton.button == 13)
-			game->input[LEFT] = 1;
+			game->input[MOV_X] = SINT16_MIN;
 		else if (event.jbutton.button == 14)
-			game->input[RIGHT] = 1;
+			game->input[MOV_X] = SINT16_MAX;
 		else if (event.jbutton.button == 4)
-			game->input[TURN_LEFT] = 1;
+			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.jbutton.button == 5)
-			game->input[TURN_RIGHT] = 1;
+			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.jbutton.button == 10)
 		{
 			SDL_JoystickClose(0);
@@ -375,30 +375,29 @@ int		game_event_handler(t_game *game)
 	else if(event.type == SDL_JOYBUTTONUP)
 	{
 		//printf("R-Button = %d\n", event.jbutton.button);
-		if (event.jbutton.button == 11)
-			game->input[UP] = 0;
-		else if (event.jbutton.button == 12)
-			game->input[DOWN] = 0;
-		else if (event.jbutton.button == 13)
-			game->input[LEFT] = 0;
-		else if (event.jbutton.button == 14)
-			game->input[RIGHT] = 0;
-		else if (event.jbutton.button == 4)
-			game->input[TURN_LEFT] = 0;
-		else if (event.jbutton.button == 5)
-			game->input[TURN_RIGHT] = 0;
+		if (event.jbutton.button == 11 || event.jbutton.button == 12)
+			game->input[MOV_Y] = 0;
+		else if (event.jbutton.button == 13 || event.jbutton.button == 14)
+			game->input[MOV_X] = 0;
+		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
+			game->input[ROT_Z] = 0;
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{
 		double test;
-		if (event.jaxis.axis == 1 && (event.jaxis.value > 3000 || event.jaxis.value < -3000))
-			game->input[UP] = event.jaxis.value;
+		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
+			game->input[MOV_Y] = -event.jaxis.value;
 		else if (event.jaxis.axis == 1)
-			game->input[UP] = 0;
-		if (event.jaxis.axis == 0 && (event.jaxis.value > 3000 || event.jaxis.value < -3000))
-			game->input[LEFT] = event.jaxis.value;
+			game->input[MOV_Y] = 0;
+		if (event.jaxis.axis == 0 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
+			game->input[MOV_X] = event.jaxis.value;
 		else if (event.jaxis.axis == 0)
-			game->input[LEFT] = 0;
+			game->input[MOV_X] = 0;
+		if (event.jaxis.axis == 3 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
+			game->input[ROT_Z] = event.jaxis.value;
+		else if (event.jaxis.axis == 3)
+			game->input[ROT_Z] = 0;
+
 	}
 	else if (event.type == SDL_QUIT)
 	{
