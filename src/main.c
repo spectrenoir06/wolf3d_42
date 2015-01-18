@@ -58,6 +58,7 @@ int		main(void)
 
 
 		game_event_handler(&game);
+
 		{
 			player_update(&game.player, &game);	// update player
 			game_render(&game);		// update screen
