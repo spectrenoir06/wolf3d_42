@@ -307,8 +307,9 @@ int		game_event_handler(t_game *game)
 		return (0);
 	if (event.type == SDL_MOUSEMOTION)
 	{
-		printf("Mouse %d\n", event.motion.xrel);
-		game->input[ROT_Z] = event.motion.xrel *100;
+		printf("Mouse %d\n", event.motion.xrel * 1000);
+		if (event.motion.xrel * 1000 > SINT16_MIN && event.motion.xrel * 1000 < SINT16_MAX)
+			game->input[ROT_Z] = event.motion.xrel * 1000;
 		//game->input[ROT_Y] = event.motion.yrel *1000;
 		return (1);
 	}
