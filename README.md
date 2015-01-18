@@ -13,6 +13,8 @@
 - [ ] add gui
 - [ ] add menu
 - [ ] add multimode (wolfenstein, 42stein, ...)
+- [x] add convertisseur tiled -> wolf3d
+- [x] add map loader
 - [ ] mode souris + clavier
 - [ ] mode full clavier
 - [x] mode gamepad
@@ -21,5 +23,6 @@
 - [ ] compatibiliter android ([gcc](https://play.google.com/store/apps/details?id=com.n0n3m4.gcc4droid), [SDL](https://play.google.com/store/apps/details?id=com.n0n3m4.droidsdl))
 - [ ] compatibiliter Windows (pour l'E2)
 - [ ] split-sreen
+- [ ] add mur non perpendiculaire
 
 ![alt tag](img/screenshot.png)
