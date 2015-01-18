@@ -13,6 +13,8 @@
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+# include <stdio.h>
+
 # ifndef __APPLE__
 #  include "SDL2/SDL.h"
 # else
@@ -111,24 +113,20 @@ typedef struct s_game
 	SDL_Joystick		*joystick;
 }						t_game;
 
-#include "wolf3d.h"
-#include <stdio.h>
+t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
 void	game_init_sdl(t_game *game);
-void	game_key_down(t_game *game);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, int x, int y, t_color c);
 void	game_render(t_game *game);
-void	game_init_map(t_game *game);
-void	game_draw_map(t_game *game);
 void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
 int		game_event_handler(t_game *game);
 
 void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
-t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
-
+void	map_init(t_game *game);
+void	map_draw(t_game *game);
 int		map_load(t_game *game, t_map *map, char *path);
 
 #endif

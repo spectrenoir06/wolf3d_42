@@ -13,6 +13,14 @@
 #include "wolf3d.h"
 #include <math.h>
 
+void	player_init(t_player *player)
+{
+	player->pos.x = 10;
+	player->pos.y = 10;
+	player->dir.x = 0;
+	player->dir.y = 0;
+}
+
 void	player_move(t_player *player, t_game *game, KEY dir)
 {
 	t_vect2dd	new;

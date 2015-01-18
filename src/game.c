@@ -16,11 +16,15 @@ void	game_init_sdl(t_game *game)
 {
 	game->sdl.lx = WIN_X;
 	game->sdl.ly = WIN_Y;
+
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
+		exit(EXIT_FAILURE);
+
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
 			SDL_WINDOW_SHOWN,
-			&game->sdl.win,
-			&game->sdl.rd);
+			&(game->sdl.win),
+			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
 			SDL_PIXELFORMAT_ABGR8888,
 			SDL_TEXTUREACCESS_STREAMING,
@@ -42,44 +46,10 @@ void	game_init_sdl(t_game *game)
 		SDL_JoystickEventState(SDL_ENABLE);
 		game->joystick = SDL_JoystickOpen(0);
 	}
+	SDL_SetRelativeMouseMode(1);
 }
 
-void	game_init_map(t_game *game)
-{
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
-	game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
-	game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
-	game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
-
-	game->map.color_ceil.a = 255;
-	game->map.color_ceil.r = 53;
-	game->map.color_ceil.g = 193;
-	game->map.color_ceil.b = 206;
-
-	game->map.color_floor.a = 255;
-	game->map.color_floor.r = 92;
-	game->map.color_floor.g = 167;
-	game->map.color_floor.b = 98;
-
-	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
-
-	x = 0;
-
-	while (x < 10)
-	{
-		game->input[x++] = 0;
-	}
-	game->player.pos.x = 5.3;
-	game->player.pos.y = 5.3;
-	game->player.dir.x = -1;
-	game->player.dir.y = 0;
-	game->player.plane.x = 0;
-	game->player.plane.y = 0.66;
-}
 
 void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
 {
@@ -98,37 +68,7 @@ void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
 	}
 }
 
-void	game_draw_map(t_game *game)
-{
-	int x = 0;
-	int y = 0;
 
-	t_color		color1;
-	t_color		color2;
-
-	color1.a = 255;
-	color1.r = 100;
-	color1.g = 000;
-	color1.b = 255;
-
-
-	color2.a = 255;
-	color2.r = 255;
-	color2.g = 100;
-	color2.b = 000;
-
-	while (x < 30)
-	{
-		y = 0;
-		while (y < 30)
-		{
-			//game_draw_pixel(game, x, y , color);
-			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.data[x + (y * game->map.lx)] ? color1 : color2));
-			y++;
-		}
-		x++;
-	}
-}
 
 void	game_draw_all(t_game *game)
 {
@@ -257,7 +197,7 @@ void	game_render(t_game *game)
 			y++;
 		}
 		y = drawStart;
-		while (y <= drawEnd)
+		while (y < drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
 			//int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
@@ -265,7 +205,6 @@ void	game_render(t_game *game)
 			color.r = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512)];
 			color.g = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
 			color.b = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
-
 			if(side == 1)
 			{
 				color.r = color.r >> 1;

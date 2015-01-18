@@ -41,6 +41,67 @@ void	ft_kebab(char * buff, const char * first, ...)
 	buff[i] = 0;
 }
 
+void	map_init(t_game *game)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 0;
+	game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
+	game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
+	game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
+
+	game->map.color_ceil.a = 255;
+	game->map.color_ceil.r = 53;
+	game->map.color_ceil.g = 193;
+	game->map.color_ceil.b = 206;
+
+	game->map.color_floor.a = 255;
+	game->map.color_floor.r = 92;
+	game->map.color_floor.g = 167;
+	game->map.color_floor.b = 98;
+
+	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
+
+	x = 0;
+
+	while (x < 10)
+	{
+		game->input[x++] = 0;
+	}
+	game->player.pos.x = 5.3;
+	game->player.pos.y = 5.3;
+	game->player.dir.x = -1;
+	game->player.dir.y = 0;
+	game->player.plane.x = 0;
+	game->player.plane.y = 0.66;
+}
+
+void	map_draw(t_game *game)
+{
+	int x = 0;
+	int y = 0;
+
+	t_color		sol = {255, 000, 000, 00};
+	t_color		mur = {000, 255, 000, 000};
+	t_color		perso = {000, 000, 255, 000};
+	t_color		face = {000, 100, 255, 000};
+
+	while (x < game->map.lx)
+	{
+		y = 0;
+		while (y < game->map.ly)
+		{
+			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.data[x + (y * game->map.lx)] ? mur : sol));
+			y++;
+		}
+		x++;
+	}
+	game_draw_rect(game, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
+	game_draw_rect(game, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
+}
+
 int		map_load(t_game *game, t_map *map, char *path)
 {
 	int		i;
