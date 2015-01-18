@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include "libft.h"
 #include <fcntl.h>
 #include <stdarg.h>
 #include <string.h>
@@ -64,7 +65,12 @@ int		map_load(t_game *game, t_map *map, char *path)
 		i++;
 	}
 	map->data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
-	if ((ret = read(fd, &(map->data), sizeof(Uint8) * map->lx * map->ly)) <= 0)
-		return (ret);
+	i = 0;
+	while ((ret = read(fd, &buff, 255)) > 0)
+	{
+		buff[255] = 0;
+		ft_memcpy(map->data + i, buff, ret);
+		i += ret;
+	}
 	return (1);
 }
