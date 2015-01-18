@@ -13,6 +13,12 @@
 - [ ] add gui
 - [ ] add menu
 - [ ] add multimode (wolfenstein, 42stein, ...)
-- [ ] compatibilier android ([gcc](https://play.google.com/store/apps/details?id=com.n0n3m4.gcc4droid), [SDL](https://play.google.com/store/apps/details?id=com.n0n3m4.droidsdl))
+- [ ] mode souris + clavier
+- [ ] mode full clavier
+- [ ] mode gamepad
+- [x] compatibiliter MacOS
+- [x] compatibiliter Linux
+- [ ] compatibiliter android ([gcc](https://play.google.com/store/apps/details?id=com.n0n3m4.gcc4droid), [SDL](https://play.google.com/store/apps/details?id=com.n0n3m4.droidsdl))
+- [ ] compatibiliter Windows (pour l'E2)
 
 ![alt tag](img/screenshot.png)
