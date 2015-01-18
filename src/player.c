@@ -20,8 +20,8 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 
 	if (dir == UP)
 	{
-		new.x = player->pos.x + (player->dir.x * game->dt * 5);
-		new.y = player->pos.y + (player->dir.y * game->dt * 5);
+		new.x = player->pos.x + (player->dir.x * game->dt * 5 * -(game->input[UP] / 32767.0));
+		new.y = player->pos.y + (player->dir.y * game->dt * 5 * -(game->input[UP] / 32767.0));
 	}
 	else if (dir == DOWN)
 	{
@@ -30,16 +30,17 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	}
 	else if (dir == LEFT)
 	{
+		printf("left = %d\n", game->input[LEFT]);
 		tmp_dir = vect2dd_rotate(player->dir, M_PI_2);
-		new.x = player->pos.x + (tmp_dir.x * game->dt * 2);
-		new.y = player->pos.y + (tmp_dir.y * game->dt * 2);
+		new.x = player->pos.x + (tmp_dir.x * game->dt * 2 * -(game->input[LEFT] / 32767.0));
+		new.y = player->pos.y + (tmp_dir.y * game->dt * 2 * -(game->input[LEFT] / 32767.0));
 	}
-	else if (dir == RIGHT)
-	{
-		tmp_dir = vect2dd_rotate(player->dir, M_PI + M_PI_2);
-		new.x = player->pos.x + (tmp_dir.x * game->dt * 2);
-		new.y = player->pos.y + (tmp_dir.y * game->dt * 2);
-	}
+//	else if (dir == RIGHT)
+//	{
+//		tmp_dir = vect2dd_rotate(player->dir, M_PI + M_PI_2);
+//		new.x = player->pos.x + (tmp_dir.x * game->dt * 2);
+//		new.y = player->pos.y + (tmp_dir.y * game->dt * 2);
+//	}
 	if (game->map.data[(int)new.x + ((int)new.y * game->map.lx)] == 0)
 	{
 		player->pos.x = new.x;

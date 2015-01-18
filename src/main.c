@@ -18,8 +18,6 @@
 
 struct timeval tv1, tv2;
 
-
-
 int		main(void)
 {
 
@@ -41,7 +39,10 @@ int		main(void)
 
 	SDL_SetRelativeMouseMode(1);
 
-	SDL_Init(SDL_INIT_VIDEO);
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
+		return (EXIT_FAILURE);
+
+
 	game_init_sdl(&game);
 	game_init_map(&game);
 	game_render(&game);
@@ -57,8 +58,8 @@ int		main(void)
 
 
 
-		game_event_handler(&game);
-
+		while (game_event_handler(&game))
+				;
 		{
 			player_update(&game.player, &game);	// update player
 			game_render(&game);		// update screen

@@ -37,6 +37,11 @@ void	game_init_sdl(t_game *game)
 		printf("Wolf3D: Error can't allocate buffer\n");
 		exit(1);
 	}
+	if(SDL_NumJoysticks() == 1)
+	{
+		SDL_JoystickEventState(SDL_ENABLE);
+		game->joystick = SDL_JoystickOpen(0);
+	}
 }
 
 void	game_init_map(t_game *game)
@@ -298,7 +303,8 @@ int		game_event_handler(t_game *game)
 {
 	 SDL_Event event;
 
-	 SDL_PollEvent(&event);
+	if (!SDL_PollEvent(&event))
+		return (0);
 	if (event.type == SDL_MOUSEMOTION)
 	{
 		game->input[MOUSE_X] = event.motion.xrel;
@@ -321,6 +327,7 @@ int		game_event_handler(t_game *game)
 			game->input[TURN_RIGHT] = 1;
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
+			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
 			SDL_Quit();
 			exit(0);
@@ -331,7 +338,7 @@ int		game_event_handler(t_game *game)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_z)
 			game->input[UP] = 0;
-			else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
+		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[DOWN] = 0;
 		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[LEFT] = 0;
@@ -342,5 +349,63 @@ int		game_event_handler(t_game *game)
 		else if (event.key.keysym.sym == SDLK_e)
 			game->input[TURN_RIGHT] = 0;
 	}
-	return (0);
+	else if(event.type == SDL_JOYBUTTONDOWN)
+	{
+		//printf("Button = %d\n", event.jbutton.button);
+		if (event.jbutton.button == 11)
+			game->input[UP] = SINT16_MAX;
+		else if (event.jbutton.button == 12)
+			game->input[DOWN] = 1;
+		else if (event.jbutton.button == 13)
+			game->input[LEFT] = 1;
+		else if (event.jbutton.button == 14)
+			game->input[RIGHT] = 1;
+		else if (event.jbutton.button == 4)
+			game->input[TURN_LEFT] = 1;
+		else if (event.jbutton.button == 5)
+			game->input[TURN_RIGHT] = 1;
+		else if (event.jbutton.button == 10)
+		{
+			SDL_JoystickClose(0);
+			SDL_DestroyWindow(game->sdl.win);
+			SDL_Quit();
+			exit(0);
+		}
+	}
+	else if(event.type == SDL_JOYBUTTONUP)
+	{
+		//printf("R-Button = %d\n", event.jbutton.button);
+		if (event.jbutton.button == 11)
+			game->input[UP] = 0;
+		else if (event.jbutton.button == 12)
+			game->input[DOWN] = 0;
+		else if (event.jbutton.button == 13)
+			game->input[LEFT] = 0;
+		else if (event.jbutton.button == 14)
+			game->input[RIGHT] = 0;
+		else if (event.jbutton.button == 4)
+			game->input[TURN_LEFT] = 0;
+		else if (event.jbutton.button == 5)
+			game->input[TURN_RIGHT] = 0;
+	}
+	else if (event.type == SDL_JOYAXISMOTION)
+	{
+		double test;
+		if (event.jaxis.axis == 1 && (event.jaxis.value > 3000 || event.jaxis.value < -3000))
+			game->input[UP] = event.jaxis.value;
+		else if (event.jaxis.axis == 1)
+			game->input[UP] = 0;
+		if (event.jaxis.axis == 0 && (event.jaxis.value > 3000 || event.jaxis.value < -3000))
+			game->input[LEFT] = event.jaxis.value;
+		else if (event.jaxis.axis == 0)
+			game->input[LEFT] = 0;
+	}
+	else if (event.type == SDL_QUIT)
+	{
+		SDL_JoystickClose(0);
+		SDL_DestroyWindow(game->sdl.win);
+		SDL_Quit();
+		exit(0);
+	}
+	return (1);
 }

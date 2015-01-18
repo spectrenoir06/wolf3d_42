@@ -21,6 +21,8 @@
 
 # define WIN_X 800
 # define WIN_Y 480
+# define SINT16_MAX 32767
+# define SINT16_MIN -32768
 
 typedef enum KEY KEY;
 enum KEY
@@ -32,7 +34,11 @@ enum KEY
 	MOUSE_X = 4,
 	MOUSE_Y = 5,
 	TURN_LEFT = 6,
-	TURN_RIGHT = 7
+	TURN_RIGHT = 7,
+	STICK_X		= 8,
+	STICK_Y		= 9,
+	CSTICK_X	= 10,
+	CSTICK_Y	= 11,
 };
 
 typedef struct s_vect2di
@@ -105,8 +111,8 @@ typedef struct s_game
 	t_map				map;
 	double				dt;
 	t_color				texture[512][512];
-	Sint16				input[10];
-
+	Sint16				input[12];
+	SDL_Joystick		*joystick;
 }						t_game;
 
 #include "wolf3d.h"
