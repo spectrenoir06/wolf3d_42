@@ -30,7 +30,7 @@ int		main(void)
 
 	game_init_sdl(&game);
 	map_init(&game);
-
+	player_init(&game.player);
 	game_render(&game);
 	//map_draw(&game);
 	game_draw_all(&game);

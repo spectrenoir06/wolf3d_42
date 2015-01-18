@@ -70,12 +70,7 @@ void	map_init(t_game *game)
 	{
 		game->input[x++] = 0;
 	}
-	game->player.pos.x = 5.3;
-	game->player.pos.y = 5.3;
-	game->player.dir.x = -1;
-	game->player.dir.y = 0;
-	game->player.plane.x = 0;
-	game->player.plane.y = 0.66;
+
 }
 
 void	map_draw(t_game *game)
