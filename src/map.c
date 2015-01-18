@@ -47,11 +47,12 @@ int		map_load(t_game *game, t_map *map, char *path)
 	int		ret;
 	int		info[3];
 	char	buff[256];
+	Uint8	*data;
 
-	if ((fd = open(path, O_RDONLY)) == 0)
+	if ((fd = open(path, O_RDONLY)) == -1)
 		return (-1);
-	if ((ret = read(fd, &info, 3 * sizeof(int))) == 0)
-		return (-1);
+	if ((ret = read(fd, &info, 3 * sizeof(int))) <= 0)
+		return (ret);
 	game->map.lx = info[0];
 	game->map.ly = info[1];
 	i = 0;
@@ -61,4 +62,8 @@ int		map_load(t_game *game, t_map *map, char *path)
 		game->map.textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
+	data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
+	if ((ret = read(fd, &data, sizeof(Uint8) * map->lx * map->ly)) <= 0)
+		return (ret);
+	return (1);
 }
