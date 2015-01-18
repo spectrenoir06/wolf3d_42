@@ -44,26 +44,27 @@ int		map_load(t_game *game, t_map *map, char *path)
 {
 	int		i;
 	int		fd;
+	Uint32	textures;
 	int		ret;
-	int		info[3];
 	char	buff[256];
-	Uint8	*data;
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (-1);
-	if ((ret = read(fd, &info, 3 * sizeof(int))) <= 0)
+	if ((ret = read(fd, &(map->lx), sizeof(Uint32))) <= 0)
 		return (ret);
-	game->map.lx = info[0];
-	game->map.ly = info[1];
+	if ((ret = read(fd, &(map->ly), sizeof(Uint32))) <= 0)
+		return (ret);
+	if ((ret = read(fd, &textures, sizeof(Uint32))) <= 0)
+		return (ret);
 	i = 0;
-	while (i < info[2])
+	while (i < textures)
 	{
 		ft_kebab(buff, "img/", ft_itoa(i), ".bmp", NULL);
-		game->map.textures[i] = SDL_LoadBMP(buff);
+		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
-	data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
-	if ((ret = read(fd, &data, sizeof(Uint8) * map->lx * map->ly)) <= 0)
+	map->data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
+	if ((ret = read(fd, &(map->data), sizeof(Uint8) * map->lx * map->ly)) <= 0)
 		return (ret);
 	return (1);
 }
