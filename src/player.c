@@ -21,28 +21,52 @@ void	player_init(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0.66;
+	player->box.x = 0.2;
+	player->box.y = 0.2;
+}
+
+int		player_collide_world(t_map *map, t_player *player)
+{
+	t_vect2dd	test;
+
+	test.x = player->pos.x - player->box.x / 2.0;
+	test.y = player->pos.y - player->box.y / 2.0;
+	if (test.x >= 0 && test.y >= 0 && map_get_block(map, test))
+		return (1);
+	test.x += player->box.x;
+	if (test.x <= map->lx && test.y >= 0 && map_get_block(map, test))
+		return (1);
+	test.y += player->box.y;
+	test.x -= player->box.x;
+	if (test.x >= 0 && test.y <= map->ly && map_get_block(map, test))
+		return (1);
+	test.x += player->box.x;
+	if (test.x <= map->lx && test.y <= map->ly && map_get_block(map, test))
+		return (1);
+	return (0);
 }
 
 void	player_move(t_player *player, t_game *game, KEY dir)
 {
-	t_vect2dd	new;
+	t_vect3dd	save;
 	t_vect2dd	tmp_dir;
 
+	save = player->pos;
 	if (dir == MOV_Y)
 	{
-		new.x = player->pos.x + (player->dir.x * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
-		new.y = player->pos.y + (player->dir.y * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
+		player->pos.x += (player->dir.x * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
+		player->pos.y += (player->dir.y * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
 	}
 	else if (dir == MOV_X)
 	{
 		tmp_dir = vect2dd_rotate(player->dir, M_PI_2);
-		new.x = player->pos.x + (tmp_dir.x * game->dt * 2 * -(game->input[MOV_X] / 32767.0));
-		new.y = player->pos.y + (tmp_dir.y * game->dt * 2 * -(game->input[MOV_X] / 32767.0));
+		player->pos.x += (tmp_dir.x * game->dt * 2 * -(game->input[MOV_X] / 32767.0));
+		player->pos.y += (tmp_dir.y * game->dt * 2 * -(game->input[MOV_X] / 32767.0));
 	}
-	if (game->map.data[(int)new.x + ((int)new.y * game->map.lx)] == 0)
+	if (player_collide_world(&(game->map), player))
 	{
-		player->pos.x = new.x;
-		player->pos.y = new.y;
+		player->pos.x = save.x;
+		player->pos.y = save.y;
 	}
 }
 

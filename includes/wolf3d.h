@@ -65,6 +65,14 @@ typedef struct s_vect3dd
 	double		z;
 }				t_vect3dd;
 
+typedef struct s_rectdd
+{
+	double		x;
+	double		y;
+	double		w;
+	double		h;
+}				t_rectdd;
+
 typedef struct 		s_color
 {
 	unsigned char	r;
@@ -78,6 +86,7 @@ typedef struct	s_player
 	t_vect3dd	pos;
 	t_vect2dd	dir;
 	t_vect2dd	plane;
+	t_vect2dd	box;
 }				t_player;
 
 

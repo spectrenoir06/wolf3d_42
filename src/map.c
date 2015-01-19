@@ -130,3 +130,8 @@ int		map_load(t_game *game, t_map *map, char *path)
 	}
 	return (1);
 }
+
+int		map_get_block(t_map *map, t_vect2dd pt)
+{
+	return (map->data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
+}
