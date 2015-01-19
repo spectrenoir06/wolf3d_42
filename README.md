@@ -22,7 +22,7 @@
 - [ ] compatibiliter Windows (pour l'E2)
 - [ ] split-sreen
 - [ ] mur non perpendiculaire
-- [ ] hitbox
+- [x] hitbox
 - [ ] allonger accroupis
 - [ ] sauter
 
