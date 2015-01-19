@@ -17,7 +17,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.lx = WIN_X;
 	game->sdl.ly = WIN_Y;
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
@@ -45,6 +45,9 @@ void	game_init_sdl(t_game *game)
 	{
 		SDL_JoystickEventState(SDL_ENABLE);
 		game->joystick = SDL_JoystickOpen(0);
+		game->haptic = SDL_HapticOpenFromJoystick(game->joystick);
+		if (SDL_HapticRumbleInit(game->haptic))
+				printf("Can not init %s\n", SDL_GetError());
 	}
 	SDL_SetRelativeMouseMode(1);
 }
@@ -290,6 +293,10 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.jbutton.button == 5)
 			game->input[ROT_Z] = SINT16_MAX;
+		//else if (event.jbutton.button == 6)
+			//game->player.speed += 3;
+		if (event.jbutton.button == 0)
+			SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
 		else if (event.jbutton.button == 10)
 		{
 			SDL_JoystickClose(0);
@@ -307,6 +314,10 @@ int		game_event_handler(t_game *game)
 			game->input[MOV_X] = 0;
 		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
 			game->input[ROT_Z] = 0;
+		else if (event.jbutton.button == 0)
+			SDL_HapticRumbleStop(game->haptic);
+		//else if (event.jbutton.button == 6)
+			//game->player.speed = 0;
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{

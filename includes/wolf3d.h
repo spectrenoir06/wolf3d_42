@@ -78,6 +78,7 @@ typedef struct	s_player
 	t_vect3dd	pos;
 	t_vect2dd	dir;
 	t_vect2dd	plane;
+	int			speed;
 }				t_player;
 
 
@@ -111,6 +112,7 @@ typedef struct s_game
 	t_color				texture[512][512];
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
+	SDL_Haptic			*haptic;
 }						t_game;
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
