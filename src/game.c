@@ -168,6 +168,25 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2) / ray->dir.y);
 }
 
+void	draw_ceil(t_game *game,int x, int end)
+{
+	int y = 0;
+	while (y < end)
+	{
+		game_draw_pixel(game,x,y, game->map.color_ceil);
+		y++;
+	}
+}
+
+void	draw_floor(t_game *game,int x, int y)
+{
+	while (y < game->sdl.ly)
+	{
+		game_draw_pixel(game,x,y, game->map.color_floor);
+		y++;
+	}
+}
+
 void	game_render(t_game *game)
 {
 	int	x = 0;
@@ -179,6 +198,7 @@ void	game_render(t_game *game)
 		t_wall wall;
 
 		double camera_x = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
+
 		init_ray(game, &ray, camera_x);
 		ray_caster(game, &ray, &wall);
 
@@ -204,14 +224,10 @@ void	game_render(t_game *game)
 		if(wall.side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
 		if(wall.side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
 
-		//draw the pixels of the stripe as a vertical line
-		int y = 0;
-		while (y < drawStart)
-		{
-			game_draw_pixel(game,x,y, game->map.color_ceil);
-			y++;
-		}
-		y = drawStart;
+		draw_ceil(game, x, drawStart);
+
+		int y = drawStart;
+
 		while (y < drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
@@ -229,12 +245,7 @@ void	game_render(t_game *game)
 			game_draw_pixel(game,x,y,color);
 			y++;
 		}
-
-		while (y < game->sdl.ly)
-		{
-			game_draw_pixel(game,x,y, game->map.color_floor);
-			y++;
-		}
+		draw_floor(game, x, y);
 	}
 }
 
