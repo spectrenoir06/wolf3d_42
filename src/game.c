@@ -284,7 +284,7 @@ int		game_event_handler(t_game *game)
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
 	{
-		printf("Button = %d\n", event.jbutton.button);
+		//printf("Button = %d\n", event.jbutton.button);
 		if (event.jbutton.button == 11)
 			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.jbutton.button == 12)
