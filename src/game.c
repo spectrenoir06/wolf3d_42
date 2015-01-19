@@ -25,7 +25,7 @@ typedef struct s_wall
 	t_vect2di	map;
 	double		dist;
 	int			side;
-	int			ind;
+	int			id;
 	t_vect2di	step;
 }				t_wall;
 
@@ -112,34 +112,32 @@ void	init_ray(t_game *game, t_ray *ray, double camera_x)
 	ray->delta.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
 }
 
-t_wall	ray_caster(t_game *game, t_ray *ray)
+t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 {
-	t_wall wall;
-
-	wall.map.x = (int)ray->pos.x;
-	wall.map.y = (int)ray->pos.y;
+	wall->map.x = (int)ray->pos.x;
+	wall->map.y = (int)ray->pos.y;
 
 	int hit = 0;
 
 	if (ray->dir.x < 0)
 	{
-		wall.step.x = -1;
-		ray->side.x = (ray->pos.x - wall.map.x) * ray->delta.x;
+		wall->step.x = -1;
+		ray->side.x = (ray->pos.x - wall->map.x) * ray->delta.x;
 	}
 	else
 	{
-		wall.step.x = 1;
-		ray->side.x = (wall.map.x + 1.0 - ray->pos.x) * ray->delta.x;
+		wall->step.x = 1;
+		ray->side.x = (wall->map.x + 1.0 - ray->pos.x) * ray->delta.x;
 	}
 	if (ray->dir.y < 0)
 	{
-		wall.step.y = -1;
-		ray->side.y = (ray->pos.y - wall.map.y) * ray->delta.y;
+		wall->step.y = -1;
+		ray->side.y = (ray->pos.y - wall->map.y) * ray->delta.y;
 	}
 	else
 	{
-		wall.step.y = 1;
-		ray->side.y = (wall.map.y + 1.0 - ray->pos.y) * ray->delta.y;
+		wall->step.y = 1;
+		ray->side.y = (wall->map.y + 1.0 - ray->pos.y) * ray->delta.y;
 	}
 
 	while (hit == 0)
@@ -147,44 +145,44 @@ t_wall	ray_caster(t_game *game, t_ray *ray)
 		if (ray->side.x < ray->side.y)
 		{
 			ray->side.x += ray->delta.x;
-			wall.map.x += wall.step.x;
-			wall.side = 0;
+			wall->map.x += wall->step.x;
+			wall->side = 0;
 		}
 		else
 		{
 			ray->side.y += ray->delta.y;
-			wall.map.y += wall.step.y;
-			wall.side = 1;
+			wall->map.y += wall->step.y;
+			wall->side = 1;
 		}
 
-		if (game->map.data[wall.map.x + (wall.map.y * game->map.lx)] > 0)
+		if (game->map.data[wall->map.x + (wall->map.y * game->map.lx)] > 0)
 		{
-			wall_nb = game->map.data[wall.map.x + (wall.map.y * game->map.lx)];
+			wall->id = game->map.data[wall->map.x + (wall->map.y * game->map.lx)];
 			hit = 1;
 		}
 	}
 
-	if (side == 0)
-		perpWallDist = fabs((mapX - ray->pos.x + (1 - wall.step.x) / 2) / ray->dir.x);
+	if (wall->side == 0)
+		wall->dist = fabs((wall->map.x - ray->pos.x + (1 - wall->step.x) / 2) / ray->dir.x);
 	else
-		perpWallDist = fabs((mapY - ray->pos.y + (1 - stepY) / 2) / ray->dir.y);
+		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2) / ray->dir.y);
 }
 
 void	game_render(t_game *game)
 {
 	int	x = 0;
-	int wall_nb;
 
 	for(x = 0; x < game->sdl.lx; x++)
 	{
 		//calculate ray position and direction
 		t_ray ray;
+		t_wall wall;
 
 		double camera_x = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
 		init_ray(game, &ray, camera_x);
+		ray_caster(game, &ray, &wall);
 
-
-		int lineHeight = abs(game->sdl.ly / perpWallDist);
+		int lineHeight = abs(game->sdl.ly / wall.dist);
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + game->sdl.ly / 2;
@@ -196,15 +194,15 @@ void	game_render(t_game *game)
 
 
 		double wallX;
-		if (side == 1)
-			 wallX = ray.pos.x + ((mapY - ray.pos.y + (1 - stepY) / 2) / ray.dir.y) * ray.dir.x;
+		if (wall.side == 1)
+			 wallX = ray.pos.x + ((wall.map.y - ray.pos.y + (1 - wall.step.y) / 2) / ray.dir.y) * ray.dir.x;
 		else
-			wallX = ray.pos.y + ((mapX - ray.pos.x + (1 - stepX) / 2) / ray.dir.x) * ray.dir.y;
+			wallX = ray.pos.y + ((wall.map.x - ray.pos.x + (1 - wall.step.x) / 2) / ray.dir.x) * ray.dir.y;
 		wallX -= floor(wallX);
 
 		int texX = wallX * 512;
-		if(side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
-		if(side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
+		if(wall.side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
+		if(wall.side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
 
 		//draw the pixels of the stripe as a vertical line
 		int y = 0;
@@ -219,10 +217,10 @@ void	game_render(t_game *game)
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
 			//int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
 			t_color color;
-			color.r = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512)];
-			color.g = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
-			color.b = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
-			if(side == 1)
+			color.r = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512)];
+			color.g = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
+			color.b = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
+			if(wall.side == 1)
 			{
 				color.r = color.r >> 1;
 				color.g = color.g >> 1;
