@@ -24,7 +24,7 @@
 # define WIN_X 800
 # define WIN_Y 480
 # define SINT16_MAX 32767
-# define SINT16_MIN -32768
+# define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
 typedef enum KEY KEY;
@@ -36,7 +36,8 @@ enum KEY
 	ROT_X	= 3,
 	ROT_Y	= 4,
 	ROT_Z	= 5,
-	USE		= 6
+	ROT_Z_M = 6,
+	USE		= 7
 };
 
 typedef struct s_vect2di

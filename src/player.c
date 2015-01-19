@@ -44,10 +44,10 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	{
 		player->pos.x = new.x;
 		player->pos.y = new.y;
-		SDL_HapticRumbleStop(game->haptic);
+		//SDL_HapticRumbleStop(game->haptic);
 	}
-	else
-		SDL_HapticRumblePlay(game->haptic, 0.5, 10000);
+	//else
+		//SDL_HapticRumblePlay(game->haptic, 0.5, 10000);
 }
 
 void	player_update(t_player *player, t_game *game)
@@ -55,14 +55,14 @@ void	player_update(t_player *player, t_game *game)
 	double new_pos_x;
 	double new_pos_y;
 
-//	if (game->input[ROT_Z])
-//	{
-//		double motion = (-game->input[ROT_Z] / 100.0) * 2 * M_PI * game->dt;
-//		//printf("%f \n",motion);
-//		player->dir = vect2dd_rotate(player->dir, motion);
-//		player->plane = vect2dd_rotate(player->plane, motion);
-//		game->input[ROT_Z] = 0;
-//	}
+	if (game->input[ROT_Z_M])
+	{
+		double motion = (-game->input[ROT_Z_M] / 100.0) * 2 * M_PI * game->dt;
+		//printf("%f \n",motion);
+		player->dir = vect2dd_rotate(player->dir, motion);
+		player->plane = vect2dd_rotate(player->plane, motion);
+		game->input[ROT_Z_M] = 0;
+	}
 
 	if (game->input[MOV_Y])
 		player_move(&(game->player), game, MOV_Y);
