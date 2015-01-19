@@ -21,6 +21,7 @@ void	player_init(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0.66;
+<<<<<<< HEAD
 	player->box.x = 0.2;
 	player->box.y = 0.2;
 }
@@ -44,6 +45,9 @@ int		player_collide_world(t_map *map, t_player *player)
 	if (test.x <= map->lx && test.y <= map->ly && map_get_block(map, test))
 		return (1);
 	return (0);
+=======
+	player->speed = 5;
+>>>>>>> floor
 }
 
 void	player_move(t_player *player, t_game *game, KEY dir)
@@ -54,8 +58,8 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	save = player->pos;
 	if (dir == MOV_Y)
 	{
-		player->pos.x += (player->dir.x * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
-		player->pos.y += (player->dir.y * game->dt * 5 * (game->input[MOV_Y] / 32767.0));
+		player->pos.x += (player->dir.x * game->dt * player->speed * (game->input[MOV_Y] / 32767.0));
+		player->pos.y += (player->dir.y * game->dt * player->speed * (game->input[MOV_Y] / 32767.0));
 	}
 	else if (dir == MOV_X)
 	{
@@ -67,7 +71,10 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	{
 		player->pos.x = save.x;
 		player->pos.y = save.y;
+		//SDL_HapticRumbleStop(game->haptic);
 	}
+	//else
+		//SDL_HapticRumblePlay(game->haptic, 0.5, 10000);
 }
 
 void	player_update(t_player *player, t_game *game)
@@ -75,14 +82,14 @@ void	player_update(t_player *player, t_game *game)
 	double new_pos_x;
 	double new_pos_y;
 
-//	if (game->input[ROT_Z])
-//	{
-//		double motion = (-game->input[ROT_Z] / 100.0) * 2 * M_PI * game->dt;
-//		//printf("%f \n",motion);
-//		player->dir = vect2dd_rotate(player->dir, motion);
-//		player->plane = vect2dd_rotate(player->plane, motion);
-//		game->input[ROT_Z] = 0;
-//	}
+	if (game->input[ROT_Z_M])
+	{
+		double motion = (-game->input[ROT_Z_M] / 100.0) * 2 * M_PI * game->dt;
+		//printf("%f \n",motion);
+		player->dir = vect2dd_rotate(player->dir, motion);
+		player->plane = vect2dd_rotate(player->plane, motion);
+		game->input[ROT_Z_M] = 0;
+	}
 
 	if (game->input[MOV_Y])
 		player_move(&(game->player), game, MOV_Y);

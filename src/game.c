@@ -34,7 +34,7 @@ void	game_init_sdl(t_game *game)
 	game->sdl.lx = WIN_X;
 	game->sdl.ly = WIN_Y;
 
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
@@ -62,6 +62,9 @@ void	game_init_sdl(t_game *game)
 	{
 		SDL_JoystickEventState(SDL_ENABLE);
 		game->joystick = SDL_JoystickOpen(0);
+		game->haptic = SDL_HapticOpenFromJoystick(game->joystick);
+		if (SDL_HapticRumbleInit(game->haptic))
+				printf("Can not init %s\n", SDL_GetError());
 	}
 	SDL_SetRelativeMouseMode(1);
 }
@@ -255,14 +258,14 @@ int		game_event_handler(t_game *game)
 
 	if (!SDL_PollEvent(&event))
 		return (0);
-//	if (event.type == SDL_MOUSEMOTION)
-//	{
-//		printf("Mouse %d\n", event.motion.xrel * 1000);
-//		if (event.motion.xrel * 1000 > SINT16_MIN && event.motion.xrel * 1000 < SINT16_MAX)
-//			game->input[ROT_Z] = event.motion.xrel * 1000;
-//		//game->input[ROT_Y] = event.motion.yrel *1000;
-//		return (1);
-//	}
+	if (event.type == SDL_MOUSEMOTION)
+	{
+		//printf("Mouse %d\n", event.motion.xrel);
+		if (event.motion.xrel > SINT16_MIN && event.motion.xrel < SINT16_MAX)
+			game->input[ROT_Z_M] = event.motion.xrel;
+		//game->input[ROT_Y] = event.motion.yrel *1000;
+		return (1);
+	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
@@ -277,6 +280,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
 			game->input[ROT_Z] = SINT16_MAX;
+		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
+			game->player.speed += 3;
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			SDL_JoystickClose(0);
@@ -300,10 +305,12 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = 0;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
 			game->input[ROT_Z] = 0;
+		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
+			game->player.speed -= 3;
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
 	{
-		printf("Button = %d\n", event.jbutton.button);
+		//printf("Button = %d\n", event.jbutton.button);
 		if (event.jbutton.button == 11)
 			game->input[MOV_Y] = SINT16_MAX;
 		else if (event.jbutton.button == 12)
@@ -316,6 +323,10 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.jbutton.button == 5)
 			game->input[ROT_Z] = SINT16_MAX;
+		else if (event.jbutton.button == 6)
+			game->player.speed += 3;
+		//else if (event.jbutton.button == 0)
+		//	SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
 		else if (event.jbutton.button == 10)
 		{
 			SDL_JoystickClose(0);
@@ -333,12 +344,16 @@ int		game_event_handler(t_game *game)
 			game->input[MOV_X] = 0;
 		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
 			game->input[ROT_Z] = 0;
+		//else if (event.jbutton.button == 0)
+		//	SDL_HapticRumbleStop(game->haptic);
+		else if (event.jbutton.button == 6)
+			game->player.speed -= 3;
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{
 		double test;
 		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_Y] = -event.jaxis.value;
+			game->input[MOV_Y] = event.jaxis.value;
 		else if (event.jaxis.axis == 1)
 			game->input[MOV_Y] = 0;
 		if (event.jaxis.axis == 0 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))

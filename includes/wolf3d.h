@@ -24,7 +24,7 @@
 # define WIN_X 800
 # define WIN_Y 480
 # define SINT16_MAX 32767
-# define SINT16_MIN -32768
+# define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
 typedef enum KEY KEY;
@@ -36,7 +36,8 @@ enum KEY
 	ROT_X	= 3,
 	ROT_Y	= 4,
 	ROT_Z	= 5,
-	USE		= 6
+	ROT_Z_M = 6,
+	USE		= 7
 };
 
 typedef struct s_vect2di
@@ -87,6 +88,7 @@ typedef struct	s_player
 	t_vect2dd	dir;
 	t_vect2dd	plane;
 	t_vect2dd	box;
+	int			speed;
 }				t_player;
 
 
@@ -120,6 +122,7 @@ typedef struct s_game
 	t_color				texture[512][512];
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
+	SDL_Haptic			*haptic;
 }						t_game;
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
