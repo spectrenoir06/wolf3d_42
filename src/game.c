@@ -273,9 +273,9 @@ int		game_event_handler(t_game *game)
 		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
 			game->input[MOV_Y] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_a)
-			game->input[MOV_X] = -SINT16_MIN;
+			game->input[MOV_X] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_d)
-			game->input[MOV_X] = -SINT16_MAX;
+			game->input[MOV_X] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
 			game->input[ROT_Z] = SINT16_MIN;
 		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
