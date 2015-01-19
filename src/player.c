@@ -21,9 +21,9 @@ void	player_init(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.y = 0.66;
-<<<<<<< HEAD
 	player->box.x = 0.2;
 	player->box.y = 0.2;
+	player->speed = 5;
 }
 
 int		player_collide_world(t_map *map, t_player *player)
@@ -45,9 +45,6 @@ int		player_collide_world(t_map *map, t_player *player)
 	if (test.x <= map->lx && test.y <= map->ly && map_get_block(map, test))
 		return (1);
 	return (0);
-=======
-	player->speed = 5;
->>>>>>> floor
 }
 
 void	player_move(t_player *player, t_game *game, KEY dir)
