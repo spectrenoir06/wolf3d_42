@@ -25,5 +25,7 @@
 - [x] hitbox
 - [ ] allonger accroupis
 - [ ] sauter
+- [ ] 360 no-scope
+- [ ] mipmap [exemple](http://www.fevrierdorian.com/blog/post/2009/12/24/Les-maps-mental-ray-(part-2.1)%3A-Le-debug)
 
 ![alt tag](img/screenshot.png)
