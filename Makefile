@@ -80,12 +80,15 @@ $(LIBFT_DEBUG):
 
 clean:
 	rm -f $(STATIC_OBJ) $(DEBUG_OBJ)
+	make -C libft clean
 
 fclean: clean
 	rm -f $(STATIC_EXE) $(DEBUG_EXE)
+	make -C libft fclean
 
 norme:
 	$(NORMINETTE) $(SRC_DIR)/ $(HEAD_DIR)/
+	make -C libft norme
 
 re: fclean
 	make

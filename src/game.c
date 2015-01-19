@@ -12,6 +12,23 @@
 
 #include "wolf3d.h"
 
+typedef	struct	s_ray
+{
+	t_vect2dd	pos;
+	t_vect2dd	dir;
+	t_vect2dd	delta;
+	t_vect2dd	side;
+}				t_ray;
+
+typedef struct s_wall
+{
+	t_vect2di	map;
+	double		dist;
+	int			side;
+	int			id;
+	t_vect2di	step;
+}				t_wall;
+
 void	game_init_sdl(t_game *game)
 {
 	game->sdl.lx = WIN_X;
@@ -83,91 +100,109 @@ void	game_draw_pixel(t_game *game, int x, int y, t_color c)
 	if (x >= 0 && x < game->sdl.lx && y >=0 && y < game->sdl.ly)
 		memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &c, 3);
 }
+void	init_ray(t_game *game, t_ray *ray, double camera_x)
+{
+	ray->pos.x = game->player.pos.x;
+	ray->pos.y = game->player.pos.y;
+
+	ray->dir.x = game->player.dir.x + game->player.plane.x * camera_x;
+	ray->dir.y = game->player.dir.y + game->player.plane.y * camera_x;
+
+	ray->delta.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+	ray->delta.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+}
+
+t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
+{
+	wall->map.x = (int)ray->pos.x;
+	wall->map.y = (int)ray->pos.y;
+
+	int hit = 0;
+
+	if (ray->dir.x < 0)
+	{
+		wall->step.x = -1;
+		ray->side.x = (ray->pos.x - wall->map.x) * ray->delta.x;
+	}
+	else
+	{
+		wall->step.x = 1;
+		ray->side.x = (wall->map.x + 1.0 - ray->pos.x) * ray->delta.x;
+	}
+	if (ray->dir.y < 0)
+	{
+		wall->step.y = -1;
+		ray->side.y = (ray->pos.y - wall->map.y) * ray->delta.y;
+	}
+	else
+	{
+		wall->step.y = 1;
+		ray->side.y = (wall->map.y + 1.0 - ray->pos.y) * ray->delta.y;
+	}
+
+	while (hit == 0)
+	{
+		if (ray->side.x < ray->side.y)
+		{
+			ray->side.x += ray->delta.x;
+			wall->map.x += wall->step.x;
+			wall->side = 0;
+		}
+		else
+		{
+			ray->side.y += ray->delta.y;
+			wall->map.y += wall->step.y;
+			wall->side = 1;
+		}
+
+		if (game->map.data[wall->map.x + (wall->map.y * game->map.lx)] > 0)
+		{
+			wall->id = game->map.data[wall->map.x + (wall->map.y * game->map.lx)];
+			hit = 1;
+		}
+	}
+
+	if (wall->side == 0)
+		wall->dist = fabs((wall->map.x - ray->pos.x + (1 - wall->step.x) / 2) / ray->dir.x);
+	else
+		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2) / ray->dir.y);
+}
+
+void	draw_ceil(t_game *game,int x, int end)
+{
+	int y = 0;
+	while (y < end)
+	{
+		game_draw_pixel(game,x,y, game->map.color_ceil);
+		y++;
+	}
+}
+
+void	draw_floor(t_game *game,int x, int y)
+{
+	while (y < game->sdl.ly)
+	{
+		game_draw_pixel(game,x,y, game->map.color_floor);
+		y++;
+	}
+}
 
 void	game_render(t_game *game)
 {
 	int	x = 0;
-	int wall_nb;
 
 	for(x = 0; x < game->sdl.lx; x++)
 	{
 		//calculate ray position and direction
-		double cameraX = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
-		double rayPosX = game->player.pos.x;
-		double rayPosY = game->player.pos.y;
-		double rayDirX = game->player.dir.x + game->player.plane.x * cameraX;
-		double rayDirY = game->player.dir.y + game->player.plane.y * cameraX;
-		//which box of the map we're in
-		int mapX = (int)rayPosX;
-		int mapY = (int)rayPosY;
+		t_ray ray;
+		t_wall wall;
 
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
+		double camera_x = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
 
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
-		double perpWallDist;
+		init_ray(game, &ray, camera_x);
+		ray_caster(game, &ray, &wall);
 
-		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
-
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-		//calculate step and initial sideDist
-		if (rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (rayPosX - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
-		}
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (rayPosY - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
-		}
-		//perform DDA
-		while (hit == 0)
-		{
-			//jump to next map square, OR in x-direction, OR in y-direction
-			if (sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			//Check if ray has hit a wall
-			if (game->map.data[mapX + (mapY * game->map.lx)] > 0)
-			{
-				wall_nb = game->map.data[mapX + (mapY * game->map.lx)];
-				hit = 1;
-			}
-		}
-		//Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
-		if (side == 0)
-			perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
-		else
-			perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);
-
-		//Calculate height of line to draw on screen
-		int lineHeight = abs(game->sdl.ly / perpWallDist);
+		int lineHeight = abs(game->sdl.ly / wall.dist);
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + game->sdl.ly / 2;
@@ -179,33 +214,29 @@ void	game_render(t_game *game)
 
 
 		double wallX;
-		if (side == 1)
-			 wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;
+		if (wall.side == 1)
+			 wallX = ray.pos.x + ((wall.map.y - ray.pos.y + (1 - wall.step.y) / 2) / ray.dir.y) * ray.dir.x;
 		else
-			wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
+			wallX = ray.pos.y + ((wall.map.x - ray.pos.x + (1 - wall.step.x) / 2) / ray.dir.x) * ray.dir.y;
 		wallX -= floor(wallX);
 
 		int texX = wallX * 512;
-		if(side == 0 && rayDirX > 0) texX = 512 - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = 512 - texX - 1;
+		if(wall.side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
+		if(wall.side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
 
-		//draw the pixels of the stripe as a vertical line
-		int y = 0;
-		while (y < drawStart)
-		{
-			game_draw_pixel(game,x,y, game->map.color_ceil);
-			y++;
-		}
-		y = drawStart;
+		draw_ceil(game, x, drawStart);
+
+		int y = drawStart;
+
 		while (y < drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (512/2)/lineHeight;
 			//int texY = (y - drawStart) * 512 / (drawEnd - drawStart);
 			t_color color;
-			color.r = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512)];
-			color.g = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
-			color.b = ((Uint8*)(game->map.textures[wall_nb]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
-			if(side == 1)
+			color.r = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512)];
+			color.g = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512) + 1];
+			color.b = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * 512) + 2];
+			if(wall.side == 1)
 			{
 				color.r = color.r >> 1;
 				color.g = color.g >> 1;
@@ -214,12 +245,7 @@ void	game_render(t_game *game)
 			game_draw_pixel(game,x,y,color);
 			y++;
 		}
-
-		while (y < game->sdl.ly)
-		{
-			game_draw_pixel(game,x,y, game->map.color_floor);
-			y++;
-		}
+		draw_floor(game, x, y);
 	}
 }
 
