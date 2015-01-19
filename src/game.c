@@ -20,6 +20,15 @@ typedef	struct	s_ray
 	t_vect2dd	side;
 }				t_ray;
 
+typedef struct s_wall
+{
+	t_vect2di	map;
+	double		dist;
+	int			side;
+	int			ind;
+	t_vect2di	step;
+}				t_wall;
+
 void	game_init_sdl(t_game *game)
 {
 	game->sdl.lx = WIN_X;
@@ -103,9 +112,62 @@ void	init_ray(t_game *game, t_ray *ray, double camera_x)
 	ray->delta.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
 }
 
-void	ray_caster(t_game *game, t_ray *ray)
+t_wall	ray_caster(t_game *game, t_ray *ray)
 {
+	t_wall wall;
 
+	wall.map.x = (int)ray->pos.x;
+	wall.map.y = (int)ray->pos.y;
+
+	int hit = 0;
+
+	if (ray->dir.x < 0)
+	{
+		wall.step.x = -1;
+		ray->side.x = (ray->pos.x - wall.map.x) * ray->delta.x;
+	}
+	else
+	{
+		wall.step.x = 1;
+		ray->side.x = (wall.map.x + 1.0 - ray->pos.x) * ray->delta.x;
+	}
+	if (ray->dir.y < 0)
+	{
+		wall.step.y = -1;
+		ray->side.y = (ray->pos.y - wall.map.y) * ray->delta.y;
+	}
+	else
+	{
+		wall.step.y = 1;
+		ray->side.y = (wall.map.y + 1.0 - ray->pos.y) * ray->delta.y;
+	}
+
+	while (hit == 0)
+	{
+		if (ray->side.x < ray->side.y)
+		{
+			ray->side.x += ray->delta.x;
+			wall.map.x += wall.step.x;
+			wall.side = 0;
+		}
+		else
+		{
+			ray->side.y += ray->delta.y;
+			wall.map.y += wall.step.y;
+			wall.side = 1;
+		}
+
+		if (game->map.data[wall.map.x + (wall.map.y * game->map.lx)] > 0)
+		{
+			wall_nb = game->map.data[wall.map.x + (wall.map.y * game->map.lx)];
+			hit = 1;
+		}
+	}
+
+	if (side == 0)
+		perpWallDist = fabs((mapX - ray->pos.x + (1 - wall.step.x) / 2) / ray->dir.x);
+	else
+		perpWallDist = fabs((mapY - ray->pos.y + (1 - stepY) / 2) / ray->dir.y);
 }
 
 void	game_render(t_game *game)
@@ -122,68 +184,6 @@ void	game_render(t_game *game)
 		init_ray(game, &ray, camera_x);
 
 
-
-		int mapX = (int)ray.pos.x;
-		int mapY = (int)ray.pos.y;
-
-		double perpWallDist;
-
-		int stepX;
-		int stepY;
-
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-		//calculate step and initial sideDist
-		if (ray.dir.x < 0)
-		{
-			stepX = -1;
-			ray.side.x = (ray.pos.x - mapX) * ray.delta.x;
-		}
-		else
-		{
-			stepX = 1;
-			ray.side.x = (mapX + 1.0 - ray.pos.x) * ray.delta.x;
-		}
-		if (ray.dir.y < 0)
-		{
-			stepY = -1;
-			ray.side.y = (ray.pos.y - mapY) * ray.delta.y;
-		}
-		else
-		{
-			stepY = 1;
-			ray.side.y = (mapY + 1.0 - ray.pos.y) * ray.delta.y;
-		}
-		//perform DDA
-		while (hit == 0)
-		{
-			//jump to next map square, OR in x-direction, OR in y-direction
-			if (ray.side.x < ray.side.y)
-			{
-				ray.side.x += ray.delta.x;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				ray.side.y += ray.delta.y;
-				mapY += stepY;
-				side = 1;
-			}
-			//Check if ray has hit a wall
-			if (game->map.data[mapX + (mapY * game->map.lx)] > 0)
-			{
-				wall_nb = game->map.data[mapX + (mapY * game->map.lx)];
-				hit = 1;
-			}
-		}
-		//Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
-		if (side == 0)
-			perpWallDist = fabs((mapX - ray.pos.x + (1 - stepX) / 2) / ray.dir.x);
-		else
-			perpWallDist = fabs((mapY - ray.pos.y + (1 - stepY) / 2) / ray.dir.y);
-
-		//Calculate height of line to draw on screen
 		int lineHeight = abs(game->sdl.ly / perpWallDist);
 
 		//calculate lowest and highest pixel to fill in current stripe
