@@ -13,8 +13,8 @@
 - [ ] gui
 - [ ] menu
 - [ ] multimode (wolfenstein, 42stein, ...)
-- [ ] mode souris + clavier
-- [ ] mode full clavier
+- [x] mode souris + clavier
+- [x] mode full clavier
 - [x] mode gamepad
 - [x] compatibiliter MacOS
 - [x] compatibiliter Linux
