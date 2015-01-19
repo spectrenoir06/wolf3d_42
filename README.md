@@ -7,7 +7,7 @@
 - [ ] skybox
 - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
 - [x] sample map
-- [ ] simplifier raycasting
+- [x] simplifier raycasting
 - [ ] sfx
 - [ ] music
 - [ ] gui
