@@ -12,6 +12,14 @@
 
 #include "wolf3d.h"
 
+typedef	struct	s_ray
+{
+	t_vect2dd	pos;
+	t_vect2dd	dir;
+	t_vect2dd	delta;
+	t_vect2dd	side;
+}				t_ray;
+
 void	game_init_sdl(t_game *game)
 {
 	game->sdl.lx = WIN_X;
@@ -83,6 +91,22 @@ void	game_draw_pixel(t_game *game, int x, int y, t_color c)
 	if (x >= 0 && x < game->sdl.lx && y >=0 && y < game->sdl.ly)
 		memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &c, 3);
 }
+void	init_ray(t_game *game, t_ray *ray, double camera_x)
+{
+	ray->pos.x = game->player.pos.x;
+	ray->pos.y = game->player.pos.y;
+
+	ray->dir.x = game->player.dir.x + game->player.plane.x * camera_x;
+	ray->dir.y = game->player.dir.y + game->player.plane.y * camera_x;
+
+	ray->delta.x = sqrt(1 + (ray->dir.y * ray->dir.y) / (ray->dir.x * ray->dir.x));
+	ray->delta.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
+}
+
+void	ray_caster(t_game *game, t_ray *ray)
+{
+
+}
 
 void	game_render(t_game *game)
 {
@@ -92,64 +116,57 @@ void	game_render(t_game *game)
 	for(x = 0; x < game->sdl.lx; x++)
 	{
 		//calculate ray position and direction
-		double cameraX = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
-		double rayPosX = game->player.pos.x;
-		double rayPosY = game->player.pos.y;
-		double rayDirX = game->player.dir.x + game->player.plane.x * cameraX;
-		double rayDirY = game->player.dir.y + game->player.plane.y * cameraX;
-		//which box of the map we're in
-		int mapX = (int)rayPosX;
-		int mapY = (int)rayPosY;
+		t_ray ray;
 
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
+		double camera_x = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
+		init_ray(game, &ray, camera_x);
 
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = sqrt(1 + (rayDirY * rayDirY) / (rayDirX * rayDirX));
-		double deltaDistY = sqrt(1 + (rayDirX * rayDirX) / (rayDirY * rayDirY));
+
+
+		int mapX = (int)ray.pos.x;
+		int mapY = (int)ray.pos.y;
+
 		double perpWallDist;
 
-		//what direction to step in x or y-direction (either +1 or -1)
 		int stepX;
 		int stepY;
 
 		int hit = 0; //was there a wall hit?
 		int side; //was a NS or a EW wall hit?
 		//calculate step and initial sideDist
-		if (rayDirX < 0)
+		if (ray.dir.x < 0)
 		{
 			stepX = -1;
-			sideDistX = (rayPosX - mapX) * deltaDistX;
+			ray.side.x = (ray.pos.x - mapX) * ray.delta.x;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - rayPosX) * deltaDistX;
+			ray.side.x = (mapX + 1.0 - ray.pos.x) * ray.delta.x;
 		}
-		if (rayDirY < 0)
+		if (ray.dir.y < 0)
 		{
 			stepY = -1;
-			sideDistY = (rayPosY - mapY) * deltaDistY;
+			ray.side.y = (ray.pos.y - mapY) * ray.delta.y;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - rayPosY) * deltaDistY;
+			ray.side.y = (mapY + 1.0 - ray.pos.y) * ray.delta.y;
 		}
 		//perform DDA
 		while (hit == 0)
 		{
 			//jump to next map square, OR in x-direction, OR in y-direction
-			if (sideDistX < sideDistY)
+			if (ray.side.x < ray.side.y)
 			{
-				sideDistX += deltaDistX;
+				ray.side.x += ray.delta.x;
 				mapX += stepX;
 				side = 0;
 			}
 			else
 			{
-				sideDistY += deltaDistY;
+				ray.side.y += ray.delta.y;
 				mapY += stepY;
 				side = 1;
 			}
@@ -162,9 +179,9 @@ void	game_render(t_game *game)
 		}
 		//Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
 		if (side == 0)
-			perpWallDist = fabs((mapX - rayPosX + (1 - stepX) / 2) / rayDirX);
+			perpWallDist = fabs((mapX - ray.pos.x + (1 - stepX) / 2) / ray.dir.x);
 		else
-			perpWallDist = fabs((mapY - rayPosY + (1 - stepY) / 2) / rayDirY);
+			perpWallDist = fabs((mapY - ray.pos.y + (1 - stepY) / 2) / ray.dir.y);
 
 		//Calculate height of line to draw on screen
 		int lineHeight = abs(game->sdl.ly / perpWallDist);
@@ -180,14 +197,14 @@ void	game_render(t_game *game)
 
 		double wallX;
 		if (side == 1)
-			 wallX = rayPosX + ((mapY - rayPosY + (1 - stepY) / 2) / rayDirY) * rayDirX;
+			 wallX = ray.pos.x + ((mapY - ray.pos.y + (1 - stepY) / 2) / ray.dir.y) * ray.dir.x;
 		else
-			wallX = rayPosY + ((mapX - rayPosX + (1 - stepX) / 2) / rayDirX) * rayDirY;
+			wallX = ray.pos.y + ((mapX - ray.pos.x + (1 - stepX) / 2) / ray.dir.x) * ray.dir.y;
 		wallX -= floor(wallX);
 
 		int texX = wallX * 512;
-		if(side == 0 && rayDirX > 0) texX = 512 - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = 512 - texX - 1;
+		if(side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
+		if(side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
 
 		//draw the pixels of the stripe as a vertical line
 		int y = 0;
