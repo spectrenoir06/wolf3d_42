@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="512" tileheight="512" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
+  <tile id="0">
+   <image width="512" height="512" source="textures/0.bmp"/>
+  </tile>
+  <tile id="1">
+   <image width="512" height="512" source="textures/1.bmp"/>
+  </tile>
+  <tile id="2">
+   <image width="512" height="512" source="textures/2.bmp"/>
+  </tile>
+  <tile id="3">
+   <image width="512" height="512" source="textures/3.bmp"/>
+  </tile>
+ </tileset>
+ <layer name="Calque de Tile 1" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYWBgYCESMxLA9FAH4jMRoY55gNyHTx0xGACqnADX
+  </data>
+ </layer>
+</map>

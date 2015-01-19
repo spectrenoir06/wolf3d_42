@@ -223,11 +223,11 @@ void	game_render(t_game *game)
 			wallX = ray.pos.y + ((wall.map.x - ray.pos.x + (1 - wall.step.x) / 2) / ray.dir.x) * ray.dir.y;
 		wallX -= floor(wallX);
 
-		int texX = wallX * 512;
+		int texX = 512 - wallX * 512;
 		if(wall.side == 0 && ray.dir.x > 0) texX = 512 - texX - 1;
 		if(wall.side == 1 && ray.dir.y < 0) texX = 512 - texX - 1;
 
-		draw_ceil(game, x, drawStart);
+		draw_ceil(game, game->sdl.lx - x, drawStart);
 
 		int y = drawStart;
 
@@ -245,10 +245,10 @@ void	game_render(t_game *game)
 				color.g = color.g >> 1;
 				color.b = color.b >> 1;
 			}
-			game_draw_pixel(game,x,y,color);
+			game_draw_pixel(game, game->sdl.lx - x, y, color);
 			y++;
 		}
-		draw_floor(game, x, y);
+		draw_floor(game, game->sdl.lx - x, y);
 	}
 }
 
