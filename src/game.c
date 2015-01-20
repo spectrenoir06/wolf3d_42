@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_FULLSCREEN,
+			SDL_WINDOW_SHOWN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -210,15 +210,15 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		floor_tex.y = (int)(current_floor.y * 512.0) % 512;// position texel sur Y
 		t_color color;
 
-		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
+		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
 		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
+		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 0];
 
 		t_color color2;
 
-		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
+		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
 		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
+		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 0];
 
 		game_draw_pixel(game, x, y, color);						// trace le sol
 		game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond
@@ -229,53 +229,58 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 void	game_draw_sprites(t_game *game)
 {
 	int	y;
-	double	spritex = game->map.sprite[0].pos.x - game->player.pos.x;
-	double	spritey = game->map.sprite[0].pos.y - game->player.pos.y;
+	int x;
 
-	double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
-
-	double	transformX = invdet * (game->player.dir.y * spritex - game->player.dir.x * spritey);
-	double	transformY = invdet * (-game->player.plane.y * spritex + game->player.plane.x * spritey);
-
-	int		spriteScreenX = (int)((game->sdl.lx / 2.0) * (1 + transformX / transformY));
-
-	int		spriteheight = abs((int)(game->sdl.ly / transformY));
-
-	int		drawStartY = -spriteheight / 2.0 + game->sdl.ly / 2.0;
-	if (drawStartY < 0)
-		drawStartY = 0;
-	int		drawEndY = spriteheight / 2.0 + game->sdl.ly / 2.0;
-	if (drawEndY >= game->sdl.ly)
-		drawEndY = game->sdl.ly - 1;
-
-	int		spriteWidth = abs((int)(game->sdl.ly / transformY));
-	int		drawStartX = -spriteWidth / 2.0 + spriteScreenX;
-	if (drawStartX < 0)
-		drawStartX = 0;
-	int		drawEndX = spriteWidth / 2.0 + spriteScreenX;
-	if (drawEndX >= game->sdl.lx)
-		drawEndX = game->sdl.lx - 1;
-
-	int stripe;
-	for (stripe = drawStartX; stripe < drawEndX; stripe++)
+	for(x = 0; x < NBSPRITE; x++)
 	{
-		int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
+		double	spritex = game->map.sprite[x].pos.x - game->player.pos.x;
+		double	spritey = game->map.sprite[x].pos.y - game->player.pos.y;
 
-		if (transformY > 0 && stripe > 0 && stripe < game->sdl.lx && transformY < game->Zbuffer[stripe])
+		double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
+
+		double	transformX = invdet * (game->player.dir.y * spritex - game->player.dir.x * spritey);
+		double	transformY = invdet * (-game->player.plane.y * spritex + game->player.plane.x * spritey);
+
+		int		spriteScreenX = (int)((game->sdl.lx / 2.0) * (1 + transformX / transformY));
+
+		int		spriteheight = abs((int)(game->sdl.ly / transformY));
+
+		int		drawStartY = -spriteheight / 2.0 + game->sdl.ly / 2.0;
+		if (drawStartY < 0)
+			drawStartY = 0;
+		int		drawEndY = spriteheight / 2.0 + game->sdl.ly / 2.0;
+		if (drawEndY >= game->sdl.ly)
+			drawEndY = game->sdl.ly - 1;
+
+		int		spriteWidth = abs((int)(game->sdl.ly / transformY));
+		int		drawStartX = -spriteWidth / 2.0 + spriteScreenX;
+		if (drawStartX < 0)
+			drawStartX = 0;
+		int		drawEndX = spriteWidth / 2.0 + spriteScreenX;
+		if (drawEndX >= game->sdl.lx)
+			drawEndX = game->sdl.lx - 1;
+
+		int stripe;
+		for (stripe = drawStartX; stripe < drawEndX; stripe++)
 		{
+			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
-			for (y = drawStartY; y < drawEndY; y++)
+			if (transformY > 0 && stripe > 0 && stripe < game->sdl.lx && transformY < game->Zbuffer[stripe])
 			{
-				int	d = y - game->sdl.ly / 2.0 + spriteheight / 2.0;
-				int	texY = ((d * 512) / spriteheight);
 
-				t_color color;
+				for (y = drawStartY; y < drawEndY; y++)
+				{
+					int	d = y - game->sdl.ly / 2.0 + spriteheight / 2.0;
+					int	texY = ((d * 512) / spriteheight);
 
-				color.r = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 2];
-				color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
-				color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
-				if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
-					game_draw_pixel(game, game->sdl.lx - stripe, y, color);
+					t_color color;
+
+					color.r = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 2];
+					color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
+					color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
+					if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
+						game_draw_pixel(game, game->sdl.lx - stripe, y, color);
+				}
 			}
 		}
 	}
@@ -321,14 +326,14 @@ void	game_render(t_game *game)
 
 		int y = drawStart;
 
-		while (y < drawEnd)
+		while (y <= drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (TEX_SIZE/2)/lineHeight;
 			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
 			t_color color;
-			color.r = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * TEX_SIZE)];
+			color.r = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * TEX_SIZE) + 2];
 			color.g = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * TEX_SIZE) + 1];
-			color.b = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * TEX_SIZE) + 2];
+			color.b = ((Uint8*)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * 3 * TEX_SIZE) + 3];
 			if(wall.side == 1)
 			{
 				color.r = color.r >> 1;

@@ -58,11 +58,17 @@ void	map_init(t_game *game)
 		game->input[x++] = 0;
 	}
 
-	t_vect2dd vect = {2.0, 2.0};
-	t_sprite sprite = {vect, 0};
-	game->map.sprite[0] = sprite;
-	game->map.sprite_tex[0] = SDL_LoadBMP("modes/1/maps/1/sprites/1.bmp");
+	x = 0;
 
+	while (x < NBSPRITE)
+	{
+		game->map.sprite_ptr[x] = &game->map.sprite[x];
+		t_vect2dd vect = {2.0, x + 2.0};
+		t_sprite sprite = {vect, 0};
+		game->map.sprite[x] = sprite;
+		game->map.sprite_tex[x] = SDL_LoadBMP("modes/1/maps/1/sprites/1.bmp");
+		x++;
+	}
 }
 
 void	map_draw(t_game *game)

@@ -21,8 +21,8 @@
 #  include <SDL2/SDL.h>
 # endif
 
-# define WIN_X 1600
-# define WIN_Y 900
+# define WIN_X 1280
+# define WIN_Y 720
 # define TEX_SIZE 512
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768.0
@@ -119,6 +119,7 @@ typedef struct s_map
 	Uint8		*data;
 	SDL_Surface *textures[10];
 	t_sprite	sprite[NBSPRITE];
+	t_sprite	*sprite_ptr[NBSPRITE];
 	SDL_Surface *sprite_tex[10];
 }				t_map;
 
