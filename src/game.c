@@ -258,8 +258,6 @@ void	game_draw_sprites(t_game *game)
 		drawEndX = game->sdl.lx - 1;
 
 	int stripe;
-	printf("%d : %d : %d\n",drawStartX, drawEndX, spriteWidth);
-
 	for (stripe = drawStartX; stripe < drawEndX; stripe++)
 	{
 		int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
@@ -269,7 +267,7 @@ void	game_draw_sprites(t_game *game)
 
 			for (y = drawStartY; y < drawEndY; y++)
 			{
-				double	d = (y) - game->sdl.ly + spriteheight;
+				int	d = y - game->sdl.ly / 2.0 + spriteheight / 2.0;
 				int	texY = ((d * 512) / spriteheight);
 
 				t_color color;
