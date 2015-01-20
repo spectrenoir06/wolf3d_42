@@ -293,6 +293,7 @@ void	game_render(t_game *game)
 		}
 		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
+		//test
 		//game_draw_sprites(game);
 	}
 }
