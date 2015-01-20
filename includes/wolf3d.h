@@ -89,6 +89,7 @@ typedef struct	s_sprite
 {
 	t_vect2dd	pos;
 	int			texture;
+	double		dist;
 }				t_sprite;
 
 typedef struct	s_player

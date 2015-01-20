@@ -226,15 +226,24 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 	}
 }
 
+int		sprite_compare(void *sprite1, void *sprite2)
+{
+	return (((t_sprite *)sprite2)->dist - ((t_sprite *)sprite1)->dist);
+}
+
 void	game_draw_sprites(t_game *game)
 {
 	int	y;
 	int x;
 
+   for(x = 0; x < NBSPRITE; x++)
+	  game->map.sprite[x].dist = ((game->player.pos.x - game->map.sprite[x].pos.x) * (game->player.pos.x - game->map.sprite[x].pos.x) + (game->player.pos.y - game->map.sprite[x].pos.y) * (game->player.pos.y - game->map.sprite[x].pos.y));
+
+	ft_sort_qck((void **)game->map.sprite_ptr, NBSPRITE, sprite_compare);
 	for(x = 0; x < NBSPRITE; x++)
 	{
-		double	spritex = game->map.sprite[x].pos.x - game->player.pos.x;
-		double	spritey = game->map.sprite[x].pos.y - game->player.pos.y;
+		double	spritex = game->map.sprite_ptr[x]->pos.x - game->player.pos.x;
+		double	spritey = game->map.sprite_ptr[x]->pos.y - game->player.pos.y;
 
 		double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
 
@@ -275,9 +284,9 @@ void	game_draw_sprites(t_game *game)
 
 					t_color color;
 
-					color.r = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 2];
-					color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
-					color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite[x].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
+					color.r = ((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 2];
+					color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
+					color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
 					if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
 						game_draw_pixel(game, game->sdl.lx - stripe, y, color);
 				}
