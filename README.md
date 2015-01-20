@@ -46,8 +46,10 @@
   - [ ] menu
   - [ ] animations sprites
   - [ ] animations textures
+  - [ ] mirroirs
 
 Bonus dur:
+  - [ ] portal
   - [ ] mur non perpendiculaire
   - [ ] split-sreen
   - [ ] oculust rift
