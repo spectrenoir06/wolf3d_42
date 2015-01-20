@@ -54,5 +54,6 @@ Bonus dur:
   - [ ] split-sreen
   - [ ] oculust rift
   - [ ] mipmap ([exemple](http://www.fevrierdorian.com/blog/post/2009/12/24/Les-maps-mental-ray-(part-2.1)%3A-Le-debug))
+  - [ ] multijoueur
 
 ![alt tag](img/screenshot.png)
