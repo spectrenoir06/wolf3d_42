@@ -325,8 +325,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.jbutton.button == 6)
 			game->player.speed += 3;
-		//else if (event.jbutton.button == 0)
-		//	SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
+		else if (event.jbutton.button == 0)
+			SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
 		else if (event.jbutton.button == 10)
 		{
 			SDL_JoystickClose(0);
@@ -344,8 +344,8 @@ int		game_event_handler(t_game *game)
 			game->input[MOV_X] = 0;
 		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
 			game->input[ROT_Z] = 0;
-		//else if (event.jbutton.button == 0)
-		//	SDL_HapticRumbleStop(game->haptic);
+		else if (event.jbutton.button == 0)
+			SDL_HapticRumbleStop(game->haptic);
 		else if (event.jbutton.button == 6)
 			game->player.speed -= 3;
 	}
