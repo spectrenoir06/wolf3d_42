@@ -44,6 +44,8 @@
   - [ ] music
   - [ ] gui
   - [ ] menu
+  - [ ] animations sprites
+  - [ ] animations textures
 
 Bonus dur:
   - [ ] mur non perpendiculaire
