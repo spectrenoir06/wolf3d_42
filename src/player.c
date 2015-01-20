@@ -51,6 +51,9 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 {
 	t_vect3dd	save;
 	t_vect2dd	tmp_dir;
+	//double angle;
+	double coef;
+	double tmp_angle;
 
 	save = player->pos;
 	if (dir == MOV_Y)
@@ -68,6 +71,48 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	{
 		player->pos.x = save.x;
 		player->pos.y = save.y;
+//		if (get_vect2dd_angle(player->pos) >= 0.17 || get_vect2dd_angle(player->pos) <= -0.17)
+//		{
+//
+//		}
+
+		double angle = get_vect2dd_angle(player->dir);
+		printf("%f\n", angle);
+
+			if (angle > M_PI_4 && angle < M_PI_2)
+				tmp_angle = M_PI_4;
+			else if (angle > (3 * -M_PI_4) && angle < -M_PI_2)
+				tmp_angle = (3 * -M_PI_4);
+			else if (angle > (3 * M_PI_4) && angle < M_PI)
+				tmp_angle = (3 * M_PI_4);
+			else if (angle > -M_PI && angle < (3 * -M_PI_4))
+				tmp_angle = (3 * -M_PI_4);
+			else if (angle > M_PI_2 && angle < (3 * M_PI_4))//ok
+				tmp_angle = (3 * M_PI_4);
+			else if (angle > -M_PI_2 && angle < -M_PI_4)
+				tmp_angle = -M_PI_4;
+			else if (angle > -M_PI_4 && angle < 0)//ok
+				tmp_angle = -M_PI_4;
+			else if (angle > 0 && angle < M_PI_4)//ok
+				tmp_angle = M_PI_4;
+
+
+			tmp_dir = angle_to_vect2dd(tmp_angle);
+			coef = cos(get_vect2dd_angles(player->dir, tmp_dir));
+			save = player->pos;
+			player->pos.x += (tmp_dir.x * coef * game->dt * 2);
+			player->pos.y += (tmp_dir.y * coef * game->dt * 2);
+			if (player_collide_world(&(game->map), player))
+				player->pos = save;
+
+//		if (angle > M_PI_2 && angle < M_PI)
+//		{
+//			tmp_dir.x = 1;
+//			tmp_dir.y = 0;
+//			coef = cos(angle);
+//			player->pos.x += (tmp_dir.x * coef * game->dt * 2);
+//			player->pos.y += (tmp_dir.y * coef * game->dt * 2);
+//		}
 		//SDL_HapticRumbleStop(game->haptic);
 	}
 	//else

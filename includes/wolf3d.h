@@ -126,6 +126,9 @@ typedef struct s_game
 }						t_game;
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
+double		get_vect2dd_angle(t_vect2dd vect);
+t_vect2dd	angle_to_vect2dd(double angle);
+double		get_vect2dd_angles(t_vect2dd vect, t_vect2dd vect2);
 
 void	game_init_sdl(t_game *game);
 void	game_draw_all(t_game *game);
