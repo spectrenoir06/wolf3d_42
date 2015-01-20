@@ -2,6 +2,7 @@
 
 - [x] create json to binaire (lua || python)
 - [x] dev map loader
+- [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html) 
 - [ ] floor
 - [ ] ceil
 - [ ] skybox
