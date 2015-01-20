@@ -6,6 +6,7 @@
   - [ ] skybox
   - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
+  - [ ] FIXME: Premiere et derniere ligne de pixel
 
 - Contenue:
   - [x] sample map
@@ -23,6 +24,8 @@
 - Gameplay:
   - [ ] 360 no-scope
   - [x] Sprint
+  - [ ] Health Point
+  - [ ] Stamina
   - [ ] allonger accroupis
   - [ ] sauter
   - [x] hitbox
