@@ -1,32 +1,39 @@
 # wolf3d_42
 
-- [x] create json to binaire (lua || python)
-- [x] dev map loader
-- [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html) 
-- [ ] floor
-- [ ] ceil
-- [ ] skybox
-- [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
-- [x] sample map
-- [x] simplifier raycasting
-- [ ] sfx
-- [ ] music
-- [ ] gui
-- [ ] menu
-- [ ] multimode (wolfenstein, 42stein, ...)
-- [x] mode souris + clavier
-- [x] mode full clavier
-- [x] mode gamepad
-- [x] compatibiliter MacOS
-- [x] compatibiliter Linux
-- [ ] compatibiliter android ([gcc](https://play.google.com/store/apps/details?id=com.n0n3m4.gcc4droid), [SDL](https://play.google.com/store/apps/details?id=com.n0n3m4.droidsdl))
-- [ ] compatibiliter Windows (pour l'E2)
-- [ ] split-sreen
-- [ ] mur non perpendiculaire
-- [x] hitbox
-- [ ] allonger accroupis
-- [ ] sauter
-- [ ] 360 no-scope
-- [ ] mipmap [exemple](http://www.fevrierdorian.com/blog/post/2009/12/24/Les-maps-mental-ray-(part-2.1)%3A-Le-debug)
+- Important:
+  - [ ] floor texture
+  - [ ] ceil texture
+  - [ ] skybox
+  - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [x] simplifier raycasting
+- Contenue:
+  - [x] sample map
+  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)   - [ ] multimode (wolfenstein, 42stein, ...)
+  - [x] create json to binaire (lua || python)
+  - [x] dev map loader
+- Input:
+  - [x] mode souris + clavier
+  - [x] mode full clavier
+  - [x] mode gamepad
+- Gameplay:
+  - [ ] 360 no-scope
+  - [ ] allonger accroupis
+  - [ ] sauter
+  - [x] hitbox
+- Compatibilite:
+  - [x] compatibiliter MacOS
+  - [x] compatibiliter Linux
+  - [ ] compatibiliter android ([gcc](https://play.google.com/store/apps/details?id=com.n0n3m4.gcc4droid), [SDL](https://play.google.com/store/apps/details?id=com.n0n3m4.droidsdl))
+  - [ ] compatibiliter Windows (pour l'E2)
+- Bonus:
+  - [ ] sfx
+  - [ ] music
+  - [ ] gui
+  - [ ] menu
+Bonus dur:
+  - [ ] mur non perpendiculaire
+  - [ ] split-sreen
+  - [ ] oculust rift
+  - [ ] mipmap ([exemple](http://www.fevrierdorian.com/blog/post/2009/12/24/Les-maps-mental-ray-(part-2.1)%3A-Le-debug))
 
 ![alt tag](img/screenshot.png)
