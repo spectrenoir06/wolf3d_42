@@ -20,6 +20,7 @@
 
 - Gameplay:
   - [ ] 360 no-scope
+  - [x] Sprint
   - [ ] allonger accroupis
   - [ ] sauter
   - [x] hitbox
