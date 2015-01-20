@@ -123,7 +123,25 @@ typedef struct s_game
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
 	SDL_Haptic			*haptic;
+	double				Zbuffer[WIN_Y];
 }						t_game;
+
+typedef	struct	s_ray
+{
+	t_vect2dd	pos;
+	t_vect2dd	dir;
+	t_vect2dd	delta;
+	t_vect2dd	side;
+}				t_ray;
+
+typedef struct s_wall
+{
+	t_vect2di	map;
+	double		dist;
+	int			side;
+	int			id;
+	t_vect2di	step;
+}				t_wall;
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 

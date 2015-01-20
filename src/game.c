@@ -12,23 +12,6 @@
 
 #include "wolf3d.h"
 
-typedef	struct	s_ray
-{
-	t_vect2dd	pos;
-	t_vect2dd	dir;
-	t_vect2dd	delta;
-	t_vect2dd	side;
-}				t_ray;
-
-typedef struct s_wall
-{
-	t_vect2di	map;
-	double		dist;
-	int			side;
-	int			id;
-	t_vect2di	step;
-}				t_wall;
-
 void	game_init_sdl(t_game *game)
 {
 	game->sdl.lx = WIN_X;
@@ -246,6 +229,11 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 			}
 }
 
+//void	game_draw_sprites(t_game *game)
+//{
+//
+//}
+
 void	game_render(t_game *game)
 {
 	int	x = 0;
@@ -304,8 +292,8 @@ void	game_render(t_game *game)
 			y++;
 		}
 		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, wall, wallX);
-
-
+		game->Zbuffer[x] = wall.dist;
+		//game_draw_sprites(game);
 	}
 }
 
