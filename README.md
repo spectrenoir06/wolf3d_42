@@ -9,7 +9,8 @@
 
 - Contenue:
   - [x] sample map
-  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)     - [ ] multimode (wolfenstein, 42stein, ...)
+  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html
+  - [ ] multimode (wolfenstein, 42stein, ...)
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
