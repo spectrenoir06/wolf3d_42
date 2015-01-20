@@ -154,85 +154,134 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2) / ray->dir.y);
 }
 
-void	draw_ceil(t_game *game,int x, int end)
-{
-	int y = 0;
-	while (y < end)
-	{
-		game_draw_pixel(game,x,y, game->map.color_ceil);
-		y++;
-	}
-}
-
-void	draw_floor(t_game *game,int x, int y)
-{
-	while (y < game->sdl.ly)
-	{
-		game_draw_pixel(game,x,y, game->map.color_floor);
-		y++;
-	}
-}
+//void	draw_ceil(t_game *game,int x, int end)
+//{
+//	int y = 0;
+//	while (y < end)
+//	{
+//		game_draw_pixel(game,x,y, game->map.color_ceil);
+//		y++;
+//	}
+//}
+//
+//void	draw_floor(t_game *game,int x, int y)
+//{
+//	while (y < game->sdl.ly)
+//	{
+//		game_draw_pixel(game,x,y, game->map.color_floor);
+//		y++;
+//	}
+//}
 
 void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, double wallX)
 {
-			t_vect2dd	floor;
-			double		weight;// coefficient de ponderation
-			t_vect2dd	current_floor;
-			t_vect2dd	floor_tex;
-			double		currentDist;// point de depart de la texture
+	t_vect2dd	floor;
+	double		weight;// coefficient de ponderation
+	t_vect2dd	current_floor;
+	t_vect2dd	floor_tex;
+	double		currentDist;// point de depart de la texture
 
-			if (wall.side == 0 && ray.dir.x > 0) {
-				// nord
-				floor.x = wall.map.x;
-				floor.y = wall.map.y + wallX;
-			} else if (wall.side == 0 && ray.dir.x < 0) {
-				// sud
-				floor.x = wall.map.x + 1.0;
-				floor.y = wall.map.y + wallX;
-			} else if (wall.side == 1 && ray.dir.y > 0) {
-				// est
-				floor.x = wall.map.x + wallX;
-				floor.y = wall.map.y;
-			} else {
-				// ouest
-				floor.x = wall.map.x + wallX;
-				floor.y = wall.map.y + 1.0;
-			}
+	if (wall.side == 0 && ray.dir.x > 0) {
+		// nord
+		floor.x = wall.map.x;
+		floor.y = wall.map.y + wallX;
+	} else if (wall.side == 0 && ray.dir.x < 0) {
+		// sud
+		floor.x = wall.map.x + 1.0;
+		floor.y = wall.map.y + wallX;
+	} else if (wall.side == 1 && ray.dir.y > 0) {
+		// est
+		floor.x = wall.map.x + wallX;
+		floor.y = wall.map.y;
+	} else {
+		// ouest
+		floor.x = wall.map.x + wallX;
+		floor.y = wall.map.y + 1.0;
+	}
 
-			//trace le sol de drawEnd au bas de l'ecran
-			//y=drawEnd;
-			while (y < game->sdl.ly) {
+	while (y < game->sdl.ly)
+	{
+		currentDist = game->sdl.ly / (2.0 * y - game->sdl.ly);// distance
+		//printf("%f\n",currentDist);
+		weight = (currentDist - 0) / (wall.dist - 0);// coef
+		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
+		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
+		floor_tex.x = (int)(current_floor.x * 512.0) % 512;// position texel sur X
+		floor_tex.y = (int)(current_floor.y * 512.0) % 512;// position texel sur Y
 
-				currentDist = game->sdl.ly / (2.0 * y - game->sdl.ly);// distance
-				//printf("%f\n",currentDist);
-				weight = (currentDist - 0) / (wall.dist - 0);// coef
-				current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
-				current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
-				floor_tex.x = (int)(current_floor.x * 512.0) % 512;// position texel sur X
-				floor_tex.y = (int)(current_floor.y * 512.0) % 512;// position texel sur Y
+		t_color color;
+
+		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
+		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
+		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
+
+		t_color color2;
+
+		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
+		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
+		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
+
+		game_draw_pixel(game, x, y, color);						// trace le sol
+		game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond
+		y++;
+	}
+}
+
+void	game_draw_sprites(t_game *game)
+{
+	int	y;
+	double	spritex = game->map.sprite[0].pos.x - game->player.pos.x;
+	double	spritey = game->map.sprite[0].pos.y - game->player.pos.y;
+
+	double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
+
+	double	transformX = invdet * (game->player.dir.y * spritex - game->player.dir.x * spritey);
+	double	transformY = invdet * (-game->player.plane.y * spritex + game->player.plane.x * spritey);
+
+	int		spriteScreenX = (int)((game->sdl.lx / 2.0) * (1 + transformX / transformY));
+
+	int		spriteheight = abs((int)(game->sdl.ly / transformY));
+
+	int		drawStartY = -spriteheight / 2.0 + game->sdl.ly / 2.0;
+	if (drawStartY < 0)
+		drawStartY = 0;
+	int		drawEndY = spriteheight / 2.0 + game->sdl.ly / 2.0;
+	if (drawEndY >= game->sdl.ly)
+		drawEndY = game->sdl.ly - 1;
+
+	int		spriteWidth = abs((int)(game->sdl.ly / transformY));
+	int		drawStartX = -spriteWidth / 2.0 + spriteScreenX;
+	if (drawStartX < 0)
+		drawStartX = 0;
+	int		drawEndX = spriteWidth / 2.0 + spriteScreenX;
+	if (drawEndX >= game->sdl.lx)
+		drawEndX = game->sdl.lx - 1;
+
+	int stripe;
+	printf("%d : %d : %d\n",drawStartX, drawEndX, spriteWidth);
+
+	for (stripe = drawStartX; stripe < drawEndX; stripe++)
+	{
+		int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
+
+		if (transformY > 0 && stripe > 0 && stripe < game->sdl.lx && transformY < game->Zbuffer[stripe])
+		{
+
+			for (y = drawStartY; y < drawEndY; y++)
+			{
+				double	d = (y) - game->sdl.ly + spriteheight;
+				int	texY = ((d * 512) / spriteheight);
 
 				t_color color;
 
-				color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
-				color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-				color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
-
-				t_color color2;
-
-				color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512)];
-				color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-				color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
-
-				game_draw_pixel(game, x, y, color);// trace le sol
-				game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);// trace le plafond
-				y++;
+				color.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+				color.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+				color.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+				game_draw_pixel(game, game->sdl.lx - stripe, y, color);
 			}
+		}
+	}
 }
-
-//void	game_draw_sprites(t_game *game)
-//{
-//
-//}
 
 void	game_render(t_game *game)
 {
@@ -293,9 +342,9 @@ void	game_render(t_game *game)
 		}
 		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
-		//test
-		//game_draw_sprites(game);
+
 	}
+	game_draw_sprites(game);
 }
 
 int		game_event_handler(t_game *game)

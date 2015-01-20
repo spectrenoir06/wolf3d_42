@@ -48,19 +48,6 @@ void	map_init(t_game *game)
 
 	x = 0;
 	y = 0;
-	//game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
-	//game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
-	//game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
-
-	game->map.color_ceil.a = 255;
-	game->map.color_ceil.r = 53;
-	game->map.color_ceil.g = 193;
-	game->map.color_ceil.b = 206;
-
-	game->map.color_floor.a = 255;
-	game->map.color_floor.r = 92;
-	game->map.color_floor.g = 167;
-	game->map.color_floor.b = 98;
 
 	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
 
@@ -70,6 +57,10 @@ void	map_init(t_game *game)
 	{
 		game->input[x++] = 0;
 	}
+
+	t_vect2dd vect = {2.0, 2.0};
+	t_sprite sprite = {vect, 0};
+	game->map.sprite[0] = sprite;
 
 }
 

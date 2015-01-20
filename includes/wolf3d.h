@@ -82,6 +82,14 @@ typedef struct 		s_color
 	unsigned char	a;
 }					t_color;
 
+# define NBSPRITE 19
+
+typedef struct	s_sprite
+{
+	t_vect2dd	pos;
+	int			texture;
+}				t_sprite;
+
 typedef struct	s_player
 {
 	t_vect3dd	pos;
@@ -109,8 +117,7 @@ typedef struct s_map
 	int			ly;
 	Uint8		*data;
 	SDL_Surface *textures[10];
-	t_color		color_ceil;
-	t_color		color_floor;
+	t_sprite	sprite[NBSPRITE];
 }				t_map;
 
 typedef struct s_game
@@ -123,7 +130,7 @@ typedef struct s_game
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
 	SDL_Haptic			*haptic;
-	double				Zbuffer[WIN_Y];
+	double				Zbuffer[WIN_X];
 }						t_game;
 
 typedef	struct	s_ray
