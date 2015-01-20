@@ -1,8 +1,8 @@
 # wolf3d_42
 
 - Important:
-  - [ ] floor texture
-  - [ ] ceil texture
+  - [x] floor texture
+  - [x] ceil texture
   - [ ] skybox
   - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
