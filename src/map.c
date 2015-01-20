@@ -48,9 +48,9 @@ void	map_init(t_game *game)
 
 	x = 0;
 	y = 0;
-	game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
-	game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
-	game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
+	//game->map.textures[2] = SDL_LoadBMP("img/2.bmp");
+	//game->map.textures[1] = SDL_LoadBMP("img/1.bmp");
+	//game->map.textures[0] = SDL_LoadBMP("img/2.bmp");
 
 	game->map.color_ceil.a = 255;
 	game->map.color_ceil.r = 53;
