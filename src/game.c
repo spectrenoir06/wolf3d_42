@@ -248,7 +248,61 @@ void	game_render(t_game *game)
 			game_draw_pixel(game, game->sdl.lx - x, y, color);
 			y++;
 		}
-		draw_floor(game, game->sdl.lx - x, y);
+		//draw_floor(game, game->sdl.lx - x, y);
+
+		// positions X et Y du texel du sol au bas du mur
+		double floorXWall;
+		double floorYWall;
+
+		double weight;// coefficient de ponderation
+		double currentFloorX;// position du pixel sur X
+		double currentFloorY;// position du pixel sur Y
+		double floorTexX;// position du texel sur X
+		double floorTexY;// position du texel sur Y
+		double distWall = wall.dist;// distance du mur
+		double distPlayer = 0;// distance de la camera
+		double currentDist = 0;// point de depart de la texture
+		int h = game->sdl.ly;
+
+		if (wall.side == 0 && ray.dir.x > 0) {
+			// nord
+			floorXWall = wall.map.x;
+			floorYWall = wall.map.y + wallX;
+		} else if (wall.side == 0 && ray.dir.x < 0) {
+			// sud
+			floorXWall = wall.map.x + 1.0;
+			floorYWall = wall.map.y + wallX;
+		} else if (wall.side == 1 && ray.dir.y > 0) {
+			// est
+			floorXWall = wall.map.x + wallX;
+			floorYWall = wall.map.y;
+		} else {
+			// ouest
+			floorXWall = wall.map.x + wallX;
+			floorYWall = wall.map.y + 1.0;
+		}
+
+		//trace le sol de drawEnd au bas de l'ecran
+		y=drawEnd;
+		while (y < h) {
+
+			currentDist = h / (2 * y - h);// distance
+			weight = (currentDist - distPlayer) / (distWall - distPlayer);// coef
+			currentFloorX = weight * floorXWall + (1.0 - weight) * x;// position sur X
+			currentFloorY = weight * floorYWall + (1.0 - weight) * y;// position sur Y
+			floorTexX = (int)(currentFloorX * 512.0) % 512;// position texel sur X
+			floorTexY = (int)(currentFloorY * 512.0) % 512;// position texel sur Y
+
+			t_color color;
+
+			color.r = ((Uint8*)(game->map.textures[1]->pixels))[(int)floorTexX * 3 + ((int)floorTexY * 3 * 512)];
+			color.g = ((Uint8*)(game->map.textures[1]->pixels))[(int)floorTexX * 3 + ((int)floorTexY * 3 * 512) + 1];
+			color.b = ((Uint8*)(game->map.textures[1]->pixels))[(int)floorTexX * 3 + ((int)floorTexY * 3 * 512) + 2];
+
+			game_draw_pixel(game, x, y, color);// trace le sol
+			//game_draw_pixel(game, x, h - y - 1, game->map.textures[2][floorTexX][floorTexY]);// trace le plafond
+			y++;
+		}
 	}
 }
 
