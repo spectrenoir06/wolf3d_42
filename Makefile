@@ -56,10 +56,10 @@ all: $(STATIC_EXE)
 debug: $(DEBUG_EXE)
 	@echo "je suis Charlie (debug)"
 $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) $(LIBFT_DEBUG) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(SDL) $(FLAGS) -g
+	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) $(LIBFT_DEBUG) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) $(LIBFT_STATIC) -o $@ $(STATIC_OBJ) $(SDL) $(FLAGS)
+	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
