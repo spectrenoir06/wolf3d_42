@@ -83,6 +83,14 @@ typedef struct 		s_color
 	unsigned char	a;
 }					t_color;
 
+# define NBSPRITE 19
+
+typedef struct	s_sprite
+{
+	t_vect2dd	pos;
+	int			texture;
+}				t_sprite;
+
 typedef struct	s_player
 {
 	t_vect3dd	pos;
@@ -110,8 +118,7 @@ typedef struct s_map
 	int			ly;
 	Uint8		*data;
 	SDL_Surface *textures[10];
-	t_color		color_ceil;
-	t_color		color_floor;
+	t_sprite	sprite[NBSPRITE];
 }				t_map;
 
 typedef struct s_game
@@ -124,7 +131,25 @@ typedef struct s_game
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
 	SDL_Haptic			*haptic;
+	double				Zbuffer[WIN_X];
 }						t_game;
+
+typedef	struct	s_ray
+{
+	t_vect2dd	pos;
+	t_vect2dd	dir;
+	t_vect2dd	delta;
+	t_vect2dd	side;
+}				t_ray;
+
+typedef struct s_wall
+{
+	t_vect2di	map;
+	double		dist;
+	int			side;
+	int			id;
+	t_vect2di	step;
+}				t_wall;
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
