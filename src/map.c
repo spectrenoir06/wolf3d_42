@@ -107,11 +107,11 @@ int		map_load(t_game *game, t_map *map, char *path)
 
 	if ((fd = open(path, O_RDONLY)) == -1)
 		return (-1);
-	if ((ret = read(fd, &(map->lx), sizeof(Uint32))) <= 0)
+	if ((ret = read(fd, &(map->lx), 4)) <= 0)
 		return (ret);
-	if ((ret = read(fd, &(map->ly), sizeof(Uint32))) <= 0)
+	if ((ret = read(fd, &(map->ly), 4)) <= 0)
 		return (ret);
-	if ((ret = read(fd, &textures, sizeof(Uint32))) <= 0)
+	if ((ret = read(fd, &textures, 4)) <= 0)
 		return (ret);
 	i = 0;
 	while (i < textures)
