@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -271,10 +271,11 @@ void	game_draw_sprites(t_game *game)
 
 				t_color color;
 
-				color.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
-				color.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
-				color.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
-				game_draw_pixel(game, game->sdl.lx - stripe, y, color);
+				color.r = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 2];
+				color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
+				color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite[0].texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
+				if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
+					game_draw_pixel(game, game->sdl.lx - stripe, y, color);
 			}
 		}
 	}
