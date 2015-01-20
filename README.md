@@ -26,7 +26,7 @@
   - [ ] sauter
   - [x] hitbox
   - [ ] glissement
-  - [ ] armes
+  - [ ] armes [url](http://forum.zdoom.org/viewtopic.php?f=37&t=33996)
   - [ ] npc
 
 - Compatibilite:
