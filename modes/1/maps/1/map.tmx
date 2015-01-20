@@ -14,9 +14,19 @@
    <image width="512" height="512" source="textures/3.bmp"/>
   </tile>
  </tileset>
- <layer name="Calque de Tile 1" width="42" height="42">
+ <layer name="Sol" width="42" height="42">
   <data encoding="base64" compression="zlib">
-   eJzdl0EOwyAMBGmS/7+5p0oILTA2mEAPe2hEmsl6Mc6VUroO0ecF3Ya1/8z5ZBpZu8pPwqmYLX7/pDhphq2cHtaWn9Rf9TzyjpGc1E9yb49T5fZkzprvtaz1MmfNtsVP71ngqQU5g0b6Uuu9Lb2C5m4mp0c0d7txzvZzlqI4byGyVv3OuU6d+3p+lv7M4qR5Vn0551T/c6f1nCUzzecKztLDJ/U5Vd3V2TAzz7VzlNSd1Imek5Sz5uto3QknOastfrbqbvHGMyeqXCo/Z/ZW7zxb1l/VxJondX+Nnfqp+Cz5HJWHk/SlCM5eXmo+ruQkUv3I0pdI/laIcJJrJ3GSeXQHzt38fEN0H1nmoYhvgoj9G1GDVZy9Z7Rm5N04W9d+nPQ7txRdSznz5/f8HOX07CMPp0URPb1V9xP0BdI5CYg=
+   eJztwzENAAAMBKEb3r/mqugGCaumqqqqqqqqvjxBdBuR
+  </data>
+ </layer>
+ <layer name="Mur" width="42" height="42">
+  <data encoding="base64" compression="zlib">
+   eJzdmMsOhSAMRLnq/3/zXZmQpqUzbUFxMQsNyHH6AD1aa8cm+j2gkxj7Zc6rU2bsKj8RTo2Z8fuWxnkaynJGWEd+ovGwYum940xO1E9krsepPWNnTnTu1bDaZ3Ob8ROpI3QNjxPZgzJ9yWJie4VcX+Op5owIWf+NnNV+VmkWJ1Njcow2R9bKbuc+z0/pTxUnsx/LvtxzWn1mNadkRvNzBaf08Go+pxZ3bW+ozGdrH0XijsTJ6iFRTsvXbNwRTmSvZvwcxZ3xBu3bVn5q1zN6a4RTi78WEzaftPkWO+qnxsfkZ1YRTqQvzeD08sXycSUnIq0fMX3JO+usEsKJ3NuJc6bfX/bzCaF1xHzLZ77/o5wRPZGfVZwe++iM/DbO0b2bM5pLmf9OGlO/vudnljNSRxHObIyrxPzTe5P+tyUJ0Q==
+  </data>
+ </layer>
+ <layer name="Plafond" width="42" height="42" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJzt0zEOACAIwECi/P/Nri4MBhQhHbofiCoiSkShTaNsV6Tz5Yw4cf7szJqRqHLW7f/2D3DitBqH4bznjLolnLFOT1WcnvfKdlV1sgucOPs6O8+GEydO2lv4KRoI
   </data>
  </layer>
 </map>
