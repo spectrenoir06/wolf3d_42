@@ -4,18 +4,23 @@
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
-  - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
-  - [ ] FIXME: Premiere et derniere ligne de pixel
+  - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
 
 - Contenue:
   - [x] sample map
-  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html
+  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)
   - [ ] multimode (wolfenstein, 42stein, ...)
   - [ ] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
+- Multimode:
+  - [ ] wolfenstein 3D
+  - [ ] 42stein
+  - [ ] Pacman3D
+  
 - Input:
   - [x] mode souris + clavier
   - [x] mode full clavier
@@ -41,7 +46,7 @@
 
 - Bonus:
   - [ ] sfx
-  - [ ] music
+  - [x] music
   - [ ] gui
   - [ ] menu
   - [ ] animations sprites
