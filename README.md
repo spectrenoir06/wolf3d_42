@@ -8,19 +8,21 @@
   - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
-
+  - [ ] gestion propre des couleurs (revoir t_color)
+  
 - Contenue:
   - [x] sample map
-  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)
+  - [ ] plein de maps
   - [ ] multimode (wolfenstein, 42stein, ...)
   - [ ] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
 - Multimode:
-  - [ ] wolfenstein 3D
+  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html))
   - [ ] 42stein
-  - [ ] Pacman3D
+  - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
+  - [ ] The Binding of Isaac
   
 - Input:
   - [x] mode souris + clavier
@@ -50,6 +52,7 @@
   - [x] music
   - [ ] gui
   - [ ] menu
+  - [ ] sprites 360
   - [ ] animations sprites
   - [ ] animations textures
   - [ ] mirroirs
