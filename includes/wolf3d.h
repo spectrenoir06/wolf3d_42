@@ -125,6 +125,7 @@ typedef struct s_sdl
 	SDL_Texture			*tex;
 	SDL_Renderer		*rd;
 	Uint32				*text_buf;
+	Uint32				*hud_buf;
 	int					lx;
 	int					ly;
 
@@ -176,9 +177,9 @@ t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
 void	game_init_sdl(t_game *game);
 void	game_draw_all(t_game *game);
-void	game_draw_pixel(t_game *game, int x, int y, t_color c);
+void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, t_color c);
 void	game_render(t_game *game);
-void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c);
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_color c);
 int		game_event_handler(t_game *game);
 
 void	player_update(t_player *player, t_game *game);
@@ -192,5 +193,7 @@ void	game_init_sdl_mixer(t_sounds *sounds);
 void	sounds_init(t_sounds *sounds);
 void	sdl_mixer_quit(t_sounds *sounds);
 double	get_vect2dd_angle(t_vect2dd vect);
+
+void	hud_render(t_game *game);
 
 #endif
