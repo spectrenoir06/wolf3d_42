@@ -30,6 +30,9 @@
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
+//# define MUSICS_REP modes/1/maps/1/music
+//# define SOUNDS_REP modes/1/maps/1/sfx
+
 typedef enum KEY KEY;
 enum KEY
 {
@@ -103,6 +106,17 @@ typedef struct	s_player
 	int			speed;
 }				t_player;
 
+typedef struct s_sounds
+{
+	Mix_Chunk	*pas;
+	Mix_Chunk	*son1;
+	Mix_Chunk	*son2;
+	Mix_Chunk 	*son3;
+	Mix_Chunk 	*son4;
+	Mix_Chunk 	*son5;
+	Mix_Chunk 	*son6;
+	Mix_Music	*music;
+}				t_sounds;
 
 typedef struct s_sdl
 {
@@ -137,6 +151,7 @@ typedef struct s_game
 	SDL_Joystick		*joystick;
 	SDL_Haptic			*haptic;
 	double				Zbuffer[WIN_X];
+	t_sounds			sounds;
 }						t_game;
 
 typedef	struct	s_ray
@@ -172,6 +187,8 @@ void	map_init(t_game *game);
 void	map_draw(t_game *game);
 int		map_load(t_game *game, t_map *map, char *path);
 
-void	game_init_sdl_mixer();
+void	game_init_sdl_mixer(t_sounds *sounds);
+void	sounds_init(t_sounds *sounds);
+void	sdl_mixer_quit(t_sounds *sounds);
 
 #endif

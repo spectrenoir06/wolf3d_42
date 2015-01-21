@@ -72,6 +72,8 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 	}
 	//else
 		//SDL_HapticRumblePlay(game->haptic, 0.5, 10000);
+	if (!Mix_Playing(1))
+		Mix_PlayChannel(1, game->sounds.pas, 0);
 }
 
 void	player_update(t_player *player, t_game *game)
@@ -98,6 +100,5 @@ void	player_update(t_player *player, t_game *game)
 		player->dir = vect2dd_rotate(player->dir, motion);
 		player->plane = vect2dd_rotate(player->plane, motion);
 	}
-
 	//printf("%f, %f \n",game->player.pos.x, game->player.pos.y);
 }

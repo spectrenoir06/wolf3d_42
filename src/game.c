@@ -50,8 +50,7 @@ void	game_init_sdl(t_game *game)
 				printf("Can not init %s\n", SDL_GetError());
 	}
 
-	game_init_sdl_mixer();
-
+	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 
@@ -392,10 +391,18 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed += 3;
+		else if (event.key.keysym.sym == SDLK_p)
+			{
+				if(Mix_PausedMusic())
+					Mix_ResumeMusic();
+				else if (Mix_PlayingMusic())
+					Mix_PauseMusic();
+			}
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -417,6 +424,7 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = 0;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed -= 3;
+		Mix_FadeOutChannel(1, 200);
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
 	{
@@ -444,6 +452,7 @@ int		game_event_handler(t_game *game)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -461,6 +470,7 @@ int		game_event_handler(t_game *game)
 			SDL_HapticRumbleStop(game->haptic);
 		else if (event.jbutton.button == 6)
 			game->player.speed -= 3;
+		Mix_FadeOutChannel(1, 200);
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{
@@ -483,8 +493,11 @@ int		game_event_handler(t_game *game)
 	{
 		SDL_JoystickClose(0);
 		SDL_DestroyWindow(game->sdl.win);
+		sdl_mixer_quit(&game->sounds);
 		SDL_Quit();
 		exit(0);
 	}
+	printf("X = %f, Y = %f", game->player.pos.x, game->player.pos.y);
+	//Mix_SetDistance(0, (player);
 	return (1);
 }
