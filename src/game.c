@@ -272,7 +272,7 @@ void	game_draw_sprites(t_game *game)
 			drawEndX = game->sdl.lx - 1;
 
 		int stripe;
-		for (stripe = drawStartX; stripe < drawEndX; stripe++)
+		for (stripe = drawStartX; stripe <= drawEndX; stripe++)
 		{
 			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
