@@ -1,7 +1,7 @@
 # wolf3d_42
 
 - Important:
-  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :interrobang:
+  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang:
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
