@@ -4,7 +4,8 @@
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
-  - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [ ] sprite 360
   - [x] simplifier raycasting
   - [ ] FIXME: Premiere et derniere ligne de pixel
 
