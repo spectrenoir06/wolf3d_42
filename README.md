@@ -16,6 +16,11 @@
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
+- Multimode:
+  - [ ] wolfenstein 3D
+  - [ ] 42stein
+  - [ ] Pacman3D
+  
 - Input:
   - [x] mode souris + clavier
   - [x] mode full clavier
