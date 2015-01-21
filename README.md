@@ -10,14 +10,14 @@
 
 - Contenue:
   - [x] sample map
-  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)
+  - [ ] plein de maps
   - [ ] multimode (wolfenstein, 42stein, ...)
   - [ ] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
 - Multimode:
-  - [ ] wolfenstein 3D
+  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html))
   - [ ] 42stein
   - [ ] Pacman3D
   
