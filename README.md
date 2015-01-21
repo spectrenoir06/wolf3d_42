@@ -7,7 +7,8 @@
   - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
-
+  - [ ] gestion propre des couleurs (revoir t_color)
+  
 - Contenue:
   - [x] sample map
   - [ ] plein de maps
@@ -50,6 +51,7 @@
   - [x] music
   - [ ] gui
   - [ ] menu
+  - [ ] sprites 360
   - [ ] animations sprites
   - [ ] animations textures
   - [ ] mirroirs
