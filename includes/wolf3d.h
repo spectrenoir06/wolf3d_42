@@ -89,6 +89,7 @@ typedef struct 		s_color
 }					t_color;
 
 # define NBSPRITE 19
+# define NBSPRITETEX 1
 
 typedef struct	s_sprite
 {

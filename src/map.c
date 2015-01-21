@@ -41,6 +41,20 @@ void	ft_kebab(char * buff, const char * first, ...)
 	buff[i] = 0;
 }
 
+void	sprite_load(t_game *game, t_map *map)
+{
+	int		i;
+	char	buff[256];
+
+	i = 0;
+	while (i < NBSPRITETEX)
+	{
+		ft_kebab(buff, "modes/1/maps/1/sprites/", ft_itoa(i), ".bmp", NULL);
+		map->sprite_tex[i] = SDL_LoadBMP(buff);
+		i++;
+	}
+}
+
 void	map_init(t_game *game)
 {
 	int		x;
@@ -50,6 +64,7 @@ void	map_init(t_game *game)
 	y = 0;
 
 	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
+	sprite_load(game, &(game->map));
 
 	x = 0;
 
@@ -66,7 +81,7 @@ void	map_init(t_game *game)
 		t_vect2dd vect = {2.0, x + 2.0};
 		t_sprite sprite = {vect, 0};
 		game->map.sprite[x] = sprite;
-		game->map.sprite_tex[x] = SDL_LoadBMP("modes/1/maps/1/sprites/1.bmp");
+		game->map.sprite[x].texture = 0;
 		x++;
 	}
 }
