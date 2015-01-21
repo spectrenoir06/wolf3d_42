@@ -4,9 +4,9 @@
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
-  - [ ] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [x] simplifier raycasting
-  - [ ] FIXME: Premiere et derniere ligne de pixel
+  - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
 
 - Contenue:
   - [x] sample map
@@ -41,7 +41,7 @@
 
 - Bonus:
   - [ ] sfx
-  - [ ] music
+  - [x] music
   - [ ] gui
   - [ ] menu
   - [ ] animations sprites
