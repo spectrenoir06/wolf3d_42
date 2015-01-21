@@ -19,7 +19,7 @@
 - Multimode:
   - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html))
   - [ ] 42stein
-  - [ ] Pacman3D
+  - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
   
 - Input:
   - [x] mode souris + clavier
