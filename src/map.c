@@ -101,13 +101,13 @@ void	map_draw(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
+			game_draw_rect(game, game->sdl.hud_buf, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
 			y++;
 		}
 		x++;
 	}
-	game_draw_rect(game, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
-	game_draw_rect(game, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
+	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
+	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
 }
 
 int		map_load(t_game *game, t_map *map, char *path)
