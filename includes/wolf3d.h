@@ -190,5 +190,6 @@ int		map_load(t_game *game, t_map *map, char *path);
 void	game_init_sdl_mixer(t_sounds *sounds);
 void	sounds_init(t_sounds *sounds);
 void	sdl_mixer_quit(t_sounds *sounds);
+double	get_vect2dd_angle(t_vect2dd vect);
 
 #endif

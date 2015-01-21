@@ -497,7 +497,16 @@ int		game_event_handler(t_game *game)
 		SDL_Quit();
 		exit(0);
 	}
-	printf("X = %f, Y = %f", game->player.pos.x, game->player.pos.y);
-	//Mix_SetDistance(0, (player);
+
+	/*									BRUIT SUPER CHIANT QUI VIENS DE NUL PART
+	int angle;
+	angle = 40 * get_vect2dd_angle(game->player.dir);
+	printf("%d", angle);
+	if (!Mix_Playing(0))
+			Mix_PlayChannel(0, game->sounds.son1, 1);
+	Mix_SetDistance(0, sqrt((game->player.pos.x * game->player.pos.x) + (game->player.pos.y * game->player.pos.y)) * 4);
+	Mix_SetPanning(0, 200 - angle, 200 + angle);
+	*/
+
 	return (1);
 }

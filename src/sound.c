@@ -20,7 +20,7 @@ void	game_init_sdl_mixer(t_sounds *sounds)
 	sounds->music = Mix_LoadMUS("modes/1/maps/1/music/strange-world.mp3"); //initialisation du pointeur music
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 	Mix_PlayMusic(sounds->music, 1); //jouer musique
-	Mix_SetMusicPosition(3.0); // pour les musiques a fadein trop long
+	Mix_SetMusicPosition(3.0); // pour les musiques a fade-in trop long
 	sounds_init(sounds);
 }
 
@@ -37,4 +37,13 @@ void	sdl_mixer_quit(t_sounds *sounds)
 	Mix_FreeMusic(sounds->music); // free musique
 	Mix_FreeChunk(sounds->pas); // free son "pas"
 	Mix_CloseAudio(); //Fermeture de sdl_mixer
+}
+
+double		get_vect2dd_angle(t_vect2dd vect)
+{
+	double angle;
+
+	angle = (vect.y + 1) / (vect.x);
+	angle = atan(angle);
+	return (angle * -2);
 }
