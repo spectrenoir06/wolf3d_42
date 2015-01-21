@@ -143,9 +143,9 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 			wall->side = 1;
 		}
 
-		if (game->map.data[wall->map.x + (wall->map.y * game->map.lx)] > 0)
+		if (game->map.wall[wall->map.x + (wall->map.y * game->map.lx)] > 0)
 		{
-			wall->id = game->map.data[wall->map.x + (wall->map.y * game->map.lx)];
+			wall->id = game->map.wall[wall->map.x + (wall->map.y * game->map.lx)];
 			hit = 1;
 		}
 	}
@@ -177,6 +177,7 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 
 void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, double wallX)
 {
+	//printf("%d\n",y);
 	t_vect2dd	floor;
 	double		weight;// coefficient de ponderation
 	t_vect2dd	current_floor;
@@ -212,18 +213,23 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		floor_tex.y = (int)(current_floor.y * TEX_SIZE) % TEX_SIZE;// position texel sur Y
 		t_color color;
 
-		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
-		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
-		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
+		Uint8 test = game->map.floor[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
+		Uint8 test2 = game->map.ceil[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
+
+		color.r = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color.g = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color.b = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		t_color color2;
 
-		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
-		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
-		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
+		color2.r = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color2.g = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color2.b = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
-		game_draw_pixel(game, x, y, color);						// trace le sol
-		game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond
+		if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
+			game_draw_pixel(game, x, y, color);						// trace le sol
+		if (!(color2.r == 0xFF && color2.g == 0x00 && color2.b == 0xFF))
+			game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond
 		y++;
 	}
 }
@@ -337,7 +343,7 @@ void	game_render(t_game *game)
 
 		int y = drawStart;
 
-		while (y <= drawEnd)
+		while (y < drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (TEX_SIZE/2)/lineHeight;
 			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
@@ -354,7 +360,8 @@ void	game_render(t_game *game)
 			game_draw_pixel(game, game->sdl.lx - x, y, color);
 			y++;
 		}
-		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, wall, wallX);
+		y = (y < 0) ? 0 : y;
+		draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
 
 	}

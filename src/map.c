@@ -101,7 +101,7 @@ void	map_draw(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.data[x + (y * game->map.lx)] ? mur : sol));
+			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
 			y++;
 		}
 		x++;
@@ -124,6 +124,8 @@ int		map_load(t_game *game, t_map *map, char *path)
 		return (ret);
 	if ((ret = read(fd, &(map->ly), 4)) <= 0)
 		return (ret);
+	if ((ret = read(fd, &(map->nb_obj), 4)) <= 0)
+			return (ret);
 	if ((ret = read(fd, &textures, 4)) <= 0)
 		return (ret);
 	i = 0;
@@ -133,18 +135,32 @@ int		map_load(t_game *game, t_map *map, char *path)
 		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
-	map->data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+
 	i = 0;
-	while ((ret = read(fd, &buff, 255)) > 0)
+	while (i < (map->lx * map->ly))
 	{
-		buff[255] = 0;
-		ft_memcpy(map->data + i, buff, ret);
-		i += ret;
+		read(fd, &map->ceil[i], 1);
+		i++;
+	}
+	i = 0;
+	while (i < (map->lx * map->ly))
+	{
+		read(fd, &map->wall[i], 1);
+		i++;
+	}
+	i = 0;
+	while (i < (map->lx * map->ly))
+	{
+		read(fd, &map->floor[i], 1);
+		i++;
 	}
 	return (1);
 }
 
-int		map_get_block(t_map *map, t_vect2dd pt)
+int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt)
 {
-	return (map->data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
+	return (data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
 }

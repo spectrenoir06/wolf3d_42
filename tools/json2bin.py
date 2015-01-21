@@ -17,13 +17,9 @@ if len(sys.argv) == 2:
 		ret = ret + unichr(c - 1)
 	sys.stdout.write(ret)
 	for obj in tab['layers'][3]['objects']:
-	##	print("type = " + obj["properties"]["type"]);
-	##	print("text = " + obj["properties"]["text"]);
 		x = Decimal(obj["x"]) / Decimal(tab["tilewidth"])
 		y = Decimal(obj["y"]) / Decimal(tab["tileheight"])
-	##print(x);
-	##	print(y);
 		sys.stdout.write(struct.pack("ff", x, y))
-		sys.stdout.write(unichr(obj["properties"]["type"]))
-		sys.stdout.write(unichr(obj["properties"]["text"]))
-		#, unichr(obj["properties"]["type"]), unichr(obj["properties"]["text"])))
+		tmp = int(obj["properties"]["type"])
+		tmp2 = int((obj["properties"]["text"]))
+		print(struct.pack("II" ,tmp, tmp2))

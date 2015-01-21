@@ -130,11 +130,21 @@ typedef struct s_sdl
 
 }			t_sdl;
 
+typedef struct s_obj
+{
+	t_vect2dd	pos;
+	int			type;
+	int			sprite_id;
+}			t_obj;
+
 typedef struct s_map
 {
 	int			lx;
 	int			ly;
-	Uint8		*data;
+	int			nb_obj;
+	Uint8		*floor;
+	Uint8		*wall;
+	Uint8		*ceil;
 	SDL_Surface *textures[10];
 	t_sprite	sprite[NBSPRITE];
 	t_sprite	*sprite_ptr[NBSPRITE];

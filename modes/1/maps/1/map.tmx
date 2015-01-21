@@ -14,19 +14,19 @@
    <image width="512" height="512" source="textures/3.bmp"/>
   </tile>
  </tileset>
- <layer name="Sol" width="42" height="42">
+ <layer name="Sol" width="42" height="42" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKEb3r/mqugGCaumqqqqqqqqvjxBdBuR
+   eJzt1DEOwCAIQFFqvf+Zu5soihIw/cPfFJ8LVUTqj3o7RbtmjGXxXjZn77y3d8WpGT2ttzhH72dz7v4Hp5812qd5oz1ERES7PU0nZ5emE76T3tZn9WrGHatmXLHixJnZOWO1GGetlpnZ9ycRERHd2weT1xmp
   </data>
  </layer>
- <layer name="Mur" width="42" height="42">
+ <layer name="Mur" width="42" height="42" visible="0" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzdmMsOhSAMRLnq/3/zXZmQpqUzbUFxMQsNyHH6AD1aa8cm+j2gkxj7Zc6rU2bsKj8RTo2Z8fuWxnkaynJGWEd+ovGwYum940xO1E9krsepPWNnTnTu1bDaZ3Ob8ROpI3QNjxPZgzJ9yWJie4VcX+Op5owIWf+NnNV+VmkWJ1Njcow2R9bKbuc+z0/pTxUnsx/LvtxzWn1mNadkRvNzBaf08Go+pxZ3bW+ozGdrH0XijsTJ6iFRTsvXbNwRTmSvZvwcxZ3xBu3bVn5q1zN6a4RTi78WEzaftPkWO+qnxsfkZ1YRTqQvzeD08sXycSUnIq0fMX3JO+usEsKJ3NuJc6bfX/bzCaF1xHzLZ77/o5wRPZGfVZwe++iM/DbO0b2bM5pLmf9OGlO/vudnljNSRxHObIyrxPzTe5P+tyUJ0Q==
+   eJzt10sOgCAMBFDE+9/ZrTFAp00rLZnFrPi9ICD01lovkkuIVGdVjvSPjO/htLa9P8nmHNlW3h1Oae5G5bucUpsop2YfRTu/54P1PIl0eiZyfUZZvfd7pBdZD7udaOikM3PopDNzTnKibwNLPN4d2ruC1Yf0PXNa7l5ao6Z85UTGszq1dej8z1lhfb7rZ97vs28QcX4ifZ/0P8oQOunMHDrpzJxqzgp5AP9vCGY=
   </data>
  </layer>
  <layer name="Plafond" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt0zEOACAIwECi/P/Nri4MBhQhHbofiCoiSkShTaNsV6Tz5Yw4cf7szJqRqHLW7f/2D3DitBqH4bznjLolnLFOT1WcnvfKdlV1sgucOPs6O8+GEydO2lv4KRoI
+   eJzt1tEKgCAMRmFL3/+Zu5VRTfCfUzgXHwTlOhBZrZTSHPckb75Kf8/6cfx37vTOaig67cxRb53emh06R9dlP3c6tftSZKfSKZ0jrdl9Xm92DwAAsyK/bYrZkf8KqtmR/17K2f31l0Enndmdyndy1ezd908AAHCuB0KjGb8=
   </data>
  </layer>
  <objectgroup name="obj">
