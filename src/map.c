@@ -81,7 +81,7 @@ void	map_init(t_game *game)
 		t_vect2dd vect = {2.0, x + 2.0};
 		t_sprite sprite = {vect, 0};
 		game->map.sprite[x] = sprite;
-		game->map.sprite[x].texture = 0;
+		game->map.sprite[x].texture = x;
 		x++;
 	}
 }
