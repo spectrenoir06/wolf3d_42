@@ -199,26 +199,26 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		floor.y = wall.map.y + 1.0;
 	}
 
-	while (y < game->sdl.ly)
+	while (y <= game->sdl.ly)
 	{
 		currentDist = game->sdl.ly / (2.0 * y - game->sdl.ly);// distance
 		//printf("%f\n",currentDist);
 		weight = (currentDist - 0) / (wall.dist - 0);// coef
 		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
 		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
-		floor_tex.x = (int)(current_floor.x * 512.0) % 512;// position texel sur X
-		floor_tex.y = (int)(current_floor.y * 512.0) % 512;// position texel sur Y
+		floor_tex.x = (int)(current_floor.x * TEX_SIZE) % TEX_SIZE;// position texel sur X
+		floor_tex.y = (int)(current_floor.y * TEX_SIZE) % TEX_SIZE;// position texel sur Y
 		t_color color;
 
-		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
-		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 0];
+		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		t_color color2;
 
-		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 2];
-		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 1];
-		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * 512) + 0];
+		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		game_draw_pixel(game, x, y, color);						// trace le sol
 		game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond

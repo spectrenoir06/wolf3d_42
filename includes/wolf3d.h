@@ -130,7 +130,7 @@ typedef struct s_game
 	t_player			player;
 	t_map				map;
 	double				dt;
-	t_color				texture[512][512];
+	t_color				texture[TEX_SIZE][TEX_SIZE];
 	Sint16				input[12];
 	SDL_Joystick		*joystick;
 	SDL_Haptic			*haptic;
