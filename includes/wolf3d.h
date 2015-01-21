@@ -21,6 +21,8 @@
 #  include <SDL2/SDL.h>
 # endif
 
+# include "SDL_mixer.h"
+
 # define WIN_X 1280
 # define WIN_Y 720
 # define TEX_SIZE 512
@@ -169,5 +171,7 @@ void	player_move(t_player *player,t_game *game, KEY dir);
 void	map_init(t_game *game);
 void	map_draw(t_game *game);
 int		map_load(t_game *game, t_map *map, char *path);
+
+void	game_init_sdl_mixer();
 
 #endif

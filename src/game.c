@@ -49,6 +49,9 @@ void	game_init_sdl(t_game *game)
 		if (SDL_HapticRumbleInit(game->haptic))
 				printf("Can not init %s\n", SDL_GetError());
 	}
+
+	game_init_sdl_mixer();
+
 	SDL_SetRelativeMouseMode(1);
 }
 
@@ -433,7 +436,10 @@ int		game_event_handler(t_game *game)
 		else if (event.jbutton.button == 6)
 			game->player.speed += 3;
 		else if (event.jbutton.button == 0)
+		{
 			SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
+			// jouer son
+		}
 		else if (event.jbutton.button == 10)
 		{
 			SDL_JoystickClose(0);

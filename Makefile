@@ -17,7 +17,8 @@ SRC		=	main.c		\
 			game.c		\
 			player.c	\
 			vect.c		\
-			map.c
+			map.c		\
+			sound.c
 			
 ##HEADFILES = wolf3d.h
 
@@ -46,7 +47,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2
+	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2 -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
 endif
 
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
