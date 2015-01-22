@@ -9,6 +9,7 @@
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
   - [ ] gestion propre des couleurs (revoir t_color)
+  - [x] nouveau format map (mur, plafont, sol, sprite)
   
 - Contenue:
   - [x] sample map

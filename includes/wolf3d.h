@@ -17,11 +17,12 @@
 
 # ifndef __APPLE__
 #  include "SDL2/SDL.h"
+#  include "SDL_mixer.h"
 # else
 #  include <SDL2/SDL.h>
 # endif
 
-# include "SDL_mixer.h"
+
 
 # define WIN_X 800
 # define WIN_Y 600
