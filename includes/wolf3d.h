@@ -22,6 +22,8 @@
 #  include <SDL2/SDL.h>
 # endif
 
+#  include "SDL_mixer.h"
+
 
 
 # define WIN_X 800

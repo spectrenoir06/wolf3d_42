@@ -138,7 +138,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 
 	map->sprite = (t_sprite *)ft_malloc(sizeof(t_sprite) * map->nb_obj);
 	map->sprite_ptr = (t_sprite **)ft_malloc(sizeof(t_sprite * ) * map->nb_obj);
-
+	printf("nb obj = %d\n", map->nb_obj);
 	i = 0;
 	while (i < (map->lx * map->ly))
 	{
@@ -172,6 +172,12 @@ int		map_load(t_game *game, t_map *map, char *path)
 		map->sprite[i].pos.y = tmp_y;
 		read(fd, &map->sprite[i].type, sizeof(Uint32));
 		read(fd, &map->sprite[i].texture, sizeof(Uint32));
+
+		printf("x obj = %f\n", tmp_x);
+		printf("y obj = %f\n", tmp_y);
+		printf("type obj = %d\n",map->sprite[i].type);
+		printf("text obj = %d\n",map->sprite[i].texture);
+
 		i++;
 	}
 

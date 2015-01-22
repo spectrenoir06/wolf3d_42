@@ -22,4 +22,4 @@ if len(sys.argv) == 2:
 		sys.stdout.write(struct.pack("ff", x, y))
 		tmp = int(obj["properties"]["type"])
 		tmp2 = int((obj["properties"]["text"]))
-		print(struct.pack("II" ,tmp, tmp2))
+		sys.stdout.write(struct.pack("II" ,tmp, tmp2))
