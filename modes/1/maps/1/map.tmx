@@ -26,7 +26,7 @@
  </layer>
  <layer name="Plafond" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMRmFL3/+Zu5VRTfCfUzgXHwTlOhBZrZTSHPckb75Kf8/6cfx37vTOaig67cxRb53emh06R9dlP3c6tftSZKfSKZ0jrdl9Xm92DwAAsyK/bYrZkf8KqtmR/17K2f31l0Enndmdyndy1ezd908AAHCuB0KjGb8=
+   eJzt1tEKgCAMRmHN3v+Zu5VRTfCfUzgXHwTlOhBZtZRSHdckb75Kf8/2cfx37vTOZig67cxRb53emh06R9dlP3c6tftSZKfSKZ0jrdl9Xm92DwAAsyK/bYrZkf8KqtmR/17K2f31t0Enndmdyndy1ezd908AAHCuB4IeCV0=
   </data>
  </layer>
  <objectgroup name="obj">
