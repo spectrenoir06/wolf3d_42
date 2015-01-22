@@ -227,8 +227,13 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x, y, color);						// trace le sol
+		else
+			game_draw_pixel(game, game->sdl.text_buf, x, y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y * 800 * 3)]);
+
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, color2);	// trace le plafond
+		else
+			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + ((game->sdl.ly - y - 1) * 800 * 3)]);
 		y++;
 	}
 }
@@ -290,8 +295,7 @@ void	game_draw_sprites(t_game *game)
 					int	texY = ((d * 512) / spriteheight);
 
 					t_color *color;
-
-					color = &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+					color = (t_color *) &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 						game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - stripe, y, color);
 				}

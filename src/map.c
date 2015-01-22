@@ -132,6 +132,8 @@ int		map_load(t_game *game, t_map *map, char *path)
 		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
+	map->sky = SDL_LoadBMP("modes/1/maps/1/textures/sky.bmp");
+
 	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);

@@ -142,6 +142,7 @@ typedef struct s_map
 	Uint8		*wall;
 	Uint8		*ceil;
 	SDL_Surface *textures[10];
+	SDL_Surface *sky;
 	t_sprite	*sprite;
 	t_sprite	**sprite_ptr;
 	SDL_Surface *sprite_tex[10];
