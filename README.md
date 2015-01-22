@@ -8,7 +8,7 @@
   - [ ] sprite 360
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
-  - [ ] gestion propre des couleurs (revoir t_color)
+  - [x] gestion propre des couleurs (revoir t_color)
   - [x] nouveau format map (mur, plafont, sol, sprite)
   
 - Contenue:
@@ -49,7 +49,7 @@
   - [ ] compatibiliter Windows (pour l'E2)
 
 - Bonus:
-  - [ ] sfx
+  - [x] sfx
   - [x] music
   - [ ] gui
   - [ ] menu
@@ -67,3 +67,8 @@ Bonus dur:
   - [ ] multijoueur
 
 ![alt tag](img/screenshot.png)
+![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.09.32.png)
+![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.08.54.png)
+![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.08.05.png)
+![alt tag](img/Screen%20Shot%202015-01-20%20at%2021.41.53.png)
+![alt tag](img/Screen%20Shot%202015-01-20%20at%2016.14.40.png)
