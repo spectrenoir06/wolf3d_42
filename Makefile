@@ -18,7 +18,8 @@ SRC		=	main.c		\
 			player.c	\
 			vect.c		\
 			map.c		\
-			sound.c
+			sound.c		\
+			hud.c
 			
 ##HEADFILES = wolf3d.h
 
@@ -43,7 +44,7 @@ NORMINETTE	= ~/project/colorminette/colorminette
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	SDL	= -lSDL2 -lm
+	SDL	= -lSDL2 -lm -lSDL_mixer
 endif
 
 ifeq ($(UNAME_S),Darwin)

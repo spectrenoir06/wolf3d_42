@@ -41,6 +41,20 @@ void	ft_kebab(char * buff, const char * first, ...)
 	buff[i] = 0;
 }
 
+void	sprite_load(t_game *game, t_map *map)
+{
+	int		i;
+	char	buff[256];
+
+	i = 0;
+	while (i < NBSPRITETEX)
+	{
+		ft_kebab(buff, "modes/1/maps/1/sprites/", ft_itoa(i), ".bmp", NULL);
+		map->sprite_tex[i] = SDL_LoadBMP(buff);
+		i++;
+	}
+}
+
 void	map_init(t_game *game)
 {
 	int		x;
@@ -50,6 +64,7 @@ void	map_init(t_game *game)
 	y = 0;
 
 	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
+	sprite_load(game, &(game->map));
 
 	x = 0;
 
@@ -60,13 +75,9 @@ void	map_init(t_game *game)
 
 	x = 0;
 
-	while (x < NBSPRITE)
+	while (x < game->map.nb_obj)
 	{
 		game->map.sprite_ptr[x] = &game->map.sprite[x];
-		t_vect2dd vect = {2.0, x + 2.0};
-		t_sprite sprite = {vect, 0};
-		game->map.sprite[x] = sprite;
-		game->map.sprite_tex[x] = SDL_LoadBMP("modes/1/maps/1/sprites/1.bmp");
 		x++;
 	}
 }
@@ -86,13 +97,13 @@ void	map_draw(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			game_draw_rect(game, x * 4, y * 4, 4, 4, (game->map.data[x + (y * game->map.lx)] ? mur : sol));
+			game_draw_rect(game, game->sdl.hud_buf, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
 			y++;
 		}
 		x++;
 	}
-	game_draw_rect(game, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
-	game_draw_rect(game, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
+	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
+	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
 }
 
 int		map_load(t_game *game, t_map *map, char *path)
@@ -109,27 +120,71 @@ int		map_load(t_game *game, t_map *map, char *path)
 		return (ret);
 	if ((ret = read(fd, &(map->ly), 4)) <= 0)
 		return (ret);
+	if ((ret = read(fd, &(map->nb_obj), 4)) <= 0)
+			return (ret);
 	if ((ret = read(fd, &textures, 4)) <= 0)
 		return (ret);
 	i = 0;
+
 	while (i < textures)
 	{
 		ft_kebab(buff, "modes/1/maps/1/textures/", ft_itoa(i), ".bmp", NULL);
 		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
-	map->data = (Uint8 *)malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+
+	map->sprite = (t_sprite *)ft_malloc(sizeof(t_sprite) * map->nb_obj);
+	map->sprite_ptr = (t_sprite **)ft_malloc(sizeof(t_sprite * ) * map->nb_obj);
+	printf("nb obj = %d\n", map->nb_obj);
 	i = 0;
-	while ((ret = read(fd, &buff, 255)) > 0)
+	while (i < (map->lx * map->ly))
 	{
-		buff[255] = 0;
-		ft_memcpy(map->data + i, buff, ret);
-		i += ret;
+		read(fd, &map->ceil[i], 1);
+		i++;
 	}
+	i = 0;
+	while (i < (map->lx * map->ly))
+	{
+		read(fd, &map->wall[i], 1);
+		i++;
+	}
+	i = 0;
+	while (i < (map->lx * map->ly))
+	{
+		read(fd, &map->floor[i], 1);
+		i++;
+	}
+
+
+	float tmp_x;
+	float tmp_y;
+
+	i = 0;
+	while (i < map->nb_obj)
+	{
+
+		read(fd, &tmp_x, sizeof(float));
+		read(fd, &tmp_y, sizeof(float));
+		map->sprite[i].pos.x = tmp_x;
+		map->sprite[i].pos.y = tmp_y;
+		read(fd, &map->sprite[i].type, sizeof(Uint32));
+		read(fd, &map->sprite[i].texture, sizeof(Uint32));
+
+		printf("x obj = %f\n", tmp_x);
+		printf("y obj = %f\n", tmp_y);
+		printf("type obj = %d\n",map->sprite[i].type);
+		printf("text obj = %d\n",map->sprite[i].texture);
+
+		i++;
+	}
+
 	return (1);
 }
 
-int		map_get_block(t_map *map, t_vect2dd pt)
+int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt)
 {
-	return (map->data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
+	return (data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
 }

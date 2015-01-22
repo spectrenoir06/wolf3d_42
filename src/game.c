@@ -36,7 +36,8 @@ void	game_init_sdl(t_game *game)
 		exit(1);
 	}
 	game->sdl.text_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
-	if (game->sdl.text_buf == NULL)
+	game->sdl.hud_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
+	if (game->sdl.text_buf == NULL || game->sdl.hud_buf == NULL)
 	{
 		printf("Wolf3D: Error can't allocate buffer\n");
 		exit(1);
@@ -50,14 +51,13 @@ void	game_init_sdl(t_game *game)
 				printf("Can not init %s\n", SDL_GetError());
 	}
 
-	game_init_sdl_mixer();
-
+	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 
 
 
-void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_color c)
 {
 	int a = x;
 	int b = y;
@@ -67,7 +67,7 @@ void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
 		b = y;
 		while (b < (y + ly))
 		{
-			game_draw_pixel(game, a, b , c);
+			game_draw_pixel(game, buf, a, b , c);
 			b++;
 		}
 		a++;
@@ -78,16 +78,17 @@ void	game_draw_rect(t_game *game, int x, int y, int lx, int ly, t_color c)
 
 void	game_draw_all(t_game *game)
 {
+	hud_put(game);
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
 	//bzero(game->sdl.text_buf, sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
 }
 
-void	game_draw_pixel(t_game *game, int x, int y, t_color c)
+void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, t_color c)
 {
 	if (x >= 0 && x < game->sdl.lx && y >=0 && y < game->sdl.ly)
-		memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &c, 3);
+		memcpy(&buf[x + (y * game->sdl.lx)], &c, 3);
 }
 void	init_ray(t_game *game, t_ray *ray, double camera_x)
 {
@@ -144,9 +145,9 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 			wall->side = 1;
 		}
 
-		if (game->map.data[wall->map.x + (wall->map.y * game->map.lx)] > 0)
+		if (game->map.wall[wall->map.x + (wall->map.y * game->map.lx)] > 0)
 		{
-			wall->id = game->map.data[wall->map.x + (wall->map.y * game->map.lx)];
+			wall->id = game->map.wall[wall->map.x + (wall->map.y * game->map.lx)];
 			hit = 1;
 		}
 	}
@@ -178,6 +179,7 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 
 void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, double wallX)
 {
+	//printf("%d\n",y);
 	t_vect2dd	floor;
 	double		weight;// coefficient de ponderation
 	t_vect2dd	current_floor;
@@ -213,18 +215,23 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		floor_tex.y = (int)(current_floor.y * TEX_SIZE) % TEX_SIZE;// position texel sur Y
 		t_color color;
 
-		color.r = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
-		color.g = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
-		color.b = ((Uint8*)(game->map.textures[0]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
+		Uint8 test = game->map.floor[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
+		Uint8 test2 = game->map.ceil[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
+
+		color.r = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color.g = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color.b = ((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		t_color color2;
 
-		color2.r = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
-		color2.g = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
-		color2.b = ((Uint8*)(game->map.textures[3]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
+		color2.r = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 2];
+		color2.g = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 1];
+		color2.b = ((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
-		game_draw_pixel(game, x, y, color);						// trace le sol
-		game_draw_pixel(game, x, game->sdl.ly - y - 1, color2);	// trace le plafond
+		if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
+			game_draw_pixel(game, game->sdl.text_buf, x, y, color);						// trace le sol
+		if (!(color2.r == 0xFF && color2.g == 0x00 && color2.b == 0xFF))
+			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, color2);	// trace le plafond
 		y++;
 	}
 }
@@ -239,11 +246,11 @@ void	game_draw_sprites(t_game *game)
 	int	y;
 	int x;
 
-   for(x = 0; x < NBSPRITE; x++)
+   for(x = 0; x < game->map.nb_obj; x++)
 	  game->map.sprite[x].dist = ((game->player.pos.x - game->map.sprite[x].pos.x) * (game->player.pos.x - game->map.sprite[x].pos.x) + (game->player.pos.y - game->map.sprite[x].pos.y) * (game->player.pos.y - game->map.sprite[x].pos.y));
 
-	ft_sort_qck((void **)game->map.sprite_ptr, NBSPRITE, sprite_compare);
-	for(x = 0; x < NBSPRITE; x++)
+	ft_sort_qck((void **)game->map.sprite_ptr,  game->map.nb_obj, sprite_compare);
+	for(x = 0; x <  game->map.nb_obj; x++)
 	{
 		double	spritex = game->map.sprite_ptr[x]->pos.x - game->player.pos.x;
 		double	spritey = game->map.sprite_ptr[x]->pos.y - game->player.pos.y;
@@ -273,7 +280,7 @@ void	game_draw_sprites(t_game *game)
 			drawEndX = game->sdl.lx - 1;
 
 		int stripe;
-		for (stripe = drawStartX; stripe < drawEndX; stripe++)
+		for (stripe = drawStartX; stripe <= drawEndX; stripe++)
 		{
 			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
@@ -291,7 +298,7 @@ void	game_draw_sprites(t_game *game)
 					color.g = ((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 1];
 					color.b = ((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512) + 0];
 					if (!(color.r == 0xFF && color.g == 0x00 && color.b == 0xFF))
-						game_draw_pixel(game, game->sdl.lx - stripe, y, color);
+						game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - stripe, y, color);
 				}
 			}
 		}
@@ -338,7 +345,7 @@ void	game_render(t_game *game)
 
 		int y = drawStart;
 
-		while (y <= drawEnd)
+		while (y < drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (TEX_SIZE/2)/lineHeight;
 			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
@@ -352,10 +359,11 @@ void	game_render(t_game *game)
 				color.g = color.g >> 1;
 				color.b = color.b >> 1;
 			}
-			game_draw_pixel(game, game->sdl.lx - x, y, color);
+			game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - x, y, color);
 			y++;
 		}
-		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, wall, wallX);
+		y = (y < 0) ? 0 : y;
+		draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
 
 	}
@@ -392,10 +400,18 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed += 3;
+		else if (event.key.keysym.sym == SDLK_p)
+			{
+				if(Mix_PausedMusic())
+					Mix_ResumeMusic();
+				else if (Mix_PlayingMusic())
+					Mix_PauseMusic();
+			}
 		else if (event.key.keysym.sym == SDLK_ESCAPE)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -417,6 +433,7 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = 0;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed -= 3;
+		Mix_FadeOutChannel(1, 200);
 	}
 	else if(event.type == SDL_JOYBUTTONDOWN)
 	{
@@ -444,6 +461,7 @@ int		game_event_handler(t_game *game)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -461,6 +479,7 @@ int		game_event_handler(t_game *game)
 			SDL_HapticRumbleStop(game->haptic);
 		else if (event.jbutton.button == 6)
 			game->player.speed -= 3;
+		Mix_FadeOutChannel(1, 200);
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{
@@ -483,8 +502,20 @@ int		game_event_handler(t_game *game)
 	{
 		SDL_JoystickClose(0);
 		SDL_DestroyWindow(game->sdl.win);
+		sdl_mixer_quit(&game->sounds);
 		SDL_Quit();
 		exit(0);
 	}
+
+	/*									BRUIT SUPER CHIANT QUI VIENS DE NUL PART
+	int angle;
+	angle = 40 * get_vect2dd_angle(game->player.dir);
+	printf("%d", angle);
+	if (!Mix_Playing(0))
+			Mix_PlayChannel(0, game->sounds.son1, 1);
+	Mix_SetDistance(0, sqrt((game->player.pos.x * game->player.pos.x) + (game->player.pos.y * game->player.pos.y)) * 4);
+	Mix_SetPanning(0, 200 - angle, 200 + angle);
+	*/
+
 	return (1);
 }

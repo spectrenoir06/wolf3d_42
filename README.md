@@ -1,22 +1,30 @@
 # wolf3d_42
 
 - Important:
+  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang:
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
-  - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
   - [ ] sprite 360
   - [x] simplifier raycasting
-  - [ ] FIXME: Premiere et derniere ligne de pixel
-
+  - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
+  - [ ] gestion propre des couleurs (revoir t_color)
+  - [x] nouveau format map (mur, plafont, sol, sprite)
+  
 - Contenue:
   - [x] sample map
-  - [ ] plein de [map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html
+  - [ ] plein de maps
   - [ ] multimode (wolfenstein, 42stein, ...)
   - [ ] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
+- Multimode:
+  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html))
+  - [ ] 42stein
+  - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
+  - [ ] The Binding of Isaac
+  
 - Input:
   - [x] mode souris + clavier
   - [x] mode full clavier
@@ -42,9 +50,10 @@
 
 - Bonus:
   - [ ] sfx
-  - [ ] music
+  - [x] music
   - [ ] gui
   - [ ] menu
+  - [ ] sprites 360
   - [ ] animations sprites
   - [ ] animations textures
   - [ ] mirroirs

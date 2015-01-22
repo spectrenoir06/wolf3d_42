@@ -32,7 +32,7 @@ int		main(void)
 	map_init(&game);
 	player_init(&game.player);
 	game_render(&game);
-	//map_draw(&game);
+	hud_render(&game);
 	game_draw_all(&game);
 	while (42)
 	{
@@ -40,14 +40,12 @@ int		main(void)
 		gettimeofday(&tv1, NULL);
 		game.dt = ((tv1.tv_sec - tv2.tv_sec) + ((tv1.tv_usec - tv2.tv_usec) / 1000000.0)); //frametime is the time this frame has taken, in seconds
 
-
-
 		while (game_event_handler(&game))
 				;
 		{
 			player_update(&game.player, &game);	// update player
 			game_render(&game);		// update screen
-			map_draw(&game);	// update minimap
+			hud_render(&game);
 			game_draw_all(&game);	// update screen
 		}
 		//printf("%f ; %f\n",1/game.dt, game.dt);
