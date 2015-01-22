@@ -5,7 +5,7 @@
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
-  - [x] sprite (http://lodev.org/cgtutor/raycasting3.html)
+  - [ ] sprite 360
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
   - [ ] gestion propre des couleurs (revoir t_color)

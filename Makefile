@@ -44,7 +44,7 @@ NORMINETTE	= ~/project/colorminette/colorminette
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	SDL	= -lSDL2 -lm
+	SDL	= -lSDL2 -lm -lSDL_mixer
 endif
 
 ifeq ($(UNAME_S),Darwin)

@@ -15,14 +15,13 @@
 
 # include <stdio.h>
 
-# ifndef __APPLE__
+# ifdef __APPLE__
 #  include "SDL2/SDL.h"
 #  include "SDL_mixer.h"
-# else
+# elif __linux
 #  include <SDL2/SDL.h>
+#  include <SDL/SDL_mixer.h>
 # endif
-
-#  include "SDL_mixer.h"
 
 
 
