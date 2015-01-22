@@ -88,7 +88,6 @@ typedef struct 		s_color
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
-	unsigned char	a;
 }					t_color;
 
 # define NBSPRITE 4
@@ -184,7 +183,7 @@ t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
 void	game_init_sdl(t_game *game);
 void	game_draw_all(t_game *game);
-void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, t_color c);
+void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
 void	game_render(t_game *game);
 void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_color c);
 int		game_event_handler(t_game *game);
