@@ -75,13 +75,9 @@ void	map_init(t_game *game)
 
 	x = 0;
 
-	while (x < NBSPRITE)
+	while (x < game->map.nb_obj)
 	{
 		game->map.sprite_ptr[x] = &game->map.sprite[x];
-		t_vect2dd vect = {2.0, x + 2.0};
-		t_sprite sprite = {vect, 0};
-		game->map.sprite[x] = sprite;
-		game->map.sprite[x].texture = x;
 		x++;
 	}
 }
@@ -129,6 +125,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 	if ((ret = read(fd, &textures, 4)) <= 0)
 		return (ret);
 	i = 0;
+
 	while (i < textures)
 	{
 		ft_kebab(buff, "modes/1/maps/1/textures/", ft_itoa(i), ".bmp", NULL);
@@ -138,6 +135,9 @@ int		map_load(t_game *game, t_map *map, char *path)
 	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
+
+	map->sprite = (t_sprite *)ft_malloc(sizeof(t_sprite) * map->nb_obj);
+	map->sprite_ptr = (t_sprite **)ft_malloc(sizeof(t_sprite * ) * map->nb_obj);
 
 	i = 0;
 	while (i < (map->lx * map->ly))
@@ -157,6 +157,24 @@ int		map_load(t_game *game, t_map *map, char *path)
 		read(fd, &map->floor[i], 1);
 		i++;
 	}
+
+
+	float tmp_x;
+	float tmp_y;
+
+	i = 0;
+	while (i < map->nb_obj)
+	{
+
+		read(fd, &tmp_x, sizeof(float));
+		read(fd, &tmp_y, sizeof(float));
+		map->sprite[i].pos.x = tmp_x;
+		map->sprite[i].pos.y = tmp_y;
+		read(fd, &map->sprite[i].type, sizeof(Uint32));
+		read(fd, &map->sprite[i].texture, sizeof(Uint32));
+		i++;
+	}
+
 	return (1);
 }
 

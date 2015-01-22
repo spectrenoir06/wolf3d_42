@@ -246,11 +246,11 @@ void	game_draw_sprites(t_game *game)
 	int	y;
 	int x;
 
-   for(x = 0; x < NBSPRITE; x++)
+   for(x = 0; x < game->map.nb_obj; x++)
 	  game->map.sprite[x].dist = ((game->player.pos.x - game->map.sprite[x].pos.x) * (game->player.pos.x - game->map.sprite[x].pos.x) + (game->player.pos.y - game->map.sprite[x].pos.y) * (game->player.pos.y - game->map.sprite[x].pos.y));
 
-	ft_sort_qck((void **)game->map.sprite_ptr, NBSPRITE, sprite_compare);
-	for(x = 0; x < NBSPRITE; x++)
+	ft_sort_qck((void **)game->map.sprite_ptr,  game->map.nb_obj, sprite_compare);
+	for(x = 0; x <  game->map.nb_obj; x++)
 	{
 		double	spritex = game->map.sprite_ptr[x]->pos.x - game->player.pos.x;
 		double	spritey = game->map.sprite_ptr[x]->pos.y - game->player.pos.y;

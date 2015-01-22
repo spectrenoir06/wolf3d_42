@@ -23,8 +23,8 @@
 
 # include "SDL_mixer.h"
 
-# define WIN_X 1280
-# define WIN_Y 720
+# define WIN_X 800
+# define WIN_Y 600
 # define TEX_SIZE 512
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768.0
@@ -96,6 +96,7 @@ typedef struct	s_sprite
 	t_vect2dd	pos;
 	int			texture;
 	double		dist;
+	int			type;
 }				t_sprite;
 
 typedef struct	s_player
@@ -131,13 +132,6 @@ typedef struct s_sdl
 
 }			t_sdl;
 
-typedef struct s_obj
-{
-	t_vect2dd	pos;
-	int			type;
-	int			sprite_id;
-}			t_obj;
-
 typedef struct s_map
 {
 	int			lx;
@@ -147,8 +141,8 @@ typedef struct s_map
 	Uint8		*wall;
 	Uint8		*ceil;
 	SDL_Surface *textures[10];
-	t_sprite	sprite[NBSPRITE];
-	t_sprite	*sprite_ptr[NBSPRITE];
+	t_sprite	*sprite;
+	t_sprite	**sprite_ptr;
 	SDL_Surface *sprite_tex[10];
 }				t_map;
 

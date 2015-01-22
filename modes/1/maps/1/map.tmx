@@ -14,12 +14,12 @@
    <image width="512" height="512" source="textures/3.bmp"/>
   </tile>
  </tileset>
- <layer name="Sol" width="42" height="42" visible="0">
+ <layer name="Sol" width="42" height="42">
   <data encoding="base64" compression="zlib">
    eJzt1DEOwCAIQFFqvf+Zu5soihIw/cPfFJ8LVUTqj3o7RbtmjGXxXjZn77y3d8WpGT2ttzhH72dz7v4Hp5812qd5oz1ERES7PU0nZ5emE76T3tZn9WrGHatmXLHixJnZOWO1GGetlpnZ9ycRERHd2weT1xmp
   </data>
  </layer>
- <layer name="Mur" width="42" height="42" visible="0" opacity="0.5">
+ <layer name="Mur" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
    eJzt10sOgCAMBFDE+9/ZrTFAp00rLZnFrPi9ICD01lovkkuIVGdVjvSPjO/htLa9P8nmHNlW3h1Oae5G5bucUpsop2YfRTu/54P1PIl0eiZyfUZZvfd7pBdZD7udaOikM3PopDNzTnKibwNLPN4d2ruC1Yf0PXNa7l5ao6Z85UTGszq1dej8z1lhfb7rZ97vs28QcX4ifZ/0P8oQOunMHDrpzJxqzgp5AP9vCGY=
   </data>
