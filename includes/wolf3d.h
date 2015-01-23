@@ -208,7 +208,7 @@ void	hud_render(t_game *game);
 
 int		weapon_load(t_game *game, t_map *map, int n);
 void	weapon_start_anim(t_game *game, t_player *player);
-void	weapon_animate(t_game *game, t_player *player);
+int		weapon_animate(t_game *game, t_player *player);
 int		weapon_get_anim(t_player *player);
 void	weapon_draw(t_game *game);
 

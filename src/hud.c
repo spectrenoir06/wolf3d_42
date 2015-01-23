@@ -74,3 +74,8 @@ void	hud_put(t_game *game)
 		}
 	}
 }
+
+int		hud_need_render(t_game *game)
+{
+	return (weapon_animate(game, &game->player));
+}

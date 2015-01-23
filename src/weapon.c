@@ -41,12 +41,16 @@ void	weapon_start_anim(t_game *game, t_player *player)
 	weapon_animate(game, player);
 }
 
-void	weapon_animate(t_game *game, t_player *player)
+int		weapon_animate(t_game *game, t_player *player)
 {
+	float	last;
+
+	last = player->w_anim;
 	if (player->w_anim > 0)
-		player->w_anim += game->dt * 10;
+		player->w_anim += game->dt * 20;
 	if (player->w_anim > 5)
 		player->w_anim = 0;
+	return ((int)last != (int)player->w_anim);
 }
 
 int		weapon_get_anim(t_player *player)
@@ -69,14 +73,4 @@ void	weapon_draw(t_game *game)
 				memcpy(&game->sdl.hud_buf[x + game->sdl.lx / 2 - 256 + ((y + game->sdl.ly - 512) * game->sdl.lx)], &((Uint8 *)game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)]->pixels)[x * 3 + (y * 3* 512)], 3);
 		}
 	}
-}
-
-int		weapon_need_render(t_game *game)
-{
-	static int	last = 0;
-	int			current;
-
-	current = weapon_get_anim(game->player);
-	return (current =! last);
-
 }
