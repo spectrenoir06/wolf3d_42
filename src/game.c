@@ -361,7 +361,7 @@ void	game_render(t_game *game)
 			y++;
 		}
 		//y = (y < 0) ? 0 : y;
-		//draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
+		draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
 
 	}

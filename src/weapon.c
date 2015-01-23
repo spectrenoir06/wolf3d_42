@@ -11,31 +11,27 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include "libft.h"
 
 int		weapon_load(t_game *game, t_map *map, int n)
 {
-//	int	i;
-//	int	j;
-//	char	buff[255];
-//
-//	i = 1;
-//	while (i <= n)
-//	{
-//		j = 1;
-//		while (j <= 5)
-//		{
-//			ft_kebab(buff, "modes/1/maps/1/weapons/", "1", "/", ft_itoa(j), ".bmp", NULL);
-//			ft_putstr(buff);
-//			map->weapon_tex[i][j] = SDL_LoadBMP(buff);
-//			j++;
-//		}
-//		i++;
-//	}
-	map->weapon_tex[1][0] = SDL_LoadBMP("modes/1/maps/1/weapons/1/1.bmp");
-	map->weapon_tex[1][1] = SDL_LoadBMP("modes/1/maps/1/weapons/1/2.bmp");
-	map->weapon_tex[1][2] = SDL_LoadBMP("modes/1/maps/1/weapons/1/3.bmp");
-	map->weapon_tex[1][3] = SDL_LoadBMP("modes/1/maps/1/weapons/1/4.bmp");
-	map->weapon_tex[1][4] = SDL_LoadBMP("modes/1/maps/1/weapons/1/5.bmp");
+	int	i;
+	int	j;
+	char	buff[255];
+
+	i = 0;
+	while (i < n)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			ft_kebab(buff, "modes/1/maps/1/weapons/", ft_itoa(i + 1), "/", ft_itoa(j + 1), ".bmp", NULL);
+			ft_putendl(buff);
+			map->weapon_tex[i + 1][j] = SDL_LoadBMP(buff);
+			j++;
+		}
+		i++;
+	}
 	return (1);
 }
 
@@ -51,7 +47,6 @@ void	weapon_animate(t_game *game, t_player *player)
 		player->w_anim += game->dt * 10;
 	if (player->w_anim > 5)
 		player->w_anim = 0;
-	printf("%d \n", player->w_anim);
 }
 
 int		weapon_get_anim(t_player *player)
