@@ -182,7 +182,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 
 		i++;
 	}
-
+	weapon_load(game, map, 1);
 	return (1);
 }
 

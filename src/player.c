@@ -24,6 +24,8 @@ void	player_init(t_player *player)
 	player->box.x = 0.2;
 	player->box.y = 0.2;
 	player->speed = 5;
+	player->weapon = 1;
+	player->w_anim = 0;
 }
 
 int		player_collide_world(t_map *map, t_player *player)
@@ -93,7 +95,11 @@ void	player_update(t_player *player, t_game *game)
 	if (game->input[MOV_Y])
 		player_move(&(game->player), game, MOV_Y);
 	if (game->input[MOV_X])
+	{
 		player_move(&(game->player), game, MOV_X);
+		if (player->w_anim == 0)
+			weapon_start_anim(game, player);
+	}
 	if (game->input[ROT_Z])
 	{
 		double motion = M_PI_2 * game->dt  * (game->input[ROT_Z] / 32767.0);

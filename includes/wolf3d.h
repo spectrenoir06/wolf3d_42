@@ -107,6 +107,8 @@ typedef struct	s_player
 	t_vect2dd	plane;
 	t_vect2dd	box;
 	int			speed;
+	char		weapon;
+	float		w_anim;
 }				t_player;
 
 typedef struct s_sounds
@@ -146,6 +148,7 @@ typedef struct s_map
 	t_sprite	*sprite;
 	t_sprite	**sprite_ptr;
 	SDL_Surface *sprite_tex[10];
+	SDL_Surface *weapon_tex[10][5];
 }				t_map;
 
 typedef struct s_game
@@ -201,5 +204,11 @@ void	sdl_mixer_quit(t_sounds *sounds);
 double	get_vect2dd_angle(t_vect2dd vect);
 
 void	hud_render(t_game *game);
+
+int		weapon_load(t_game *game, t_map *map, int n);
+void	weapon_start_anim(t_game *game, t_player *player);
+void	weapon_animate(t_game *game, t_player *player);
+int		weapon_get_anim(t_player *player);
+void	weapon_draw(t_game *game);
 
 #endif

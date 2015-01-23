@@ -19,7 +19,8 @@ SRC		=	main.c		\
 			vect.c		\
 			map.c		\
 			sound.c		\
-			hud.c
+			hud.c		\
+			weapon.c
 			
 ##HEADFILES = wolf3d.h
 

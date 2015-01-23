@@ -44,11 +44,12 @@ int		main(void)
 				;
 		{
 			player_update(&game.player, &game);	// update player
+			weapon_animate(&game, &game.player);
 			game_render(&game);		// update screen
 			hud_render(&game);
 			game_draw_all(&game);	// update screen
 		}
-		printf("%f ; %f\n",1/game.dt, game.dt);
+		//printf("%f ; %f\n",1/game.dt, game.dt);
 
 	}
 	return (0);

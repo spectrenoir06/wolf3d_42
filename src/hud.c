@@ -55,6 +55,7 @@ void	hud_render(t_game *game)
 	hud_fill(game);
 	map_draw(game);
 	hud_cross(game);
+	weapon_draw(game);
 }
 
 void	hud_put(t_game *game)
