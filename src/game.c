@@ -382,6 +382,11 @@ int		game_event_handler(t_game *game)
 		//game->input[ROT_Y] = event.motion.yrel *1000;
 		return (1);
 	}
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (event.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0)
+			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
