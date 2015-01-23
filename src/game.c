@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -184,7 +184,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 	double		weight;// coefficient de ponderation
 	t_vect2dd	current_floor;
 	t_vect2dd	floor_tex;
-	double		currentDist;// point de depart de la texture
+	//double		currentDist;// point de depart de la texture
 
 	if (wall.side == 0 && ray.dir.x > 0) {
 		// nord
@@ -206,9 +206,9 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 
 	while (y <= game->sdl.ly)
 	{
-		currentDist = game->sdl.ly / (2.0 * y - game->sdl.ly);// distance
+		//currentDist = game->map.calcule[y];// distance
 		//printf("%f\n",currentDist);
-		weight = (currentDist - 0) / (wall.dist - 0);// coef
+		weight = (game->map.calcule[y]) / (wall.dist);// coef
 		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
 		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
 		floor_tex.x = (int)(current_floor.x * TEX_SIZE) % TEX_SIZE;// position texel sur X
@@ -351,7 +351,7 @@ void	game_render(t_game *game)
 
 			void *color;
 			color = &((Uint8 *)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * TEX_SIZE * 3)];
-			/*if(wall.side == 1)
+			/*if (wall.side == 1)
 			{
 				color.r = color.r >> 1;
 				color.g = color.g >> 1;

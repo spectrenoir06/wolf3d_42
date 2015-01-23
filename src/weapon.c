@@ -51,7 +51,7 @@ void	weapon_animate(t_game *game, t_player *player)
 		player->w_anim += game->dt * 10;
 	if (player->w_anim > 5)
 		player->w_anim = 0;
-	printf("%d \n", player->w_anim);
+	//printf("%=f \n", player->w_anim);
 }
 
 int		weapon_get_anim(t_player *player)

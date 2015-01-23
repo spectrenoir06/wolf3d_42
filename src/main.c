@@ -30,6 +30,10 @@ int		main(void)
 
 	game_init_sdl(&game);
 	map_init(&game);
+
+	for (i = (game.sdl.ly / 2); i < game.sdl.ly; i++)
+		game.map.calcule[i] = game.sdl.ly / (2.0 * i - game.sdl.ly);
+
 	player_init(&game.player);
 	game_render(&game);
 	hud_render(&game);
@@ -46,7 +50,7 @@ int		main(void)
 			player_update(&game.player, &game);	// update player
 			weapon_animate(&game, &game.player);
 			game_render(&game);		// update screen
-			hud_render(&game);
+			//hud_render(&game);
 			game_draw_all(&game);	// update screen
 		}
 		//printf("%f ; %f\n",1/game.dt, game.dt);
