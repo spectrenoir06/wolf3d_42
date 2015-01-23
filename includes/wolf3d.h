@@ -25,8 +25,8 @@
 
 
 
-# define WIN_X 800
-# define WIN_Y 600
+# define WIN_X 1600
+# define WIN_Y 900
 # define TEX_SIZE 512
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768.0
@@ -149,6 +149,7 @@ typedef struct s_map
 	t_sprite	**sprite_ptr;
 	SDL_Surface *sprite_tex[10];
 	SDL_Surface *weapon_tex[10][5];
+	double		calcule[WIN_Y / 2];
 }				t_map;
 
 typedef struct s_game

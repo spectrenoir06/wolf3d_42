@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -51,7 +51,7 @@ void	game_init_sdl(t_game *game)
 				printf("Can not init %s\n", SDL_GetError());
 	}
 
-	//game_init_sdl_mixer(&game->sounds);
+	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 
@@ -184,7 +184,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 	double		weight;// coefficient de ponderation
 	t_vect2dd	current_floor;
 	t_vect2dd	floor_tex;
-	double		currentDist;// point de depart de la texture
+	//double		currentDist;// point de depart de la texture
 
 	if (wall.side == 0 && ray.dir.x > 0) {
 		// nord
@@ -206,9 +206,9 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 
 	while (y <= game->sdl.ly)
 	{
-		currentDist = game->sdl.ly / (2.0 * y - game->sdl.ly);// distance
+		//currentDist = game->map.calcule[y];// distance
 		//printf("%f\n",currentDist);
-		weight = (currentDist - 0) / (wall.dist - 0);// coef
+		weight = (game->map.calcule[y]) / (wall.dist);// coef
 		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
 		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
 		floor_tex.x = (int)(current_floor.x * TEX_SIZE) % TEX_SIZE;// position texel sur X
@@ -351,7 +351,7 @@ void	game_render(t_game *game)
 
 			void *color;
 			color = &((Uint8 *)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * TEX_SIZE * 3)];
-			/*if(wall.side == 1)
+			/*if (wall.side == 1)
 			{
 				color.r = color.r >> 1;
 				color.g = color.g >> 1;
@@ -382,6 +382,11 @@ int		game_event_handler(t_game *game)
 		//game->input[ROT_Y] = event.motion.yrel *1000;
 		return (1);
 	}
+	if (event.type == SDL_MOUSEBUTTONDOWN)
+	{
+		if (event.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0)
+			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	}
 	if (event.type == SDL_KEYDOWN)
 	{
 		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
@@ -398,6 +403,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed += 3;
+		else if (event.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
+				weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 		else if (event.key.keysym.sym == SDLK_p)
 			{
 				if(Mix_PausedMusic())
@@ -409,7 +416,7 @@ int		game_event_handler(t_game *game)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
-			//sdl_mixer_quit(&game->sounds);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -494,6 +501,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = event.jaxis.value;
 		else if (event.jaxis.axis == 3)
 			game->input[ROT_Z] = 0;
+		if (event.jaxis.axis == 5 && (event.jaxis.value > 5000) && game->player.w_anim == 0)
+					weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 
 	}
 	else if (event.type == SDL_QUIT)

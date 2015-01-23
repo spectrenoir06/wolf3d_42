@@ -70,3 +70,13 @@ void	weapon_draw(t_game *game)
 		}
 	}
 }
+
+int		weapon_need_render(t_game *game)
+{
+	static int	last = 0;
+	int			current;
+
+	current = weapon_get_anim(game->player);
+	return (current =! last);
+
+}
