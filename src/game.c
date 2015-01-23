@@ -51,7 +51,7 @@ void	game_init_sdl(t_game *game)
 				printf("Can not init %s\n", SDL_GetError());
 	}
 
-	game_init_sdl_mixer(&game->sounds);
+	//game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 
@@ -361,7 +361,7 @@ void	game_render(t_game *game)
 			y++;
 		}
 		//y = (y < 0) ? 0 : y;
-		draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
+		//draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
 
 	}
@@ -409,7 +409,7 @@ int		game_event_handler(t_game *game)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
-			sdl_mixer_quit(&game->sounds);
+			//sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
