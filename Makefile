@@ -38,7 +38,7 @@ DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
 ##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
 
 CC			= gcc
-FLAGS		=   ##-Wall -Wextra -Werror
+FLAGS		=  -pg ##-Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
 
 UNAME_S := $(shell uname -s)
