@@ -102,8 +102,5 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.2047785628.1645034695;cdt.managedbuild.toolchain.gnu.macosx.base.2047785628.1645034695.;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.1174564550;cdt.managedbuild.tool.gnu.c.compiler.input.1542356874">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1294651295.407548572.1487018146;cdt.managedbuild.toolchain.gnu.macosx.base.1294651295.407548572.1487018146.;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.601808510;cdt.managedbuild.tool.gnu.c.compiler.input.1509937647">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

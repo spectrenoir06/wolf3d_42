@@ -51,7 +51,7 @@ void	game_init_sdl(t_game *game)
 				printf("Can not init %s\n", SDL_GetError());
 	}
 
-	//game_init_sdl_mixer(&game->sounds);
+	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 
@@ -360,8 +360,8 @@ void	game_render(t_game *game)
 			game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - x, y, color);
 			y++;
 		}
-		//y = (y < 0) ? 0 : y;
-		//draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
+		y = (y < 0) ? 0 : y;
+		draw_floor_and_ceil(game, game->sdl.lx - x, y + 1, ray, wall, wallX);
 		game->Zbuffer[x] = wall.dist;
 
 	}
@@ -398,6 +398,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = SINT16_MAX;
 		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
 			game->player.speed += 3;
+		else if (event.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
+				weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 		else if (event.key.keysym.sym == SDLK_p)
 			{
 				if(Mix_PausedMusic())
@@ -409,7 +411,7 @@ int		game_event_handler(t_game *game)
 		{
 			SDL_JoystickClose(0);
 			SDL_DestroyWindow(game->sdl.win);
-			//sdl_mixer_quit(&game->sounds);
+			sdl_mixer_quit(&game->sounds);
 			SDL_Quit();
 			exit(0);
 		}
@@ -494,6 +496,8 @@ int		game_event_handler(t_game *game)
 			game->input[ROT_Z] = event.jaxis.value;
 		else if (event.jaxis.axis == 3)
 			game->input[ROT_Z] = 0;
+		if (event.jaxis.axis == 5 && (event.jaxis.value > 5000) && game->player.w_anim == 0)
+					weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 
 	}
 	else if (event.type == SDL_QUIT)
