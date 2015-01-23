@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_FULLSCREEN,
+			SDL_WINDOW_SHOWN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -88,7 +88,7 @@ void	game_draw_all(t_game *game)
 void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c)
 {
 	if (x >= 0 && x < game->sdl.lx && y >=0 && y < game->sdl.ly)
-		memcpy(&buf[x + (y * game->sdl.lx)], c, 3);
+		ft_memcpy(&buf[x + (y * game->sdl.lx)], c, 3);
 }
 void	init_ray(t_game *game, t_ray *ray, double camera_x)
 {
@@ -204,7 +204,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		floor.y = wall.map.y + 1.0;
 	}
 
-	while (y <= game->sdl.ly)
+	while (y < game->sdl.ly)
 	{
 		//currentDist = game->map.calcule[y];// distance
 		//printf("%f\n",currentDist);
@@ -344,7 +344,7 @@ void	game_render(t_game *game)
 
 		int y = drawStart;
 
-		while (y < drawEnd)
+		while (y <= drawEnd)
 		{
 			int texY = (y * 2 - game->sdl.ly + lineHeight)* (TEX_SIZE/2)/lineHeight;
 			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
