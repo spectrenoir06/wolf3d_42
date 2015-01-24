@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="53">
  <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
   <tile id="0">
    <image width="512" height="512" source="textures/0.bmp"/>
@@ -21,12 +21,12 @@
  </layer>
  <layer name="Mur" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt10sOgCAMBFDE+9/ZrTFAp00rLZnFrPi9ICD01lovkkuIVGdVjvSPjO/htLa9P8nmHNlW3h1Oae5G5bucUpsop2YfRTu/54P1PIl0eiZyfUZZvfd7pBdZD7udaOikM3PopDNzTnKibwNLPN4d2ruC1Yf0PXNa7l5ao6Z85UTGszq1dej8z1lhfb7rZ97vs28QcX4ifZ/0P8oQOunMHDrpzJxqzgp5AP9vCGY=
+   eJzt1ksOgCAMBFDE+9/ZrUGkH1rbxlnMCsEXKKS9tdaL5CBCfbMa56zP+b+FUzv3HJLNObOtvBFOau9m41FOao6XU3KPvJ3j+6B9TzydlvGsTy+r9X339HLqIdrJDZzP8+Ukg7PKfu544YTzi8DJf+M0Tov3U9orSL0WfYim95IaJeMrp1etWfbJcNo7K9Tn/fvM9/3tDHZ92rXRz8OZOXDCmTlw/ttZIRfwVAiS
   </data>
  </layer>
  <layer name="Plafond" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgCAMRmHN3v+Zu5VRTfCfUzgXHwTlOhBZtZRSHdckb75Kf8/2cfx37vTOZig67cxRb53emh06R9dlP3c6tftSZKfSKZ0jrdl9Xm92DwAAsyK/bYrZkf8KqtmR/17K2f31t0Enndmdyndy1ezd908AAHCuB4IeCV0=
+   eJztlUEKwCAMBG3t/9/cq4S2EboxEeYwIGjWATUerbXD4fyJl69i3LO/jL/mdvfsBoWnzZzlydOrqeA5W5d97nhq+1Kkp5JdPGdcs/0832wfiD3fqveykgueeO7qOfpmO2R7KnucrVdkR/ZkVXbk/6HMHtdfBjzxzPZUvslV2Uq/ldkAAABQnxs9igmV
   </data>
  </layer>
  <objectgroup name="obj">
@@ -217,6 +217,36 @@
    </properties>
   </object>
   <object id="47" name="table" type="obj" x="6000" y="7000" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="48" name="pedobear" x="8752" y="7312" width="512" height="512">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="49" name="Hans" type="nazi" x="13320" y="7176" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="50" name="Hans" type="nazi" x="13320" y="7717" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="51" name="pedobear" x="13320" y="8256" width="512" height="512">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="52" name="table" type="obj" x="13320" y="7184" width="512" height="512">
    <properties>
     <property name="text" value="1"/>
     <property name="type" value="1"/>

@@ -89,8 +89,8 @@ typedef struct 		s_color
 	unsigned char	b;
 }					t_color;
 
-# define NBSPRITE 4
-# define NBSPRITETEX 4
+# define NBSPRITE 5
+# define NBSPRITETEX 5
 
 typedef struct	s_sprite
 {
