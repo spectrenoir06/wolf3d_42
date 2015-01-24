@@ -22,7 +22,7 @@ void	game_init_sdl(t_game *game)
 
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
-			SDL_WINDOW_SHOWN,
+			SDL_WINDOW_FULLSCREEN,
 			&(game->sdl.win),
 			&(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd,
@@ -228,7 +228,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x, y, color);						// trace le sol
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x, y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y * 800 * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x, y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  WIN_X * 3)]);
 
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, color2);	// trace le plafond
