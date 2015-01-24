@@ -78,7 +78,7 @@ void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_c
 
 void	game_draw_all(t_game *game)
 {
-	hud_put(game);
+	//hud_put(game);
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
@@ -233,7 +233,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall wall, dou
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, color2);	// trace le plafond
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + ((game->sdl.ly - y - 1) * 800 * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + ((game->sdl.ly - y - 1) * WIN_X * 3)]);
 		y++;
 	}
 }
