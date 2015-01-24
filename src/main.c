@@ -37,6 +37,7 @@ int		main(void)
 	player_init(&game.player);
 	game_render(&game);
 	hud_render(&game);
+	hud_background(game);
 	game_draw_all(&game);
 	while (42)
 	{

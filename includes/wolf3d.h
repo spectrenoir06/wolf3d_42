@@ -185,6 +185,8 @@ typedef struct s_wall
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
+void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
+
 void	game_init_sdl(t_game *game);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);

@@ -13,6 +13,20 @@
 #include "wolf3d.h"
 #include <math.h>
 
+void	hud_background(t_game *game)
+{
+	SDL_Surface *hud[4];
+
+	hud[0] = SDL_LoadBMP("modes/1/hud/top.bmp");
+	hud[1] = SDL_LoadBMP("modes/1/hud/left.bmp");
+	hud[2] = SDL_LoadBMP("modes/1/hud/right.bmp");
+	hud[3] = SDL_LoadBMP("modes/1/hud/bottom.bmp");
+
+	bmp_draw(game, hud[0], 0, 0);
+	bmp_draw(game, hud[1], 0, 20);
+	bmp_draw(game, hud[2], game->sdl.lx - 40, 20);
+	bmp_draw(game, hud[3], 0, game->sdl.ly - 220);
+}
 
 void	hud_cross(t_game *game)
 {
@@ -42,10 +56,10 @@ void	hud_map(t_game *game)
 	int x = 0;
 	int y = 0;
 
-	t_color		sol = {255, 000, 000, 00};
-	t_color		mur = {000, 255, 000, 000};
-	t_color		perso = {000, 000, 255, 000};
-	t_color		face = {000, 100, 255, 000};
+	t_color		sol = {255, 000, 000};
+	t_color		mur = {000, 255, 000};
+	t_color		perso = {000, 000, 255};
+	t_color		face = {000, 100, 255};
 
 	while (x < game->map.lx)
 	{

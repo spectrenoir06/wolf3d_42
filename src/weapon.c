@@ -58,19 +58,24 @@ int		weapon_get_anim(t_player *player)
 	return (int)(player->w_anim);
 }
 
-void	weapon_draw(t_game *game)
+void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 {
 	int	x;
 	int	y;
 	t_color color;
 
-	for(x = 0; x < 512; x++)
+	for(x = 0; x < img->w; x++)
 	{
-		for(y = 0; y < 512; y++)
+		for(y = 0; y < img->h; y++)
 		{
-			memcpy(&color, &((Uint8 *)game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)]->pixels)[x * 3 + (y * 3 * 512)], 3);
+			memcpy(&color, &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
 			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				memcpy(&game->sdl.text_buf[x + game->sdl.lx / 2 - 256 + ((y + game->sdl.ly - 512) * game->sdl.lx)], &((Uint8 *)game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)]->pixels)[x * 3 + (y * 3* 512)], 3);
+				memcpy(&game->sdl.text_buf[x + startx + ((y + starty) * game->sdl.lx)], &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
 		}
 	}
+}
+
+void	weapon_draw(t_game *game)
+{
+	bmp_draw(game, game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512));
 }
