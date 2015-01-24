@@ -164,5 +164,5 @@ int		map_load(t_game *game, t_map *map, char *path)
 
 int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt)
 {
-	return (data[(int)trunc(pt.x) + (int)trunc(pt.y) * map->lx]);
+	return (data[((int)pt.x) + ((int)pt.y) * map->lx]);
 }
