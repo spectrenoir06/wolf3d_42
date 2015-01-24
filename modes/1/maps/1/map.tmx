@@ -19,12 +19,12 @@
    eJzt1DEOwCAIQFFqvf+Zu5soihIw/cPfFJ8LVUTqj3o7RbtmjGXxXjZn77y3d8WpGT2ttzhH72dz7v4Hp5812qd5oz1ERES7PU0nZ5emE76T3tZn9WrGHatmXLHixJnZOWO1GGetlpnZ9ycRERHd2weT1xmp
   </data>
  </layer>
- <layer name="Mur" width="42" height="42" opacity="0.5">
+ <layer name="Mur" width="42" height="42" visible="0" opacity="0.5">
   <data encoding="base64" compression="zlib">
    eJzt1ksOgCAMBFDE+9/ZrUGkH1rbxlnMCsEXKKS9tdaL5CBCfbMa56zP+b+FUzv3HJLNObOtvBFOau9m41FOao6XU3KPvJ3j+6B9TzydlvGsTy+r9X339HLqIdrJDZzP8+Ukg7PKfu544YTzi8DJf+M0Tov3U9orSL0WfYim95IaJeMrp1etWfbJcNo7K9Tn/fvM9/3tDHZ92rXRz8OZOXDCmTlw/ttZIRfwVAiS
   </data>
  </layer>
- <layer name="Plafond" width="42" height="42" opacity="0.5">
+ <layer name="Plafond" width="42" height="42" visible="0" opacity="0.5">
   <data encoding="base64" compression="zlib">
    eJztlUEKwCAMBG3t/9/cq4S2EboxEeYwIGjWATUerbXD4fyJl69i3LO/jL/mdvfsBoWnzZzlydOrqeA5W5d97nhq+1Kkp5JdPGdcs/0832wfiD3fqveykgueeO7qOfpmO2R7KnucrVdkR/ZkVXbk/6HMHtdfBjzxzPZUvslV2Uq/ldkAAABQnxs9igmV
   </data>
@@ -222,7 +222,7 @@
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="48" name="pedobear" x="8752" y="7312" width="512" height="512">
+  <object id="48" name="pedobear" x="16576" y="13872" width="512" height="512">
    <properties>
     <property name="text" value="4"/>
     <property name="type" value="1"/>

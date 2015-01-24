@@ -17,7 +17,7 @@
          "name":"Mur",
          "opacity":0.5,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":42,
          "x":0,
          "y":0
@@ -28,7 +28,7 @@
          "name":"Plafond",
          "opacity":0.5,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":42,
          "x":0,
          "y":0
@@ -563,8 +563,8 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":8752,
-                 "y":7312
+                 "x":16576,
+                 "y":13872
                 }, 
                 {
                  "height":512,

@@ -321,26 +321,26 @@ void	game_render(t_game *game)
 {
 	int	x = 0;
 
-	for(x = 0; x < game->sdl.lx; x++)
+	for(x = 0; x < GAME_LX; x++)
 	{
 		//calculate ray position and direction
 		t_ray ray;
 		t_wall wall;
 
-		double camera_x = 2.0 * x / (float)game->sdl.lx - 1; //x-coordinate in camera space
+		double camera_x = 2.0 * x / (float)GAME_LX - 1; //x-coordinate in camera space
 
 		init_ray(game, &ray, camera_x);
 		ray_caster(game, &ray, &wall);
 
-		int lineHeight = abs(game->sdl.ly / wall.dist);
+		int lineHeight = abs((GAME_LY) / wall.dist);
 
 		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + game->sdl.ly / 2;
+		int drawStart = (-lineHeight / 2 + GAME_LY / 2);
 		if(drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + game->sdl.ly / 2;
-		if(drawEnd >= game->sdl.ly)
-			drawEnd = game->sdl.ly - 1;
+		int drawEnd = lineHeight / 2 + (GAME_LY / 2);
+		if(drawEnd >= GAME_LY)
+			drawEnd = (GAME_LY) - 1;
 
 
 		double wallX;
@@ -359,23 +359,23 @@ void	game_render(t_game *game)
 
 		while (y <= drawEnd)
 		{
-			int texY = (y * 2 - game->sdl.ly + lineHeight)* (TEX_SIZE/2)/lineHeight;
+			int texY = (y * 2 - GAME_LY + lineHeight)* (TEX_SIZE/2)/lineHeight;
 			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
 
 			void *color;
 			color = &((Uint8 *)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * TEX_SIZE * 3)];
 			if (wall.side == 1)
-				game_draw_pixel_black(game, game->sdl.text_buf, game->sdl.lx - x, y, color);
+				game_draw_pixel_black(game, game->sdl.text_buf, GAME_X + (GAME_LX - x), GAME_Y + y, color);
 			else
-				game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - x, y, color);
+				game_draw_pixel(game, game->sdl.text_buf, GAME_X + (GAME_LX - x), GAME_Y  +y, color);
 			y++;
 		}
 		//y = (y < 0) ? 0 : y;
-		draw_floor_and_ceil(game, game->sdl.lx - x, y, ray, &wall, wallX);
-		game->Zbuffer[x] = wall.dist;
+		//draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
+		//game->Zbuffer[x] = wall.dist;
 
 	}
-	game_draw_sprites(game);
+	//game_draw_sprites(game);
 }
 
 int		game_event_handler(t_game *game)
