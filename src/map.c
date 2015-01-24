@@ -82,30 +82,6 @@ void	map_init(t_game *game)
 	}
 }
 
-void	map_draw(t_game *game)
-{
-	int x = 0;
-	int y = 0;
-
-	t_color		sol = {255, 000, 000, 00};
-	t_color		mur = {000, 255, 000, 000};
-	t_color		perso = {000, 000, 255, 000};
-	t_color		face = {000, 100, 255, 000};
-
-	while (x < game->map.lx)
-	{
-		y = 0;
-		while (y < game->map.ly)
-		{
-			game_draw_rect(game, game->sdl.hud_buf, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
-			y++;
-		}
-		x++;
-	}
-	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
-	game_draw_rect(game, game->sdl.hud_buf, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
-}
-
 int		map_load(t_game *game, t_map *map, char *path)
 {
 	int		i;

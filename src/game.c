@@ -78,7 +78,6 @@ void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_c
 
 void	game_draw_all(t_game *game)
 {
-	hud_put(game);
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);

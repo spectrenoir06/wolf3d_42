@@ -13,35 +13,14 @@
 #include "wolf3d.h"
 #include <math.h>
 
-void	hud_fill(t_game *game)
-{
-	int		x;
-	int		y;
-	t_color	c;
-
-	c.r = 255;
-	c.g = 0;
-	c.b = 255;
-	x = 0;
-	while (x < game->sdl.lx)
-	{
-		y = 0;
-		while (y < game->sdl.ly)
-		{
-			memcpy(&game->sdl.hud_buf[x + (y * game->sdl.lx)], &c, 3);
-			y++;
-		}
-		x++;
-	}
-}
 
 void	hud_cross(t_game *game)
 {
 	t_color color = {255, 0, 254};
-	game_draw_rect(game, game->sdl.hud_buf, game->sdl.lx / 2 - 20, game->sdl.ly / 2 - 2, 10, 4, color);
-	game_draw_rect(game, game->sdl.hud_buf, game->sdl.lx / 2 + 10, game->sdl.ly / 2 - 2, 10, 4, color);
-	game_draw_rect(game, game->sdl.hud_buf, game->sdl.lx / 2 - 2, game->sdl.ly / 2 - 20, 4, 10, color);
-	game_draw_rect(game, game->sdl.hud_buf, game->sdl.lx / 2 - 2, game->sdl.ly / 2 + 10, 4, 10, color);
+	game_draw_rect(game, game->sdl.text_buf, game->sdl.lx / 2 - 20, game->sdl.ly / 2 - 2, 10, 4, color);
+	game_draw_rect(game, game->sdl.text_buf, game->sdl.lx / 2 + 10, game->sdl.ly / 2 - 2, 10, 4, color);
+	game_draw_rect(game, game->sdl.text_buf, game->sdl.lx / 2 - 2, game->sdl.ly / 2 - 20, 4, 10, color);
+	game_draw_rect(game, game->sdl.text_buf, game->sdl.lx / 2 - 2, game->sdl.ly / 2 + 10, 4, 10, color);
 }
 
 void	hud_fps(t_game *game)
@@ -52,30 +31,32 @@ void	hud_fps(t_game *game)
 
 void	hud_render(t_game *game)
 {
-	hud_fill(game);
-	map_draw(game);
+	hud_map(game);
 	hud_cross(game);
+	weapon_animate(game, &game->player);
 	weapon_draw(game);
 }
 
-void	hud_put(t_game *game)
+void	hud_map(t_game *game)
 {
-	int	x;
-	int	y;
-	t_color color;
+	int x = 0;
+	int y = 0;
 
-	for(x = 0; x < game->sdl.lx; x++)
+	t_color		sol = {255, 000, 000, 00};
+	t_color		mur = {000, 255, 000, 000};
+	t_color		perso = {000, 000, 255, 000};
+	t_color		face = {000, 100, 255, 000};
+
+	while (x < game->map.lx)
 	{
-		for(y = 0; y < game->sdl.ly; y++)
+		y = 0;
+		while (y < game->map.ly)
 		{
-			memcpy(&color, &game->sdl.hud_buf[x + (y * game->sdl.lx)], 3);
-			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &game->sdl.hud_buf[x + (y * game->sdl.lx)], 3);
+			game_draw_rect(game, game->sdl.text_buf, x * 4, y * 4, 4, 4, (game->map.wall[x + (y * game->map.lx)] ? mur : sol));
+			y++;
 		}
+		x++;
 	}
-}
-
-int		hud_need_render(t_game *game)
-{
-	return (weapon_animate(game, &game->player));
+	game_draw_rect(game, game->sdl.text_buf, game->player.pos.x * 4, game->player.pos.y * 4, 2 , 2, perso);
+	game_draw_rect(game, game->sdl.text_buf, game->player.pos.x * 4 + (game->player.dir.x * 4), game->player.pos.y * 4 + (game->player.dir.y * 4), 2 , 2, face);
 }
