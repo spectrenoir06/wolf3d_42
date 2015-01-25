@@ -27,9 +27,9 @@
 
 # define WIN_X 1600
 # define WIN_Y 900
-# define GAME_X 40
-# define GAME_Y 20
-# define GAME_LX (WIN_X - (2 * GAME_X))
+# define GAME_X 0
+# define GAME_Y 0
+# define GAME_LX (WIN_X - (2 * 20))
 # define GAME_LY 660
 # define TEX_SIZE 512
 # define SINT16_MAX 32767

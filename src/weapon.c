@@ -77,5 +77,5 @@ void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 
 void	weapon_draw(t_game *game)
 {
-	bmp_draw(game, game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512));
+	bmp_draw(game, game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
 }

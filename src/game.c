@@ -217,7 +217,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 		floor.y = wall->map.y + 1.0;
 	}
 
-	while (y < game->sdl.ly)
+	while (y < GAME_LY)
 	{
 		//currentDist = game->map.calcule[y];// distance
 		//printf("%f\n",currentDist);
@@ -239,14 +239,14 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 		color2 = (void *) &((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
-			game_draw_pixel(game, game->sdl.text_buf, x, y, color);						// trace le sol
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, color);						// trace le sol
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x, y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  WIN_X * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  (game->map.sky->w) * 3)]);
 
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
-			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, color2);	// trace le plafond
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y - 1, color2);	// trace le plafond
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x, game->sdl.ly - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + ((game->sdl.ly - y - 1) * WIN_X * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y - 1) * (GAME_LX) * 3)]);
 		y++;
 	}
 }
@@ -275,42 +275,42 @@ void	game_draw_sprites(t_game *game)
 		double	transformX = invdet * (game->player.dir.y * spritex - game->player.dir.x * spritey);
 		double	transformY = invdet * (-game->player.plane.y * spritex + game->player.plane.x * spritey);
 
-		int		spriteScreenX = (int)((game->sdl.lx / 2.0) * (1 + transformX / transformY));
+		int		spriteScreenX = (int)(((GAME_LX) / 2.0) * (1 + transformX / transformY));
 
-		int		spriteheight = abs((int)(game->sdl.ly / transformY));
+		int		spriteheight = abs((int)((GAME_LY) / transformY));
 
-		int		drawStartY = -spriteheight / 2.0 + game->sdl.ly / 2.0;
+		int		drawStartY = -spriteheight / 2.0 + (GAME_LY) / 2.0;
 		if (drawStartY < 0)
 			drawStartY = 0;
-		int		drawEndY = spriteheight / 2.0 + game->sdl.ly / 2.0;
-		if (drawEndY >= game->sdl.ly)
-			drawEndY = game->sdl.ly - 1;
+		int		drawEndY = spriteheight / 2.0 + (GAME_LY) / 2.0;
+		if (drawEndY >= (GAME_LY))
+			drawEndY = (GAME_LY) - 1;
 
-		int		spriteWidth = abs((int)(game->sdl.ly / transformY));
+		int		spriteWidth = abs((int)((GAME_LY) / transformY));
 		int		drawStartX = -spriteWidth / 2.0 + spriteScreenX;
 		if (drawStartX < 0)
 			drawStartX = 0;
 		int		drawEndX = spriteWidth / 2.0 + spriteScreenX;
-		if (drawEndX >= game->sdl.lx)
-			drawEndX = game->sdl.lx - 1;
+		if (drawEndX >= (GAME_LX))
+			drawEndX = (GAME_LX) - 1;
 
 		int stripe;
 		for (stripe = drawStartX; stripe <= drawEndX; stripe++)
 		{
 			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
-			if (transformY > 0 && stripe > 0 && stripe < game->sdl.lx && transformY < game->Zbuffer[stripe])
+			if (transformY > 0 && stripe > 0 && stripe < (GAME_LX) && transformY < game->Zbuffer[stripe])
 			{
 
 				for (y = drawStartY; y < drawEndY; y++)
 				{
-					int	d = y - game->sdl.ly / 2.0 + spriteheight / 2.0;
+					int	d = y - (GAME_LY) / 2.0 + spriteheight / 2.0;
 					int	texY = ((d * 512) / spriteheight);
 
 					t_color *color;
 					color = (t_color *) &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
-						game_draw_pixel(game, game->sdl.text_buf, game->sdl.lx - stripe, y, color);
+						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
 				}
 			}
 		}
@@ -371,7 +371,7 @@ void	game_render(t_game *game)
 			y++;
 		}
 		//y = (y < 0) ? 0 : y;
-		//draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
+		draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
 		//game->Zbuffer[x] = wall.dist;
 
 	}

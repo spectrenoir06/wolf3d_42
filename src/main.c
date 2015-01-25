@@ -31,8 +31,8 @@ int		main(void)
 	game_init_sdl(&game);
 	map_init(&game);
 
-	for (i = (game.sdl.ly / 2); i < game.sdl.ly; i++)
-		game.map.calcule[i] = game.sdl.ly / (2.0 * i - game.sdl.ly);
+	for (i = ((GAME_LY) / 2); i < (GAME_LY); i++)
+		game.map.calcule[i] = (GAME_LY) / (2.0 * i - (GAME_LY));
 
 	player_init(&game.player);
 	game_render(&game);
