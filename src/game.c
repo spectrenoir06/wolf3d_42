@@ -384,7 +384,7 @@ int		game_event_handler(t_game *game)
 {
 	 SDL_Event event;
 
-	if (!SDL_PollEvent(&event)c)
+	if (!SDL_PollEvent(&event))
 		return (0);
 	if (event.type == SDL_MOUSEMOTION)
 	{
