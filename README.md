@@ -1,7 +1,7 @@
-# wolf3d_42
+# wolf3d_42 :suspect:
 
 - Important:
-  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang:
+  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang::finnadie:
   - [x] floor texture
   - [x] ceil texture
   - [ ] skybox
@@ -20,8 +20,8 @@
   - [x] dev map loader
 
 - Multimode:
-  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html))
-  - [ ] 42stein
+  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)) :suspect:
+  - [ ] 42stein 
   - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
   - [ ] The Binding of Isaac
   
