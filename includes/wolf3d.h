@@ -153,7 +153,7 @@ typedef struct s_map
 	t_sprite	**sprite_ptr;
 	SDL_Surface *sprite_tex[10];
 	SDL_Surface *weapon_tex[10][5];
-	double		calcule[WIN_Y / 2];
+	double		calcule[GAME_LY / 2];
 }				t_map;
 
 typedef struct s_game

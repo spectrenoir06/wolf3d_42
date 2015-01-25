@@ -249,6 +249,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 		else
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y - 1) * (game->map.sky->w) * 3)]);
 		y++;
+		//SDL_Delay(32);
 	}
 }
 
@@ -373,7 +374,7 @@ void	game_render(t_game *game)
 		}
 		//y = (y < 0) ? 0 : y;
 		draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
-		//game->Zbuffer[x] = wall.dist;
+		game->Zbuffer[x] = wall.dist;
 
 	}
 	game_draw_sprites(game);
@@ -383,7 +384,7 @@ int		game_event_handler(t_game *game)
 {
 	 SDL_Event event;
 
-	if (!SDL_PollEvent(&event))
+	if (!SDL_PollEvent(&event)c)
 		return (0);
 	if (event.type == SDL_MOUSEMOTION)
 	{
