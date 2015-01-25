@@ -245,9 +245,9 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  (game->map.sky->w) * 3)]);
 
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y - 1, color2);	// trace le plafond
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, color2);	// trace le plafond
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y - 1, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y - 1) * (game->map.sky->w) * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y - 1) * (game->map.sky->w) * 3)]);
 		y++;
 		//SDL_Delay(32);
 	}
