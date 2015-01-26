@@ -46,7 +46,7 @@ void	hud_fps(t_game *game)
 void	hud_render(t_game *game)
 {
 	hud_map(game);
-	hud_cross(game);
+	//hud_cross(game);
 	weapon_animate(game, &game->player);
 	weapon_draw(game);
 }
