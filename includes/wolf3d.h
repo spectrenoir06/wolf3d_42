@@ -99,7 +99,10 @@ typedef struct 		s_color
 typedef struct	s_sprite
 {
 	t_vect2dd	pos;
+	t_vect2dd	dir;
 	int			texture;
+	int			tex_anim;
+	int			tex_focus;
 	double		dist;
 	int			type;
 }				t_sprite;
@@ -151,7 +154,7 @@ typedef struct s_map
 	SDL_Surface *sky;
 	t_sprite	*sprite;
 	t_sprite	**sprite_ptr;
-	SDL_Surface *sprite_tex[10];
+	SDL_Surface *sprite_tex[10][8];
 	SDL_Surface *weapon_tex[10][5];
 	double		calcule[GAME_LY / 2];
 }				t_map;

@@ -296,20 +296,32 @@ void	game_draw_sprites(t_game *game)
 			drawEndX = (GAME_LX) - 1;
 
 		int stripe;
+		int	i;
 		for (stripe = drawStartX; stripe <= drawEndX; stripe++)
 		{
 			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
 			if (transformY > 0 && stripe > 0 && stripe < (GAME_LX) && transformY < game->Zbuffer[stripe])
 			{
-
 				for (y = drawStartY; y < drawEndY; y++)
 				{
 					int	d = y - (GAME_LY) / 2.0 + spriteheight / 2.0;
 					int	texY = ((d * 512) / spriteheight);
 
 					t_color *color;
-					color = (t_color *) &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+					double	angle;
+					t_vect2dd	pos;
+					pos.x = game->player.pos.x - game->map.sprite_ptr[x]->pos.x;
+					pos.y = game->player.pos.y - game->map.sprite_ptr[x]->pos.y;
+					angle = atan2(pos.y, pos.x) - atan2(game->map.sprite_ptr[x]->dir.y, game->map.sprite_ptr[x]->dir.x) + M_PI_4 / 2;
+					if (angle < 0)
+						angle += 2 * M_PI;
+					i = ((angle) / (M_PI * 2.0) * 8.0);
+					if (i > 7)
+						i = 7;
+					if (i < 0)
+						i = 0;
+					color = (t_color *) &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture][i]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
 				}

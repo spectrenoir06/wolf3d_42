@@ -53,7 +53,7 @@ int		main(void)
 			hud_render(&game);
 			game_draw_all(&game);	// update screen
 		}
-		printf("%f ; %f\n",1/game.dt, game.dt);
+		//printf("%f ; %f\n",1/game.dt, game.dt);
 
 	}
 	return (0);
