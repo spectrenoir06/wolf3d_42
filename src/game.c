@@ -325,6 +325,7 @@ void	game_draw_sprites(t_game *game)
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
 				}
+//				printf("angle2 -> %d\n", i);
 			}
 		}
 	}
