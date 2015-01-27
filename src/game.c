@@ -514,11 +514,11 @@ int		game_event_handler(t_game *game)
 	{
 		double test;
 		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_Y] = event.jaxis.value;
+			game->input[MOV_Y] = -event.jaxis.value - 1;
 		else if (event.jaxis.axis == 1)
 			game->input[MOV_Y] = 0, Mix_FadeOutChannel(1, 200);
 		if (event.jaxis.axis == 0 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_X] = event.jaxis.value;
+			game->input[MOV_X] = -event.jaxis.value - 1;
 		else if (event.jaxis.axis == 0)
 			game->input[MOV_X] = 0, Mix_FadeOutChannel(1, 200);
 		if (event.jaxis.axis == 3 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
