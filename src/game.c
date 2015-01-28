@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <math.h>
 
 void	game_init_sdl(t_game *game)
 {
@@ -238,15 +239,19 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 
 		color2 = (void *) &((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
+		double	angle = atan2(game->player.dir.y, game->player.dir.x);
+		int	sky = x + (angle) / (M_PI * 2.0) * (double)(game->map.sky->w - 1);
+		sky %= game->map.sky->w;
+
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, color);						// trace le sol
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  (game->map.sky->w) * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (y *  (game->map.sky->w) * 3)]);
 
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, color2);	// trace le plafond
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
 		y++;
 		//SDL_Delay(32);
 	}
