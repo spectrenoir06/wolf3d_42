@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="85">
+ <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
+  <tile id="0">
+   <image width="512" height="512" source="textures/0.bmp"/>
+  </tile>
+  <tile id="1">
+   <image width="512" height="512" source="textures/1.bmp"/>
+  </tile>
+  <tile id="2">
+   <image width="512" height="512" source="textures/2.bmp"/>
+  </tile>
+  <tile id="3">
+   <image width="512" height="512" source="textures/3.bmp"/>
+  </tile>
+  <tile id="4">
+   <image width="512" height="512" source="textures/4.bmp"/>
+  </tile>
+  <tile id="5">
+   <image width="512" height="512" source="textures/5.png"/>
+  </tile>
+ </tileset>
+ <layer name="Sol" width="42" height="42" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1DEOwCAIQFFqvf+Zu5soihIw/cPfFJ8LVUTqj3o7RbtmjGXxXjZn77y3d8WpGT2ttzhH72dz7v4Hp5812qd5oz1ERES7PU0nZ5emE76T3tZn9WrGHatmXLHixJnZOWO1GGetlpnZ9ycRERHd2weT1xmp
+  </data>
+ </layer>
+ <layer name="Mur" width="42" height="42" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJztlsEOgzAMQ0ET+/9P3mmXKE7sNC3dxMEXQPBqO7TncRzno0d/rhehrm9djrL7X2UcncyIC923HBkn+6zKaa9FnGpHunJnerCTn1EHduknwxlxzJz30ectTxcf279sxlZwKrl764ry7coczUZ0LfNQva9wovyZzkb/nJV+jnJ29xOxM5xRP7s5o3NG1lEvZyXzdyLFO+S9esZCnNEaOjiV/CLPWM7RLs/SHZzIt11z93owm1OdI8tZ8TM7Kyt+IZ8QZ+W/dDnXKv1jOTMhjpWcmZCHKzm9jnp+q/3M5qbCyax79D/dwan6OYvTdo3ppNfPUaF3K3t4h0d2ptismQ6McmZ7S+X73Zwel3J2XOVnlDni9PbK2f1kst7NT0Z3zXuF81f87HxuZe7R3lLRB9sJDZY=
+  </data>
+ </layer>
+ <layer name="Plafond" width="42" height="42" visible="0" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJztlUEKwCAMBG3t/9/cq4S2EboxEeYwIGjWATUerbXD4fyJl69i3LO/jL/mdvfsBoWnzZzlydOrqeA5W5d97nhq+1Kkp5JdPGdcs/0832wfiD3fqveykgueeO7qOfpmO2R7KnucrVdkR/ZkVXbk/6HMHtdfBjzxzPZUvslV2Uq/ldkAAABQnxs9igmV
+  </data>
+ </layer>
+ <objectgroup name="obj" visible="0"/>
+ <imagelayer name="Image Layer 1" opacity="0.26">
+  <image source="../../../../../../Desktop/WOLF3D_E1M01.PNG"/>
+ </imagelayer>
+</map>
