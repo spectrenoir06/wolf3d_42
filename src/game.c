@@ -240,7 +240,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 		color2 = (void *) &((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
 		double	angle = atan2(game->player.dir.y, game->player.dir.x);
-		int	sky = x + (angle) / (M_PI * 2.0) * (double)(game->map.sky->w - 1);
+		int	sky = x + (angle) / (M_PI ) * (double)(game->map.sky->w );
 		sky %= game->map.sky->w;
 
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
