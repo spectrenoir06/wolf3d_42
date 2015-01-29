@@ -18,6 +18,8 @@ int		weapon_load(t_game *game, t_map *map, int n)
 	int	i;
 	int	j;
 	char	buff[255];
+	char	*nbi;
+	char	*nbj;
 
 	i = 0;
 	while (i < n)
@@ -25,9 +27,13 @@ int		weapon_load(t_game *game, t_map *map, int n)
 		j = 0;
 		while (j < 5)
 		{
-			ft_kebab(buff, "modes/1/maps/1/weapons/", ft_itoa(i + 1), "/", ft_itoa(j + 1), ".bmp", NULL);
+			nbi = ft_itoa(i + 1);
+			nbj = ft_itoa(j + 1);
+			ft_kebab(buff, "modes/1/maps/1/weapons/", nbi, "/", nbj, ".bmp", NULL);
 			ft_putendl(buff);
 			map->weapon_tex[i + 1][j] = SDL_LoadBMP(buff);
+			free(nbi);
+			free(nbj);
 			j++;
 		}
 		i++;
