@@ -23,8 +23,6 @@
 #  include <SDL/SDL_mixer.h>
 # endif
 
-
-
 # define WIN_X 1600
 # define WIN_Y 900
 # define GAME_X 40
@@ -35,6 +33,11 @@
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
+
+//# define NBSPRITE 5
+# define NB_SPRITE_TEX 5
+# define NB_WEAPON_TEX 1
+# define NB_WEAPON_TEX_FRAME 5
 
 //# define MUSICS_REP modes/1/maps/1/music
 //# define SOUNDS_REP modes/1/maps/1/sfx
@@ -93,10 +96,7 @@ typedef struct 		s_color
 	unsigned char	b;
 }					t_color;
 
-# define NBSPRITE 5
-# define NBSPRITETEX 5
-
-typedef struct	s_sprite
+typedef struct	s_entity
 {
 	t_vect2dd	pos;
 	t_vect2dd	dir;
@@ -105,6 +105,12 @@ typedef struct	s_sprite
 	int			tex_focus;
 	double		dist;
 	int			type;
+}				t_entity;
+
+typedef struct s_sprite
+{
+	SDL_Surface	*tex;
+	int			frames;
 }				t_sprite;
 
 typedef struct	s_player
@@ -146,16 +152,16 @@ typedef struct s_map
 {
 	int			lx;
 	int			ly;
-	int			nb_obj;
+	int			nb_entity;
 	Uint8		*floor;
 	Uint8		*wall;
 	Uint8		*ceil;
 	SDL_Surface *textures[10];
 	SDL_Surface *sky;
-	t_sprite	*sprite;
-	t_sprite	**sprite_ptr;
-	SDL_Surface *sprite_tex[10][8];
-	SDL_Surface *weapon_tex[10][5];
+	t_entity	*entity;
+	t_entity	**entity_ptr;
+	t_sprite 	sprite[NB_SPRITE_TEX];
+	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];
 	double		calcule[GAME_LY / 2];
 }				t_map;
 

@@ -46,17 +46,16 @@ void	sprite_load(t_game *game, t_map *map)
 	int		i;
 	int		j;
 	char	buff[256];
+	char	*nb;
 
 	i = 0;
-	while (i < NBSPRITETEX)
+	while (i < NB_SPRITE_TEX)
 	{
-		j = 0;
-		while (j <= 7)
-		{
-			ft_kebab(buff, "modes/1/maps/1/sprites/", ft_itoa(i), "/", ft_itoa(j), ".bmp", NULL);
-			map->sprite_tex[i][j] = SDL_LoadBMP(buff);
-			j++;
-		}
+		nb = ft_itoa(i);
+		ft_kebab(buff, "modes/1/maps/1/sprites/", nb, ".bmp", NULL);
+		map->sprite[i].tex = SDL_LoadBMP(buff);
+		map->sprite[i].frames = map->sprite[i].tex->w / TEX_SIZE;
+		//free(nb);
 		i++;
 	}
 }
@@ -81,9 +80,9 @@ void	map_init(t_game *game)
 
 	x = 0;
 
-	while (x < game->map.nb_obj)
+	while (x < game->map.nb_entity)
 	{
-		game->map.sprite_ptr[x] = &game->map.sprite[x];
+		game->map.entity_ptr[x] = &game->map.entity[x];
 		x++;
 	}
 }
@@ -102,7 +101,7 @@ int		map_load(t_game *game, t_map *map, char *path)
 		return (ret);
 	if ((ret = read(fd, &(map->ly), 4)) <= 0)
 		return (ret);
-	if ((ret = read(fd, &(map->nb_obj), 4)) <= 0)
+	if ((ret = read(fd, &(map->nb_entity), 4)) <= 0)
 			return (ret);
 	if ((ret = read(fd, &textures, 4)) <= 0)
 		return (ret);
@@ -120,9 +119,9 @@ int		map_load(t_game *game, t_map *map, char *path)
 	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 
-	map->sprite = (t_sprite *)ft_malloc(sizeof(t_sprite) * map->nb_obj);
-	map->sprite_ptr = (t_sprite **)ft_malloc(sizeof(t_sprite * ) * map->nb_obj);
-	printf("nb obj = %d\n", map->nb_obj);
+	map->entity = (t_entity *)ft_malloc(sizeof(t_entity) * map->nb_entity);
+	map->entity_ptr = (t_entity **)ft_malloc(sizeof(t_entity * ) * map->nb_entity);
+	printf("entity number = %d\n", map->nb_entity);
 	i = 0;
 	while (i < (map->lx * map->ly))
 	{
@@ -147,22 +146,22 @@ int		map_load(t_game *game, t_map *map, char *path)
 	float tmp_y;
 
 	i = 0;
-	while (i < map->nb_obj)
+	while (i < map->nb_entity)
 	{
 
 		read(fd, &tmp_x, sizeof(float));
 		read(fd, &tmp_y, sizeof(float));
-		map->sprite[i].pos.x = tmp_x;
-		map->sprite[i].pos.y = tmp_y;
-		map->sprite[i].dir.x = 1;
-		map->sprite[i].dir.y = 0;
-		read(fd, &map->sprite[i].type, sizeof(Uint32));
-		read(fd, &map->sprite[i].texture, sizeof(Uint32));
+		map->entity[i].pos.x = tmp_x;
+		map->entity[i].pos.y = tmp_y;
+		map->entity[i].dir.x = 1;
+		map->entity[i].dir.y = 0;
+		read(fd, &map->entity[i].type, sizeof(Uint32));
+		read(fd, &map->entity[i].texture, sizeof(Uint32));
 
-		printf("x obj = %f\n", tmp_x);
-		printf("y obj = %f\n", tmp_y);
-		printf("type obj = %d\n",map->sprite[i].type);
-		printf("text obj = %d\n",map->sprite[i].texture);
+		printf("entity x = %f\n", tmp_x);
+		printf("entity y = %f\n", tmp_y);
+		printf("type entity = %d\n",map->entity[i].type);
+		printf("tex entity = %d\n",map->entity[i].texture);
 
 		i++;
 	}
