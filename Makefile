@@ -38,7 +38,7 @@ STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
 ##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
 
-CC			= gcc -O4
+CC			= gcc
 FLAGS		=  ##-Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
 
@@ -68,10 +68,10 @@ $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
 	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
+	$(CC) -O4 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
+	$(CC) -O4 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS) -g
