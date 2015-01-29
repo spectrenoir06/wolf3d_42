@@ -6,7 +6,7 @@
 #    By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 10:11:24 by adoussau          #+#    #+#              #
-#    Updated: 2015/01/16 17:07:27 by adoussau         ###   ########.fr        #
+#    Updated: 2015/01/26 23:43:03 by eteyssed         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,10 +45,6 @@ NORMINETTE	= ~/project/colorminette/colorminette
 UNAME_S := $(shell uname -s)
 
 NAME := $(shell whoami)
-
-ifeq ($(NAME),eteyssed)
-	./tools/test.kill
-endif
 
 ifeq ($(UNAME_S),Linux)
 	SDL	= -lSDL2 -lm -lSDL_mixer
