@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <math.h>
 
 void	game_init_sdl(t_game *game)
 {
@@ -238,23 +239,27 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 
 		color2 = (void *) &((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
 
+		double	angle = atan2(game->player.dir.y, game->player.dir.x);
+		int	sky = x + (angle) / (M_PI ) * (double)(game->map.sky->w );
+		sky %= game->map.sky->w;
+
 		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, color);						// trace le sol
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (y *  (game->map.sky->w) * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (y *  (game->map.sky->w) * 3)]);
 
 		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, color2);	// trace le plafond
 		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[x * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
+			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
 		y++;
 		//SDL_Delay(32);
 	}
 }
 
-int		sprite_compare(void *sprite1, void *sprite2)
+int		sprite_compare(void *entity1, void *entity2)
 {
-	return (((t_sprite *)sprite2)->dist - ((t_sprite *)sprite1)->dist);
+	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
 }
 
 void	game_draw_sprites(t_game *game)
@@ -262,14 +267,14 @@ void	game_draw_sprites(t_game *game)
 	int	y;
 	int x;
 
-   for(x = 0; x < game->map.nb_obj; x++)
-	  game->map.sprite[x].dist = ((game->player.pos.x - game->map.sprite[x].pos.x) * (game->player.pos.x - game->map.sprite[x].pos.x) + (game->player.pos.y - game->map.sprite[x].pos.y) * (game->player.pos.y - game->map.sprite[x].pos.y));
+   for(x = 0; x < game->map.nb_entity; x++)
+	  game->map.entity[x].dist = ((game->player.pos.x - game->map.entity[x].pos.x) * (game->player.pos.x - game->map.entity[x].pos.x) + (game->player.pos.y - game->map.entity[x].pos.y) * (game->player.pos.y - game->map.entity[x].pos.y));
 
-	ft_sort_qck((void **)game->map.sprite_ptr,  game->map.nb_obj, sprite_compare);
-	for(x = 0; x <  game->map.nb_obj; x++)
+	ft_sort_qck((void **)game->map.entity_ptr,  game->map.nb_entity, sprite_compare);
+	for(x = 0; x <  game->map.nb_entity; x++)
 	{
-		double	spritex = game->map.sprite_ptr[x]->pos.x - game->player.pos.x;
-		double	spritey = game->map.sprite_ptr[x]->pos.y - game->player.pos.y;
+		double	spritex = game->map.entity_ptr[x]->pos.x - game->player.pos.x;
+		double	spritey = game->map.entity_ptr[x]->pos.y - game->player.pos.y;
 
 		double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
 
@@ -311,17 +316,22 @@ void	game_draw_sprites(t_game *game)
 					t_color *color;
 					double	angle;
 					t_vect2dd	pos;
-					pos.x = game->player.pos.x - game->map.sprite_ptr[x]->pos.x;
-					pos.y = game->player.pos.y - game->map.sprite_ptr[x]->pos.y;
-					angle = atan2(pos.y, pos.x) - atan2(game->map.sprite_ptr[x]->dir.y, game->map.sprite_ptr[x]->dir.x) + M_PI_4 / 2;
-					if (angle < 0)
-						angle += 2 * M_PI;
-					i = ((angle) / (M_PI * 2.0) * 8.0);
-					if (i > 7)
-						i = 7;
-					if (i < 0)
+					pos.x = game->player.pos.x - game->map.entity_ptr[x]->pos.x;
+					pos.y = game->player.pos.y - game->map.entity_ptr[x]->pos.y;
+					if (game->map.sprite[game->map.entity_ptr[x]->texture].frames == 8)
+					{
+						angle = atan2(pos.y, pos.x) - atan2(game->map.entity_ptr[x]->dir.y, game->map.entity_ptr[x]->dir.x) + M_PI_4 / 2;
+						if (angle < 0)
+							angle += 2 * M_PI;
+						i = ((angle) / (M_PI * 2.0) * 8.0);
+						if (i > 7)
+							i = 7;
+						if (i < 0)
+							i = 0;
+					}
+					else
 						i = 0;
-					color = (t_color *) &((Uint8*)(game->map.sprite_tex[game->map.sprite_ptr[x]->texture][i]->pixels))[(int)texX * 3 + (texY * 3 * 512)];
+					color = (t_color *) &((Uint8*)(game->map.sprite[game->map.entity_ptr[x]->texture].tex->pixels))[(int)texX * 3 + (texY * 3 * game->map.sprite[game->map.entity_ptr[x]->texture].tex->w) + (i * 3 * TEX_SIZE)];
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
 				}
