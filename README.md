@@ -4,7 +4,7 @@
   - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang::finnadie:
   - [x] floor texture
   - [x] ceil texture
-  - [ ] skybox
+  - [x] skybox
   - [ ] sprite 360
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
