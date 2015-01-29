@@ -5,7 +5,7 @@
   - [x] floor texture
   - [x] ceil texture
   - [x] skybox
-  - [ ] sprite 360
+  - [x] sprite 360
   - [x] simplifier raycasting
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
   - [x] gestion propre des couleurs (revoir t_color)
