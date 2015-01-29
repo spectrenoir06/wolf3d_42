@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="85">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="84">
+ <properties>
+  <property name="startDirX" value="0"/>
+  <property name="startDirY" value="-1"/>
+  <property name="startX" value="39"/>
+  <property name="startY" value="39"/>
+ </properties>
  <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
   <tile id="0">
    <image width="512" height="512" source="textures/0.bmp"/>
@@ -13,30 +19,424 @@
   <tile id="3">
    <image width="512" height="512" source="textures/3.bmp"/>
   </tile>
-  <tile id="4">
-   <image width="512" height="512" source="textures/4.bmp"/>
-  </tile>
-  <tile id="5">
-   <image width="512" height="512" source="textures/5.png"/>
-  </tile>
  </tileset>
- <layer name="Sol" width="42" height="42" visible="0">
+ <layer name="Sol" width="42" height="42">
   <data encoding="base64" compression="zlib">
-   eJzt1DEOwCAIQFFqvf+Zu5soihIw/cPfFJ8LVUTqj3o7RbtmjGXxXjZn77y3d8WpGT2ttzhH72dz7v4Hp5812qd5oz1ERES7PU0nZ5emE76T3tZn9WrGHatmXLHixJnZOWO1GGetlpnZ9ycRERHd2weT1xmp
+   eJzt2DEOwCAIQFFrvf+ZO3QzsaBCwPQPf1N8Lg62Ukr7UfegaJfGWCf3ZXOO1nt7Z5yS0dN6ivPr/GzO3fvg9LNG+yRvtIeIiGi3q8tydu2y8Fl6e9+qVzLuWCXjjBUnzsxOjXXFqLWuzMz+fhIR0dupf044fazRJq3zAWurGY0=
   </data>
  </layer>
  <layer name="Mur" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJztlsEOgzAMQ0ET+/9P3mmXKE7sNC3dxMEXQPBqO7TncRzno0d/rhehrm9djrL7X2UcncyIC923HBkn+6zKaa9FnGpHunJnerCTn1EHduknwxlxzJz30ectTxcf279sxlZwKrl764ry7coczUZ0LfNQva9wovyZzkb/nJV+jnJ29xOxM5xRP7s5o3NG1lEvZyXzdyLFO+S9esZCnNEaOjiV/CLPWM7RLs/SHZzIt11z93owm1OdI8tZ8TM7Kyt+IZ8QZ+W/dDnXKv1jOTMhjpWcmZCHKzm9jnp+q/3M5qbCyax79D/dwan6OYvTdo3ppNfPUaF3K3t4h0d2ptismQ6McmZ7S+X73Zwel3J2XOVnlDni9PbK2f1kst7NT0Z3zXuF81f87HxuZe7R3lLRB9sJDZY=
+   eJzt2UkOgCAMBVDE+9/ZlQmpSH9LCzV28eOC6YUpJNZSSv1IDiZcnVE50j8yvoVT2/Ykiebs2UbeHU5u7nrlu5xcGy+n5Bx5O+n9oL1PPJ2W8dyfXlbr8+7pRfbDbieadD7XF8kqZyXf1hlpPjmn1pvOdHo6qffPTvSOa/tDnRb3p/StIInVO0Tz9pIaJeUjJzKe1imtk851zi/sz7Z+5PP+tgazPm3f+Z5PZ+SkM51RMvMfYXciOnumiM7bhe6FaLkACyIIqw==
   </data>
  </layer>
- <layer name="Plafond" width="42" height="42" visible="0" opacity="0.5">
+ <layer name="Plafond" width="42" height="42" opacity="0.5">
   <data encoding="base64" compression="zlib">
-   eJztlUEKwCAMBG3t/9/cq4S2EboxEeYwIGjWATUerbXD4fyJl69i3LO/jL/mdvfsBoWnzZzlydOrqeA5W5d97nhq+1Kkp5JdPGdcs/0832wfiD3fqveykgueeO7qOfpmO2R7KnucrVdkR/ZkVXbk/6HMHtdfBjzxzPZUvslV2Uq/ldkAAABQnxs9igmV
+   eJzt1eEKgCAMBGDN3v+Z+9kY2Qbd3KT7cRCU14eW9tZaN3J8jNWPinznmFy/3dvdOVQQTt3pzZPTGlPB6R2Xve50YvelSCcyuzg91myf5c32MLHrW/W7rGShk85dndKbbch2Ivc4PR7RHbkno7ojzw9kt3z+VKGTzmwn8p9c1Y30rexmGIb5WyLOFTpvW1XnbE6zTV7nBYsqCcs=
   </data>
  </layer>
- <objectgroup name="obj" visible="0"/>
- <imagelayer name="Image Layer 1" opacity="0.26">
-  <image source="../../../../../../Desktop/WOLF3D_E1M01.PNG"/>
- </imagelayer>
+ <objectgroup name="obj">
+  <object id="13" name="table" type="obj" x="10848" y="4784" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="15" name="test" type="test" x="16512" y="3056" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="19" name="test" type="test" x="17952" y="2864" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="20" name="test" type="test" x="16992" y="4240" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="21" name="test" type="test" x="15280" y="3264" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="22" name="test" type="test" x="16288" y="2064" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="23" name="test" type="test" x="10544" y="1728" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="24" name="test" type="test" x="9328" y="1712" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="25" name="test" type="test" x="6384" y="1552" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="26" name="test" type="test" x="15168" y="12896" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="27" name="test" type="test" x="16320" y="12848" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="28" name="test" type="test" x="17856" y="12864" width="512" height="512">
+   <properties>
+    <property name="text" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="29" name="Hans" type="nazi" x="3328" y="12768" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="30" name="Hans" type="nazi" x="6208" y="12785" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="31" name="Hans" type="nazi" x="16736" y="11792" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="32" name="Hans" type="nazi" x="17312" y="2352" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="33" name="Hans" type="nazi" x="1024" y="2048" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="34" name="Hans" type="nazi" x="19168" y="1328" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="35" name="Hans" type="nazi" x="6000" y="7000" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="36" name="table" type="obj" x="14576" y="10176" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="37" name="table" type="obj" x="19264" y="14704" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="38" name="table" type="obj" x="18368" y="15664" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="39" name="table" type="obj" x="19424" y="16432" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="40" name="table" type="obj" x="19984" y="15472" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="41" name="table" type="obj" x="20080" y="13680" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="42" name="table" type="obj" x="5536" y="1984" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="43" name="table" type="obj" x="7456" y="784" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="44" name="table" type="obj" x="8544" y="2288" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="45" name="table" type="obj" x="10512" y="880" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="46" name="table" type="obj" x="11408" y="2368" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="47" name="table" type="obj" x="6000" y="7000" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="48" name="pedobear" x="16576" y="13872" width="512" height="512">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="49" name="Hans" type="nazi" x="13320" y="7176" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="50" name="Hans" type="nazi" x="13320" y="7717" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="51" name="pedobear" x="13320" y="8256" width="512" height="512">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="52" name="table" type="obj" x="13320" y="7184" width="512" height="512">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="53" name="Hans" type="nazi" x="1536" y="2048" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="54" name="Hans" type="nazi" x="2048" y="2048" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="55" name="Hans" type="nazi" x="2560" y="2048" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="56" name="Hans" type="nazi" x="1024" y="2572" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="57" name="Hans" type="nazi" x="2560" y="2572" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="58" name="Hans" type="nazi" x="1536" y="2572" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="59" name="Hans" type="nazi" x="2048" y="2572" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="60" name="Hans" type="nazi" x="1022" y="3094" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="61" name="Hans" type="nazi" x="1534" y="3618" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="62" name="Hans" type="nazi" x="1534" y="3094" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="63" name="Hans" type="nazi" x="2558" y="3094" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="64" name="Hans" type="nazi" x="2046" y="3618" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="65" name="Hans" type="nazi" x="2046" y="3094" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="66" name="Hans" type="nazi" x="1022" y="3618" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="67" name="Hans" type="nazi" x="2558" y="3618" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="68" name="Hans" type="nazi" x="2047" y="5713" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="69" name="Hans" type="nazi" x="1537" y="4667" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="70" name="Hans" type="nazi" x="1025" y="4143" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="71" name="Hans" type="nazi" x="2559" y="5189" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="72" name="Hans" type="nazi" x="2559" y="5713" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="73" name="Hans" type="nazi" x="2049" y="4667" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="74" name="Hans" type="nazi" x="2561" y="4143" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="75" name="Hans" type="nazi" x="1537" y="4143" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="76" name="Hans" type="nazi" x="2049" y="4143" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="77" name="Hans" type="nazi" x="1025" y="4667" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="78" name="Hans" type="nazi" x="2047" y="5189" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="79" name="Hans" type="nazi" x="2561" y="4667" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="80" name="Hans" type="nazi" x="1535" y="5713" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="81" name="Hans" type="nazi" x="1023" y="5189" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="82" name="Hans" type="nazi" x="1023" y="5713" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="83" name="Hans" type="nazi" x="1535" y="5189" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

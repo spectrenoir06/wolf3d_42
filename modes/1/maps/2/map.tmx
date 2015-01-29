@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="87">
+ <properties>
+  <property name="startDirX" value="1"/>
+  <property name="startDirY" value="0"/>
+  <property name="startX" value="19.5"/>
+  <property name="startY" value="39.5"/>
+ </properties>
+ <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
+  <tile id="0">
+   <image width="512" height="512" source="textures/0.bmp"/>
+  </tile>
+  <tile id="1">
+   <image width="512" height="512" source="textures/1.bmp"/>
+  </tile>
+  <tile id="2">
+   <image width="512" height="512" source="textures/2.bmp"/>
+  </tile>
+  <tile id="3">
+   <image width="512" height="512" source="textures/3.bmp"/>
+  </tile>
+  <tile id="4">
+   <image width="512" height="512" source="textures/4.bmp"/>
+  </tile>
+  <tile id="5">
+   <image width="512" height="512" source="textures/5.bmp"/>
+  </tile>
+ </tileset>
+ <layer name="Sol" width="42" height="42">
+  <data encoding="base64" compression="zlib">
+   eJztwzENAAAMBKEb3r/mqugGCaumqqqqqqqqvjxBdBuR
+  </data>
+ </layer>
+ <layer name="Mur" width="42" height="42" opacity="0.69">
+  <data encoding="base64" compression="zlib">
+   eJztmMEOwyAMQ2mn7v8/eadJE4qdOARKpR18adn2iB2CdrbWzofo2Fx/zn05XwFVcV6GDuf9Vx7HCLPFaXGh9z2Hxxldq3L2zxinmpEq3yM52KmeLAO75DPCyThm9rvyeWt9zzPC98sZzZ/XYys4Fd+tfTF/Rz1HnKxf0PcovT7KifyPZJadOSvrOcpZnU+LLcrJ8lnNye4ZXkYtnxXP346U2qHaq3csxMn2UMGpeMhqFuX0VMGZ0R2cqG67+m7lYDan2kc9Z6ae3l1ZqReqE+LMnEuX8SyTvygnE5pHqzk9sXvdKk4ro/0+vLmJ+oBlNsPp7Zv5HlUFp1rPWZz9GRnJpJXPUaFZrcxwJvQ/mHVWs97yfMzkMsrpzZbM71dzWlzK3XFVPZnniNOalbPzGfF6t3pGc3dHv2c4n1LPynWIc1TqbMnoAzNZDhI=
+  </data>
+ </layer>
+ <layer name="Plafond" width="42" height="42" opacity="0.5">
+  <data encoding="base64" compression="zlib">
+   eJztw8EJAAAMA6Ej+w/dKfpTcNVUVVVVVVXVlwcugg3J
+  </data>
+ </layer>
+ <objectgroup name="obj">
+  <object id="85" x="10848" y="10896" width="512" height="512">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
