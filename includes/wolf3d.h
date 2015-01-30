@@ -38,6 +38,7 @@
 # define NB_SPRITE_TEX 5
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
+# define NB_ENTITY_MAX 100
 
 //# define MUSICS_REP modes/1/maps/1/music
 //# define SOUNDS_REP modes/1/maps/1/sfx
@@ -153,13 +154,13 @@ typedef struct s_map
 	int			lx;
 	int			ly;
 	int			nb_entity;
-	Uint8		*floor;
-	Uint8		*wall;
-	Uint8		*ceil;
-	SDL_Surface *textures[10];
+	Uint8		*floor;												// malloc
+	Uint8		*wall;												// malloc
+	Uint8		*ceil;												// malloc
+	SDL_Surface **textures;											// malloc pointeur
 	SDL_Surface *sky;
-	t_entity	*entity;
-	t_entity	**entity_ptr;
+	t_entity	entity[NB_ENTITY_MAX];
+	t_entity	*entity_ptr[NB_ENTITY_MAX];
 	t_sprite 	sprite[NB_SPRITE_TEX];
 	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];
 	double		calcule[GAME_LY / 2];
@@ -211,7 +212,7 @@ void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
 void	map_init(t_game *game);
-int		map_load(t_game *game, t_map *map, char *path);
+int		map_load(t_map *map, char *path);
 
 void	game_init_sdl_mixer(t_sounds *sounds);
 void	sounds_init(t_sounds *sounds);

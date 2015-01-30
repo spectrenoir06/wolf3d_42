@@ -26,7 +26,6 @@ int		main(void)
 	game.dt = 0;
 
 	int i = 0;
-	int j = 0;
 
 	game_init_sdl(&game);
 	map_init(&game);
