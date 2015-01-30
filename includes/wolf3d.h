@@ -14,6 +14,11 @@
 # define WOLF3D_H
 
 # include <stdio.h>
+# include "libft.h"
+# include <fcntl.h>
+# include <stdarg.h>
+# include <string.h>
+# include "libft.h"
 
 # ifdef __APPLE__
 #  include "SDL2/SDL.h"
@@ -154,15 +159,16 @@ typedef struct s_map
 	int			lx;
 	int			ly;
 	int			nb_entity;
+	int			nb_texture;
 	Uint8		*floor;												// malloc
 	Uint8		*wall;												// malloc
 	Uint8		*ceil;												// malloc
-	SDL_Surface **textures;											// malloc pointeur
-	SDL_Surface *sky;
-	t_entity	entity[NB_ENTITY_MAX];
-	t_entity	*entity_ptr[NB_ENTITY_MAX];
-	t_sprite 	sprite[NB_SPRITE_TEX];
-	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];
+	SDL_Surface **textures;											// malloc pointeur + SDL_SURFACE
+	SDL_Surface *sky;												// 					 SDL_SURFACE
+	t_entity	entity[NB_ENTITY_MAX];								// non malloc
+	t_entity	*entity_ptr[NB_ENTITY_MAX];							// non malloc
+	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc
+	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];	// a bouger
 	double		calcule[GAME_LY / 2];
 }				t_map;
 
