@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include "libft.h"
-#include <fcntl.h>
-#include <stdarg.h>
-#include <string.h>
 
 void	ft_kebab(char * buff, const char * first, ...)
 {
@@ -75,22 +71,19 @@ int		map_load(t_map *map, char *path)
 {
 	int		i;
 	int		fd;
-	int		textures;
 	char	buff[256];
 	char	*nb;
 
 	ft_kebab(buff, path, "map.bin", NULL);
 	if ((fd = open(buff, O_RDONLY)) == -1)
 		return (-1);
-	read(fd, &(map->lx), 4);
-	read(fd, &(map->ly), 4);
-	read(fd, &(map->nb_entity), 4);
-	read(fd, &textures, 4);
-
+	read(fd, &(map->lx), 4);				// load lx
+	read(fd, &(map->ly), 4);				// load ly
+	read(fd, &(map->nb_entity), 4);			// load entity initial
+	read(fd, &map->nb_texture, 4);					// load nb texture
 	i = 0;
-
-	map->textures = (SDL_Surface **)malloc(sizeof(SDL_Surface *) * textures);
-	while (i < textures)
+	map->textures = (SDL_Surface **)malloc(sizeof(SDL_Surface *) * map->nb_texture);
+	while (i < map->nb_texture)
 	{
 		nb = ft_itoa(i);
 		ft_kebab(buff, path, "textures/", nb, ".bmp", NULL);
@@ -153,9 +146,16 @@ int		map_load(t_map *map, char *path)
 
 void	map_unload(t_map *map)
 {
+	int		i;
+
+	i = 0;
 	free(map->floor);
 	free(map->wall);
 	free(map->ceil);
+	while (i < map->nb_texture)
+		SDL_FreeSurface(map->textures[i]);
+	free(map->textures);
+	SDL_FreeSurface(map->sky);
 	//map = NULL;
 }
 
