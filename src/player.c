@@ -80,8 +80,6 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 
 void	player_update(t_player *player, t_game *game)
 {
-	double new_pos_x;
-	double new_pos_y;
 
 	if (game->input[ROT_Z_M])
 	{
