@@ -37,8 +37,8 @@ void	game_init_sdl(t_game *game)
 		exit(1);
 	}
 	game->sdl.text_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
-	game->sdl.hud_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
-	if (game->sdl.text_buf == NULL || game->sdl.hud_buf == NULL)
+	//game->sdl.hud_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
+	if (game->sdl.text_buf == NULL)// || game->sdl.hud_buf == NULL)
 	{
 		printf("Wolf3D: Error can't allocate buffer\n");
 		exit(1);
@@ -54,6 +54,8 @@ void	game_init_sdl(t_game *game)
 
 	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
+	//while (x < 10)
+		//game->input[x++] = 0;
 }
 
 
@@ -116,7 +118,7 @@ void	init_ray(t_game *game, t_ray *ray, double camera_x)
 	ray->delta.y = sqrt(1 + (ray->dir.x * ray->dir.x) / (ray->dir.y * ray->dir.y));
 }
 
-t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
+void	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 {
 	wall->map.x = (int)ray->pos.x;
 	wall->map.y = (int)ray->pos.y;
@@ -172,56 +174,36 @@ t_wall	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2) / ray->dir.y);
 }
 
-//void	draw_ceil(t_game *game,int x, int end)
-//{
-//	int y = 0;
-//	while (y < end)
-//	{
-//		game_draw_pixel(game,x,y, game->map.color_ceil);
-//		y++;
-//	}
-//}
-//
-//void	draw_floor(t_game *game,int x, int y)
-//{
-//	while (y < game->sdl.ly)
-//	{
-//		game_draw_pixel(game,x,y, game->map.color_floor);
-//		y++;
-//	}
-//}
-
 void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, double wallX)
 {
-	//printf("%d\n",y);
 	t_vect2dd	floor;
-	double		weight;// coefficient de ponderation
+	double		weight;				// coefficient de ponderation
 	t_vect2dd	current_floor;
 	t_vect2dd	floor_tex;
-	//double		currentDist;// point de depart de la texture
 
-	if (wall->side == 0 && ray.dir.x > 0) {
-		// nord
+	if (wall->side == 0 && ray.dir.x > 0)
+	{
 		floor.x = wall->map.x;
 		floor.y = wall->map.y + wallX;
-	} else if (wall->side == 0 && ray.dir.x < 0) {
-		// sud
+	}
+	else if (wall->side == 0 && ray.dir.x < 0)
+	{
 		floor.x = wall->map.x + 1.0;
 		floor.y = wall->map.y + wallX;
-	} else if (wall->side == 1 && ray.dir.y > 0) {
-		// est
+	}
+	else if (wall->side == 1 && ray.dir.y > 0)
+	{
 		floor.x = wall->map.x + wallX;
 		floor.y = wall->map.y;
-	} else {
-		// ouest
+	}
+	else
+	{
 		floor.x = wall->map.x + wallX;
 		floor.y = wall->map.y + 1.0;
 	}
 
 	while (y <= GAME_LY)
 	{
-		//currentDist = game->map.calcule[y];// distance
-		//printf("%f\n",currentDist);
 		weight = (game->map.calcule[y]) / (wall->dist);// coef
 		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
 		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
@@ -253,11 +235,10 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 		else
 			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
 		y++;
-		//SDL_Delay(32);
 	}
 }
 
-int		sprite_compare(void *entity1, void *entity2)
+inline int		sprite_compare(void *entity1, void *entity2)
 {
 	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
 }
@@ -335,7 +316,6 @@ void	game_draw_sprites(t_game *game)
 					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
 						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
 				}
-//				printf("angle2 -> %d\n", i);
 			}
 		}
 	}
@@ -522,7 +502,6 @@ int		game_event_handler(t_game *game)
 	}
 	else if (event.type == SDL_JOYAXISMOTION)
 	{
-		double test;
 		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
 			game->input[MOV_Y] = -event.jaxis.value - 1;
 		else if (event.jaxis.axis == 1)
@@ -536,7 +515,7 @@ int		game_event_handler(t_game *game)
 		else if (event.jaxis.axis == 3)
 			game->input[ROT_Z] = 0;
 		if (event.jaxis.axis == 5 && (event.jaxis.value > 5000) && game->player.w_anim == 0)
-					weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 
 	}
 	else if (event.type == SDL_QUIT)
@@ -547,16 +526,5 @@ int		game_event_handler(t_game *game)
 		SDL_Quit();
 		exit(0);
 	}
-
-	/*									BRUIT SUPER CHIANT QUI VIENS DE NUL PART
-	int angle;
-	angle = 40 * get_vect2dd_angle(game->player.dir);
-	printf("%d", angle);
-	if (!Mix_Playing(0))
-			Mix_PlayChannel(0, game->sounds.son1, 1);
-	Mix_SetDistance(0, sqrt((game->player.pos.x * game->player.pos.x) + (game->player.pos.y * game->player.pos.y)) * 4);
-	Mix_SetPanning(0, 200 - angle, 200 + angle);
-	*/
-
 	return (1);
 }
