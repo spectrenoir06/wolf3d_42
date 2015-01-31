@@ -64,6 +64,7 @@ void	map_init(t_game *game, int mode, int map)
 	ft_kebab(buff, "modes/", ft_itoa(mode), "/maps/", ft_itoa(map), "/", NULL);
 	map_load(&(game->map), buff);
 	sprite_load(&(game->map), buff);
+	weapon_load(&(game->map), 1);
 
 	x = 0;
 
