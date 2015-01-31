@@ -13,7 +13,7 @@
 #include "wolf3d.h"
 #include "libft.h"
 
-int		weapon_load(t_game *game, t_map *map, int n)
+int		weapon_load(t_map *map, int n)
 {
 	int	i;
 	int	j;
@@ -83,5 +83,5 @@ void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 
 void	weapon_draw(t_game *game)
 {
-	bmp_draw(game, game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
+	bmp_draw(game, game->map.weapon_tex[(int)game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
 }
