@@ -210,7 +210,7 @@ int		game_event_handler(t_game *game);
 void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
-void	map_init(t_game *game);
+void	map_init(t_game *game, int mode, int map);
 int		map_load(t_game *game, t_map *map, char *path);
 
 void	game_init_sdl_mixer(t_sounds *sounds);

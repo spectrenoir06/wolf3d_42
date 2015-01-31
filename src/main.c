@@ -29,7 +29,7 @@ int		main(void)
 	int j = 0;
 
 	game_init_sdl(&game);
-	map_init(&game);
+	map_init(&game, 1, 1);
 
 	for (i = ((GAME_LY) / 2); i < (GAME_LY); i++)
 		game.map.calcule[i] = (GAME_LY) / (2.0 * i - (GAME_LY));

@@ -41,7 +41,7 @@ void	ft_kebab(char * buff, const char * first, ...)
 	buff[i] = 0;
 }
 
-void	sprite_load(t_game *game, t_map *map)
+void	sprite_load(t_game *game, t_map *map, char *path)
 {
 	int		i;
 	int		j;
@@ -52,7 +52,7 @@ void	sprite_load(t_game *game, t_map *map)
 	while (i < NB_SPRITE_TEX)
 	{
 		nb = ft_itoa(i);
-		ft_kebab(buff, "modes/1/maps/1/sprites/", nb, ".bmp", NULL);
+		ft_kebab(buff, path, "sprites/", nb, ".bmp", NULL);
 		map->sprite[i].tex = SDL_LoadBMP(buff);
 		map->sprite[i].frames = map->sprite[i].tex->w / TEX_SIZE;
 		//free(nb);
@@ -60,16 +60,19 @@ void	sprite_load(t_game *game, t_map *map)
 	}
 }
 
-void	map_init(t_game *game)
+void	map_init(t_game *game, int mode, int map)
 {
 	int		x;
 	int		y;
+	char	buff[256];
 
 	x = 0;
 	y = 0;
 
-	map_load(game, &(game->map), "modes/1/maps/1/map.bin");
-	sprite_load(game, &(game->map));
+
+	ft_kebab(buff, "modes/", ft_itoa(mode), "/maps/", ft_itoa(map), "/", NULL);
+	map_load(game, &(game->map), buff);
+	sprite_load(game, &(game->map), buff);
 
 	x = 0;
 
@@ -95,7 +98,8 @@ int		map_load(t_game *game, t_map *map, char *path)
 	int		ret;
 	char	buff[256];
 
-	if ((fd = open(path, O_RDONLY)) == -1)
+	ft_kebab(buff, path, "map.bin", NULL);
+	if ((fd = open(buff, O_RDONLY)) == -1)
 		return (-1);
 	if ((ret = read(fd, &(map->lx), 4)) <= 0)
 		return (ret);
@@ -109,11 +113,12 @@ int		map_load(t_game *game, t_map *map, char *path)
 
 	while (i < textures)
 	{
-		ft_kebab(buff, "modes/1/maps/1/textures/", ft_itoa(i), ".bmp", NULL);
+		ft_kebab(buff, path, "textures/", ft_itoa(i), ".bmp", NULL);
 		map->textures[i] = SDL_LoadBMP(buff);
 		i++;
 	}
-	map->sky = SDL_LoadBMP("modes/1/maps/1/textures/sky.bmp");
+	ft_kebab(buff, path, "textures/sky.bmp", NULL);
+	map->sky = SDL_LoadBMP(buff);
 
 	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
