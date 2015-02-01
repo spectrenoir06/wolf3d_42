@@ -13,7 +13,7 @@
 #include "wolf3d.h"
 #include "libft.h"
 
-int		weapon_load(t_game *game, t_map *map, int n)
+int		weapon_load(t_map *map, char *path, int n)
 {
 	int	i;
 	int	j;
