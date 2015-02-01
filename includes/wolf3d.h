@@ -217,7 +217,8 @@ int		game_event_handler(t_game *game);
 void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
-void	map_init(t_game *game);
+void	sprite_load(t_map *map, char *path);
+void	map_init(t_game *game, int mode, int map);
 int		map_load(t_map *map, char *path);
 
 void	game_init_sdl_mixer(t_sounds *sounds);
@@ -228,7 +229,7 @@ double	get_vect2dd_angle(t_vect2dd vect);
 void	hud_render(t_game *game);
 void	hud_map(t_game *game);
 
-int		weapon_load(t_game *game, t_map *map, int n);
+int		weapon_load(t_map *map, char *path, int n);
 void	weapon_start_anim(t_game *game, t_player *player);
 int		weapon_animate(t_game *game, t_player *player);
 int		weapon_get_anim(t_player *player);
