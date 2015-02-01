@@ -37,7 +37,7 @@ void	ft_kebab(char * buff, const char * first, ...)
 	buff[i] = 0;
 }
 
-void	sprite_load(t_map *map)
+void	sprite_load(t_map *map, char *path)
 {
 	int		i;
 	char	buff[256];
@@ -47,7 +47,7 @@ void	sprite_load(t_map *map)
 	while (i < NB_SPRITE_TEX)
 	{
 		nb = ft_itoa(i);
-		ft_kebab(buff, "modes/1/maps/1/sprites/", nb, ".bmp", NULL);
+		ft_kebab(buff, path, "sprites/", nb, ".bmp", NULL);
 		map->sprite[i].tex = SDL_LoadBMP(buff);
 		map->sprite[i].frames = map->sprite[i].tex->w / TEX_SIZE;
 		free(nb);
@@ -55,16 +55,25 @@ void	sprite_load(t_map *map)
 	}
 }
 
-void	map_init(t_game *game)
+void	map_init(t_game *game, int mode, int map)
 {
 	int		x;
+	char	path[256];
+	char	*strmode;
+	char	*strmap;
 
-	map_load(&(game->map), "modes/1/maps/1/");
-	sprite_load(&(game->map));
-	weapon_load(game, &(game->map), 1);
+	strmode = ft_itoa(mode);
+	strmap = ft_itoa(map);
+	ft_kebab(path, "modes/", strmode, "/maps/", strmap, "/", NULL);
+	free(strmode);
+	free(strmap);
+	map_load(&(game->map), path);
+	sprite_load(&(game->map), path);
+	weapon_load(&(game->map), path, 1);
 	x = 0;
 	while (x < 10)
 		game->input[x++] = 0;
+	player_init(&game->player);
 }
 
 int		map_load(t_map *map, char *path)
