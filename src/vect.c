@@ -21,8 +21,3 @@ t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle)
 	new.y = vect.x * sin(angle) + vect.y * cos(angle);
 	return (new);
 }
-
-int			did_vect2dd_cross(t_vect2dd start, t_vect2dd end)
-{
-	return (0);
-}
