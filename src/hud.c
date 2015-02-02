@@ -37,12 +37,6 @@ void	hud_cross(t_game *game)
 	game_draw_rect(game, game->sdl.text_buf, game->sdl.lx / 2 - 2, game->sdl.ly / 2 + 10, 4, 10, color);
 }
 
-void	hud_fps(t_game *game)
-{
-	t_color color = {255, 0, 254};
-
-}
-
 void	hud_render(t_game *game)
 {
 	hud_map(game);
