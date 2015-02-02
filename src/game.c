@@ -204,7 +204,7 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 
 	while (y <= GAME_LY)
 	{
-		weight = (game->map.calcule[y]) / (wall->dist);// coef
+		weight = (game->calcule[y - (GAME_LY / 2)]) / (wall->dist);// coef
 		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
 		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
 		floor_tex.x = (int)(current_floor.x * TEX_SIZE) % TEX_SIZE;// position texel sur X

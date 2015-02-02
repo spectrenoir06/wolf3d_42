@@ -34,7 +34,7 @@ int		main(int ac, char **av)
 		map_init(&game, 1, 1);
 
 	for (i = ((GAME_LY) / 2); i < (GAME_LY); i++)
-		game.map.calcule[i] = (GAME_LY) / (2.0 * i - (GAME_LY));
+		game.calcule[i - (GAME_LY / 2)] = (GAME_LY) / (2.0 * i - (GAME_LY));
 
 	game_render(&game);
 	hud_render(&game);
