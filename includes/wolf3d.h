@@ -184,6 +184,7 @@ typedef struct s_game
 	SDL_Haptic			*haptic;
 	double				Zbuffer[WIN_X];
 	t_sounds			sounds;
+	double				calcule[GAME_LY];
 }						t_game;
 
 typedef	struct	s_ray
@@ -234,5 +235,8 @@ void	weapon_start_anim(t_game *game, t_player *player);
 int		weapon_animate(t_game *game, t_player *player);
 int		weapon_get_anim(t_player *player);
 void	weapon_draw(t_game *game);
+
+void	hud_background(t_game *game);
+inline int	map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
 
 #endif
