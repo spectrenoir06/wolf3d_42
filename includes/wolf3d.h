@@ -237,6 +237,8 @@ int		weapon_get_anim(t_player *player);
 void	weapon_draw(t_game *game);
 
 void	hud_background(t_game *game);
-inline int	map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+void	player_init(t_player *player);
+void	ft_kebab(char * buff, const char * first, ...);
 
 #endif
