@@ -70,18 +70,18 @@ void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 	int	y;
 	t_color color;
 
-	for(x = 0; x < img->w; x++)
+	for(x = 0; x < img->w && x + startx < game->sdl.lx; x++)
 	{
-		for(y = 0; y < img->h; y++)
+		for(y = 0; y < img->h && y + starty < game->sdl.ly; y++)
 		{
-			memcpy(&color, &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
+			color = ((t_color *)img->pixels)[x + (y * img->w)];
 			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				memcpy(&game->sdl.text_buf[x + startx + ((y + starty) * game->sdl.lx)], &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
+				game_draw_pixel(game, game->sdl.text_buf, x + startx, y + starty, &color);
 		}
 	}
 }
 
 void	weapon_draw(t_game *game)
 {
-	bmp_draw(game, game->map.weapon_tex[game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
+	bmp_draw(game, game->map.weapon_tex[(int)game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
 }

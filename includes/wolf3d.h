@@ -168,7 +168,7 @@ typedef struct s_map
 	t_entity	entity[NB_ENTITY_MAX];								// non malloc
 	t_entity	*entity_ptr[NB_ENTITY_MAX];							// non malloc
 	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc
-	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];	// a bouger
+	SDL_Surface *weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];	// a bouger
 	double		calcule[GAME_LY / 2];
 }				t_map;
 
