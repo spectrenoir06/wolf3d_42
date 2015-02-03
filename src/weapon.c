@@ -15,8 +15,8 @@
 
 int		weapon_load(t_map *map, char *path, int n)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	buff[255];
 	char	*nbi;
 	char	*nbj;
@@ -59,29 +59,36 @@ int		weapon_animate(t_game *game, t_player *player)
 	return ((int)last != (int)player->w_anim);
 }
 
-int		weapon_get_anim(t_player *player)
-{
-	return (int)(player->w_anim);
-}
-
 void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 {
-	int	x;
-	int	y;
-	t_color color;
+	int		x;
+	int		y;
+	t_color	color;
 
-	for(x = 0; x < img->w && x + startx < game->sdl.lx; x++)
+	x = 0;
+	while (x < img->w && x + startx < game->sdl.lx)
 	{
-		for(y = 0; y < img->h && y + starty < game->sdl.ly; y++)
+		y = 0;
+		while (y < img->h && y + starty < game->sdl.ly)
 		{
 			color = ((t_color *)img->pixels)[x + (y * img->w)];
 			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				game_draw_pixel(game, game->sdl.text_buf, x + startx, y + starty, &color);
+				game_draw_pixel(game, game->sdl.text_buf,
+						x + startx, y + starty, &color);
+			y++;
 		}
+		x++;
 	}
 }
 
 void	weapon_draw(t_game *game)
 {
-	bmp_draw(game, game->map.weapon_tex[(int)game->player.weapon][weapon_get_anim(&game->player)], game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
+	int	weapon;
+	int	anim;
+
+	weapon = (int)game->player.weapon;
+	anim = (int)(game->player.w_anim);
+	bmp_draw(game,
+			game->map.weapon_tex[weapon][anim],
+			game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
 }
