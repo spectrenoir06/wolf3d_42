@@ -33,16 +33,11 @@
   - [x] mode gamepad
 
 - Gameplay:
-  - [ ] 360 no-scope
   - [x] Sprint
   - [ ] Health Point
-  - [ ] Stamina
-  - [ ] allonger accroupis
-  - [ ] sauter
   - [x] hitbox
   - [ ] glissement
-  - [ ] armes [url](http://forum.zdoom.org/viewtopic.php?f=37&t=33996)
-  - [ ] npc
+  - [x] armes [url](http://forum.zdoom.org/viewtopic.php?f=37&t=33996)
 
 - Compatibilite:
   - [x] compatibiliter MacOS
@@ -59,13 +54,11 @@
   - [ ] animations sprites
   - [ ] animations textures
   - [ ] mirroirs
+  - [ ] Stamina
+  - [ ] allonger accroupis
+  - [ ] sauter
 
-Bonus dur:
-  - [ ] portal
-  - [ ] mur non perpendiculaire
-  - [ ] split-sreen
-  - [ ] oculust rift
-  - [ ] mipmap ([exemple](http://www.fevrierdorian.com/blog/post/2009/12/24/Les-maps-mental-ray-(part-2.1)%3A-Le-debug))
+Bonus apres rendu:
   - [ ] multijoueur
 
 ![alt tag](img/screenshot.png)
