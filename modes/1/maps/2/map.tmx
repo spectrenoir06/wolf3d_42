@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="29">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="33">
  <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
   <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
@@ -178,6 +178,30 @@
   <object id="28" name="lum1" type="nazie" x="607.649" y="544.803" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="29" name="eau" type="nazie" x="1279.53" y="1952.66" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="os" type="nazie" x="895.93" y="1631.06" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="31" name="os" type="nazie" x="1215.05" y="1671.67" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="32" name="os" type="nazie" x="1278.87" y="1827.61" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
     <property name="type" value="1"/>
    </properties>
   </object>

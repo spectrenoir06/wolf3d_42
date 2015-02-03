@@ -469,6 +469,70 @@
                  "width":32,
                  "x":607.649215350125,
                  "y":544.802848476856
+                }, 
+                {
+                 "height":32,
+                 "id":29,
+                 "name":"eau",
+                 "properties":
+                    {
+                     "text":"0",
+                     "type":"1"
+                    },
+                 "rotation":0,
+                 "type":"nazie",
+                 "visible":true,
+                 "width":32,
+                 "x":1279.53301007087,
+                 "y":1952.65648397724
+                }, 
+                {
+                 "height":32,
+                 "id":30,
+                 "name":"os",
+                 "properties":
+                    {
+                     "text":"11",
+                     "type":"1"
+                    },
+                 "rotation":0,
+                 "type":"nazie",
+                 "visible":true,
+                 "width":32,
+                 "x":895.930174056584,
+                 "y":1631.05764065319
+                }, 
+                {
+                 "height":32,
+                 "id":31,
+                 "name":"os",
+                 "properties":
+                    {
+                     "text":"11",
+                     "type":"1"
+                    },
+                 "rotation":0,
+                 "type":"nazie",
+                 "visible":true,
+                 "width":32,
+                 "x":1215.04824774385,
+                 "y":1671.67266821338
+                }, 
+                {
+                 "height":32,
+                 "id":32,
+                 "name":"os",
+                 "properties":
+                    {
+                     "text":"11",
+                     "type":"1"
+                    },
+                 "rotation":0,
+                 "type":"nazie",
+                 "visible":true,
+                 "width":32,
+                 "x":1278.8718624813,
+                 "y":1827.60536331057
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -488,7 +552,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":29,
+ "nextobjectid":33,
  "orientation":"orthogonal",
  "properties":
     {
