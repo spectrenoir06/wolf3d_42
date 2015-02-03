@@ -71,6 +71,7 @@ void	map_init(t_game *game, int mode, int map)
 	sprite_load(&(game->map), path);
 	weapon_load(&(game->map), path, 1);
 	x = 0;
+
 	while (x < 10)
 		game->input[x++] = 0;
 	player_init(&game->player);
