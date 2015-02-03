@@ -58,18 +58,23 @@ void	sprite_load(t_map *map, char *path)
 void	map_init(t_game *game, int mode, int map)
 {
 	int		x;
-	char	buff[256];
+	char	path[256];
+	char	*strmode;
+	char	*strmap;
 
-
-	ft_kebab(buff, "modes/", ft_itoa(mode), "/maps/", ft_itoa(map), "/", NULL);
-	map_load(&(game->map), buff);
-	sprite_load(&(game->map), buff);
-	weapon_load(&(game->map), 1);
-
+	strmode = ft_itoa(mode);
+	strmap = ft_itoa(map);
+	ft_kebab(path, "modes/", strmode, "/maps/", strmap, "/", NULL);
+	free(strmode);
+	free(strmap);
+	map_load(&(game->map), path);
+	sprite_load(&(game->map), path);
+	weapon_load(&(game->map), path, 1);
 	x = 0;
 
 	while (x < 10)
 		game->input[x++] = 0;
+	player_init(&game->player);
 }
 
 int		map_load(t_map *map, char *path)

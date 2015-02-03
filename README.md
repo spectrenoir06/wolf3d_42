@@ -51,9 +51,9 @@
 - Bonus:
   - [x] sfx
   - [x] music
-  - [ ] gui
+  - [x] gui
   - [ ] menu
-  - [ ] sprites 360
+  - [x] sprites 360
   - [ ] animations sprites
   - [ ] animations textures
   - [ ] mirroirs

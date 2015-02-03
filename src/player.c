@@ -80,7 +80,6 @@ void	player_move(t_player *player, t_game *game, KEY dir)
 
 void	player_update(t_player *player, t_game *game)
 {
-
 	if (game->input[ROT_Z_M])
 	{
 		double motion = (game->input[ROT_Z_M] / 100.0) * 2 * M_PI * game->dt;
