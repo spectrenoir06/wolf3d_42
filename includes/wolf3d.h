@@ -209,6 +209,8 @@ typedef struct s_wall
 	t_vect2di	step;
 }				t_wall;
 
+void	ft_kebab(char * buff, const char * first, ...);
+
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 
 void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
@@ -220,18 +222,22 @@ void	game_render(t_game *game);
 void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
 int		game_event_handler(t_game *game);
 
+void	player_init(t_player *player);
 void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
 void	sprite_load(t_map *map, char *path);
 void	map_init(t_game *game, int mode, int map);
 int		map_load(t_map *map, char *path);
+inline int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+void	sprite_load(t_map *map, char *path);
 
 void	game_init_sdl_mixer(t_sounds *sounds);
 void	sounds_init(t_sounds *sounds);
 void	sdl_mixer_quit(t_sounds *sounds);
 double	get_vect2dd_angle(t_vect2dd vect);
 
+void	hud_background(t_game *game);
 void	hud_render(t_game *game);
 void	hud_map(t_game *game);
 
