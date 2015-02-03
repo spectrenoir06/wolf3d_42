@@ -40,7 +40,7 @@
 # define DSINT16_MAX 32767.0
 
 //# define NBSPRITE 5
-# define NB_SPRITE_TEX 5
+# define NB_SPRITE_TEX 15
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
 # define NB_ENTITY_MAX 100
@@ -172,7 +172,7 @@ typedef struct s_map
 	SDL_Surface *sky;												// 					 SDL_SURFACE
 	t_entity	entity[NB_ENTITY_MAX];								// non malloc
 	t_entity	*entity_ptr[NB_ENTITY_MAX];							// non malloc
-	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc
+	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc need to malloc
 	SDL_Surface *weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];	// a bouger
 	double		calcule[GAME_LY / 2];
 }				t_map;
