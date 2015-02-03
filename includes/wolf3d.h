@@ -45,6 +45,11 @@
 # define NB_WEAPON_TEX_FRAME 5
 # define NB_ENTITY_MAX 100
 
+# define WALL 0x00FF00
+# define FLOOR 0xFF0000
+# define PLAYER 0x0000FF
+# define FACE 0x0099FF
+
 //# define MUSICS_REP modes/1/maps/1/music
 //# define SOUNDS_REP modes/1/maps/1/sfx
 
@@ -212,7 +217,7 @@ void	game_init_sdl(t_game *game);
 void	game_draw_all(t_game *game);
 void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
 void	game_render(t_game *game);
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_color c);
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
 int		game_event_handler(t_game *game);
 
 void	player_update(t_player *player, t_game *game);
