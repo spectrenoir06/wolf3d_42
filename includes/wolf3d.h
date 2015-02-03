@@ -168,8 +168,8 @@ typedef struct s_map
 	t_entity	entity[NB_ENTITY_MAX];								// non malloc
 	t_entity	*entity_ptr[NB_ENTITY_MAX];							// non malloc
 	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc
-	SDL_Surface *weapon_tex[NB_WEAPON_TEX][NB_WEAPON_TEX_FRAME];	// a bouger
-	double		calcule[GAME_LY];
+	SDL_Surface *weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];	// a bouger
+	double		calcule[GAME_LY / 2];
 }				t_map;
 
 typedef struct s_game
@@ -184,6 +184,7 @@ typedef struct s_game
 	SDL_Haptic			*haptic;
 	double				Zbuffer[WIN_X];
 	t_sounds			sounds;
+	double				calcule[GAME_LY];
 }						t_game;
 
 typedef	struct	s_ray
@@ -220,6 +221,7 @@ void	player_init(t_player *player);
 void	player_update(t_player *player, t_game *game);
 void	player_move(t_player *player,t_game *game, KEY dir);
 
+void	sprite_load(t_map *map, char *path);
 void	map_init(t_game *game, int mode, int map);
 int		map_load(t_map *map, char *path);
 inline int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
@@ -234,10 +236,15 @@ void	hud_background(t_game *game);
 void	hud_render(t_game *game);
 void	hud_map(t_game *game);
 
-int		weapon_load(t_map *map, int n);
+int		weapon_load(t_map *map, char *path, int n);
 void	weapon_start_anim(t_game *game, t_player *player);
 int		weapon_animate(t_game *game, t_player *player);
 int		weapon_get_anim(t_player *player);
 void	weapon_draw(t_game *game);
+
+void	hud_background(t_game *game);
+int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+void	player_init(t_player *player);
+void	ft_kebab(char * buff, const char * first, ...);
 
 #endif
