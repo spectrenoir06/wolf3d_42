@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
-  <image source="textures/tileset.png" trans="ff00ff" width="1184" height="32"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="3">
+ <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
+  <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
  <layer name="floor" width="64" height="64">
-  <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6EzUv82J2MfSFg1VVVVVVVVVVVVVVVVVVVV9fUBRmnQEA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoTNS/zYnYx9IWDVVVVVVVVVVVVVVVVVVVVX19QGREks2AEAAAA==
   </data>
  </layer>
  <layer name="wall" width="64" height="64">
-  <data encoding="base64" compression="zlib">
-   eJzt1TkOAjEUBFGLfWeYwaz3vycVEJHixOpqqXI//cC1lFLDS51+/fpzp1+//tzp168/d/r16/9/M5rTgpa0ojVtaEs72tOBjnSiMw10oZEmun7fc6M7PehJL3o3eOfvvL9+/bnT387f4x/g/fXrz51+/frbzP+/v+nXrz93+tv7e/oHvb9+/bnTr19/7vTr1587/fr1506/fv25069ff+6qlQ9nqRqR
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2Z646EIAyFdS5Z32P0/V9xd5IlIU1bWtqiID9ORhlQPk4pEPdlWfaba72pJv/kn/zn9+NO/E+DRuN/EZxUuXdfjj89mHGJWCe1HJGxQHFJy0rjtf+PcX7/UvYxMha0/NQYaGKjxn8sHlrz15RHKMVDr/y9+P/VJ7t+EOUY/07U/eqt7ON7ucb853zH+D39b81/CNsfxDO4NZNa51eiPGrt9/Rf83/Jy1Z7v6/SnK7lt4zPFfjP8B9ywnyY8l0EL8WP7dkk7eHeDuZ6i/8t+SUxUeM/xauZ/2fxU+s8Vj4qP/U/9RyuHeQpnYNa8kN/uVyA5QZJDoU8o/k/Er/mfjR+KGn8S+c/FMwDae8bye3tv0Ta/F/L9KOUZP5z+dHqQR4DHt5r+bH4jtj/YOsK1T7/XzvWiUtaz7L/k+6TtWPFtZf62oJfw/Qx8n8U7BZ+DZc2/i38qc9e9Th+qVrGv7e26X/X85/iGT3/532n2K/of3pu/h2BW/+5up788PsvfGfk/g/2V9p/CT/2XKyux/nXyl8qs/B77P/vxq+575U/95p7l+T8fyX+tfBb4u/R/1XQBmtL8fc2/zXaFjs/dZZPwr4DYeN2Rf9rxD3jYN5l5efWe+o3gr92nCL4vfP/Ff339EMqal+MiZv/lBfS2I7gl9Y5QHnpWhO3krg+i79UDs9HHDtWzt1HzgmL/1idGn6JzuTH+GrOwb36j7XBrie/jL+3/E+10bYdxf9a9Zz/Ivnv5n/v89/b/+i2k3/yl/hbKDFshuuIfv0CErZNpABAAAA=
   </data>
  </layer>
- <layer name="ceil" width="64" height="64" opacity="0">
-  <data encoding="base64" compression="zlib">
-   eJztw8EJAAAMA6Ej+w/dMfpRcNVUVVVVVVVVVVVVVVVVVVXV1we8ACAB
+ <layer name="ceil" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
   </data>
  </layer>
- <objectgroup name="obj"/>
+ <objectgroup name="obj">
+  <object id="1" name="hello" type="nazie" x="986.667" y="1062.67" width="32" height="32">
+   <properties>
+    <property name="text" value="1"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer name="Image Layer 1" visible="0">
+  <image source="textures/map.png"/>
+ </imagelayer>
 </map>
