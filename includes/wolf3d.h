@@ -212,6 +212,7 @@ typedef struct s_wall
 void	ft_kebab(char * buff, const char * first, ...);
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
+double		get_vect2dd_angle(t_vect2dd vect);
 
 void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
 
@@ -235,7 +236,6 @@ void	sprite_load(t_map *map, char *path);
 void	game_init_sdl_mixer(t_sounds *sounds);
 void	sounds_init(t_sounds *sounds);
 void	sdl_mixer_quit(t_sounds *sounds);
-double	get_vect2dd_angle(t_vect2dd vect);
 
 void	hud_background(t_game *game);
 void	hud_render(t_game *game);

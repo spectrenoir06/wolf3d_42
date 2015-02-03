@@ -21,3 +21,12 @@ t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle)
 	new.y = vect.x * sin(angle) + vect.y * cos(angle);
 	return (new);
 }
+
+double		get_vect2dd_angle(t_vect2dd vect)
+{
+	double	angle;
+
+	angle = (vect.y + 1) / (vect.x);
+	angle = atan(angle);
+	return (angle * -2);
+}
