@@ -60,11 +60,15 @@ void	game_init_sdl(t_game *game)
 
 
 
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, t_color c)
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color)
 {
 	int a = x;
 	int b = y;
+	t_color	c;
 
+	c.r = color / 0x10000;
+	c.g = (color % 0x10000) / 0x100;
+	c.b = color % 0x100;
 	while (a < (x + lx))
 	{
 		b = y;
