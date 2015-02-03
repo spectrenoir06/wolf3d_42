@@ -16,26 +16,26 @@
 #include <time.h>
 #include <sys/time.h>
 
-struct timeval tv1, tv2;
+struct timeval tv1;
+struct timeval tv2;
 
 int		main(int ac, char **av)
 {
-	t_game		game;
-
+	t_game	game;
+	int		i;
 
 	game.dt = 0;
-
-	int i = 0;
-
 	game_init_sdl(&game);
 	if (ac == 2)
 		map_init(&game, 1, ft_atoi(av[1]));
 	else
 		map_init(&game, 1, 1);
-
-	for (i = ((GAME_LY) / 2); i < (GAME_LY); i++)
+	i = ((GAME_LY) / 2);
+	while (i < (GAME_LY))
+	{
 		game.calcule[i - (GAME_LY / 2)] = (GAME_LY) / (2.0 * i - (GAME_LY));
-
+		i++;
+	}
 	game_render(&game);
 	hud_render(&game);
 	hud_background(&game);
@@ -44,18 +44,14 @@ int		main(int ac, char **av)
 	{
 		tv2 = tv1;
 		gettimeofday(&tv1, NULL);
-		game.dt = ((tv1.tv_sec - tv2.tv_sec) + ((tv1.tv_usec - tv2.tv_usec) / 1000000.0)); //frametime is the time this frame has taken, in seconds
-
+		game.dt = ((tv1.tv_sec - tv2.tv_sec) +
+				((tv1.tv_usec - tv2.tv_usec) / 1000000.0));
 		while (game_event_handler(&game))
-				;
-		{
-			player_update(&game.player, &game);	// update player
-			game_render(&game);		// update screen
-			hud_render(&game);
-			game_draw_all(&game);	// update screen
-		}
-		//printf("%f ; %f\n",1/game.dt, game.dt);
-
+			;
+		player_update(&game.player, &game);
+		game_render(&game);
+		hud_render(&game);
+		game_draw_all(&game);
 	}
 	return (0);
 }
