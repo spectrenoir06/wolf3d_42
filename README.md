@@ -1,7 +1,7 @@
 # wolf3d_42 :suspect:
 
 - Important:
-  - :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang::finnadie:
+  - [ ] :bangbang: FUITES MEMOIRE :bangbang: :bomb: :gun: :bangbang::finnadie:
   - [x] floor texture
   - [x] ceil texture
   - [x] skybox
