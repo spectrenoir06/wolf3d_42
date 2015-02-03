@@ -13,7 +13,7 @@
 #include "wolf3d.h"
 #include "libft.h"
 
-int		weapon_load(t_map *map, int n)
+int		weapon_load(t_map *map, char *path, int n)
 {
 	int	i;
 	int	j;
@@ -29,7 +29,7 @@ int		weapon_load(t_map *map, int n)
 		{
 			nbi = ft_itoa(i + 1);
 			nbj = ft_itoa(j + 1);
-			ft_kebab(buff, "modes/1/maps/1/weapons/", nbi, "/", nbj, ".bmp", NULL);
+			ft_kebab(buff, path, "weapons/", nbi, "/", nbj, ".bmp", NULL);
 			ft_putendl(buff);
 			map->weapon_tex[i + 1][j] = SDL_LoadBMP(buff);
 			free(nbi);
@@ -70,13 +70,13 @@ void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 	int	y;
 	t_color color;
 
-	for(x = 0; x < img->w; x++)
+	for(x = 0; x < img->w && x + startx < game->sdl.lx; x++)
 	{
-		for(y = 0; y < img->h; y++)
+		for(y = 0; y < img->h && y + starty < game->sdl.ly; y++)
 		{
-			memcpy(&color, &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
+			color = ((t_color *)img->pixels)[x + (y * img->w)];
 			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				memcpy(&game->sdl.text_buf[x + startx + ((y + starty) * game->sdl.lx)], &((Uint8 *)img->pixels)[x * 3 + (y * 3 * img->w)], 3);
+				game_draw_pixel(game, game->sdl.text_buf, x + startx, y + starty, &color);
 		}
 	}
 }

@@ -1,52 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="512" tileheight="512" nextobjectid="87">
- <properties>
-  <property name="startDirX" value="1"/>
-  <property name="startDirY" value="0"/>
-  <property name="startX" value="19.5"/>
-  <property name="startY" value="39.5"/>
- </properties>
- <tileset firstgid="1" name="tileset" tilewidth="512" tileheight="512">
-  <tile id="0">
-   <image width="512" height="512" source="textures/0.bmp"/>
-  </tile>
-  <tile id="1">
-   <image width="512" height="512" source="textures/1.bmp"/>
-  </tile>
-  <tile id="2">
-   <image width="512" height="512" source="textures/2.bmp"/>
-  </tile>
-  <tile id="3">
-   <image width="512" height="512" source="textures/3.bmp"/>
-  </tile>
-  <tile id="4">
-   <image width="512" height="512" source="textures/4.bmp"/>
-  </tile>
-  <tile id="5">
-   <image width="512" height="512" source="textures/5.bmp"/>
-  </tile>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="textures/tileset.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
- <layer name="Sol" width="42" height="42">
+ <layer name="floor" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMBKEb3r/mqugGCaumqqqqqqqqvjxBdBuR
+   eJztw0ENAAAMA6EzUv82J2MfSFg1VVVVVVVVVVVVVVVVVVVV9fUBRmnQEA==
   </data>
  </layer>
- <layer name="Mur" width="42" height="42" opacity="0.69">
+ <layer name="wall" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztmMEOwyAMQ2mn7v8/eadJE4qdOARKpR18adn2iB2CdrbWzofo2Fx/zn05XwFVcV6GDuf9Vx7HCLPFaXGh9z2Hxxldq3L2zxinmpEq3yM52KmeLAO75DPCyThm9rvyeWt9zzPC98sZzZ/XYys4Fd+tfTF/Rz1HnKxf0PcovT7KifyPZJadOSvrOcpZnU+LLcrJ8lnNye4ZXkYtnxXP346U2qHaq3csxMn2UMGpeMhqFuX0VMGZ0R2cqG67+m7lYDan2kc9Z6ae3l1ZqReqE+LMnEuX8SyTvygnE5pHqzk9sXvdKk4ro/0+vLmJ+oBlNsPp7Zv5HlUFp1rPWZz9GRnJpJXPUaFZrcxwJvQ/mHVWs97yfMzkMsrpzZbM71dzWlzK3XFVPZnniNOalbPzGfF6t3pGc3dHv2c4n1LPynWIc1TqbMnoAzNZDhI=
+   eJzt1TkOAjEUBFGLfWeYwaz3vycVEJHixOpqqXI//cC1lFLDS51+/fpzp1+//tzp168/d/r16/9/M5rTgpa0ojVtaEs72tOBjnSiMw10oZEmun7fc6M7PehJL3o3eOfvvL9+/bnT387f4x/g/fXrz51+/frbzP+/v+nXrz93+tv7e/oHvb9+/bnTr19/7vTr1587/fr1506/fv25069ff+6qlQ9nqRqR
   </data>
  </layer>
- <layer name="Plafond" width="42" height="42" opacity="0.5">
+ <layer name="ceil" width="64" height="64" opacity="0">
   <data encoding="base64" compression="zlib">
-   eJztw8EJAAAMA6Ej+w/dKfpTcNVUVVVVVVXVlwcugg3J
+   eJztw8EJAAAMA6Ej+w/dMfpRcNVUVVVVVVVVVVVVVVVVVVXV1we8ACAB
   </data>
  </layer>
- <objectgroup name="obj">
-  <object id="85" x="10848" y="10896" width="512" height="512">
-   <properties>
-    <property name="text" value="0"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="obj"/>
 </map>

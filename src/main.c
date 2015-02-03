@@ -18,7 +18,7 @@
 
 struct timeval tv1, tv2;
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_game		game;
 
@@ -28,12 +28,18 @@ int		main(void)
 	int i = 0;
 
 	game_init_sdl(&game);
+<<<<<<< HEAD
 	map_init(&game, 1, 1);
+=======
+	if (ac == 2)
+		map_init(&game, 1, ft_atoi(av[1]));
+	else
+		map_init(&game, 1, 1);
+>>>>>>> branch 'master' of https://github.com/spectrenoir06/wolf3d_42.git
 
 	for (i = ((GAME_LY) / 2); i < (GAME_LY); i++)
-		game.map.calcule[i] = (GAME_LY) / (2.0 * i - (GAME_LY));
+		game.calcule[i - (GAME_LY / 2)] = (GAME_LY) / (2.0 * i - (GAME_LY));
 
-	player_init(&game.player);
 	game_render(&game);
 	hud_render(&game);
 	hud_background(&game);
