@@ -10,6 +10,8 @@
   - [x] FIXME: Premiere et derniere ligne de pixel (et colone pour les sprite)
   - [x] gestion propre des couleurs (revoir t_color)
   - [x] nouveau format map (mur, plafont, sol, sprite)
+  - [ ] sound load relatif au path
+  - [ ] hud load relatif au path
   
 - Contenue:
   - [x] sample map
