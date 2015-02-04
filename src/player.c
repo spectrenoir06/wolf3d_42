@@ -50,7 +50,7 @@ int		player_collide_world(t_map *map, t_player *player)
 	return (0);
 }
 
-void	player_move(t_player *player, t_game *game, KEY dir)
+void	player_move(t_player *player, t_game *game, t_key dir)
 {
 	t_vect3dd	save;
 	t_vect2dd	tmp_dir;
