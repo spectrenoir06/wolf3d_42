@@ -99,9 +99,8 @@ int			map_load(t_map *map, char *path)
 	{
 		nb = ft_itoa(i);
 		ft_kebab(buff, path, "textures/", nb, ".bmp", NULL);
-		map->textures[i] = SDL_LoadBMP(buff);
+		map->textures[i++] = SDL_LoadBMP(buff);
 		free(nb);
-		i++;
 	}
 	ft_kebab(buff, path, "textures/sky.bmp", NULL);
 	map->sky = SDL_LoadBMP(buff);
