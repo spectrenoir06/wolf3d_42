@@ -302,179 +302,139 @@ void	game_render(t_game *game)
 	game_draw_sprites(game);
 }
 
-void	kb_key_down(SDL_Event event, t_game *game)
+void	sdl_exit(t_game *game)
 {
-	if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-		game->input[MOV_Y] = SINT16_MAX;
-	else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-		game->input[MOV_Y] = SINT16_MIN;
-	else if (event.key.keysym.sym == SDLK_a)
-		game->input[MOV_X] = SINT16_MAX;
-	else if (event.key.keysym.sym == SDLK_d)
-		game->input[MOV_X] = SINT16_MIN;
-	else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
-		game->input[ROT_Z] = SINT16_MIN;
-	else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
-		game->input[ROT_Z] = SINT16_MAX;
-	else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
-		game->player.speed += 3;
-	else if (event.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-	else if (event.key.keysym.sym == SDLK_p)
-		{
-			if(Mix_PausedMusic())
-				Mix_ResumeMusic();
-			else if (Mix_PlayingMusic())
-				Mix_PauseMusic();
-		}
-	else if (event.key.keysym.sym == SDLK_ESCAPE)
-	{
-		SDL_JoystickClose(0);
-		SDL_DestroyWindow(game->sdl.win);
-		sdl_mixer_quit(&game->sounds);
-		SDL_Quit();
-		exit(0);
-	}
+	SDL_JoystickClose(0);
+	SDL_DestroyWindow(game->sdl.win);
+	sdl_mixer_quit(&game->sounds);
+	SDL_Quit();
+	exit(0);
 }
 
-void	kb_key_up(SDL_Event event, t_game *game)
+void	kb_key_down(SDL_Event ev, t_game *game)
 {
-	if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
+	if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
+		game->input[MOV_Y] = SINT16_MAX;
+	else if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)
+		game->input[MOV_Y] = SINT16_MIN;
+	else if (ev.key.keysym.sym == SDLK_a)
+		game->input[MOV_X] = SINT16_MAX;
+	else if (ev.key.keysym.sym == SDLK_d)
+		game->input[MOV_X] = SINT16_MIN;
+	else if (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_q)
+		game->input[ROT_Z] = SINT16_MIN;
+	else if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_e)
+		game->input[ROT_Z] = SINT16_MAX;
+	else if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
+		game->player.speed += 2;
+	else if (ev.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
+			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	else if (ev.key.keysym.sym == SDLK_p)
+	{
+		if(Mix_PausedMusic())
+			Mix_ResumeMusic();
+		else if (Mix_PlayingMusic())
+			Mix_PauseMusic();
+	}
+	else if (ev.key.keysym.sym == SDLK_ESCAPE)
+		sdl_exit(game);
+}
+
+void	kb_key_up(SDL_Event ev, t_game *game)
+{
+	if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
 		game->input[MOV_Y] = 0;
-	else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
+	else if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)
 		game->input[MOV_Y] = 0;
-	else if (event.key.keysym.sym == SDLK_a)
+	else if (ev.key.keysym.sym == SDLK_a)
 		game->input[MOV_X] = 0;
-	else if (event.key.keysym.sym == SDLK_d)
+	else if (ev.key.keysym.sym == SDLK_d)
 		game->input[MOV_X] = 0;
-	else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
+	else if (ev.key.keysym.sym == SDLK_LEFT || ev.key.keysym.sym == SDLK_q)
 		game->input[ROT_Z] = 0;
-	else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
+	else if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_e)
 		game->input[ROT_Z] = 0;
-	else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
-		game->player.speed -= 3;
+	else if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
+		game->player.speed -= 2;
 	Mix_FadeOutChannel(1, 200);
 }
 
-void	joy_but_down(SDL_Event event, t_game *game)
+void	joy_but_down(SDL_Event ev, t_game *game)
 {
-	if (event.jbutton.button == 11)
+	if (ev.jbutton.button == 11)
 		game->input[MOV_Y] = SINT16_MAX;
-	else if (event.jbutton.button == 12)
+	else if (ev.jbutton.button == 12)
 		game->input[MOV_Y] = SINT16_MIN;
-	else if (event.jbutton.button == 13)
+	else if (ev.jbutton.button == 13)
 		game->input[MOV_X] = SINT16_MIN;
-	else if (event.jbutton.button == 14)
+	else if (ev.jbutton.button == 14)
 		game->input[MOV_X] = SINT16_MAX;
-	else if (event.jbutton.button == 4)
+	else if (ev.jbutton.button == 4)
 		game->input[ROT_Z] = SINT16_MIN;
-	else if (event.jbutton.button == 5)
+	else if (ev.jbutton.button == 5)
 		game->input[ROT_Z] = SINT16_MAX;
-	else if (event.jbutton.button == 6)
-		game->player.speed += 3;
-	else if (event.jbutton.button == 0)
+	else if (ev.jbutton.button == 6)
+		game->player.speed += 2;
+	else if (ev.jbutton.button == 0)
 		SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
-	else if (event.jbutton.button == 10)
-	{
-		SDL_JoystickClose(0);
-		SDL_DestroyWindow(game->sdl.win);
-		sdl_mixer_quit(&game->sounds);
-		SDL_Quit();
-		exit(0);
-	}
+	else if (ev.jbutton.button == 10)
+		sdl_exit(game);
+}
+
+void	joy_but_up(SDL_Event ev, t_game *game)
+{
+	if (ev.jbutton.button == 11 || ev.jbutton.button == 12)
+		game->input[MOV_Y] = 0;
+	else if (ev.jbutton.button == 13 || ev.jbutton.button == 14)
+		game->input[MOV_X] = 0;
+	else if (ev.jbutton.button == 4 || ev.jbutton.button == 5)
+		game->input[ROT_Z] = 0;
+	else if (ev.jbutton.button == 0)
+		SDL_HapticRumbleStop(game->haptic);
+	else if (ev.jbutton.button == 6)
+		game->player.speed -= 2;
+	Mix_FadeOutChannel(1, 200);
+}
+
+void	joy_axis(SDL_Event ev, t_game *game)
+{
+	if (ev.jaxis.axis == 1 && (ev.jaxis.value > 5000 || ev.jaxis.value < -5000))
+		game->input[MOV_Y] = -ev.jaxis.value - 1;
+	else if (ev.jaxis.axis == 1)
+		game->input[MOV_Y] = 0, Mix_FadeOutChannel(1, 200);
+	if (ev.jaxis.axis == 0 && (ev.jaxis.value > 5000 || ev.jaxis.value < -5000))
+		game->input[MOV_X] = -ev.jaxis.value - 1;
+	else if (ev.jaxis.axis == 0)
+		game->input[MOV_X] = 0, Mix_FadeOutChannel(1, 200);
+	if (ev.jaxis.axis == 3 && (ev.jaxis.value > 5000 || ev.jaxis.value < -5000))
+		game->input[ROT_Z] = ev.jaxis.value;
+	else if (ev.jaxis.axis == 3)
+		game->input[ROT_Z] = 0;
+	if (ev.jaxis.axis == 5 && (ev.jaxis.value > 5000) && game->player.w_anim == 0)
+		weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
 }
 
 int		game_event_handler(t_game *game)
 {
-	 SDL_Event event;
+	SDL_Event ev;
 
-	if (!SDL_PollEvent(&event))
+	if (!SDL_PollEvent(&ev))
 		return (0);
-	if (event.type == SDL_MOUSEMOTION)
-	{
-		if (event.motion.xrel > SINT16_MIN && event.motion.xrel < SINT16_MAX)
-			game->input[ROT_Z_M] = event.motion.xrel;
-		return (1);
-	}
-	if (event.type == SDL_MOUSEBUTTONDOWN)
-	{
-		if (event.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-	}
-	else if (event.type == SDL_KEYDOWN)
-		kb_key_down(event, game);
-	else if (event.type == SDL_KEYUP)
-		kb_key_up(event, game);
-	else if(event.type == SDL_JOYBUTTONDOWN)
-	{
-		joy_but_down(event, game);
-//		if (event.jbutton.button == 11)
-//			game->input[MOV_Y] = SINT16_MAX;
-//		else if (event.jbutton.button == 12)
-//			game->input[MOV_Y] = SINT16_MIN;
-//		else if (event.jbutton.button == 13)
-//			game->input[MOV_X] = SINT16_MIN;
-//		else if (event.jbutton.button == 14)
-//			game->input[MOV_X] = SINT16_MAX;
-//		else if (event.jbutton.button == 4)
-//			game->input[ROT_Z] = SINT16_MIN;
-//		else if (event.jbutton.button == 5)
-//			game->input[ROT_Z] = SINT16_MAX;
-//		else if (event.jbutton.button == 6)
-//			game->player.speed += 3;
-//		else if (event.jbutton.button == 0)
-//		{
-//			SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
-//			// jouer son
-//		}
-//		else if (event.jbutton.button == 10)
-//		{
-//			SDL_JoystickClose(0);
-//			SDL_DestroyWindow(game->sdl.win);
-//			sdl_mixer_quit(&game->sounds);
-//			SDL_Quit();
-//			exit(0);
-//		}
-	}
-	else if(event.type == SDL_JOYBUTTONUP)
-	{
-		if (event.jbutton.button == 11 || event.jbutton.button == 12)
-			game->input[MOV_Y] = 0;
-		else if (event.jbutton.button == 13 || event.jbutton.button == 14)
-			game->input[MOV_X] = 0;
-		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
-			game->input[ROT_Z] = 0;
-		else if (event.jbutton.button == 0)
-			SDL_HapticRumbleStop(game->haptic);
-		else if (event.jbutton.button == 6)
-			game->player.speed -= 3;
-		Mix_FadeOutChannel(1, 200);
-	}
-	else if (event.type == SDL_JOYAXISMOTION)
-	{
-		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_Y] = -event.jaxis.value - 1;
-		else if (event.jaxis.axis == 1)
-			game->input[MOV_Y] = 0, Mix_FadeOutChannel(1, 200);
-		if (event.jaxis.axis == 0 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_X] = -event.jaxis.value - 1;
-		else if (event.jaxis.axis == 0)
-			game->input[MOV_X] = 0, Mix_FadeOutChannel(1, 200);
-		if (event.jaxis.axis == 3 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[ROT_Z] = event.jaxis.value;
-		else if (event.jaxis.axis == 3)
-			game->input[ROT_Z] = 0;
-		if (event.jaxis.axis == 5 && (event.jaxis.value > 5000) && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-
-	}
-	else if (event.type == SDL_QUIT)
-	{
-		SDL_JoystickClose(0);
-		SDL_DestroyWindow(game->sdl.win);
-		sdl_mixer_quit(&game->sounds);
-		SDL_Quit();
-		exit(0);
-	}
+	if (ev.type == SDL_MOUSEMOTION && (ev.motion.xrel > SINT16_MIN && ev.motion.xrel < SINT16_MAX))
+		game->input[ROT_Z_M] = ev.motion.xrel;
+	else if (ev.type == SDL_MOUSEBUTTONDOWN && (ev.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0))
+		weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	else if (ev.type == SDL_KEYDOWN)
+		kb_key_down(ev, game);
+	else if (ev.type == SDL_KEYUP)
+		kb_key_up(ev, game);
+	else if(ev.type == SDL_JOYBUTTONDOWN)
+		joy_but_down(ev, game);
+	else if(ev.type == SDL_JOYBUTTONUP)
+		joy_but_up(ev, game);
+	else if (ev.type == SDL_JOYAXISMOTION)
+		joy_axis(ev, game);
+	else if (ev.type == SDL_QUIT)
+		sdl_exit(game);
 	return (1);
 }
