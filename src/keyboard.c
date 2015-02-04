@@ -17,13 +17,18 @@ void	sdl_exit(t_game *game)
 	weapon_unload(&game->map);
 	map_unload(&game->map);
 	free(game->sdl.text_buf);
-	SDL_HapticClose(game->haptic);
-	SDL_JoystickClose(game->joystick);
+	if(SDL_NumJoysticks() == 1)
+	{
+		SDL_HapticClose(game->haptic);
+		SDL_JoystickClose(game->joystick);
+	}
 	SDL_DestroyTexture(game->sdl.tex);
 	SDL_DestroyRenderer(game->sdl.rd);
 	SDL_DestroyWindow(game->sdl.win);
 	sdl_mixer_quit(&game->sounds);
 	SDL_Quit();
+	while(42)
+		;
 	exit(0);
 }
 
