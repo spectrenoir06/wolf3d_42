@@ -1,22 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
-  <image source="textures/tileset.png" trans="ff00ff" width="1184" height="32"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="33">
+ <properties>
+  <property name="nbSprites" value="18"/>
+  <property name="startDirX" value="1"/>
+  <property name="startDirY" value="0"/>
+  <property name="startX" value="29"/>
+  <property name="startY" value="57"/>
+ </properties>
+ <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
+  <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
  <layer name="floor" width="64" height="64">
-  <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6EzUv82J2MfSFg1VVVVVVVVVVVVVVVVVVVV9fUBRmnQEA==
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoTNS/zYnYx9IWDVVVVVVVVVVVVVVVVVVVVX19QGREks2AEAAAA==
   </data>
  </layer>
  <layer name="wall" width="64" height="64">
-  <data encoding="base64" compression="zlib">
-   eJzt1TkOAjEUBFGLfWeYwaz3vycVEJHixOpqqXI//cC1lFLDS51+/fpzp1+//tzp168/d/r16/9/M5rTgpa0ojVtaEs72tOBjnSiMw10oZEmun7fc6M7PehJL3o3eOfvvL9+/bnT387f4x/g/fXrz51+/frbzP+/v+nXrz93+tv7e/oHvb9+/bnTr19/7vTr1587/fr1506/fv25069ff+6qlQ9nqRqR
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2Zy46DMAxFQ4dq2Mz8BPT/f3HEIhJj2fErT8jiqiSlwSfXdpB6hBCOqampqampwvpyqHXsuflXgpOabx17Lv5FoVa5AOOwrvMB41XJ3yoXtPwaP7X+Y/lQm5/bAw2TRzEfRuUfxf9T++X6Rcxj/NQap95K/nfoo/65fJDmyQj9/yOM7drbNfzYOb8Q863Ofqn/0vzA+K/sLf228mvqI7UPo/Jb/If8sB/Gfleb9ypL/Z/CzgWr/6281vpv4dXUfyt+6OdCzN+ZX/q9hj+us4Z0btWuA4oN9gJY81b+p/vfMz83vjM/dsblzH+oFay/VuRu4b+0/1uf862UlM/Dzu1LzIEc3mv5qfzO/f4DlXrO9XsrPxc757+EXxujZE1ur6W+1uDXsO9O/l3B7uHHel6u/Pfwx5hz3Zfil6pm/ufWNv0fuv4pnrv3f+yMG6H/R70CvyfUvSX4X2CeeqaVNyUYL3wv5X6X4sfWxe6l/Kc8KsFP5WUO/hzv/0/j58Z34Kf8xXq8p+fX5l+YT45/RP8XZCw596T1PQK/VBuyvpff+j9Qj/5blFrj3JufQvyp895a/6X0W4k/d//v0f8Wot6LMaXqn8pZyM95VlvRS8xzeO2p2x75uZw/gpwd68dcH2/Nj/kP94KT58zugd+r0f2HuSD1ffL/5x+1/3t1J/9z8s/+9yz/Z/3P/J/8z+XfHNcl4voDDtjTLQBAAAA=
   </data>
  </layer>
- <layer name="ceil" width="64" height="64" opacity="0">
-  <data encoding="base64" compression="zlib">
-   eJztw8EJAAAMA6Ej+w/dMfpRcNVUVVVVVVVVVVVVVVVVVVXV1we8ACAB
+ <layer name="ceil" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoRNS/zonYx9IWDVVVVVVVVVVVVVVVVVVVVX19QFH/netAEAAAA==
   </data>
  </layer>
- <objectgroup name="obj"/>
+ <objectgroup name="obj">
+  <object id="1" name="lum1" type="nazie" x="1088" y="1280" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="3" name="lum1" type="nazie" x="1088" y="1536.36" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="4" name="lum1" type="nazie" x="1088.6" y="1406.98" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="5" name="lum1" type="nazie" x="1087.4" y="1665.15" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="6" name="lum1" type="nazie" x="1088" y="1823.88" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="7" name="lum1" type="nazie" x="959.818" y="1953.26" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="8" name="lum1" type="nazie" x="1086.8" y="1953.26" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="9" name="lum1" type="nazie" x="1214.98" y="1952.66" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="10" name="pla1" type="0" x="1025.11" y="927.799" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="11" name="pla1" type="0" x="1151.71" y="928.128" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="12" name="pla1" type="0" x="864.88" y="959.778" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="13" name="pla1" type="0" x="864.55" y="1151" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="14" name="pla1" type="0" x="1311.93" y="1150.67" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="15" name="pla1" type="0" x="1311.6" y="960.108" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="16" name="lum2" type="nazie" x="926.784" y="1055.48" width="32" height="32">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="17" name="lum2" type="nazie" x="1088.66" y="1056.14" width="32" height="32">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="18" name="lum2" type="nazie" x="1247.9" y="1056.8" width="32" height="32">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="19" name="lum1" type="nazie" x="1087.34" y="831.299" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="20" name="lum1" type="nazie" x="1087.34" y="704.041" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="21" name="lum1" type="nazie" x="1087.34" y="575.793" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="22" name="arm" type="nazie" x="1184.27" y="703.381" width="32" height="32">
+   <properties>
+    <property name="text" value="14"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="23" name="lum2" type="nazie" x="1087.01" y="352.267" width="32" height="32">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="24" name="vase" type="nazie" x="928.433" y="255.999" width="32" height="32">
+   <properties>
+    <property name="text" value="10"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="25" name="vase" type="nazie" x="1247.24" y="255.999" width="32" height="32">
+   <properties>
+    <property name="text" value="10"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="26" name="lum1" type="nazie" x="768.535" y="351.608" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="27" name="lum1" type="nazie" x="607.32" y="351.608" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="28" name="lum1" type="nazie" x="607.649" y="544.803" width="32" height="32">
+   <properties>
+    <property name="text" value="12"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="29" name="eau" type="nazie" x="1279.53" y="1952.66" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="os" type="nazie" x="895.93" y="1631.06" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="31" name="os" type="nazie" x="1215.05" y="1671.67" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="32" name="os" type="nazie" x="1278.87" y="1827.61" width="32" height="32">
+   <properties>
+    <property name="text" value="11"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <imagelayer name="Image Layer 1" visible="0" opacity="0.41">
+  <image source="textures/map.png"/>
+ </imagelayer>
 </map>
