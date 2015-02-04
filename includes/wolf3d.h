@@ -39,7 +39,6 @@
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
-//# define NBSPRITE 5
 # define NB_SPRITE_TEX 15
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
@@ -50,8 +49,7 @@
 # define PLAYER 0x0000FF
 # define FACE 0x0099FF
 
-typedef enum KEY	KEY;
-enum KEY
+typedef enum			e_key
 {
 	MOV_X = 0,
 	MOV_Y = 1,
@@ -61,90 +59,90 @@ enum KEY
 	ROT_Z = 5,
 	ROT_Z_M = 6,
 	USE = 7
-};
+}						t_key;
 
-typedef struct	s_vect2di
+typedef struct			s_vect2di
 {
-	int			x;
-	int			y;
-}				t_vect2di;
+	int					x;
+	int					y;
+}						t_vect2di;
 
-typedef struct	s_vect2dd
+typedef struct			s_vect2dd
 {
-	double		x;
-	double		y;
-}				t_vect2dd;
+	double				x;
+	double				y;
+}						t_vect2dd;
 
-typedef struct	s_vect3di
+typedef struct			s_vect3di
 {
-	int			x;
-	int			y;
-	int			z;
-}				t_vect3di;
+	int					x;
+	int					y;
+	int					z;
+}						t_vect3di;
 
-typedef struct	s_vect3dd
+typedef struct			s_vect3dd
 {
-	double		x;
-	double		y;
-	double		z;
-}				t_vect3dd;
+	double				x;
+	double				y;
+	double				z;
+}						t_vect3dd;
 
-typedef struct	s_rectdd
+typedef struct			s_rectdd
 {
-	double		x;
-	double		y;
-	double		w;
-	double		h;
-}				t_rectdd;
+	double				x;
+	double				y;
+	double			w;
+	double			h;
+}					t_rectdd;
 
-typedef struct 		s_color
+typedef struct		s_color
 {
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 }					t_color;
 
-typedef struct	s_entity
+typedef struct		s_entity
 {
-	t_vect2dd	pos;
-	t_vect2dd	dir;
-	int			texture;
-	int			tex_anim;
-	int			tex_focus;
-	double		dist;
-	int			type;
-}				t_entity;
+	t_vect2dd		pos;
+	t_vect2dd		dir;
+	int				texture;
+	int				tex_anim;
+	int				tex_focus;
+	double			dist;
+	int				type;
+}					t_entity;
 
-typedef struct	s_sprite
+typedef struct		s_sprite
 {
-	SDL_Surface	*tex;
-	int			frames;
-}				t_sprite;
+	SDL_Surface		*tex;
+	int				frames;
+}					t_sprite;
 
-typedef struct	s_player
+typedef struct		s_player
 {
-	t_vect3dd	pos;
-	t_vect2dd	dir;
-	t_vect2dd	plane;
-	t_vect2dd	box;
-	int			speed;
-	char		weapon;
-	float		w_anim;
-}				t_player;
+	t_vect3dd		pos;
+	t_vect2dd		dir;
+	t_vect2dd		plane;
+	t_vect2dd		box;
+	int				speed;
+	char			weapon;
+	float			w_anim;
+}					t_player;
 
-typedef struct	s_sounds
+typedef struct		s_sounds
 {
-	Mix_Chunk	*pas;
-	Mix_Chunk	*son1;
-	Mix_Chunk	*son2;
-	Mix_Chunk	*son3;
-	Mix_Chunk	*son4;
-	Mix_Chunk	*son5;
-	Mix_Chunk	*son6;
-	Mix_Music	*music;
-}				t_sounds;
+	Mix_Chunk		*pas;
+	Mix_Chunk		*son1;
+	Mix_Chunk		*son2;
+	Mix_Chunk		*son3;
+	Mix_Chunk		*son4;
+	Mix_Chunk		*son5;
+	Mix_Chunk		*son6;
+	Mix_Music		*music;
+}					t_sounds;
 
-typedef struct	s_sdl
+typedef struct			s_sdl
 {
 	SDL_Window		*win;
 	SDL_Texture		*tex;
@@ -154,40 +152,39 @@ typedef struct	s_sdl
 	int				lx;
 	int				ly;
 
-}				t_sdl;
+}					t_sdl;
 
-typedef struct s_map
+typedef struct		s_map
 {
-	int			lx;
-	int			ly;
-	int			nb_entity;
-	int			nb_texture;
-	Uint8		*floor;												// malloc
-	Uint8		*wall;												// malloc
-	Uint8		*ceil;												// malloc
-	SDL_Surface **textures;											// malloc pointeur + SDL_SURFACE
-	SDL_Surface *sky;												// 					 SDL_SURFACE
-	t_entity	entity[NB_ENTITY_MAX];								// non malloc
-	t_entity	*entity_ptr[NB_ENTITY_MAX];							// non malloc
-	t_sprite 	sprite[NB_SPRITE_TEX];								// non malloc need to malloc
-	SDL_Surface *weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];	// a bouger
-	double		calcule[GAME_LY / 2];
-}				t_map;
+	int				lx;
+	int				ly;
+	int				nb_entity;
+	int				nb_texture;
+	Uint8			*floor;
+	Uint8			*wall;
+	Uint8			*ceil;
+	SDL_Surface 	**textures;
+	SDL_Surface 	*sky;
+	t_entity		entity[NB_ENTITY_MAX];
+	t_entity		*entity_ptr[NB_ENTITY_MAX];
+	t_sprite		sprite[NB_SPRITE_TEX];
+	SDL_Surface 	*weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];
+}					t_map;
 
-typedef struct			s_game
+typedef struct		s_game
 {
-	t_sdl				sdl;
-	t_player			player;
-	t_map				map;
-	double				dt;
-	t_color				texture[TEX_SIZE][TEX_SIZE];
-	Sint16				input[12];
-	SDL_Joystick		*joystick;
-	SDL_Haptic			*haptic;
-	double				Zbuffer[WIN_X];
-	t_sounds			sounds;
-	double				calcule[GAME_LY];
-}						t_game;
+	t_sdl			sdl;
+	t_player		player;
+	t_map			map;
+	double			dt;
+	t_color			texture[TEX_SIZE][TEX_SIZE];
+	Sint16			input[12];
+	SDL_Joystick	*joystick;
+	SDL_Haptic		*haptic;
+	double			zbuffer[WIN_X];
+	t_sounds		sounds;
+	double			calcule[GAME_LY];
+}					t_game;
 
 typedef	struct	s_ray
 {
@@ -217,12 +214,12 @@ void		game_init_sdl(t_game *game);
 void		game_draw_all(t_game *game);
 void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
 void		game_render(t_game *game);
-void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
+void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color);
 int			game_event_handler(t_game *game);
 
 void		player_init(t_player *player);
 void		player_update(t_player *player, t_game *game);
-void		player_move(t_player *player, t_game *game, KEY dir);
+void		player_move(t_player *player, t_game *game, t_key dir);
 
 void		sprite_load(t_map *map, char *path);
 void		map_init(t_game *game, int mode, int map);
