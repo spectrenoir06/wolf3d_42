@@ -31,6 +31,7 @@ void	game_init_sdl(t_game *game)
 			SDL_TEXTUREACCESS_STREAMING,
 			game->sdl.lx,
 			game->sdl.ly);
+	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
 	if (game->sdl.win == NULL)
 	{
 		printf("Wolf3D: Error windows can't load\n");
@@ -89,7 +90,6 @@ void	game_draw_all(t_game *game)
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
-	//bzero(game->sdl.text_buf, sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
 }
 
 inline void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c)
