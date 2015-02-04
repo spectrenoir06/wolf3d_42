@@ -56,6 +56,8 @@ int			map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
 void		player_init(t_player *player);
 
 void		sdl_exit(t_game *game);
+void		map_unload(t_map *map);
+
 void		kb_key_down(SDL_Event ev, t_game *game);
 void		kb_key_up(SDL_Event ev, t_game *game);
 void		joy_but_down(SDL_Event ev, t_game *game);
