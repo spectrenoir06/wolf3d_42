@@ -128,10 +128,6 @@ typedef struct	s_sounds
 	Mix_Chunk	*pas;
 	Mix_Chunk	*son1;
 	Mix_Chunk	*son2;
-	Mix_Chunk	*son3;
-	Mix_Chunk	*son4;
-	Mix_Chunk	*son5;
-	Mix_Chunk	*son6;
 	Mix_Music	*music;
 }				t_sounds;
 
@@ -177,7 +173,7 @@ typedef struct	s_game
 	double		zbuffer[WIN_X];
 	t_sounds	sounds;
 	double		calcule[GAME_LY];
-	SDL_Event 	ev;
+	SDL_Event	ev;
 }				t_game;
 
 typedef	struct	s_ray
