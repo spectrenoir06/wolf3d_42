@@ -6,7 +6,7 @@ inline int		sprite_compare(void *entity1, void *entity2)
 	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
 }
 
-void	game_draw_sprites_init(t_drsprite *sprt, t_game *game)
+void			game_draw_sprites_init(t_drsprite *sprt, t_game *game)
 {
 	sprt->spritex = game->map.entity_ptr[sprt->x]->pos.x - game->player.pos.x;
 	sprt->spritey = game->map.entity_ptr[sprt->x]->pos.y - game->player.pos.y;
@@ -35,7 +35,7 @@ void	game_draw_sprites_init(t_drsprite *sprt, t_game *game)
 	sprt->stripe = sprt->drawStartX - 1;
 }
 
-void	game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
+void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 {
 	sprt->d = sprt->y - (GAME_LY) / 2.0 + sprt->spriteheight / 2.0;
 	sprt->texY = ((sprt->d * 512) / sprt->spriteheight);
@@ -54,7 +54,7 @@ void	game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 	}
 	else
 		sprt->i = 0;
-	sprt->color = (t_color *) &((Uint8*)(game->map.sprite[game->map.entity_ptr
+	sprt->color = (t_color *)&((Uint8*)(game->map.sprite[game->map.entity_ptr
 	[sprt->x]->texture].tex->pixels))[(int)sprt->texX * 3 + (sprt->texY * 3 *
 	game->map.sprite[game->map.entity_ptr[sprt->x]->texture].tex->w) +
 	(sprt->i * 3 * TEX_SIZE)];
@@ -64,19 +64,19 @@ void	game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 		sprt->stripe, GAME_Y + sprt->y, sprt->color);
 }
 
-void	game_sort_sprites(t_drsprite *sprt, t_game *game)
+void			game_sort_sprites(t_drsprite *sprt, t_game *game)
 {
 	sprt->x = -1;
 	while (++sprt->x < game->map.nb_entity)
 		game->map.entity[sprt->x].dist = ((game->player.pos.x - game->map.entity
-		[sprt->x].pos.x) * (game->player.pos.x - game->map.entity[sprt->x].pos.x)
-		+ (game->player.pos.y - game->map.entity[sprt->x].pos.y) *
+		[sprt->x].pos.x) * (game->player.pos.x - game->map.entity[sprt->x].
+		pos.x) + (game->player.pos.y - game->map.entity[sprt->x].pos.y) *
 		(game->player.pos.y - game->map.entity[sprt->x].pos.y));
 	ft_sort_qck((void **)game->map.entity_ptr,
 	game->map.nb_entity, sprite_compare);
 }
 
-void	game_draw_sprites(t_game *game)
+void			game_draw_sprites(t_game *game)
 {
 	t_drsprite	sprt;
 
