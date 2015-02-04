@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="33">
+ <properties>
+  <property name="nbSprites" value="18"/>
+  <property name="startDirX" value="1"/>
+  <property name="startDirY" value="0"/>
+  <property name="startX" value="29"/>
+  <property name="startY" value="57"/>
+ </properties>
  <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
   <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
@@ -10,12 +17,12 @@
  </layer>
  <layer name="wall" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Z646EIAyFdS5Z32P0/V9xd5IlIU1bWtqiID9ORhlQPk4pEPdlWfaba72pJv/kn/zn9+NO/E+DRuN/EZxUuXdfjj89mHGJWCe1HJGxQHFJy0rjtf+PcX7/UvYxMha0/NQYaGKjxn8sHlrz15RHKMVDr/y9+P/VJ7t+EOUY/07U/eqt7ON7ucb853zH+D39b81/CNsfxDO4NZNa51eiPGrt9/Rf83/Jy1Z7v6/SnK7lt4zPFfjP8B9ywnyY8l0EL8WP7dkk7eHeDuZ6i/8t+SUxUeM/xauZ/2fxU+s8Vj4qP/U/9RyuHeQpnYNa8kN/uVyA5QZJDoU8o/k/Er/mfjR+KGn8S+c/FMwDae8bye3tv0Ta/F/L9KOUZP5z+dHqQR4DHt5r+bH4jtj/YOsK1T7/XzvWiUtaz7L/k+6TtWPFtZf62oJfw/Qx8n8U7BZ+DZc2/i38qc9e9Th+qVrGv7e26X/X85/iGT3/532n2K/of3pu/h2BW/+5up788PsvfGfk/g/2V9p/CT/2XKyux/nXyl8qs/B77P/vxq+575U/95p7l+T8fyX+tfBb4u/R/1XQBmtL8fc2/zXaFjs/dZZPwr4DYeN2Rf9rxD3jYN5l5efWe+o3gr92nCL4vfP/Ff339EMqal+MiZv/lBfS2I7gl9Y5QHnpWhO3krg+i79UDs9HHDtWzt1HzgmL/1idGn6JzuTH+GrOwb36j7XBrie/jL+3/E+10bYdxf9a9Zz/Ivnv5n/v89/b/+i2k3/yl/hbKDFshuuIfv0CErZNpABAAAA=
+   H4sIAAAAAAAAA+2Zy46DMAxFQ4dq2Mz8BPT/f3HEIhJj2fErT8jiqiSlwSfXdpB6hBCOqampqampwvpyqHXsuflXgpOabx17Lv5FoVa5AOOwrvMB41XJ3yoXtPwaP7X+Y/lQm5/bAw2TRzEfRuUfxf9T++X6Rcxj/NQap95K/nfoo/65fJDmyQj9/yOM7drbNfzYOb8Q863Ofqn/0vzA+K/sLf228mvqI7UPo/Jb/If8sB/Gfleb9ypL/Z/CzgWr/6281vpv4dXUfyt+6OdCzN+ZX/q9hj+us4Z0btWuA4oN9gJY81b+p/vfMz83vjM/dsblzH+oFay/VuRu4b+0/1uf862UlM/Dzu1LzIEc3mv5qfzO/f4DlXrO9XsrPxc757+EXxujZE1ur6W+1uDXsO9O/l3B7uHHel6u/Pfwx5hz3Zfil6pm/ufWNv0fuv4pnrv3f+yMG6H/R70CvyfUvSX4X2CeeqaVNyUYL3wv5X6X4sfWxe6l/Kc8KsFP5WUO/hzv/0/j58Z34Kf8xXq8p+fX5l+YT45/RP8XZCw596T1PQK/VBuyvpff+j9Qj/5blFrj3JufQvyp895a/6X0W4k/d//v0f8Wot6LMaXqn8pZyM95VlvRS8xzeO2p2x75uZw/gpwd68dcH2/Nj/kP94KT58zugd+r0f2HuSD1ffL/5x+1/3t1J/9z8s/+9yz/Z/3P/J/8z+XfHNcl4voDDtjTLQBAAAA=
   </data>
  </layer>
- <layer name="ceil" width="64" height="64">
+ <layer name="ceil" width="64" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
+   H4sIAAAAAAAAA+3DQQ0AAAwDoRNS/zonYx9IWDVVVVVVVVVVVVVVVVVVVVX19QFH/netAEAAAA==
   </data>
  </layer>
  <objectgroup name="obj">
@@ -206,7 +213,7 @@
    </properties>
   </object>
  </objectgroup>
- <imagelayer name="Image Layer 1" opacity="0.41">
+ <imagelayer name="Image Layer 1" visible="0" opacity="0.41">
   <image source="textures/map.png"/>
  </imagelayer>
 </map>
