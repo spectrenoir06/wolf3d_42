@@ -115,6 +115,32 @@ typedef struct	s_entity
 	int			type;
 }				t_entity;
 
+typedef struct	s_drsprite
+{
+	int			y;
+	int			x;
+	double		spritex;
+	double		spritey;
+	double		invdet;
+	double		transformX;
+	double		transformY;
+	int			spriteScreenX;
+	int			spriteheight;
+	int			drawStartY;
+	int			drawEndY;
+	int			spriteWidth;
+	int			drawStartX;
+	int			drawEndX;
+	int			stripe;
+	int			i;
+	int			texX;
+	int			d;
+	int			texY;
+	double		angle;
+	t_color		*color;
+	t_vect2dd	pos;
+}				t_drsprite;
+
 typedef struct	s_sprite
 {
 	SDL_Surface	*tex;
