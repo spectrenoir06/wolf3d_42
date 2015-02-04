@@ -177,7 +177,7 @@ typedef struct	s_game
 	double		zbuffer[WIN_X];
 	t_sounds	sounds;
 	double		calcule[GAME_LY];
-	SDL_Event 	ev;
+	SDL_Event	ev;
 }				t_game;
 
 typedef	struct	s_ray
