@@ -19,6 +19,14 @@
 struct timeval tv1;
 struct timeval tv2;
 
+void	setdt(t_game *game)
+{
+	tv2 = tv1;
+	gettimeofday(&tv1, NULL);
+	game->dt = ((tv1.tv_sec - tv2.tv_sec) +
+	((tv1.tv_usec - tv2.tv_usec) / 1000000.0));
+}
+
 int		main(int ac, char **av)
 {
 	t_game	game;
@@ -29,23 +37,14 @@ int		main(int ac, char **av)
 	if (ac == 2)
 		map_init(&game, 1, ft_atoi(av[1]));
 	else
-		map_init(&game, 1, 1);
-	i = ((GAME_LY) / 2);
-	while (i < (GAME_LY))
-	{
-		game.calcule[i - (GAME_LY / 2)] = (GAME_LY) / (2.0 * i - (GAME_LY));
-		i++;
-	}
-	game_render(&game);
-	hud_render(&game);
+		map_init(&game, 1, 2);
+	i = ((GAME_LY) / 2) - 1;
+	while (i++ < (GAME_LY) - 1)
+		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
 	hud_background(&game);
-	game_draw_all(&game);
 	while (42)
 	{
-		tv2 = tv1;
-		gettimeofday(&tv1, NULL);
-		game.dt = ((tv1.tv_sec - tv2.tv_sec) +
-				((tv1.tv_usec - tv2.tv_usec) / 1000000.0));
+		setdt(&game);
 		while (game_event_handler(&game))
 			;
 		player_update(&game.player, &game);
