@@ -368,7 +368,6 @@ void	game_render(t_game *game)
 		while (y <= drawEnd)
 		{
 			int texY = (y * 2 - GAME_LY + lineHeight)* (TEX_SIZE/2)/lineHeight;
-			//int texY = (y - drawStart) * TEX_SIZE / (drawEnd - drawStart);
 
 			void *color;
 			color = &((Uint8 *)(game->map.textures[wall.id]->pixels))[texX * 3 + (texY * TEX_SIZE * 3)];
