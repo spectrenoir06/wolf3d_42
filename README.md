@@ -62,8 +62,6 @@ Bonus apres rendu:
   - [ ] multijoueur
 
 ![alt tag](img/screenshot.png)
-![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.09.32.png)
-![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.08.54.png)
-![alt tag](img/Screen%20Shot%202015-01-22%20at%2021.08.05.png)
-![alt tag](img/Screen%20Shot%202015-01-20%20at%2021.41.53.png)
-![alt tag](img/Screen%20Shot%202015-01-20%20at%2016.14.40.png)
+![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.10.09.png)
+![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.08.51.png)
+![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.25.26.png)
