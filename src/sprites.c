@@ -12,33 +12,33 @@ void			game_draw_sprites_init(t_drsprite *sprt, t_game *game)
 	sprt->spritey = game->map.entity_ptr[sprt->x]->pos.y - game->player.pos.y;
 	sprt->invdet = 1.0 / (game->player.plane.x * game->player.dir.y -
 	game->player.dir.x * game->player.plane.y);
-	sprt->transformX = sprt->invdet * (game->player.dir.y * sprt->spritex -
+	sprt->transformx = sprt->invdet * (game->player.dir.y * sprt->spritex -
 	game->player.dir.x * sprt->spritey);
-	sprt->transformY = sprt->invdet * (-game->player.plane.y * sprt->spritex +
+	sprt->transformy = sprt->invdet * (-game->player.plane.y * sprt->spritex +
 	game->player.plane.x * sprt->spritey);
-	sprt->spriteScreenX = (int)(((GAME_LX) / 2.0) *
-	(1 + sprt->transformX / sprt->transformY));
-	sprt->spriteheight = abs((int)((GAME_LY) / sprt->transformY));
-	sprt->drawStartY = -sprt->spriteheight / 2.0 + (GAME_LY) / 2.0;
-	if (sprt->drawStartY < 0)
-		sprt->drawStartY = 0;
-	sprt->drawEndY = sprt->spriteheight / 2.0 + (GAME_LY) / 2.0;
-	if (sprt->drawEndY >= (GAME_LY))
-		sprt->drawEndY = (GAME_LY) - 1;
-	sprt->spriteWidth = abs((int)((GAME_LY) / sprt->transformY));
-	sprt->drawStartX = -sprt->spriteWidth / 2.0 + sprt->spriteScreenX;
-	if (sprt->drawStartX < 0)
-		sprt->drawStartX = 0;
-	sprt->drawEndX = sprt->spriteWidth / 2.0 + sprt->spriteScreenX;
-	if (sprt->drawEndX >= (GAME_LX))
-		sprt->drawEndX = (GAME_LX) - 1;
-	sprt->stripe = sprt->drawStartX - 1;
+	sprt->spritescreenx = (int)(((GAME_LX) / 2.0) *
+	(1 + sprt->transformx / sprt->transformy));
+	sprt->spriteheight = abs((int)((GAME_LY) / sprt->transformy));
+	sprt->drawstarty = -sprt->spriteheight / 2.0 + (GAME_LY) / 2.0;
+	if (sprt->drawstarty < 0)
+		sprt->drawstarty = 0;
+	sprt->drawendy = sprt->spriteheight / 2.0 + (GAME_LY) / 2.0;
+	if (sprt->drawendy >= (GAME_LY))
+		sprt->drawendy = (GAME_LY) - 1;
+	sprt->spritewidth = abs((int)((GAME_LY) / sprt->transformy));
+	sprt->drawstartx = -sprt->spritewidth / 2.0 + sprt->spritescreenx;
+	if (sprt->drawstartx < 0)
+		sprt->drawstartx = 0;
+	sprt->drawendx = sprt->spritewidth / 2.0 + sprt->spritescreenx;
+	if (sprt->drawendx >= (GAME_LX))
+		sprt->drawendx = (GAME_LX) - 1;
+	sprt->stripe = sprt->drawstartx - 1;
 }
 
 void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 {
 	sprt->d = sprt->y - (GAME_LY) / 2.0 + sprt->spriteheight / 2.0;
-	sprt->texY = ((sprt->d * 512) / sprt->spriteheight);
+	sprt->texy = ((sprt->d * 512) / sprt->spriteheight);
 	sprt->pos.x = game->player.pos.x - game->map.entity_ptr[sprt->x]->pos.x;
 	sprt->pos.y = game->player.pos.y - game->map.entity_ptr[sprt->x]->pos.y;
 	if (game->map.sprite[game->map.entity_ptr[sprt->x]->texture].frames == 8)
@@ -55,7 +55,7 @@ void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 	else
 		sprt->i = 0;
 	sprt->color = (t_color *)&((Uint8*)(game->map.sprite[game->map.entity_ptr
-	[sprt->x]->texture].tex->pixels))[(int)sprt->texX * 3 + (sprt->texY * 3 *
+	[sprt->x]->texture].tex->pixels))[(int)sprt->texx * 3 + (sprt->texy * 3 *
 	game->map.sprite[game->map.entity_ptr[sprt->x]->texture].tex->w) +
 	(sprt->i * 3 * TEX_SIZE)];
 	if (!(sprt->color->r == 0xFF && sprt->color->g == 0x00 &&
@@ -85,15 +85,15 @@ void			game_draw_sprites(t_game *game)
 	while (++sprt.x < game->map.nb_entity)
 	{
 		game_draw_sprites_init(&sprt, game);
-		while (++sprt.stripe <= sprt.drawEndX)
+		while (++sprt.stripe <= sprt.drawendx)
 		{
-			sprt.texX = (int)(256 * (sprt.stripe - (-sprt.spriteWidth / 2 +
-			sprt.spriteScreenX)) * 512 / sprt.spriteWidth / 256);
-			if (sprt.transformY > 0 && sprt.stripe > 0 && sprt.stripe <
-				(GAME_LX) && sprt.transformY < game->zbuffer[sprt.stripe])
+			sprt.texx = (int)(256 * (sprt.stripe - (-sprt.spritewidth / 2 +
+			sprt.spritescreenx)) * 512 / sprt.spritewidth / 256);
+			if (sprt.transformy > 0 && sprt.stripe > 0 && sprt.stripe <
+				(GAME_LX) && sprt.transformy < game->zbuffer[sprt.stripe])
 			{
-				sprt.y = sprt.drawStartY - 1;
-				while (++sprt.y < sprt.drawEndY)
+				sprt.y = sprt.drawstarty - 1;
+				while (++sprt.y < sprt.drawendy)
 					game_draw_sprites_draw(&sprt, game);
 			}
 		}
