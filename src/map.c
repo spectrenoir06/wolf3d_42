@@ -108,25 +108,9 @@ int			map_load(t_map *map, char *path)
 	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
 	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
-	printf("entity number = %d\n", map->nb_entity);
-	i = 0;
-	while (i < (map->lx * map->ly))
-	{
-		read(fd, &map->ceil[i], 1);
-		i++;
-	}
-	i = 0;
-	while (i < (map->lx * map->ly))
-	{
-		read(fd, &map->wall[i], 1);
-		i++;
-	}
-	i = 0;
-	while (i < (map->lx * map->ly))
-	{
-		read(fd, &map->floor[i], 1);
-		i++;
-	}
+	read(fd, map->ceil, map->lx * map->ly);
+	read(fd, map->wall, map->lx * map->ly);
+	read(fd, map->floor, map->lx * map->ly);
 	i = 0;
 	while (i < map->nb_entity)
 	{
@@ -138,10 +122,6 @@ int			map_load(t_map *map, char *path)
 		map->entity[i].dir.y = 0;
 		read(fd, &map->entity[i].type, sizeof(Uint32));
 		read(fd, &map->entity[i].texture, sizeof(Uint32));
-		printf("entity x = %f\n", tmp_x);
-		printf("entity y = %f\n", tmp_y);
-		printf("type entity = %d\n", map->entity[i].type);
-		printf("tex entity = %d\n", map->entity[i].texture);
 		map->entity_ptr[i] = &map->entity[i];
 		i++;
 	}
