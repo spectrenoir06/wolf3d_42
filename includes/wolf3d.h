@@ -244,6 +244,7 @@ void		game_draw_all(t_game *game);
 void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
 void		game_render(t_game *game);
 void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
+void		game_draw_sprites(t_game *game);
 int			game_event_handler(t_game *game);
 
 void		player_init(t_player *player);
