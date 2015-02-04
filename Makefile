@@ -79,9 +79,6 @@ $(LIBFT_STATIC):
 $(LIBFT_DEBUG):
 	make -C libft/ libft_debug.a
 
-##$(HEAD_DIR))/%.h.gch: $(HEAD_DIR))/%.h
-##	$(CC) -I $(HEAD_DIR) -o $@ -c $<
-
 .PHONY: clean fclean re debug norme
 
 clean:
