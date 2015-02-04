@@ -40,5 +40,6 @@ void	sdl_mixer_quit(t_sounds *sounds)
 	Mix_FreeMusic(sounds->music);
 	Mix_FreeChunk(sounds->pas);
 	Mix_FreeChunk(sounds->son1);
+	Mix_FreeChunk(sounds->son2);
 	Mix_CloseAudio();
 }

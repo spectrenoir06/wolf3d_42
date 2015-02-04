@@ -20,7 +20,6 @@ void	game_init_sdl(t_game *game)
 
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
-
 	SDL_CreateWindowAndRenderer(game->sdl.lx,
 			game->sdl.ly,
 			SDL_WINDOW_SHOWN,
@@ -51,7 +50,6 @@ void	game_init_sdl(t_game *game)
 		if (SDL_HapticRumbleInit(game->haptic))
 				printf("Can not init %s\n", SDL_GetError());
 	}
-
 	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
