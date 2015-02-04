@@ -113,7 +113,33 @@ typedef struct		s_entity
 	int				type;
 }					t_entity;
 
-typedef struct		s_sprite
+typedef struct	s_drsprite
+{
+	int			y;
+	int			x;
+	double		spritex;
+	double		spritey;
+	double		invdet;
+	double		transformX;
+	double		transformY;
+	int			spriteScreenX;
+	int			spriteheight;
+	int			drawStartY;
+	int			drawEndY;
+	int			spriteWidth;
+	int			drawStartX;
+	int			drawEndX;
+	int			stripe;
+	int			i;
+	int			texX;
+	int			d;
+	int			texY;
+	double		angle;
+	t_color		*color;
+	t_vect2dd	pos;
+}				t_drsprite;
+
+typedef struct	s_sprite
 {
 	SDL_Surface		*tex;
 	int				frames;
@@ -215,6 +241,7 @@ void		game_draw_all(t_game *game);
 void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
 void		game_render(t_game *game);
 void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color);
+void		game_draw_sprites(t_game *game);
 int			game_event_handler(t_game *game);
 
 void		player_init(t_player *player);

@@ -20,8 +20,9 @@ SRC		=	main.c		\
 			map.c		\
 			sound.c		\
 			hud.c		\
-			weapon.c
-			
+			weapon.c	\
+			sprites.c
+
 ##HEADFILES = wolf3d.h
 
 HEAD_DIR	= includes
