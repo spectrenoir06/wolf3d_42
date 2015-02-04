@@ -60,7 +60,7 @@ void	game_init_sdl(t_game *game)
 
 
 
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color)
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y,int color)
 {
 	int a = x;
 	int b = y;
@@ -69,10 +69,10 @@ void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int
 	c.r = color / 0x10000;
 	c.g = (color % 0x10000) / 0x100;
 	c.b = color % 0x100;
-	while (a < (x + lx))
+	while (a < (x + 4))
 	{
 		b = y;
-		while (b < (y + ly))
+		while (b < (y + 4))
 		{
 			game_draw_pixel(game, buf, a, b , &c);
 			b++;
@@ -291,7 +291,7 @@ void	game_draw_sprites(t_game *game)
 		{
 			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
 
-			if (transformY > 0 && stripe > 0 && stripe < (GAME_LX) && transformY < game->Zbuffer[stripe])
+			if (transformY > 0 && stripe > 0 && stripe < (GAME_LX) && transformY < game->zbuffer[stripe])
 			{
 				for (y = drawStartY; y < drawEndY; y++)
 				{
@@ -379,7 +379,7 @@ void	game_render(t_game *game)
 		}
 		//y = (y < 0) ? 0 : y;
 		draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
-		game->Zbuffer[x] = wall.dist;
+		game->zbuffer[x] = wall.dist;
 
 	}
 	game_draw_sprites(game);
