@@ -21,7 +21,9 @@ SRC		=	main.c		\
 			sound.c		\
 			hud.c		\
 			weapon.c	\
-			sprites.c
+			sprites.c	\
+			joystick.c	\
+			keyboard.c
 
 ##HEADFILES = wolf3d.h
 
