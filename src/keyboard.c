@@ -2,7 +2,11 @@
 
 void	sdl_exit(t_game *game)
 {
+	map_unload(&game->map);
+	free(game->sdl.text_buf);
 	SDL_JoystickClose(0);
+	SDL_DestroyTexture(game->sdl.tex);
+	SDL_DestroyRenderer(game->sdl.rd);
 	SDL_DestroyWindow(game->sdl.win);
 	sdl_mixer_quit(&game->sounds);
 	SDL_Quit();

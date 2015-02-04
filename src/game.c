@@ -37,8 +37,7 @@ void	game_init_sdl(t_game *game)
 		exit(1);
 	}
 	game->sdl.text_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
-	//game->sdl.hud_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
-	if (game->sdl.text_buf == NULL)// || game->sdl.hud_buf == NULL)
+	if (game->sdl.text_buf == NULL)
 	{
 		printf("Wolf3D: Error can't allocate buffer\n");
 		exit(1);
@@ -54,8 +53,6 @@ void	game_init_sdl(t_game *game)
 
 	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
-	//while (x < 10)
-		//game->input[x++] = 0;
 }
 
 
