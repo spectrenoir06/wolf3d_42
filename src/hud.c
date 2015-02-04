@@ -45,16 +45,16 @@ void		hud_map(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			game_draw_rect(game, game->sdl.text_buf, x * 4, y * 4, 4, 4,
+			game_draw_rect(game, game->sdl.text_buf, x * 4, y * 4,
 					(game->map.wall[x + (y * game->map.lx)] ? WALL : FLOOR));
 			y++;
 		}
 		x++;
 	}
 	game_draw_rect(game, game->sdl.text_buf, game->player.pos.x * 4,
-			game->player.pos.y * 4, 2, 2, PLAYER);
+			game->player.pos.y * 4, PLAYER);
 	game_draw_rect(game, game->sdl.text_buf,
 			game->player.pos.x * 4 + (game->player.dir.x * 4),
 			game->player.pos.y * 4 + (game->player.dir.y * 4),
-			2, 2, FACE);
+			FACE);
 }
