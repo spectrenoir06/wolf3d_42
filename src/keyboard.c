@@ -14,9 +14,11 @@
 
 void	sdl_exit(t_game *game)
 {
+	weapon_unload(&game->map);
 	map_unload(&game->map);
 	free(game->sdl.text_buf);
-	SDL_JoystickClose(0);
+	SDL_HapticClose(game->haptic);
+	SDL_JoystickClose(game->joystick);
 	SDL_DestroyTexture(game->sdl.tex);
 	SDL_DestroyRenderer(game->sdl.rd);
 	SDL_DestroyWindow(game->sdl.win);

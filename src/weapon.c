@@ -41,6 +41,15 @@ int		weapon_load(t_map *map, char *path, int n)
 	return (1);
 }
 
+void	weapon_unload(t_map *map)
+{
+	int	i;
+
+	i = -1;
+	while(++i < 5)
+		SDL_FreeSurface(map->weapon_tex[1][i + 1]);
+}
+
 void	weapon_start_anim(t_game *game, t_player *player)
 {
 	player->w_anim = 1.0;
