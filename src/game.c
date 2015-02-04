@@ -60,7 +60,7 @@ void	game_init_sdl(t_game *game)
 
 
 
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color)
+void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y,int color)
 {
 	int a = x;
 	int b = y;
@@ -69,10 +69,10 @@ void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int
 	c.r = color / 0x10000;
 	c.g = (color % 0x10000) / 0x100;
 	c.b = color % 0x100;
-	while (a < (x + lx))
+	while (a < (x + 4))
 	{
 		b = y;
-		while (b < (y + ly))
+		while (b < (y + 4))
 		{
 			game_draw_pixel(game, buf, a, b , &c);
 			b++;
@@ -242,89 +242,6 @@ void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, do
 	}
 }
 
-inline int		sprite_compare(void *entity1, void *entity2)
-{
-	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
-}
-
-void	game_draw_sprites(t_game *game)
-{
-	int	y;
-	int x;
-
-   for(x = 0; x < game->map.nb_entity; x++)
-	  game->map.entity[x].dist = ((game->player.pos.x - game->map.entity[x].pos.x) * (game->player.pos.x - game->map.entity[x].pos.x) + (game->player.pos.y - game->map.entity[x].pos.y) * (game->player.pos.y - game->map.entity[x].pos.y));
-
-	ft_sort_qck((void **)game->map.entity_ptr,  game->map.nb_entity, sprite_compare);
-	for(x = 0; x <  game->map.nb_entity; x++)
-	{
-		double	spritex = game->map.entity_ptr[x]->pos.x - game->player.pos.x;
-		double	spritey = game->map.entity_ptr[x]->pos.y - game->player.pos.y;
-
-		double	invdet = 1.0 / (game->player.plane.x * game->player.dir.y - game->player.dir.x * game->player.plane.y);
-
-		double	transformX = invdet * (game->player.dir.y * spritex - game->player.dir.x * spritey);
-		double	transformY = invdet * (-game->player.plane.y * spritex + game->player.plane.x * spritey);
-
-		int		spriteScreenX = (int)(((GAME_LX) / 2.0) * (1 + transformX / transformY));
-
-		int		spriteheight = abs((int)((GAME_LY) / transformY));
-
-		int		drawStartY = -spriteheight / 2.0 + (GAME_LY) / 2.0;
-		if (drawStartY < 0)
-			drawStartY = 0;
-		int		drawEndY = spriteheight / 2.0 + (GAME_LY) / 2.0;
-		if (drawEndY >= (GAME_LY))
-			drawEndY = (GAME_LY) - 1;
-
-		int		spriteWidth = abs((int)((GAME_LY) / transformY));
-		int		drawStartX = -spriteWidth / 2.0 + spriteScreenX;
-		if (drawStartX < 0)
-			drawStartX = 0;
-		int		drawEndX = spriteWidth / 2.0 + spriteScreenX;
-		if (drawEndX >= (GAME_LX))
-			drawEndX = (GAME_LX) - 1;
-
-		int stripe;
-		int	i;
-		for (stripe = drawStartX; stripe <= drawEndX; stripe++)
-		{
-			int	texX = (int)(256 * (stripe - (-spriteWidth / 2 + spriteScreenX)) * 512 / spriteWidth / 256);
-
-			if (transformY > 0 && stripe > 0 && stripe < (GAME_LX) && transformY < game->Zbuffer[stripe])
-			{
-				for (y = drawStartY; y < drawEndY; y++)
-				{
-					int	d = y - (GAME_LY) / 2.0 + spriteheight / 2.0;
-					int	texY = ((d * 512) / spriteheight);
-
-					t_color *color;
-					double	angle;
-					t_vect2dd	pos;
-					pos.x = game->player.pos.x - game->map.entity_ptr[x]->pos.x;
-					pos.y = game->player.pos.y - game->map.entity_ptr[x]->pos.y;
-					if (game->map.sprite[game->map.entity_ptr[x]->texture].frames == 8)
-					{
-						angle = atan2(pos.y, pos.x) - atan2(game->map.entity_ptr[x]->dir.y, game->map.entity_ptr[x]->dir.x) + M_PI_4 / 2;
-						if (angle < 0)
-							angle += 2 * M_PI;
-						i = ((angle) / (M_PI * 2.0) * 8.0);
-						if (i > 7)
-							i = 7;
-						if (i < 0)
-							i = 0;
-					}
-					else
-						i = 0;
-					color = (t_color *) &((Uint8*)(game->map.sprite[game->map.entity_ptr[x]->texture].tex->pixels))[(int)texX * 3 + (texY * 3 * game->map.sprite[game->map.entity_ptr[x]->texture].tex->w) + (i * 3 * TEX_SIZE)];
-					if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
-						game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX - stripe, GAME_Y +  y, color);
-				}
-			}
-		}
-	}
-}
-
 void	game_render(t_game *game)
 {
 	int	x = 0;
@@ -379,155 +296,8 @@ void	game_render(t_game *game)
 		}
 		//y = (y < 0) ? 0 : y;
 		draw_floor_and_ceil(game, GAME_LX - x, y, ray, &wall, wallX);
-		game->Zbuffer[x] = wall.dist;
+		game->zbuffer[x] = wall.dist;
 
 	}
 	game_draw_sprites(game);
-}
-
-int		game_event_handler(t_game *game)
-{
-	 SDL_Event event;
-
-	if (!SDL_PollEvent(&event))
-		return (0);
-	if (event.type == SDL_MOUSEMOTION)
-	{
-		//printf("Mouse %d\n", event.motion.xrel);
-		if (event.motion.xrel > SINT16_MIN && event.motion.xrel < SINT16_MAX)
-			game->input[ROT_Z_M] = event.motion.xrel;
-		//game->input[ROT_Y] = event.motion.yrel *1000;
-		return (1);
-	}
-	if (event.type == SDL_MOUSEBUTTONDOWN)
-	{
-		if (event.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-	}
-	if (event.type == SDL_KEYDOWN)
-	{
-		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-			game->input[MOV_Y] = SINT16_MAX;
-		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-			game->input[MOV_Y] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_a)
-			game->input[MOV_X] = SINT16_MAX;
-		else if (event.key.keysym.sym == SDLK_d)
-			game->input[MOV_X] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
-			game->input[ROT_Z] = SINT16_MIN;
-		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
-			game->input[ROT_Z] = SINT16_MAX;
-		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
-			game->player.speed += 3;
-		else if (event.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
-				weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-		else if (event.key.keysym.sym == SDLK_p)
-			{
-				if(Mix_PausedMusic())
-					Mix_ResumeMusic();
-				else if (Mix_PlayingMusic())
-					Mix_PauseMusic();
-			}
-		else if (event.key.keysym.sym == SDLK_ESCAPE)
-		{
-			SDL_JoystickClose(0);
-			SDL_DestroyWindow(game->sdl.win);
-			sdl_mixer_quit(&game->sounds);
-			SDL_Quit();
-			exit(0);
-		}
-		return (1);
-	}
-	else if (event.type == SDL_KEYUP)
-	{
-		if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_w)
-			game->input[MOV_Y] = 0;
-		else if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
-			game->input[MOV_Y] = 0;
-		else if (event.key.keysym.sym == SDLK_a)
-			game->input[MOV_X] = 0;
-		else if (event.key.keysym.sym == SDLK_d)
-			game->input[MOV_X] = 0;
-		else if (event.key.keysym.sym == SDLK_LEFT || event.key.keysym.sym == SDLK_q)
-			game->input[ROT_Z] = 0;
-		else if (event.key.keysym.sym == SDLK_RIGHT || event.key.keysym.sym == SDLK_e)
-			game->input[ROT_Z] = 0;
-		else if (event.key.keysym.sym == SDLK_LSHIFT || event.key.keysym.sym == SDLK_RSHIFT)
-			game->player.speed -= 3;
-		Mix_FadeOutChannel(1, 200);
-	}
-	else if(event.type == SDL_JOYBUTTONDOWN)
-	{
-		//printf("Button = %d\n", event.jbutton.button);
-		if (event.jbutton.button == 11)
-			game->input[MOV_Y] = SINT16_MAX;
-		else if (event.jbutton.button == 12)
-			game->input[MOV_Y] = SINT16_MIN;
-		else if (event.jbutton.button == 13)
-			game->input[MOV_X] = SINT16_MIN;
-		else if (event.jbutton.button == 14)
-			game->input[MOV_X] = SINT16_MAX;
-		else if (event.jbutton.button == 4)
-			game->input[ROT_Z] = SINT16_MIN;
-		else if (event.jbutton.button == 5)
-			game->input[ROT_Z] = SINT16_MAX;
-		else if (event.jbutton.button == 6)
-			game->player.speed += 3;
-		else if (event.jbutton.button == 0)
-		{
-			SDL_HapticRumblePlay(game->haptic, 0.8, SDL_HAPTIC_INFINITY);
-			// jouer son
-		}
-		else if (event.jbutton.button == 10)
-		{
-			SDL_JoystickClose(0);
-			SDL_DestroyWindow(game->sdl.win);
-			sdl_mixer_quit(&game->sounds);
-			SDL_Quit();
-			exit(0);
-		}
-	}
-	else if(event.type == SDL_JOYBUTTONUP)
-	{
-		//printf("R-Button = %d\n", event.jbutton.button);
-		if (event.jbutton.button == 11 || event.jbutton.button == 12)
-			game->input[MOV_Y] = 0;
-		else if (event.jbutton.button == 13 || event.jbutton.button == 14)
-			game->input[MOV_X] = 0;
-		else if (event.jbutton.button == 4 || event.jbutton.button == 5)
-			game->input[ROT_Z] = 0;
-		else if (event.jbutton.button == 0)
-			SDL_HapticRumbleStop(game->haptic);
-		else if (event.jbutton.button == 6)
-			game->player.speed -= 3;
-		Mix_FadeOutChannel(1, 200);
-	}
-	else if (event.type == SDL_JOYAXISMOTION)
-	{
-		if (event.jaxis.axis == 1 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_Y] = -event.jaxis.value - 1;
-		else if (event.jaxis.axis == 1)
-			game->input[MOV_Y] = 0, Mix_FadeOutChannel(1, 200);
-		if (event.jaxis.axis == 0 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[MOV_X] = -event.jaxis.value - 1;
-		else if (event.jaxis.axis == 0)
-			game->input[MOV_X] = 0, Mix_FadeOutChannel(1, 200);
-		if (event.jaxis.axis == 3 && (event.jaxis.value > 5000 || event.jaxis.value < -5000))
-			game->input[ROT_Z] = event.jaxis.value;
-		else if (event.jaxis.axis == 3)
-			game->input[ROT_Z] = 0;
-		if (event.jaxis.axis == 5 && (event.jaxis.value > 5000) && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-
-	}
-	else if (event.type == SDL_QUIT)
-	{
-		SDL_JoystickClose(0);
-		SDL_DestroyWindow(game->sdl.win);
-		sdl_mixer_quit(&game->sounds);
-		SDL_Quit();
-		exit(0);
-	}
-	return (1);
 }
