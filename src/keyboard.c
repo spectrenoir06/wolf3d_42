@@ -27,8 +27,6 @@ void	sdl_exit(t_game *game)
 	SDL_DestroyWindow(game->sdl.win);
 	sdl_mixer_quit(&game->sounds);
 	SDL_Quit();
-	while(42)
-		;
 	exit(0);
 }
 
