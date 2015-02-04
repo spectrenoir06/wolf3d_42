@@ -39,7 +39,6 @@
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
-//# define NBSPRITE 5
 # define NB_SPRITE_TEX 5
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
@@ -50,49 +49,46 @@
 # define PLAYER 0x0000FF
 # define FACE 0x0099FF
 
-//# define MUSICS_REP modes/1/maps/1/music
-//# define SOUNDS_REP modes/1/maps/1/sfx
-
-typedef enum KEY KEY;
+typedef enum KEY	KEY;
 enum KEY
 {
-	MOV_X	= 0,
-	MOV_Y	= 1,
-	MOV_Z	= 2,
-	ROT_X	= 3,
-	ROT_Y	= 4,
-	ROT_Z	= 5,
+	MOV_X = 0,
+	MOV_Y = 1,
+	MOV_Z = 2,
+	ROT_X = 3,
+	ROT_Y = 4,
+	ROT_Z = 5,
 	ROT_Z_M = 6,
-	USE		= 7
+	USE = 7
 };
 
-typedef struct s_vect2di
+typedef struct	s_vect2di
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 }				t_vect2di;
 
-typedef struct s_vect2dd
+typedef struct	s_vect2dd
 {
 	double		x;
 	double		y;
 }				t_vect2dd;
 
-typedef struct s_vect3di
+typedef struct	s_vect3di
 {
-	int		x;
-	int		y;
-	int		z;
+	int			x;
+	int			y;
+	int			z;
 }				t_vect3di;
 
-typedef struct s_vect3dd
+typedef struct	s_vect3dd
 {
 	double		x;
 	double		y;
 	double		z;
 }				t_vect3dd;
 
-typedef struct s_rectdd
+typedef struct	s_rectdd
 {
 	double		x;
 	double		y;
@@ -118,7 +114,7 @@ typedef struct	s_entity
 	int			type;
 }				t_entity;
 
-typedef struct s_sprite
+typedef struct	s_sprite
 {
 	SDL_Surface	*tex;
 	int			frames;
@@ -135,29 +131,29 @@ typedef struct	s_player
 	float		w_anim;
 }				t_player;
 
-typedef struct s_sounds
+typedef struct	s_sounds
 {
 	Mix_Chunk	*pas;
 	Mix_Chunk	*son1;
 	Mix_Chunk	*son2;
-	Mix_Chunk 	*son3;
-	Mix_Chunk 	*son4;
-	Mix_Chunk 	*son5;
-	Mix_Chunk 	*son6;
+	Mix_Chunk	*son3;
+	Mix_Chunk	*son4;
+	Mix_Chunk	*son5;
+	Mix_Chunk	*son6;
 	Mix_Music	*music;
 }				t_sounds;
 
-typedef struct s_sdl
+typedef struct	s_sdl
 {
-	SDL_Window			*win;
-	SDL_Texture			*tex;
-	SDL_Renderer		*rd;
-	Uint32				*text_buf;
-	Uint32				*hud_buf;
-	int					lx;
-	int					ly;
+	SDL_Window		*win;
+	SDL_Texture		*tex;
+	SDL_Renderer	*rd;
+	Uint32			*text_buf;
+	Uint32			*hud_buf;
+	int				lx;
+	int				ly;
 
-}			t_sdl;
+}				t_sdl;
 
 typedef struct s_map
 {
@@ -177,7 +173,7 @@ typedef struct s_map
 	double		calcule[GAME_LY / 2];
 }				t_map;
 
-typedef struct s_game
+typedef struct			s_game
 {
 	t_sdl				sdl;
 	t_player			player;
@@ -200,7 +196,7 @@ typedef	struct	s_ray
 	t_vect2dd	side;
 }				t_ray;
 
-typedef struct s_wall
+typedef struct	s_wall
 {
 	t_vect2di	map;
 	double		dist;
@@ -209,46 +205,45 @@ typedef struct s_wall
 	t_vect2di	step;
 }				t_wall;
 
-void	ft_kebab(char * buff, const char * first, ...);
+void		ft_kebab(char *buff, const char *first, ...);
 
 t_vect2dd	vect2dd_rotate(t_vect2dd vect, double angle);
 double		get_vect2dd_angle(t_vect2dd vect);
 
-void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
+void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
 
-void	game_init_sdl(t_game *game);
-void	game_draw_all(t_game *game);
-void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
-void	game_render(t_game *game);
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
-int		game_event_handler(t_game *game);
+void		game_init_sdl(t_game *game);
+void		game_draw_all(t_game *game);
+void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
+void		game_render(t_game *game);
+void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int lx, int ly, int color);
+int			game_event_handler(t_game *game);
 
-void	player_init(t_player *player);
-void	player_update(t_player *player, t_game *game);
-void	player_move(t_player *player,t_game *game, KEY dir);
+void		player_init(t_player *player);
+void		player_update(t_player *player, t_game *game);
+void		player_move(t_player *player, t_game *game, KEY dir);
 
-void	sprite_load(t_map *map, char *path);
-void	map_init(t_game *game, int mode, int map);
-int		map_load(t_map *map, char *path);
-inline int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
-void	sprite_load(t_map *map, char *path);
+void		sprite_load(t_map *map, char *path);
+void		map_init(t_game *game, int mode, int map);
+int			map_load(t_map *map, char *path);
+inline int	map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+void		sprite_load(t_map *map, char *path);
 
-void	game_init_sdl_mixer(t_sounds *sounds);
-void	sounds_init(t_sounds *sounds);
-void	sdl_mixer_quit(t_sounds *sounds);
+void		game_init_sdl_mixer(t_sounds *sounds);
+void		sounds_init(t_sounds *sounds);
+void		sdl_mixer_quit(t_sounds *sounds);
 
-void	hud_background(t_game *game);
-void	hud_render(t_game *game);
-void	hud_map(t_game *game);
+void		hud_background(t_game *game);
+void		hud_render(t_game *game);
+void		hud_map(t_game *game);
 
-int		weapon_load(t_map *map, char *path, int n);
-void	weapon_start_anim(t_game *game, t_player *player);
-int		weapon_animate(t_game *game, t_player *player);
-void	weapon_draw(t_game *game);
+int			weapon_load(t_map *map, char *path, int n);
+void		weapon_start_anim(t_game *game, t_player *player);
+int			weapon_animate(t_game *game, t_player *player);
+void		weapon_draw(t_game *game);
 
-void	hud_background(t_game *game);
-int		map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
-void	player_init(t_player *player);
-void	ft_kebab(char * buff, const char * first, ...);
+void		hud_background(t_game *game);
+int			map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
+void		player_init(t_player *player);
 
 #endif
