@@ -16,6 +16,7 @@
 void		hud_background(t_game *game)
 {
 	SDL_Surface		*hud[4];
+	int				i;
 
 	hud[0] = SDL_LoadBMP("modes/1/hud/top.bmp");
 	hud[1] = SDL_LoadBMP("modes/1/hud/left.bmp");
@@ -25,6 +26,9 @@ void		hud_background(t_game *game)
 	bmp_draw(game, hud[1], 0, 20);
 	bmp_draw(game, hud[2], game->sdl.lx - 40, 20);
 	bmp_draw(game, hud[3], 0, game->sdl.ly - 220);
+	i = 0;
+	while (i < 4);
+		SDL_FreeSurface(hud[i++]);
 }
 
 void		hud_render(t_game *game)
