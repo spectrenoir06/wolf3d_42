@@ -313,7 +313,9 @@ void	sdl_exit(t_game *game)
 
 void	kb_key_down(SDL_Event ev, t_game *game)
 {
-	if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
+	if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
+			game->player.speed += 2;
+	else if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
 		game->input[MOV_Y] = SINT16_MAX;
 	else if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)
 		game->input[MOV_Y] = SINT16_MIN;
@@ -325,16 +327,10 @@ void	kb_key_down(SDL_Event ev, t_game *game)
 		game->input[ROT_Z] = SINT16_MIN;
 	else if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_e)
 		game->input[ROT_Z] = SINT16_MAX;
-	else if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
-		game->player.speed += 2;
 	else if (ev.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
-			weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
-	else if (ev.key.keysym.sym == SDLK_p)
 	{
-		if(Mix_PausedMusic())
-			Mix_ResumeMusic();
-		else if (Mix_PlayingMusic())
-			Mix_PauseMusic();
+			weapon_start_anim(game, &game->player);
+			Mix_PlayChannel(1, game->sounds.son2, 0);
 	}
 	else if (ev.key.keysym.sym == SDLK_ESCAPE)
 		sdl_exit(game);
@@ -342,7 +338,9 @@ void	kb_key_down(SDL_Event ev, t_game *game)
 
 void	kb_key_up(SDL_Event ev, t_game *game)
 {
-	if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
+	if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
+		game->player.speed -= 2;
+	else if (ev.key.keysym.sym == SDLK_UP || ev.key.keysym.sym == SDLK_w)
 		game->input[MOV_Y] = 0;
 	else if (ev.key.keysym.sym == SDLK_DOWN || ev.key.keysym.sym == SDLK_s)
 		game->input[MOV_Y] = 0;
@@ -354,8 +352,6 @@ void	kb_key_up(SDL_Event ev, t_game *game)
 		game->input[ROT_Z] = 0;
 	else if (ev.key.keysym.sym == SDLK_RIGHT || ev.key.keysym.sym == SDLK_e)
 		game->input[ROT_Z] = 0;
-	else if (ev.key.keysym.sym == SDLK_LSHIFT || ev.key.keysym.sym == SDLK_RSHIFT)
-		game->player.speed -= 2;
 	Mix_FadeOutChannel(1, 200);
 }
 
@@ -410,8 +406,12 @@ void	joy_axis(SDL_Event ev, t_game *game)
 		game->input[ROT_Z] = ev.jaxis.value;
 	else if (ev.jaxis.axis == 3)
 		game->input[ROT_Z] = 0;
-	if (ev.jaxis.axis == 5 && (ev.jaxis.value > 5000) && game->player.w_anim == 0)
-		weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	if (ev.jaxis.axis == 5 && (ev.jaxis.value > 5000)
+		&& game->player.w_anim == 0)
+	{
+		weapon_start_anim(game, &game->player);
+		Mix_PlayChannel(1, game->sounds.son2, 0);
+	}
 }
 
 int		game_event_handler(t_game *game)
@@ -420,10 +420,15 @@ int		game_event_handler(t_game *game)
 
 	if (!SDL_PollEvent(&ev))
 		return (0);
-	if (ev.type == SDL_MOUSEMOTION && (ev.motion.xrel > SINT16_MIN && ev.motion.xrel < SINT16_MAX))
+	if (ev.type == SDL_MOUSEMOTION
+		&& (ev.motion.xrel > SINT16_MIN && ev.motion.xrel < SINT16_MAX))
 		game->input[ROT_Z_M] = ev.motion.xrel;
-	else if (ev.type == SDL_MOUSEBUTTONDOWN && (ev.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0))
-		weapon_start_anim(game, &game->player), Mix_PlayChannel(1, game->sounds.son2, 0);
+	else if (ev.type == SDL_MOUSEBUTTONDOWN
+	&& (ev.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0))
+	{
+		weapon_start_anim(game, &game->player);
+		Mix_PlayChannel(1, game->sounds.son2, 0);
+	}
 	else if (ev.type == SDL_KEYDOWN)
 		kb_key_down(ev, game);
 	else if (ev.type == SDL_KEYUP)
