@@ -45,7 +45,6 @@ void	game_init_sdl(t_game *game)
 	}
 	if (SDL_NumJoysticks() == 1)
 		joystick_init(game);
-	game_init_sdl_mixer(&game->sounds);
 	SDL_SetRelativeMouseMode(1);
 }
 

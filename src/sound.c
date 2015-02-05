@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void	game_init_sdl_mixer(t_sounds *sounds)
+void	game_init_sdl_mixer(t_sounds *sounds, char *path)
 {
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT,
 			MIX_DEFAULT_CHANNELS, 1024) == -1)
@@ -22,16 +22,21 @@ void	game_init_sdl_mixer(t_sounds *sounds)
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 	Mix_PlayMusic(sounds->music, 1);
 	Mix_SetMusicPosition(3.0);
-	sounds_init(sounds);
+	sounds_init(sounds, path);
 }
 
-void	sounds_init(t_sounds *sounds)
+void	sounds_init(t_sounds *sounds, char *path)
 {
-	sounds->pas = Mix_LoadWAV("modes/1/maps/1/sfx/run.wav");
+	char	buff[256];
+
+	ft_kebab(buff, path, "sfx/run.wav", NULL);
+	sounds->pas = Mix_LoadWAV(buff);
+	ft_kebab(buff, path, "sfx/fear.wav", NULL);
 	Mix_VolumeChunk(sounds->pas, MIX_MAX_VOLUME / 2);
-	sounds->son1 = Mix_LoadWAV("modes/1/maps/1/sfx/fear.wav");
+	sounds->son1 = Mix_LoadWAV(buff);
 	Mix_VolumeChunk(sounds->son1, MIX_MAX_VOLUME / 2);
-	sounds->son2 = Mix_LoadWAV("modes/1/maps/1/sfx/shoot2.wav");
+	ft_kebab(buff, path, "sfx/shoot2.wav", NULL);
+	sounds->son2 = Mix_LoadWAV(buff);
 	Mix_VolumeChunk(sounds->son2, MIX_MAX_VOLUME / 2);
 }
 

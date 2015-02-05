@@ -50,6 +50,7 @@ void		map_init(t_game *game, int mode, int map)
 		game->input[x++] = 0;
 	player_init(&game->player);
 	hud_background(game, mode);
+	game_init_sdl_mixer(&game->sounds, path);
 }
 
 int			map_load(t_map *map, char *path)

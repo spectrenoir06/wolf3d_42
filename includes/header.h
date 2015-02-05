@@ -46,8 +46,8 @@ void		map_init(t_game *game, int mode, int map);
 int			map_load(t_map *map, char *path);
 inline int	map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
 
-void		game_init_sdl_mixer(t_sounds *sounds);
-void		sounds_init(t_sounds *sounds);
+void		game_init_sdl_mixer(t_sounds *sounds, char *path);
+void		sounds_init(t_sounds *sounds, char *path);
 void		sdl_mixer_quit(t_sounds *sounds);
 
 void		hud_background(t_game *game, int mode);
