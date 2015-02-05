@@ -213,4 +213,18 @@ typedef struct	s_rend
 	t_wall		wall;
 }				t_rend;
 
+typedef struct	s_fc
+{
+	t_vect2dd	fl;
+	double		w;
+	t_vect2dd	c_fl;
+	t_vect2dd	fl_t;
+	t_color		*colc;
+	t_color		*colf;
+	int			x;
+	int			y;
+	float		agl;
+	int			sky;
+}				t_fc;
+
 #endif

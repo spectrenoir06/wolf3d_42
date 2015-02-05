@@ -1,10 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caster.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adoussau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/05 17:53:48 by adoussau          #+#    #+#             */
+/*   Updated: 2015/02/05 17:53:56 by adoussau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-void	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
+static void	choose_step(t_ray *ray, t_wall *wall)
 {
-	int		hit;
-
-	hit = 0;
 	wall->map.x = (int)ray->pos.x;
 	wall->map.y = (int)ray->pos.y;
 	if (ray->dir.x < 0)
@@ -27,7 +36,12 @@ void	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 		wall->step.y = 1;
 		ray->side.y = (wall->map.y + 1.0 - ray->pos.y) * ray->delta.y;
 	}
-	while (hit == 0)
+}
+
+void		ray_caster(t_game *game, t_ray *ray, t_wall *wall)
+{
+	choose_step(ray, wall);
+	while (42)
 	{
 		if (ray->side.x < ray->side.y)
 		{
@@ -45,75 +59,77 @@ void	ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 		{
 			wall->id = game->map.wall[wall->map.x +
 									(wall->map.y * game->map.lx)];
-			hit = 1;
+			break ;
 		}
 	}
-	if (wall->side == 0)
-		wall->dist = fabs((wall->map.x - ray->pos.x + (1 - wall->step.x) / 2)
-				/ ray->dir.x);
-	else
-		wall->dist = fabs((wall->map.y - ray->pos.y + (1 - wall->step.y) / 2)
-				/ ray->dir.y);
+	wall->dist = (wall->side ? fabs((wall->map.y - ray->pos.y + (1 -
+			wall->step.y) / 2) / ray->dir.y) : fabs((wall->map.x - ray->pos.x +
+			(1 - wall->step.x) / 2) / ray->dir.x));
 }
 
-void	draw_floor_and_ceil(t_game *game, int x, int y, t_ray ray, t_wall *wall, double wallx)
+void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 {
-	t_vect2dd	floor;
-	double		weight;// coefficient de ponderation
-	t_vect2dd	current_floor;
-	t_vect2dd	floor_tex;
+	cf->w = (game->calcule[cf->y - (GAME_LY / 2)]) / (rend->wall.dist);
+	cf->c_fl.x = cf->w * cf->fl.x + (1.0 - cf->w) * game->player.pos.x;
+	cf->c_fl.y = cf->w * cf->fl.y + (1.0 - cf->w) * game->player.pos.y;
+	cf->fl_t.x = (int)(cf->c_fl.x * TEX_SIZE) % TEX_SIZE;
+	cf->fl_t.y = (int)(cf->c_fl.y * TEX_SIZE) % TEX_SIZE;
+	cf->colc = &((t_color*)(game->map.textures[(int)game->map.ceil[((int)
+		cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)]
+		]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
+		TEX_SIZE)];
+	cf->colf = &((t_color*)(game->map.textures[(int)game->map.floor[
+		((int)cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)
+		]]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
+		TEX_SIZE)];
+	cf->agl = atan2(game->player.dir.y, game->player.dir.x);
+	cf->sky = cf->x + (cf->agl) / (M_PI) * (float)(game->map.sky->w);
+	cf->sky %= game->map.sky->w;
+	game_draw_pixel(game, game->sdl.text_buf, cf->x + GAME_X, cf->y + GAME_Y,
+		(!(cf->colc->r == 0xFF && cf->colc->g == 0x00 && cf->colc->b == 0xFF) ?
+		cf->colc : &((t_color*)(game->map.sky->pixels))[(cf->sky)
+		+ (cf->y * (game->map.sky->w))]));
+	game_draw_pixel(game, game->sdl.text_buf, cf->x + GAME_X, GAME_LY +
+		GAME_Y - cf->y, (!(cf->colf->r == 0xFF && cf->colf->g == 0x00 &&
+		cf->colf->b == 0xFF)) ? cf->colf :
+		&((t_color*)(game->map.sky->pixels))[(cf->sky) +
+		(((GAME_LY) - cf->y) * (game->map.sky->w))]);
+}
 
-	if (wall->side == 0 && ray.dir.x > 0)
+void		fc_choose_step(t_rend *rend, t_fc *cf)
+{
+	if (rend->wall.side == 0 && rend->ray.dir.x > 0)
 	{
-		floor.x = wall->map.x;
-		floor.y = wall->map.y + wallx;
+		cf->fl.x = rend->wall.map.x;
+		cf->fl.y = rend->wall.map.y + rend->wallx;
 	}
-	else if (wall->side == 0 && ray.dir.x < 0)
+	else if (rend->wall.side == 0 && rend->ray.dir.x < 0)
 	{
-		floor.x = wall->map.x + 1.0;
-		floor.y = wall->map.y + wallx;
+		cf->fl.x = rend->wall.map.x + 1.0;
+		cf->fl.y = rend->wall.map.y + rend->wallx;
 	}
-	else if (wall->side == 1 && ray.dir.y > 0)
+	else if (rend->wall.side == 1 && rend->ray.dir.y > 0)
 	{
-		floor.x = wall->map.x + wallx;
-		floor.y = wall->map.y;
+		cf->fl.x = rend->wall.map.x + rend->wallx;
+		cf->fl.y = rend->wall.map.y;
 	}
 	else
 	{
-		floor.x = wall->map.x + wallx;
-		floor.y = wall->map.y + 1.0;
+		cf->fl.x = rend->wall.map.x + rend->wallx;
+		cf->fl.y = rend->wall.map.y + 1.0;
 	}
+}
 
-	while (y <= GAME_LY)
+void		draw_floor_and_ceil(t_game *game, t_rend *rend)
+{
+	t_fc		cf;
+
+	cf.x = GAME_LX - rend->x;
+	cf.y = rend->y;
+	fc_choose_step(rend, &cf);
+	while (cf.y <= GAME_LY)
 	{
-		weight = (game->calcule[y - (GAME_LY / 2)]) / (wall->dist);// coef
-		current_floor.x = weight * floor.x + (1.0 - weight) * game->player.pos.x;// position sur X
-		current_floor.y = weight * floor.y + (1.0 - weight) * game->player.pos.y;// position sur Y
-		floor_tex.x = (int)(current_floor.x * TEX_SIZE) % TEX_SIZE;// position texel sur X
-		floor_tex.y = (int)(current_floor.y * TEX_SIZE) % TEX_SIZE;// position texel sur Y
-
-		t_color *color;
-
-		Uint8 test = game->map.floor[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
-		Uint8 test2 = game->map.ceil[((int)current_floor.x) + ((int)(current_floor.y) * game->map.lx)];
-
-		color = (void *)&((Uint8*)(game->map.textures[test2]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE)];
-
-		t_color *color2;
-
-		color2 = (void *)&((Uint8*)(game->map.textures[test]->pixels))[(int)floor_tex.x * 3 + ((int)floor_tex.y * 3 * TEX_SIZE) + 0];
-
-		double	angle = atan2(game->player.dir.y, game->player.dir.x);
-		int	sky = x + (angle) / (M_PI) * (double)(game->map.sky->w);
-		sky %= game->map.sky->w;
-		if (!(color->r == 0xFF && color->g == 0x00 && color->b == 0xFF))
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, color);// trace le sol
-		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, y + GAME_Y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (y *  (game->map.sky->w) * 3)]);
-		if (!(color2->r == 0xFF && color2->g == 0x00 && color2->b == 0xFF))
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, color2);// trace le plafond
-		else
-			game_draw_pixel(game, game->sdl.text_buf, x + GAME_X, GAME_LY + GAME_Y - y, &((Uint8 *)(game->map.sky->pixels))[(sky) * 3 + (((GAME_LY) - y) * (game->map.sky->w) * 3)]);
-		y++;
+		draw_fc_pixel(game, &cf, rend);
+		cf.y++;
 	}
 }

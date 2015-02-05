@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adoussau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/05 17:54:05 by adoussau          #+#    #+#             */
+/*   Updated: 2015/02/05 17:54:07 by adoussau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "wolf3d.h"
 
-/*calculate ray position and direction*/
 void	render_ray_calc(t_game *game, t_rend *rend)
 {
-	rend->camera_x = 2.0 * rend->x / (float)GAME_LX - 1;//x-coord in cam space
+	rend->camera_x = 2.0 * rend->x / (float)GAME_LX - 1;
 	init_ray(game, &rend->ray, rend->camera_x);
 	ray_caster(game, &rend->ray, &rend->wall);
 	rend->linehgt = abs((GAME_LY) / rend->wall.dist);
 }
-/*calculate lowest and highest pixel to fill in current stripe*/
+
 void	render_pix_calc(t_rend *rend)
 {
 	rend->drawstart = (-rend->linehgt / 2 + GAME_LY / 2);
@@ -48,8 +59,7 @@ void	render(t_game *game, t_rend *rend)
 					(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
 		rend->y++;
 	}
-	draw_floor_and_ceil(game, GAME_LX - rend->x, rend->y,
-			rend->ray, &rend->wall, rend->wallx);
+	draw_floor_and_ceil(game, rend);
 }
 
 void	game_render(t_game *game)
@@ -59,8 +69,8 @@ void	game_render(t_game *game)
 	rend.x = 0;
 	while (rend.x < GAME_LX)
 	{
-		render_ray_calc(game, &rend);//calculate ray position and direction
-		render_pix_calc(&rend);//calc lowt and hight pxl to fill in curnt stripe
+		render_ray_calc(game, &rend);
+		render_pix_calc(&rend);
 		render(game, &rend);
 		game->zbuffer[rend.x] = rend.wall.dist;
 		rend.x++;
