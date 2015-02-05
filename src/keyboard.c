@@ -17,7 +17,7 @@ void	sdl_exit(t_game *game)
 	weapon_unload(&game->map);
 	map_unload(&game->map);
 	free(game->sdl.text_buf);
-	if(SDL_NumJoysticks() == 1)
+	if (SDL_NumJoysticks() == 1)
 	{
 		SDL_HapticClose(game->haptic);
 		SDL_JoystickClose(game->joystick);

@@ -20,7 +20,6 @@
 # define NB_WEAPON_TEX_FRAME 5
 # define NB_ENTITY_MAX 100
 
-
 typedef enum	e_key
 {
 	MOV_X = 0,
@@ -181,7 +180,7 @@ typedef struct	s_game
 	SDL_Event	ev;
 }				t_game;
 
-typedef	struct	s_ray
+typedef struct	s_ray
 {
 	t_vect2dd	pos;
 	t_vect2dd	dir;
@@ -197,5 +196,21 @@ typedef struct	s_wall
 	int			id;
 	t_vect2di	step;
 }				t_wall;
+
+typedef struct	s_rend
+{
+	int			x;
+	int			y;
+	double		camera_x;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	double		wallX;
+	int			texX;
+	int			texY;
+	void		*color;
+	t_ray		ray;
+	t_wall		wall;
+}				t_rend
 
 #endif

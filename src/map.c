@@ -135,10 +135,10 @@ void		map_unload(t_map *map)
 	free(map->floor);
 	free(map->wall);
 	free(map->ceil);
-	while(i < map->nb_texture)
+	while (i < map->nb_texture)
 		SDL_FreeSurface(map->textures[i++]);
 	i = 0;
-	while(i < NB_SPRITE_TEX)
+	while (i < NB_SPRITE_TEX)
 		SDL_FreeSurface(map->sprite[i++].tex);
 	free(map->textures);
 	SDL_FreeSurface(map->sky);

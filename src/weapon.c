@@ -46,7 +46,7 @@ void	weapon_unload(t_map *map)
 	int	i;
 
 	i = -1;
-	while(++i < 5)
+	while (++i < 5)
 		SDL_FreeSurface(map->weapon_tex[1][i + 1]);
 }
 
