@@ -23,7 +23,9 @@ SRC		=	main.c		\
 			weapon.c	\
 			sprites.c	\
 			joystick.c	\
-			keyboard.c
+			keyboard.c	\
+			render.c	\
+			caster.c
 
 ##HEADFILES = wolf3d.h
 

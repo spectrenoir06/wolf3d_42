@@ -202,15 +202,15 @@ typedef struct	s_rend
 	int			x;
 	int			y;
 	double		camera_x;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	double		wallX;
-	int			texX;
-	int			texY;
+	int			linehgt;
+	int			drawstart;
+	int			drawend;
+	double		wallx;
+	int			tex_x;
+	int			tex_y;
 	void		*color;
 	t_ray		ray;
 	t_wall		wall;
-}				t_rend
+}				t_rend;
 
 #endif
