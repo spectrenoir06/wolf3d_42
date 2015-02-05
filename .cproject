@@ -33,8 +33,8 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.1689353463" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.base.601808510" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.base">
 								<option id="gnu.c.compiler.option.include.paths.345594136" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="../~/Library/Frameworks/SDL2.framework/Versions/A/Headers"/>
-									<listOptionValue builtIn="false" value="../~/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2.framework/Versions/A/Headers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1509937647" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -79,8 +79,8 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.417371431" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.base.456330538" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.base">
 								<option id="gnu.c.compiler.option.include.paths.847260494" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="../~/Library/Frameworks/SDL2.framework/Versions/A/Headers"/>
-									<listOptionValue builtIn="false" value="../~/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2.framework/Versions/A/Headers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1160076471" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
