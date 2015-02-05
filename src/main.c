@@ -41,7 +41,6 @@ int		main(int ac, char **av)
 	i = ((GAME_LY) / 2) - 1;
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
-	hud_background(&game);
 	while (42)
 	{
 		setdt(&game);

@@ -49,6 +49,7 @@ void		map_init(t_game *game, int mode, int map)
 	while (x < 10)
 		game->input[x++] = 0;
 	player_init(&game->player);
+	hud_background(game, mode);
 }
 
 int			map_load(t_map *map, char *path)

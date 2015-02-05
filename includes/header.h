@@ -45,13 +45,12 @@ void		sprite_load(t_map *map, char *path);
 void		map_init(t_game *game, int mode, int map);
 int			map_load(t_map *map, char *path);
 inline int	map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
-void		sprite_load(t_map *map, char *path);
 
 void		game_init_sdl_mixer(t_sounds *sounds);
 void		sounds_init(t_sounds *sounds);
 void		sdl_mixer_quit(t_sounds *sounds);
 
-void		hud_background(t_game *game);
+void		hud_background(t_game *game, int mode);
 void		hud_render(t_game *game);
 void		hud_map(t_game *game);
 
@@ -59,10 +58,6 @@ int			weapon_load(t_map *map, char *path, int n);
 void		weapon_start_anim(t_game *game, t_player *player);
 int			weapon_animate(t_game *game, t_player *player);
 void		weapon_draw(t_game *game);
-
-void		hud_background(t_game *game);
-int			map_get_block(t_map *map, Uint8 *data, t_vect2dd pt);
-void		player_init(t_player *player);
 
 void		sdl_exit(t_game *game);
 void		map_unload(t_map *map);
@@ -73,7 +68,6 @@ void		kb_key_up(SDL_Event ev, t_game *game);
 void		joy_but_down(SDL_Event ev, t_game *game);
 void		joy_but_up(SDL_Event ev, t_game *game);
 void		joy_axis(SDL_Event ev, t_game *game);
-int			game_event_handler(t_game *game);
 
 void		map_load_data(t_map *map, char *path, t_mapload *ml);
 void		map_load_entity(t_map *map, t_mapload *ml);
