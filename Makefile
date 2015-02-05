@@ -99,5 +99,9 @@ norme:
 	$(NORMINETTE) $(SRC_DIR)/ $(HEAD_DIR)/
 	make -C libft norme
 
+sdl_install:
+	curl https://dl.dropboxusercontent.com/u/22561204/SDL/Archive.zip > /tmp/Archive.zip
+	unzip -o /tmp/Archive.zip -d ~/Library/Frameworks/
+
 re: fclean
 	make
