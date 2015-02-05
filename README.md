@@ -17,12 +17,12 @@
   - [x] sample map
   - [ ] plein de maps
   - [ ] multimode (wolfenstein, 42stein, ...)
-  - [ ] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
+  - [x] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
   - [x] dev map loader
 
 - Multimode:
-  - [ ] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)) :suspect:
+  - [x] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)) :suspect:
   - [ ] 42stein 
   - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
   - [ ] The Binding of Isaac
