@@ -13,15 +13,23 @@
 #include "wolf3d.h"
 #include <math.h>
 
-void		hud_background(t_game *game)
+void		hud_background(t_game *game, int mode)
 {
 	SDL_Surface		*hud[4];
 	int				i;
+	char			*strmode;
+	char			path[256];
 
-	hud[0] = SDL_LoadBMP("modes/1/hud/top.bmp");
-	hud[1] = SDL_LoadBMP("modes/1/hud/left.bmp");
-	hud[2] = SDL_LoadBMP("modes/1/hud/right.bmp");
-	hud[3] = SDL_LoadBMP("modes/1/hud/bottom.bmp");
+	strmode = ft_itoa(mode);
+	ft_kebab(path, "modes/", strmode, "/hud/top.bmp", NULL);
+	hud[0] = SDL_LoadBMP(path);
+	ft_kebab(path, "modes/", strmode, "/hud/left.bmp", NULL);
+	hud[1] = SDL_LoadBMP(path);
+	ft_kebab(path, "modes/", strmode, "/hud/right.bmp", NULL);
+	hud[2] = SDL_LoadBMP(path);
+	ft_kebab(path, "modes/", strmode, "/hud/bottom.bmp", NULL);
+	hud[3] = SDL_LoadBMP(path);
+	free(strmode);
 	bmp_draw(game, hud[0], 0, 0);
 	bmp_draw(game, hud[1], 0, 20);
 	bmp_draw(game, hud[2], game->sdl.lx - 40, 20);
