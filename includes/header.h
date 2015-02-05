@@ -23,10 +23,17 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
 void		game_init_sdl(t_game *game);
 void		game_draw_all(t_game *game);
 void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
-void		game_render(t_game *game);
 void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color);
 void		game_draw_sprites(t_game *game);
 int			game_event_handler(t_game *game);
+
+void		init_ray(t_game *game, t_ray *ray, double camera_x);
+void		ray_caster(t_game *game, t_ray *ray, t_wall *wall);
+
+void		render_ray_calc(t_game *game, t_rend *rend);
+void		render_pix_calc(t_rend *rend);
+void		render(t_game *game, t_rend *rend);
+void		game_render(t_game *game);
 
 void		player_init(t_player *player);
 void		player_update(t_player *player, t_game *game);

@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <string.h>
+# include <math.h>
 # include "libft.h"
 
 # ifdef __APPLE__
@@ -38,11 +39,6 @@
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
-
-# define NB_SPRITE_TEX 15
-# define NB_WEAPON_TEX 1
-# define NB_WEAPON_TEX_FRAME 5
-# define NB_ENTITY_MAX 100
 
 # define WALL 0x00FF00
 # define FLOOR 0xFF0000
