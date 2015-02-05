@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include "libft.h"
 
 int		weapon_load(t_map *map, char *path, int n)
 {
@@ -66,28 +65,6 @@ int		weapon_animate(t_game *game, t_player *player)
 	if (player->w_anim > 5)
 		player->w_anim = 0;
 	return ((int)last != (int)player->w_anim);
-}
-
-void	bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
-{
-	int		x;
-	int		y;
-	t_color	color;
-
-	x = 0;
-	while (x < img->w && x + startx < game->sdl.lx)
-	{
-		y = 0;
-		while (y < img->h && y + starty < game->sdl.ly)
-		{
-			color = ((t_color *)img->pixels)[x + (y * img->w)];
-			if (!(color.r == 255 && color.g == 0 && color.b == 255))
-				game_draw_pixel(game, game->sdl.text_buf,
-						x + startx, y + starty, &color);
-			y++;
-		}
-		x++;
-	}
 }
 
 void	weapon_draw(t_game *game)

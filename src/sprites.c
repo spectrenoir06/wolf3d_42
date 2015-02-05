@@ -71,7 +71,7 @@ void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 	(sprt->i * 3 * TEX_SIZE)];
 	if (!(sprt->color->r == 0xFF && sprt->color->g == 0x00 &&
 		sprt->color->b == 0xFF))
-		game_draw_pixel(game, game->sdl.text_buf, GAME_X + GAME_LX -
+		game_draw_pixel(game, GAME_X + GAME_LX -
 		sprt->stripe, GAME_Y + sprt->y, sprt->color);
 }
 

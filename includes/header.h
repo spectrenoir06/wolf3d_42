@@ -22,10 +22,12 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
 
 void		game_init_sdl(t_game *game);
 void		game_draw_all(t_game *game);
-void		game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c);
-void		game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color);
+void		game_draw_pixel(t_game *game, int x, int y, void *c);
+void		game_draw_pixel_black(t_game *game, int x, int y, void *c);
+void		game_draw_rect(t_game *game, int x, int y, int color);
 void		game_draw_sprites(t_game *game);
 int			game_event_handler(t_game *game);
+void		draw_floor_and_ceil(t_game *game, t_rend *rend);
 
 void		init_ray(t_game *game, t_ray *ray, double camera_x);
 void		ray_caster(t_game *game, t_ray *ray, t_wall *wall);
@@ -72,4 +74,8 @@ void		joy_but_down(SDL_Event ev, t_game *game);
 void		joy_but_up(SDL_Event ev, t_game *game);
 void		joy_axis(SDL_Event ev, t_game *game);
 int			game_event_handler(t_game *game);
+
+void		map_load_data(t_map *map, char *path, t_mapload *ml);
+void		map_load_entity(t_map *map, t_mapload *ml);
+
 #endif

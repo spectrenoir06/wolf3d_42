@@ -227,4 +227,14 @@ typedef struct	s_fc
 	int			sky;
 }				t_fc;
 
+typedef struct	s_mapload
+{
+	int			i;
+	int			fd;
+	char		buff[256];
+	char		*nb;
+	float		tmp_x;
+	float		tmp_y;
+}				t_mapload;
+
 #endif

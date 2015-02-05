@@ -25,6 +25,8 @@ SRC		=	main.c		\
 			joystick.c	\
 			keyboard.c	\
 			render.c	\
+			pixel.c		\
+			map_dlc.c	\
 			caster.c
 
 ##HEADFILES = wolf3d.h
@@ -44,7 +46,7 @@ DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
 ##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
 
 CC			= gcc
-FLAGS		=  -Wall -Wextra ##-Werror
+FLAGS		=  -Wall -Wextra -Werror
 NORMINETTE	= ~/project/colorminette/colorminette
 
 UNAME_S := $(shell uname -s)

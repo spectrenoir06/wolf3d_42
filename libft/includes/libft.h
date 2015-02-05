@@ -119,5 +119,6 @@ void				ft_sort_bbl(void **t, int s, int (*f)(void*, void*));
 void				ft_sort_qck(void **t, int s, int (*f)(void*, void*));
 
 void				ft_swap(void **p1, void **p2);
+void				ft_kebab(char *buff, const char *first, ...);
 
 #endif

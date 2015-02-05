@@ -12,31 +12,6 @@
 
 #include "wolf3d.h"
 
-void		ft_kebab(char *buff, const char *first, ...)
-{
-	int			i;
-	int			j;
-	const char	*next;
-	va_list		lst;
-
-	va_start(lst, first);
-	next = first;
-	i = 0;
-	while (next != NULL)
-	{
-		j = 0;
-		while (next[j] != 0)
-		{
-			buff[i] = next[j];
-			i++;
-			j++;
-		}
-		next = va_arg(lst, char*);
-	}
-	va_end(lst);
-	buff[i] = 0;
-}
-
 void		sprite_load(t_map *map, char *path)
 {
 	int		i;
@@ -78,52 +53,17 @@ void		map_init(t_game *game, int mode, int map)
 
 int			map_load(t_map *map, char *path)
 {
-	int		i;
-	int		fd;
-	char	buff[256];
-	char	*nb;
-	float	tmp_x;
-	float	tmp_y;
+	t_mapload	ml;
 
-	ft_kebab(buff, path, "map.bin", NULL);
-	if ((fd = open(buff, O_RDONLY)) == -1)
+	ft_kebab(ml.buff, path, "map.bin", NULL);
+	if ((ml.fd = open(ml.buff, O_RDONLY)) == -1)
 		return (-1);
-	read(fd, &(map->lx), 4);
-	read(fd, &(map->ly), 4);
-	read(fd, &(map->nb_entity), 4);
-	read(fd, &map->nb_texture, 4);
-	i = 0;
-	map->textures = (SDL_Surface **)malloc(sizeof(SDL_Surface *)
-			* map->nb_texture);
-	while (i < map->nb_texture)
-	{
-		nb = ft_itoa(i);
-		ft_kebab(buff, path, "textures/", nb, ".bmp", NULL);
-		map->textures[i++] = SDL_LoadBMP(buff);
-		free(nb);
-	}
-	ft_kebab(buff, path, "textures/sky.bmp", NULL);
-	map->sky = SDL_LoadBMP(buff);
-	map->ceil = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
-	map->wall = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
-	map->floor = (Uint8 *)ft_malloc(sizeof(Uint8) * map->lx * map->ly);
-	read(fd, map->ceil, map->lx * map->ly);
-	read(fd, map->wall, map->lx * map->ly);
-	read(fd, map->floor, map->lx * map->ly);
-	i = 0;
-	while (i < map->nb_entity)
-	{
-		read(fd, &tmp_x, sizeof(float));
-		read(fd, &tmp_y, sizeof(float));
-		map->entity[i].pos.x = tmp_x;
-		map->entity[i].pos.y = tmp_y;
-		map->entity[i].dir.x = 1;
-		map->entity[i].dir.y = 0;
-		read(fd, &map->entity[i].type, sizeof(Uint32));
-		read(fd, &map->entity[i].texture, sizeof(Uint32));
-		map->entity_ptr[i] = &map->entity[i];
-		i++;
-	}
+	read(ml.fd, &(map->lx), 4);
+	read(ml.fd, &(map->ly), 4);
+	read(ml.fd, &(map->nb_entity), 4);
+	read(ml.fd, &map->nb_texture, 4);
+	map_load_data(map, path, &ml);
+	map_load_entity(map, &ml);
 	return (1);
 }
 

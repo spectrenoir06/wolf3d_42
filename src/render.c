@@ -52,10 +52,10 @@ void	render(t_game *game, t_rend *rend)
 		rend->color = &((Uint8 *)(game->map.textures[rend->wall.id]->pixels))
 				[rend->tex_x * 3 + (rend->tex_y * TEX_SIZE * 3)];
 		if (rend->wall.side == 1)
-			game_draw_pixel_black(game, game->sdl.text_buf, GAME_X +
+			game_draw_pixel_black(game, GAME_X +
 					(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
 		else
-			game_draw_pixel(game, game->sdl.text_buf, GAME_X +
+			game_draw_pixel(game, GAME_X +
 					(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
 		rend->y++;
 	}

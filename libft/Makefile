@@ -86,6 +86,7 @@ SRC		=	ft_bzero.c				\
 			ft_sort_qck.c			\
 			ft_sort_bbl.c			\
 			ft_swap.c				\
+			ft_kebab.c				\
 			get_next_line.c
 
 DYNAMIC_OBJ	= $(patsubst %.c,$(DYNAMIC_DIR)/%.o,$(SRC))

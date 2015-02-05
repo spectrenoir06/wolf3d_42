@@ -49,7 +49,7 @@ void	game_init_sdl(t_game *game)
 	SDL_SetRelativeMouseMode(1);
 }
 
-void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color)
+void	game_draw_rect(t_game *game, int x, int y, int color)
 {
 	int		a;
 	int		b;
@@ -65,7 +65,7 @@ void	game_draw_rect(t_game *game, Uint32 *buf, int x, int y, int color)
 		b = y;
 		while (b < (y + 4))
 		{
-			game_draw_pixel(game, buf, a, b, &c);
+			game_draw_pixel(game, a, b, &c);
 			b++;
 		}
 		a++;
@@ -78,22 +78,6 @@ void	game_draw_all(t_game *game)
 			game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
-}
-
-inline void	game_draw_pixel(t_game *game, Uint32 *buf, int x, int y, void *c)
-{
-	ft_memcpy(&buf[x + (y * game->sdl.lx)], c, 3);
-}
-
-inline void	game_draw_pixel_black(t_game *game, Uint32 *buf, int x, int y, void *c)
-{
-	t_color	color;
-
-	ft_memcpy(&color, c, 3);
-	color.r = color.r >> 1;
-	color.g = color.g >> 1;
-	color.b = color.b >> 1;
-	ft_memcpy(&buf[x + (y * game->sdl.lx)], &color, 3);
 }
 
 void	init_ray(t_game *game, t_ray *ray, double camera_x)

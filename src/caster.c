@@ -85,11 +85,11 @@ void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 	cf->agl = atan2(game->player.dir.y, game->player.dir.x);
 	cf->sky = cf->x + (cf->agl) / (M_PI) * (float)(game->map.sky->w);
 	cf->sky %= game->map.sky->w;
-	game_draw_pixel(game, game->sdl.text_buf, cf->x + GAME_X, cf->y + GAME_Y,
+	game_draw_pixel(game, cf->x + GAME_X, cf->y + GAME_Y,
 		(!(cf->colc->r == 0xFF && cf->colc->g == 0x00 && cf->colc->b == 0xFF) ?
 		cf->colc : &((t_color*)(game->map.sky->pixels))[(cf->sky)
 		+ (cf->y * (game->map.sky->w))]));
-	game_draw_pixel(game, game->sdl.text_buf, cf->x + GAME_X, GAME_LY +
+	game_draw_pixel(game, cf->x + GAME_X, GAME_LY +
 		GAME_Y - cf->y, (!(cf->colf->r == 0xFF && cf->colf->g == 0x00 &&
 		cf->colf->b == 0xFF)) ? cf->colf :
 		&((t_color*)(game->map.sky->pixels))[(cf->sky) +

@@ -16,7 +16,6 @@
 # include <stdio.h>
 # include "libft.h"
 # include <fcntl.h>
-# include <stdarg.h>
 # include <string.h>
 # include <math.h>
 # include "libft.h"
