@@ -11,7 +11,7 @@
   - [x] gestion propre des couleurs (revoir t_color)
   - [x] nouveau format map (mur, plafont, sol, sprite)
   - [x] sound load relatif au path
-  - [ ] hud load relatif au path
+  - [x] hud load relatif au path
   
 - Contenue:
   - [x] sample map
