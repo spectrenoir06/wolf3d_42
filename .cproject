@@ -20,6 +20,7 @@
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.MachO64" id="cdt.managedbuild.target.gnu.platform.macosx.base.119969985" name="Debug Platform" osList="macosx" superClass="cdt.managedbuild.target.gnu.platform.macosx.base"/>
 							<builder arguments="debug" autoBuildTarget="debug" cleanBuildTarget="clean" command="make" enableAutoBuild="false" enableCleanBuild="true" enabledIncrementalBuild="true" id="cdt.managedbuild.target.gnu.builder.macosx.base.1524628453" incrementalBuildTarget="debug" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" parallelBuildOn="true" parallelizationNumber="optimal" superClass="cdt.managedbuild.target.gnu.builder.macosx.base"/>
 							<tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.base.1765877792" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.base">
+								<option id="macosx.c.link.option.paths.1506294171" name="Library search path (-L)" superClass="macosx.c.link.option.paths" valueType="libPaths"/>
 								<inputType id="cdt.managedbuild.tool.macosx.c.linker.input.70902249" superClass="cdt.managedbuild.tool.macosx.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -32,10 +33,17 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.macosx.base.520573776" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.macosx.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base.1689353463" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.base.601808510" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.base">
+								<option id="gnu.c.compiler.option.include.paths.1236241273" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/Volumes/Data/nfs/zfs-student-2/users/2014/adoussau/Library/Frameworks/SDL2.framework/Versions/A/Headers"/>
+									<listOptionValue builtIn="false" value="/Volumes/Data/nfs/zfs-student-2/users/2014/adoussau/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1509937647" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="Headers" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -100,6 +108,9 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.2047785628.1645034695;cdt.managedbuild.toolchain.gnu.macosx.base.2047785628.1645034695.;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.1174564550;cdt.managedbuild.tool.gnu.c.compiler.input.1542356874">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.macosx.base.1294651295.407548572.1487018146;cdt.managedbuild.toolchain.gnu.macosx.base.1294651295.407548572.1487018146.;cdt.managedbuild.tool.gnu.c.compiler.macosx.base.601808510;cdt.managedbuild.tool.gnu.c.compiler.input.1509937647">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
