@@ -85,7 +85,7 @@ $(LIBFT_STATIC):
 $(LIBFT_DEBUG):
 	make -C libft/ libft_debug.a
 
-.PHONY: clean fclean re debug norme
+.PHONY: clean fclean re debug normem sdl_install
 
 clean:
 	rm -f $(STATIC_OBJ) $(DEBUG_OBJ)
