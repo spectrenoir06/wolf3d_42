@@ -12,6 +12,7 @@
   - [x] nouveau format map (mur, plafont, sol, sprite)
   - [x] sound load relatif au path
   - [x] hud load relatif au path
+  - [ ] augmenter le FOV
   
 - Contenue:
   - [x] sample map
