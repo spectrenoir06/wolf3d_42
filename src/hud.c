@@ -46,10 +46,27 @@ void		hud_render(t_game *game)
 	weapon_draw(game);
 }
 
+int			bgr_average(int c1, int c2)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	r = ((c1 >> 16) & 0xFF) + ((c2 >> 16) & 0xFF);
+	r = r >> 1;
+	g = ((c1 >> 8) & 0xFF) + ((c2 >> 8) & 0xFF);
+	g = g >> 1;
+	b = (c1 & 0xFF) + (c2 & 0xFF);
+	b = b >> 1;
+	return ((b << 16) + (g << 8) + r);
+}
+
 void		hud_map(t_game *game)
 {
-	int			x;
-	int			y;
+	int		x;
+	int		y;
+	Uint32	color;
+	Uint32	bcolor;
 
 	x = 0;
 	while (x < game->map.lx)
@@ -57,15 +74,18 @@ void		hud_map(t_game *game)
 		y = 0;
 		while (y < game->map.ly)
 		{
-			game_draw_rect(game, x * 4, y * 4,
-					(game->map.wall[x + (y * game->map.lx)] ? WALL : FLOOR));
+			color = (game->map.wall[x + (y * game->map.lx)] ? WALL : FLOOR);
+			bcolor = ((Uint32 *)game->sdl.text_buf)[GAME_X + x * 4
+					+ (GAME_Y + y * 4) * game->sdl.lx];
+			color = bgr_average(color, bcolor);
+			game_draw_rect(game, GAME_X + x * 4, GAME_Y + y * 4, color);
 			y++;
 		}
 		x++;
 	}
-	game_draw_rect(game, game->player.pos.x * 4,
-			game->player.pos.y * 4, PLAYER);
-	game_draw_rect(game, game->player.pos.x * 4 + (game->player.dir.x * 4),
-			game->player.pos.y * 4 + (game->player.dir.y * 4),
-			FACE);
+	game_draw_rect(game, GAME_X + game->player.pos.x * 4,
+			GAME_Y + game->player.pos.y * 4, PLAYER);
+	game_draw_rect(game, GAME_X + game->player.pos.x * 4
+			+ (game->player.dir.x * 4), GAME_Y + game->player.pos.y * 4
+			+ (game->player.dir.y * 4), FACE);
 }

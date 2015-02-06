@@ -39,10 +39,10 @@
 # define SINT16_MIN -32768.0
 # define DSINT16_MAX 32767.0
 
-# define WALL 0x00FF00
-# define FLOOR 0xFF0000
-# define PLAYER 0x0000FF
-# define FACE 0x0099FF
+# define WALL 0x000000
+# define FLOOR 0x999999
+# define PLAYER 0x0099FF
+# define FACE 0xFF9900
 
 # include "struct.h"
 # include "header.h"

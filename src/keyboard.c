@@ -49,7 +49,7 @@ void	kb_key_down(SDL_Event ev, t_game *game)
 	else if (ev.key.keysym.sym == SDLK_SPACE && game->player.w_anim == 0)
 	{
 		weapon_start_anim(game, &game->player);
-		Mix_PlayChannel(1, game->sounds.son2, 0);
+		Mix_PlayChannel(-1, game->sounds.son2, 0);
 	}
 	else if (ev.key.keysym.sym == SDLK_ESCAPE)
 		sdl_exit(game);
@@ -85,7 +85,7 @@ int		game_event_handler(t_game *game)
 	&& (game->ev.button.button == SDL_BUTTON_LEFT && game->player.w_anim == 0))
 	{
 		weapon_start_anim(game, &game->player);
-		Mix_PlayChannel(1, game->sounds.son2, 0);
+		Mix_PlayChannel(-1, game->sounds.son2, 0);
 	}
 	else if (game->ev.type == SDL_KEYDOWN)
 		kb_key_down(game->ev, game);
