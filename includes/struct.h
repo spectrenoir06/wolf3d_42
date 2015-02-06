@@ -15,7 +15,7 @@
 
 # define SDL_R SDL_Renderer
 # define SDL_J SDL_Joystick
-# define NB_SPRITE_TEX 15
+# define NB_SPRITE_TEX 36
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
 # define NB_ENTITY_MAX 100
