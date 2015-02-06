@@ -27,8 +27,8 @@ void	game_init_sdl(t_game *game)
 	game->sdl.ly = WIN_Y;
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
-	SDL_CreateWindowAndRenderer(game->sdl.lx, game->sdl.ly, SDL_WINDOW_SHOWN,
-			&(game->sdl.win), &(game->sdl.rd));
+	SDL_CreateWindowAndRenderer(game->sdl.lx, game->sdl.ly,
+			SDL_WINDOW_RESIZABLE, &(game->sdl.win), &(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd, SDL_PIXELFORMAT_RGB888,
 			SDL_TEXTUREACCESS_STREAMING, game->sdl.lx, game->sdl.ly);
 	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
