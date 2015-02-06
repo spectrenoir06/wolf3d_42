@@ -18,7 +18,7 @@ void	joystick_init(t_game *game)
 	game->joystick = SDL_JoystickOpen(0);
 	game->haptic = SDL_HapticOpenFromJoystick(game->joystick);
 	if (SDL_HapticRumbleInit(game->haptic))
-		ft_putstr("Can not init %s\n", SDL_GetError());
+		ft_putstr("Can not init haptic rumble\n");
 }
 
 void	game_init_sdl(t_game *game)
