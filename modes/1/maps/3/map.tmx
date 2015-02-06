@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="57">
+ <properties>
+  <property name="nbSprites" value="18"/>
+  <property name="startDirX" value="1"/>
+  <property name="startDirY" value="0"/>
+  <property name="startX" value="29"/>
+  <property name="startY" value="57"/>
+ </properties>
+ <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
+  <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
+ </tileset>
+ <layer name="floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoTNS/zYnYx9IWDVVVVVVVVVVVVVVVVVVVVX19QGREks2AEAAAA==
+  </data>
+ </layer>
+ <layer name="wall" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3UMQ6EMAwEQO4t8P83XntFhIwdyeY0xVSQyJusch3HcQEAAAAAEPIp2LG+m/zrWe5mXOXftbf8Pfk7dGeXP9bRJ/NG1k3Mn3njs9/kn5M/0uNMx6f1vJI/+7bJ/1/5V/9k1k1xFu40++b9OuVv70Cl/zvXTeP9kz8z+9vyZ+622o1J5yL/epa7GaMdz+w94f6r9xrdrzu7/LFeP5l3xx7d9x/tQvbbpLOQ//ks1V5PzN+hO7v8AAAAM30BO6J8pwBAAAA=
+  </data>
+ </layer>
+ <layer name="ceil" width="64" height="64" opacity="0.56">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDoat/05OxDySsmqqqqqqqqqqqqqqqqqqqqvr6AFA+aDAAQAAA
+  </data>
+ </layer>
+ <objectgroup name="obj"/>
+ <imagelayer name="Image Layer 1" visible="0" opacity="0.41">
+  <image source="textures/map.png"/>
+ </imagelayer>
+</map>
