@@ -14,11 +14,14 @@
 
 void	game_init_sdl_mixer(t_sounds *sounds, char *path)
 {
+	char	buff[256];
+
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT,
 			MIX_DEFAULT_CHANNELS, 1024) == -1)
 		ft_putstr("Error : Couldn't initialize SDL_mixer.");
 	Mix_AllocateChannels(8);
-	sounds->music = Mix_LoadMUS("modes/1/maps/1/music/level.midi");
+	ft_kebab(buff, path, "music/level.midi", NULL);
+	sounds->music = Mix_LoadMUS(buff);
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 	Mix_PlayMusic(sounds->music, 1);
 	Mix_SetMusicPosition(3.0);
