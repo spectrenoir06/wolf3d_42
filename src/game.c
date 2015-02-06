@@ -18,7 +18,7 @@ void	joystick_init(t_game *game)
 	game->joystick = SDL_JoystickOpen(0);
 	game->haptic = SDL_HapticOpenFromJoystick(game->joystick);
 	if (SDL_HapticRumbleInit(game->haptic))
-		printf("Can not init %s\n", SDL_GetError());
+		ft_putstr("Can not init %s\n", SDL_GetError());
 }
 
 void	game_init_sdl(t_game *game)
@@ -34,13 +34,13 @@ void	game_init_sdl(t_game *game)
 	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
 	if (game->sdl.win == NULL)
 	{
-		printf("Wolf3D: Error windows can't load\n");
+		ft_putstr("Wolf3D: Error windows can't load\n");
 		exit(1);
 	}
 	game->sdl.text_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
 	if (game->sdl.text_buf == NULL)
 	{
-		printf("Wolf3D: Error can't allocate buffer\n");
+		ft_putstr("Wolf3D: Error can't allocate buffer\n");
 		exit(1);
 	}
 	if (SDL_NumJoysticks() == 1)
