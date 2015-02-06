@@ -67,6 +67,6 @@ void	joy_axis(SDL_Event ev, t_game *game)
 		&& game->player.w_anim == 0)
 	{
 		weapon_start_anim(game, &game->player);
-		Mix_PlayChannel(1, game->sounds.son2, 0);
+		Mix_PlayChannel(-1, game->sounds.son2, 0);
 	}
 }
