@@ -533,6 +533,22 @@
                  "width":32,
                  "x":1280,
                  "y":1824
+                }, 
+                {
+                 "height":32,
+                 "id":33,
+                 "name":"lum2",
+                 "properties":
+                    {
+                     "text":"0",
+                     "type":"0"
+                    },
+                 "rotation":0,
+                 "type":"hans",
+                 "visible":true,
+                 "width":32,
+                 "x":1152,
+                 "y":1081
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -552,7 +568,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":33,
+ "nextobjectid":34,
  "orientation":"orthogonal",
  "properties":
     {
