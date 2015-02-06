@@ -31,8 +31,8 @@ void	sounds_init(t_sounds *sounds, char *path)
 
 	ft_kebab(buff, path, "sfx/run.wav", NULL);
 	sounds->pas = Mix_LoadWAV(buff);
-	ft_kebab(buff, path, "sfx/fear.wav", NULL);
 	Mix_VolumeChunk(sounds->pas, MIX_MAX_VOLUME / 2);
+	ft_kebab(buff, path, "sfx/fear.wav", NULL);
 	sounds->son1 = Mix_LoadWAV(buff);
 	Mix_VolumeChunk(sounds->son1, MIX_MAX_VOLUME / 2);
 	ft_kebab(buff, path, "sfx/shoot2.wav", NULL);
