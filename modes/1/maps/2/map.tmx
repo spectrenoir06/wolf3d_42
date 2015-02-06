@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="34">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="57">
  <properties>
   <property name="nbSprites" value="18"/>
   <property name="startDirX" value="1"/>
@@ -212,7 +212,97 @@
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="33" name="lum2" type="hans" x="1152" y="1081" width="32" height="32">
+  <object id="33" name="Hans" type="hans" x="999" y="990" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="34" name="Hans" type="hans" x="1016" y="990" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="35" name="Hans" type="hans" x="1032" y="990" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="36" name="Hans" type="hans" x="1049" y="990" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="37" name="Hans" type="hans" x="999" y="1008" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="38" name="Hans" type="hans" x="1016" y="1008" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="39" name="Hans" type="hans" x="1032" y="1008" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="40" name="Hans" type="hans" x="1049" y="1008" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="49" name="Hans" type="hans" x="999" y="1040" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="50" name="Hans" type="hans" x="999" y="1022" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="51" name="Hans" type="hans" x="1016" y="1040" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="52" name="Hans" type="hans" x="1016" y="1022" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="53" name="Hans" type="hans" x="1032" y="1022" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="54" name="Hans" type="hans" x="1049" y="1040" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="55" name="Hans" type="hans" x="1049" y="1022" width="32" height="32">
+   <properties>
+    <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object id="56" name="Hans" type="hans" x="1032" y="1040" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
