@@ -15,10 +15,10 @@
 
 # define SDL_R SDL_Renderer
 # define SDL_J SDL_Joystick
-# define NB_SPRITE_TEX 36
+# define NB_SPRITE_TEX 174
 # define NB_WEAPON_TEX 1
 # define NB_WEAPON_TEX_FRAME 5
-# define NB_ENTITY_MAX 100
+# define NB_ENTITY_MAX 1000
 
 typedef enum	e_key
 {
