@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="57">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="61">
  <properties>
   <property name="nbSprites" value="18"/>
   <property name="startDirX" value="1"/>
@@ -17,10 +17,10 @@
  </layer>
  <layer name="wall" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2Zy46DMAxFQ4dq2Mz8BPT/f3HEIhJj2fErT8jiqiSlwSfXdpB6hBCOqampqampwvpyqHXsuflXgpOabx17Lv5FoVa5AOOwrvMB41XJ3yoXtPwaP7X+Y/lQm5/bAw2TRzEfRuUfxf9T++X6Rcxj/NQap95K/nfoo/65fJDmyQj9/yOM7drbNfzYOb8Q863Ofqn/0vzA+K/sLf228mvqI7UPo/Jb/If8sB/Gfleb9ypL/Z/CzgWr/6281vpv4dXUfyt+6OdCzN+ZX/q9hj+us4Z0btWuA4oN9gJY81b+p/vfMz83vjM/dsblzH+oFay/VuRu4b+0/1uf862UlM/Dzu1LzIEc3mv5qfzO/f4DlXrO9XsrPxc757+EXxujZE1ur6W+1uDXsO9O/l3B7uHHel6u/Pfwx5hz3Zfil6pm/ufWNv0fuv4pnrv3f+yMG6H/R70CvyfUvSX4X2CeeqaVNyUYL3wv5X6X4sfWxe6l/Kc8KsFP5WUO/hzv/0/j58Z34Kf8xXq8p+fX5l+YT45/RP8XZCw596T1PQK/VBuyvpff+j9Qj/5blFrj3JufQvyp895a/6X0W4k/d//v0f8Wot6LMaXqn8pZyM95VlvRS8xzeO2p2x75uZw/gpwd68dcH2/Nj/kP94KT58zugd+r0f2HuSD1ffL/5x+1/3t1J/9z8s/+9yz/Z/3P/J/8z+XfHNcl4voDDtjTLQBAAAA=
+   H4sIAAAAAAAAA+2ZQY7DIAxFSSbVZNO5RNr7X3GUBVJk2WCDgZh48dWGppTHtz+R+gkhfFwul8vlaqyfCo1euzb/RnBS46PXrsW/CGS9Fr7gehPyW6kFiZ9S/7F6GM1byl+rWA+jeZ/g/3F5vxLjGD81x6mXkP8VxvQ/Z20cfigL+f9lru2a7RJ+7JxfiPFRecf1n1sfqb24Y75rZPXs/Br+wzyMeTeSvaT/T2HnggX/Mc806pvDTvH33AOK6QD3lPpslZ/7eYm2kK6tET2AjcMsgD3v/s/Hn7uemR8741rUf9yDDcy/dWYf5f91DzRz71coLl8LdlgDGt5L+an6bv38k/qd6+el/Lm15/zn8EvXyJkzt9dcX3vwS9iPSv5DwF7Dj2WeVv3X8Mc1a92X4ueqZ/1ra3f/Tfc/xTN7/mNnnIX8j1pDfk+oe1vwr2Cc+s1S3pTgeuFzae57KX5sXuxeyn/Koxb8VF1q8Gs8/z+NP3c9Az/lL5bxNZnfm3/JvOb4Lfq/INecc4/b3xb4udqR+Wv5S/8HuqP/JUrNce7NuxF/6rwv7f9W+uvEr53/d/R/hKjnYkyp/qdqFvLnPLMoTt/Oyk+dWZwcn5m/9MyyJvff+VPZN3v+u/+ef+6/97/Xv/M/mX+veN9iXf872k/4AEAAAA==
   </data>
  </layer>
- <layer name="ceil" width="64" height="64" opacity="0.56">
+ <layer name="ceil" width="64" height="64" visible="0" opacity="0.56">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3RoREAMAwDsXSP7D9naEEXaCwgYPjnrqoGAAAAAAAAYLVzee3t9Gf3p0v/X392PwAAAAAAAPxmAHC0Sn4AQAAA
   </data>
@@ -236,8 +236,32 @@
     <property name="type" value="0"/>
    </properties>
   </object>
+  <object id="57" name="taun" type="0" x="1952" y="928" width="32" height="32">
+   <properties>
+    <property name="text" value="29"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="58" name="taun" type="0" x="1920" y="928" width="32" height="32">
+   <properties>
+    <property name="text" value="29"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="59" name="taun" type="0" x="1888" y="928" width="32" height="32">
+   <properties>
+    <property name="text" value="29"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="60" name="taun" type="0" x="1952" y="960" width="32" height="32">
+   <properties>
+    <property name="text" value="29"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
  </objectgroup>
- <imagelayer name="Image Layer 1" visible="0" opacity="0.41">
+ <imagelayer name="Image Layer 1" opacity="0.41">
   <image source="textures/map.png"/>
  </imagelayer>
 </map>
