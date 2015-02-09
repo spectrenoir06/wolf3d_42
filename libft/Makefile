@@ -128,7 +128,7 @@ $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -O3 -I $(HEAD_DIR) -o $@ -c $< $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -O3 -I $(HEAD_DIR) -o $@ -c $< $(FLAGS) -g
+	$(CC) -O0 -I $(HEAD_DIR) -o $@ -c $< $(FLAGS) -g
 
 $(DYNAMIC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -O3 -fPIC -I $(HEAD_DIR) -o $@ -c $< $(FLAGS)

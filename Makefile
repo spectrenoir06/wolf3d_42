@@ -6,7 +6,7 @@
 #    By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 10:11:24 by adoussau          #+#    #+#              #
-#    Updated: 2015/01/26 23:43:03 by eteyssed         ###   ########.fr        #
+#*   Updated: 2015/02/05 22:37:42 by adoussau         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,41 +43,40 @@ LIBFT_HEAD	= libft/includes/
 
 STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
-##HEADER_OBJ	= $(patsubst %.h,$(HEAD_DIR)/%.h.gch,$(HEADFILES))
 
-CC			= gcc
-FLAGS		=  -Wall -Wextra -Werror
+CC		= gcc
 NORMINETTE	= ~/project/colorminette/colorminette
+OPTI		= -O3
 
 UNAME_S := $(shell uname -s)
 
-NAME := $(shell whoami)
-
 ifeq ($(UNAME_S),Linux)
 	SDL	= -lSDL2 -lm -lSDL_mixer
+	FLAGS	= -Wall -Wextra
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2 -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
+	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2 -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer	
+	FLAGS	= -Wall -Wextra -Werror
 endif
 
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
 all: $(STATIC_EXE)
-	@echo "je suis Charlie (realease)"
+	@echo "Compilation fini (realease)"
 debug: $(DEBUG_EXE)
-	@echo "je suis Charlie (debug)"
+	@echo "Compilation fini (debug)"
 $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
+	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
-	$(CC) -O3 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
+	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -O3 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
+	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS) -g
+	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS) -g
 
 $(LIBFT_STATIC):
 	make -C libft/ libft.a
