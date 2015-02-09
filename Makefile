@@ -63,9 +63,9 @@ endif
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 
 all: $(STATIC_EXE)
-	@echo "Compilation fini (realease)"
+	@echo "Compilation terminee. (realease)"
 debug: $(DEBUG_EXE)
-	@echo "Compilation fini (debug)"
+	@echo "Compilation terminee. (debug)"
 $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
 	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
