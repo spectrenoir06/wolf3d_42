@@ -12,6 +12,11 @@
 
 #include "wolf3d.h"
 
+int			sprite_compare(void *entity1, void *entity2)
+{
+	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
+}
+
 void		map_load_entity(t_map *map, t_mapload *ml)
 {
 	ml->i = 0;

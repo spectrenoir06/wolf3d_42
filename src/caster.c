@@ -123,9 +123,15 @@ void		fc_choose_step(t_rend *rend, t_fc *cf)
 void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 {
 	t_fc		cf;
-	t_color		color1 = {50,50,50};
-	t_color		color2 = {50,50,50};
+	t_color		color1;
+	t_color		color2;
 
+	color1.r = 100;
+	color1.g = 100;
+	color1.b = 100;
+	color2.r = 50;
+	color2.g = 50;
+	color2.b = 50;
 	cf.x = GAME_LX - rend->x;
 	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
@@ -136,7 +142,8 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 		else
 		{
 			game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
-			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
+			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y -
+					cf.y, &color2);
 		}
 		cf.y++;
 	}

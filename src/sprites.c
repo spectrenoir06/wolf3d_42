@@ -12,9 +12,24 @@
 
 #include "wolf3d.h"
 
-inline int		sprite_compare(void *entity1, void *entity2)
+void			sprite_angle(t_drsprite *sprt, t_game *game)
 {
-	return (((t_entity *)entity2)->dist - ((t_entity *)entity1)->dist);
+	sprt->stripe = sprt->drawstartx - 1;
+	sprt->pos.x = game->player.pos.x - game->map.entity_ptr[sprt->x]->pos.x;
+	sprt->pos.y = game->player.pos.y - game->map.entity_ptr[sprt->x]->pos.y;
+	if (game->map.sprite[game->map.entity_ptr[sprt->x]->texture].frames == 8)
+	{
+		sprt->angle = atan2(sprt->pos.y, sprt->pos.x) -
+		atan2(game->map.entity_ptr[sprt->x]->dir.y,
+		game->map.entity_ptr[sprt->x]->dir.x) + M_PI_4 / 2;
+		if (sprt->angle < 0)
+			sprt->angle += 2 * M_PI;
+		sprt->i = ((sprt->angle) / (M_PI * 2.0) * 8.0);
+		sprt->i = sprt->i > 7 ? 7 : sprt->i;
+		sprt->i = sprt->i < 0 ? 0 : sprt->i;
+	}
+	else
+		sprt->i = 0;
 }
 
 void			game_draw_sprites_init(t_drsprite *sprt, t_game *game)
@@ -43,30 +58,13 @@ void			game_draw_sprites_init(t_drsprite *sprt, t_game *game)
 	sprt->drawendx = sprt->spritewidth / 2.0 + sprt->spritescreenx;
 	if (sprt->drawendx >= (GAME_LX))
 		sprt->drawendx = (GAME_LX) - 1;
-	sprt->stripe = sprt->drawstartx - 1;
-
-	sprt->pos.x = game->player.pos.x - game->map.entity_ptr[sprt->x]->pos.x;
-	sprt->pos.y = game->player.pos.y - game->map.entity_ptr[sprt->x]->pos.y;
-	if (game->map.sprite[game->map.entity_ptr[sprt->x]->texture].frames == 8)
-	{
-		sprt->angle = atan2(sprt->pos.y, sprt->pos.x) -
-		atan2(game->map.entity_ptr[sprt->x]->dir.y,
-		game->map.entity_ptr[sprt->x]->dir.x) + M_PI_4 / 2;
-		if (sprt->angle < 0)
-			sprt->angle += 2 * M_PI;
-		sprt->i = ((sprt->angle) / (M_PI * 2.0) * 8.0);
-		sprt->i = sprt->i > 7 ? 7 : sprt->i;
-		sprt->i = sprt->i < 0 ? 0 : sprt->i;
-	}
-	else
-		sprt->i = 0;
+	sprite_angle(sprt, game);
 }
 
 void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 {
 	sprt->d = sprt->y - (GAME_LY) / 2.0 + sprt->spriteheight / 2.0;
 	sprt->texy = ((sprt->d * 512) / sprt->spriteheight);
-
 	sprt->color = (t_color *)&((Uint8*)(game->map.sprite[game->map.entity_ptr
 	[sprt->x]->texture].tex->pixels))[(int)sprt->texx * 3 + (sprt->texy * 3 *
 	game->map.sprite[game->map.entity_ptr[sprt->x]->texture].tex->w) +

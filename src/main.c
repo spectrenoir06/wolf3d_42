@@ -65,8 +65,8 @@ int		main(int ac, char **av)
 		game_render(&game);
 		hud_render(&game);
 		game_draw_all(&game);
-		fps = ft_itoa(1/game.dt);
-		SDL_SetWindowTitle(game.sdl.win, fps); // // //
+		fps = ft_itoa(1 / game.dt);
+		SDL_SetWindowTitle(game.sdl.win, fps);
 		free(fps);
 	}
 	return (0);
