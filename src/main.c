@@ -30,6 +30,7 @@ void	setdt(t_game *game)
 int		main(int ac, char **av)
 {
 	t_game	game;
+	char	*fps;
 	int		i;
 
 	game.dt = 0;
@@ -54,7 +55,9 @@ int		main(int ac, char **av)
 		game_render(&game);
 		hud_render(&game);
 		game_draw_all(&game);
-		SDL_SetWindowTitle(game.sdl.win, ft_itoa(1/game.dt)); // // //
+		fps = ft_itoa(1/game.dt);
+		SDL_SetWindowTitle(game.sdl.win, fps); // // //
+		free(fps);
 	}
 	return (0);
 }
