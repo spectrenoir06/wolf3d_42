@@ -56,15 +56,19 @@ void		ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 			wall->side = 1;
 		}
 		if (game->map.wall[wall->map.x + (wall->map.y * game->map.lx)] > 0)
-		{
-			wall->id = game->map.wall[wall->map.x +
-									(wall->map.y * game->map.lx)];
 			break ;
-		}
 	}
 	wall->dist = (wall->side ? fabs((wall->map.y - ray->pos.y + (1 -
 			wall->step.y) / 2) / ray->dir.y) : fabs((wall->map.x - ray->pos.x +
 			(1 - wall->step.x) / 2) / ray->dir.x));
+	wall->id = game->map.wall[wall->map.x + (wall->map.y * game->map.lx)];
+	/*if (wall->id == 14)
+	{
+		if (wall->side == 0)
+			wall->side = (wall->step.x > 0 ? 0 : 2);
+		else
+			wall->side = (wall->step.y > 0 ? 1 : 3);
+	}*/
 }
 
 void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)

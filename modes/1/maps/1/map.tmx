@@ -18,7 +18,7 @@
  </layer>
  <layer name="wall" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XQQ6AMAgEwHo0/v+/fqEmEIrMgathGgLrvda6h9c1tPj5+ev74Oc/1f98qGpPln/nW/z95iDS33EOMvydit/8239x/mpPln9y/vlz8fPz1/dxsn/6/nf/9/3d5kD+9//HH+vv9F72n/sn/9T3wX+uf/r823/7/m5zIP/Iv/yx/k7vZf+5f/JPfR/8/Pz8/Pz8/Pz8/Pz8/Pz8/Ln+yfUCZnOzfQBAAAA=
+   H4sIAAAAAAAAA+3XMQ6EMAwEwFAiivv/b/kCkZxzHE+xHUIeaWXMPca4m+dqGn5+/vw5+Pl39T8Tyfas8n95F3+9HkT6K/Zghb9S+PXf/ovzZ3tW+TvfPyeHn58/f46d/d33v+//d3+1Hrj//f/xx/pnn/8d4u++/yq5Z/2d75+Tw6//9l+cv1oPdrh/TvNXCr/+239x/mzPKn/n++fk8PPz58/Bz8/Pz8/Pz8/Pz8/P/x9/57yubjTNAEAAAA==
   </data>
  </layer>
  <layer name="ceil" width="64" height="64" opacity="0.63">

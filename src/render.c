@@ -47,6 +47,8 @@ void	render(t_game *game, t_rend *rend)
 	rend->y = rend->drawstart;
 	while (rend->y <= rend->drawend)
 	{
+		/*if (rend->wall.id == 14)
+			rend->wall.id += rend->wall.side;*/
 		rend->tex_y = (rend->y * 2 - GAME_LY + rend->linehgt) *
 				(TEX_SIZE / 2) / rend->linehgt;
 		rend->color = &((Uint8 *)(game->map.textures[rend->wall.id]->pixels))
