@@ -27,6 +27,23 @@ void	setdt(t_game *game)
 	((tv1.tv_usec - tv2.tv_usec) / 1000000.0));
 }
 
+void	check_args(t_game *game, int ac, char *av[])
+{
+	if (ac == 2)
+	{
+		if (!ft_strcmp(av[1], "1"))
+			map_init(game, 1, 1);
+		else if (!ft_strcmp(av[1], "2"))
+			map_init(game, 1, 2);
+		else if (!ft_strcmp(av[1], "3"))
+			map_init(game, 1, 3);
+		else
+			map_init(game, 1, 2);
+	}
+	else
+		map_init(game, 1, 2);
+}
+
 int		main(int ac, char **av)
 {
 	t_game	game;
@@ -35,15 +52,8 @@ int		main(int ac, char **av)
 
 	game.dt = 0;
 	game_init_sdl(&game);
-	if (ac == 2)
-		map_init(&game, 1, ft_atoi(av[1]));
-	else
-		map_init(&game, 1, 2);
+	check_args(&game, ac, av);
 	i = ((GAME_LY) / 2) - 1;
-	SDL_UpdateTexture(game.sdl.tex, NULL, game.sdl.text_buf,
-			game.sdl.lx * sizeof(Uint32));
-	SDL_RenderCopy(game.sdl.rd, game.sdl.tex, NULL, NULL);
-	SDL_RenderPresent(game.sdl.rd);
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
 	while (42)

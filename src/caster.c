@@ -127,7 +127,7 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 	t_color		color2 = {50,50,50};
 
 	cf.x = GAME_LX - rend->x;
-	cf.y = rend->y - 1;
+	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
 	while (cf.y <= GAME_LY)
 	{
