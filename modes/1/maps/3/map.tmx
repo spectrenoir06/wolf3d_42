@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="33" height="32" tilewidth="32" tileheight="32">
  <properties>
+  <property name="has_fc" value="0"/>
   <property name="nbSprites" value="3"/>
   <property name="startDirX" value="1"/>
   <property name="startDirY" value="0"/>
-  <property name="startX" value="16"/>
-  <property name="startY" value="17"/>
+  <property name="startX" value="14"/>
+  <property name="startY" value="22"/>
  </properties>
  <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
   <image source="textures/tileset-32.png" trans="ff00ff" width="128" height="32"/>
@@ -17,10 +18,10 @@
  </layer>
  <layer name="wall" width="33" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA91Uyw6AIAxD/P9/9qIJMQa7rmPTQw+wR8rW0ltrvQA2BxT1V4/9RCaH8fx2f4+hebP7ShwyUJEDO2+mzjqHWQ4bq8gBmanaF9b/k9Xtnzk85Sj8xL6N1SHjixUcPLtQ1n1Jk5kc1H7y+MKrQYUvojlYdoHOG+0d8T60XyUOyIxnNYoeHt2xMWQXWRyi/yGrL1ahEodsHOMghNiAEAAA
+   H4sIAAAAAAAAA92UQRLAIAgDrf9/dD/QMiGEEnvgosCsgbjXWtsgrkIo6t0Y3vSJtMvkRedODBPhyMDqzdRldYhy2DtHBkRTtS+y/ye7t39meMpR+Il9G7uHjC++YKjMQll30k5OMqj9VPFFdQcVvuhmyMwC1Rvt3fE+tJ8TA6JxVKPoUdk79g6ZxRRD9h+q1md06Awnhum4AbcUHHiAEAAA
   </data>
  </layer>
- <layer name="ceil" width="33" height="32" visible="0" opacity="0.56">
+ <layer name="ceil" width="33" height="32" opacity="0.56">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA+3DwQkAAAwDoYPsv3On6E/BVVNVVVV9fIgB3WqAEAAA
   </data>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <properties>
+  <property name="has_fc" value="0"/>
   <property name="nbSprites" value="100"/>
   <property name="startDirX" value="1"/>
   <property name="startDirY" value="0"/>
@@ -218,7 +219,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="993" y="704" width="32" height="32">
+  <object name="Hans" type="hans" x="991" y="702" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>

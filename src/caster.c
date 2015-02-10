@@ -123,13 +123,21 @@ void		fc_choose_step(t_rend *rend, t_fc *cf)
 void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 {
 	t_fc		cf;
+	t_color		color1 = {50,50,50};
+	t_color		color2 = {50,50,50};
 
 	cf.x = GAME_LX - rend->x;
-	cf.y = rend->y;
+	cf.y = rend->y - 1;
 	fc_choose_step(rend, &cf);
 	while (cf.y <= GAME_LY)
 	{
-		draw_fc_pixel(game, &cf, rend);
+		if (game->map.has_fc)
+			draw_fc_pixel(game, &cf, rend);
+		else
+		{
+			game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
+			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
+		}
 		cf.y++;
 	}
 }

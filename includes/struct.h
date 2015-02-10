@@ -154,6 +154,7 @@ typedef struct	s_map
 	int			nb_entity;
 	int			nb_sprite;
 	int			nb_texture;
+	int			has_fc;
 	int			start_x;
 	int			start_y;
 	Uint8		*floor;

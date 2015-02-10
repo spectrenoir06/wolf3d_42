@@ -15,12 +15,12 @@
 
 void	player_init(t_game *game)
 {
-	game->player.pos.x = game->map.start_x;
-	game->player.pos.y = game->map.start_y;
+	game->player.pos.x = game->map.start_x + 0.5;
+	game->player.pos.y = game->map.start_y + 0.5;
 	game->player.dir.x = -1;
 	game->player.dir.y = 0;
 	game->player.plane.x = 0;
-	game->player.plane.y = 0.66;
+	game->player.plane.y = 0.75;
 	game->player.box.x = 0.2;
 	game->player.box.y = 0.2;
 	game->player.speed = 5;

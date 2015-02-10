@@ -496,8 +496,8 @@
                  "type":"hans",
                  "visible":true,
                  "width":32,
-                 "x":993,
-                 "y":704
+                 "x":991,
+                 "y":702
                 }, 
                 {
                  "height":32,
@@ -1716,6 +1716,20 @@
                  "width":32,
                  "x":736,
                  "y":1536
+                }, 
+                {
+                 "height":32,
+                 "name":"lampe",
+                 "properties":
+                    {
+                     "text":"3",
+                     "type":"0"
+                    },
+                 "type":"hans",
+                 "visible":true,
+                 "width":32,
+                 "x":416,
+                 "y":480
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1738,6 +1752,7 @@
  "orientation":"orthogonal",
  "properties":
     {
+     "has_fc":"0",
      "nbSprites":"100",
      "startDirX":"1",
      "startDirY":"0",
