@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
  <properties>
-  <property name="nbSprites" value="18"/>
+  <property name="nbSprites" value="100"/>
   <property name="startDirX" value="1"/>
   <property name="startDirY" value="0"/>
   <property name="startX" value="29"/>
@@ -743,6 +743,12 @@
   <object name="hans" type="hans" x="736" y="1536" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object name="lampe" type="hans" x="416" y="480" width="32" height="32">
+   <properties>
+    <property name="text" value="3"/>
     <property name="type" value="0"/>
    </properties>
   </object>

@@ -19,7 +19,7 @@ void		sprite_load(t_map *map, char *path)
 	char	*nb;
 
 	i = 0;
-	while (i < NB_SPRITE_TEX)
+	while (i < map->nb_sprite)
 	{
 		nb = ft_itoa(i);
 		ft_kebab(buff, path, "sprites/", nb, ".bmp", NULL);
@@ -48,7 +48,7 @@ void		map_init(t_game *game, int mode, int map)
 	x = 0;
 	while (x < 10)
 		game->input[x++] = 0;
-	player_init(&game->player);
+	player_init(game);
 	hud_background(game, mode);
 	game_init_sdl_mixer(&game->sounds, path);
 }
@@ -64,6 +64,16 @@ int			map_load(t_map *map, char *path)
 	read(ml.fd, &(map->ly), 4);
 	read(ml.fd, &(map->nb_entity), 4);
 	read(ml.fd, &map->nb_texture, 4);
+	read(ml.fd, &map->nb_sprite, 4);
+	read(ml.fd, &map->start_x, 4);
+	read(ml.fd, &map->start_y, 4);
+	ft_putstr("nb_entity :");
+	ft_putnbr(map->nb_entity);
+	ft_putstr("\nnb_texture :");
+	ft_putnbr(map->nb_texture);
+	ft_putstr("\nnb_sprite :");
+	ft_putnbr(map->nb_sprite);
+	ft_putstr("\n");
 	map_load_data(map, path, &ml);
 	map_load_entity(map, &ml);
 	return (1);
@@ -80,7 +90,7 @@ void		map_unload(t_map *map)
 	while (i < map->nb_texture)
 		SDL_FreeSurface(map->textures[i++]);
 	i = 0;
-	while (i < NB_SPRITE_TEX)
+	while (i < map->nb_sprite)
 		SDL_FreeSurface(map->sprite[i++].tex);
 	free(map->textures);
 	SDL_FreeSurface(map->sky);

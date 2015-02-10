@@ -8,7 +8,14 @@ if len(sys.argv) == 2:
 	f = open(sys.argv[1])
 	str = f.read()
 	tab = json.loads(str)
-	ret = struct.pack("IIII", tab['width'], tab['height'], len(tab['layers'][3]["objects"]), tab['tilesets'][0]['imagewidth'] / tab['tilesets'][0]['tilewidth'])
+	ret = struct.pack("IIIIIII",
+		tab['width'], tab['height'],
+		len(tab['layers'][3]["objects"]),
+		tab['tilesets'][0]['imagewidth'] / tab['tilesets'][0]['tilewidth'],
+		int(tab['properties']['nbSprites']),
+		int(tab['properties']['startX']),
+		int(tab['properties']['startY'])
+	)
 	for c in tab['layers'][0]['data']:
 		ret = ret + unichr(c - 1)
 	for c in tab['layers'][1]['data']:

@@ -73,9 +73,10 @@ void	game_draw_rect(t_game *game, int x, int y, int color)
 
 void	game_draw_all(t_game *game)
 {
+	SDL_Rect rect = {GAME_X, GAME_Y, GAME_LX, GAME_LY};
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf,
 			game->sdl.lx * sizeof(Uint32));
-	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
+	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, &rect, &rect);
 	SDL_RenderPresent(game->sdl.rd);
 }
 

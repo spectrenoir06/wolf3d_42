@@ -37,7 +37,7 @@ void		render_pix_calc(t_rend *rend);
 void		render(t_game *game, t_rend *rend);
 void		game_render(t_game *game);
 
-void		player_init(t_player *player);
+void		player_init(t_game *game);
 void		player_update(t_player *player, t_game *game);
 void		player_move(t_player *player, t_game *game, t_key dir);
 

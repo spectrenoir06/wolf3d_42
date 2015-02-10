@@ -39,6 +39,10 @@ int		main(int ac, char **av)
 	else
 		map_init(&game, 1, 2);
 	i = ((GAME_LY) / 2) - 1;
+	SDL_UpdateTexture(game.sdl.tex, NULL, game.sdl.text_buf,
+			game.sdl.lx * sizeof(Uint32));
+	SDL_RenderCopy(game.sdl.rd, game.sdl.tex, NULL, NULL);
+	SDL_RenderPresent(game.sdl.rd);
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
 	while (42)
@@ -50,6 +54,7 @@ int		main(int ac, char **av)
 		game_render(&game);
 		hud_render(&game);
 		game_draw_all(&game);
+		SDL_SetWindowTitle(game.sdl.win, ft_itoa(1/game.dt)); // // //
 	}
 	return (0);
 }

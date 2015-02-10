@@ -13,19 +13,19 @@
 #include "wolf3d.h"
 #include <math.h>
 
-void	player_init(t_player *player)
+void	player_init(t_game *game)
 {
-	player->pos.x = 30;
-	player->pos.y = 35;
-	player->dir.x = -1;
-	player->dir.y = 0;
-	player->plane.x = 0;
-	player->plane.y = 0.66;
-	player->box.x = 0.2;
-	player->box.y = 0.2;
-	player->speed = 5;
-	player->weapon = 1;
-	player->w_anim = 0;
+	game->player.pos.x = game->map.start_x;
+	game->player.pos.y = game->map.start_y;
+	game->player.dir.x = -1;
+	game->player.dir.y = 0;
+	game->player.plane.x = 0;
+	game->player.plane.y = 0.66;
+	game->player.box.x = 0.2;
+	game->player.box.y = 0.2;
+	game->player.speed = 5;
+	game->player.weapon = 1;
+	game->player.w_anim = 0;
 }
 
 int		player_collide_world(t_map *map, t_player *player)

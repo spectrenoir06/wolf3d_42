@@ -152,7 +152,10 @@ typedef struct	s_map
 	int			lx;
 	int			ly;
 	int			nb_entity;
+	int			nb_sprite;
 	int			nb_texture;
+	int			start_x;
+	int			start_y;
 	Uint8		*floor;
 	Uint8		*wall;
 	Uint8		*ceil;
