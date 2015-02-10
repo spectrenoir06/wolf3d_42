@@ -53,6 +53,7 @@ int		main(int ac, char **av)
 	int		i;
 
 	game.dt = 0;
+	gettimeofday(&tv1, NULL);
 	game_init_sdl(&game);
 	check_args(&game, ac, av);
 	i = ((GAME_LY) / 2) - 1;
