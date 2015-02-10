@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="122">
  <properties>
   <property name="has_fc" value="0"/>
   <property name="nbSprites" value="100"/>
@@ -26,735 +26,735 @@
    H4sIAAAAAAAAA+3RoREAMAwDsXSP7D9naEEXaCwgYPjnrqoGAAAAAAAAYLVzee3t9Gf3p0v/X392PwAAAAAAAPxmAHC0Sn4AQAAA
   </data>
  </layer>
- <objectgroup name="obj" width="0" height="0">
-  <object name="lum1" type="nazie" x="1088" y="1280" width="32" height="32">
+ <objectgroup name="obj">
+  <object id="1" name="lum1" type="nazie" x="1088" y="1280" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="1536" width="32" height="32">
+  <object id="2" name="lum1" type="nazie" x="1088" y="1536" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="1408" width="32" height="32">
+  <object id="3" name="lum1" type="nazie" x="1088" y="1408" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="1664" width="32" height="32">
+  <object id="4" name="lum1" type="nazie" x="1088" y="1664" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="1824" width="32" height="32">
+  <object id="5" name="lum1" type="nazie" x="1088" y="1824" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="960" y="1952" width="32" height="32">
+  <object id="6" name="lum1" type="nazie" x="960" y="1952" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="1952" width="32" height="32">
+  <object id="7" name="lum1" type="nazie" x="1088" y="1952" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1216" y="1952" width="32" height="32">
+  <object id="8" name="lum1" type="nazie" x="1216" y="1952" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="1152" y="928" width="32" height="32">
+  <object id="9" name="pla1" type="0" x="1152" y="928" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="864" y="960" width="32" height="32">
+  <object id="10" name="pla1" type="0" x="864" y="960" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="864" y="1152" width="32" height="32">
+  <object id="11" name="pla1" type="0" x="864" y="1152" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="1312" y="1152" width="32" height="32">
+  <object id="12" name="pla1" type="0" x="1312" y="1152" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="1312" y="960" width="32" height="32">
+  <object id="13" name="pla1" type="0" x="1312" y="960" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum2" type="nazie" x="928" y="1056" width="32" height="32">
+  <object id="14" name="lum2" type="nazie" x="928" y="1056" width="32" height="32">
    <properties>
     <property name="text" value="4"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum2" type="nazie" x="1088" y="1056" width="32" height="32">
+  <object id="15" name="lum2" type="nazie" x="1088" y="1056" width="32" height="32">
    <properties>
     <property name="text" value="4"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum2" type="nazie" x="1248" y="1056" width="32" height="32">
+  <object id="16" name="lum2" type="nazie" x="1248" y="1056" width="32" height="32">
    <properties>
     <property name="text" value="4"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="832" width="32" height="32">
+  <object id="17" name="lum1" type="nazie" x="1088" y="832" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="704" width="32" height="32">
+  <object id="18" name="lum1" type="nazie" x="1088" y="704" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="1088" y="576" width="32" height="32">
+  <object id="19" name="lum1" type="nazie" x="1088" y="576" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="arm" type="nazie" x="1186" y="704" width="32" height="32">
+  <object id="20" name="arm" type="nazie" x="1186" y="704" width="32" height="32">
    <properties>
     <property name="text" value="14"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum2" type="nazie" x="1088" y="352" width="32" height="32">
+  <object id="21" name="lum2" type="nazie" x="1088" y="352" width="32" height="32">
    <properties>
     <property name="text" value="4"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="vase" type="nazie" x="928" y="0" width="32" height="32">
+  <object id="22" name="vase" type="nazie" x="928" y="0" width="32" height="32">
    <properties>
     <property name="text" value="10"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="vase" type="nazie" x="1248" y="0" width="32" height="32">
+  <object id="23" name="vase" type="nazie" x="1248" y="0" width="32" height="32">
    <properties>
     <property name="text" value="10"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="768" y="352" width="32" height="32">
+  <object id="24" name="lum1" type="nazie" x="768" y="352" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="608" y="352" width="32" height="32">
+  <object id="25" name="lum1" type="nazie" x="608" y="352" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="lum1" type="nazie" x="608" y="544" width="32" height="32">
+  <object id="26" name="lum1" type="nazie" x="608" y="544" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="munition" type="nazie" x="1280" y="1952" width="32" height="32">
+  <object id="27" name="munition" type="nazie" x="1280" y="1952" width="32" height="32">
    <properties>
     <property name="text" value="21"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="os" type="nazie" x="896" y="1632" width="32" height="32">
+  <object id="28" name="os" type="nazie" x="896" y="1632" width="32" height="32">
    <properties>
     <property name="text" value="11"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="os" type="nazie" x="1216" y="1664" width="32" height="32">
+  <object id="29" name="os" type="nazie" x="1216" y="1664" width="32" height="32">
    <properties>
     <property name="text" value="11"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="os" type="nazie" x="1280" y="1824" width="32" height="32">
+  <object id="30" name="os" type="nazie" x="1280" y="1824" width="32" height="32">
    <properties>
     <property name="text" value="11"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="928" y="960" width="32" height="32">
+  <object id="31" name="Hans" type="hans" x="928" y="960" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="1216" y="1056" width="32" height="32">
+  <object id="32" name="Hans" type="hans" x="1216" y="1056" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="991" y="702" width="32" height="32">
+  <object id="33" name="Hans" type="hans" x="991" y="702" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="1089" y="540" width="32" height="32">
+  <object id="34" name="Hans" type="hans" x="1089" y="540" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="taun" type="0" x="1952" y="928" width="32" height="32">
+  <object id="35" name="taun" type="0" x="1952" y="928" width="32" height="32">
    <properties>
     <property name="text" value="29"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="taun" type="0" x="1920" y="928" width="32" height="32">
+  <object id="36" name="taun" type="0" x="1920" y="928" width="32" height="32">
    <properties>
     <property name="text" value="29"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="taun" type="0" x="1888" y="928" width="32" height="32">
+  <object id="37" name="taun" type="0" x="1888" y="928" width="32" height="32">
    <properties>
     <property name="text" value="29"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="taun" type="0" x="1952" y="960" width="32" height="32">
+  <object id="38" name="taun" type="0" x="1952" y="960" width="32" height="32">
    <properties>
     <property name="text" value="29"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="1056" y="288" width="32" height="32">
+  <object id="39" name="Hans" type="hans" x="1056" y="288" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hanz" type="nazie" x="1248" y="1952" width="32" height="32">
+  <object id="40" name="hanz" type="nazie" x="1248" y="1952" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="1088" y="1984" width="32" height="32">
+  <object id="41" name="bouffe" type="nazie" x="1088" y="1984" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="1184" y="1824" width="32" height="32">
+  <object id="42" name="bouffe" type="nazie" x="1184" y="1824" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="928" y="1632" width="32" height="32">
+  <object id="43" name="bouffe" type="nazie" x="928" y="1632" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="pla1" type="0" x="1024" y="928" width="32" height="32">
+  <object id="44" name="pla1" type="0" x="1024" y="928" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="1536" y="1440" width="32" height="32">
+  <object id="45" name="Hans" type="hans" x="1536" y="1440" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="dog" type="nazie" x="1728" y="1440" width="32" height="32">
+  <object id="46" name="dog" type="nazie" x="1728" y="1440" width="32" height="32">
    <properties>
     <property name="text" value="78"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="dog" type="nazie" x="1792" y="1376" width="32" height="32">
+  <object id="47" name="dog" type="nazie" x="1792" y="1376" width="32" height="32">
    <properties>
     <property name="text" value="78"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="merde" type="nazie" x="1888" y="1440" width="32" height="32">
+  <object id="48" name="merde" type="nazie" x="1888" y="1440" width="32" height="32">
    <properties>
     <property name="text" value="13"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="cro" type="nazie" x="1856" y="1344" width="32" height="32">
+  <object id="49" name="cro" type="nazie" x="1856" y="1344" width="32" height="32">
    <properties>
     <property name="text" value="5"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="1728" y="928" width="32" height="32">
+  <object id="50" name="bouffe" type="nazie" x="1728" y="928" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="1824" y="1120" width="32" height="32">
+  <object id="51" name="bouffe" type="nazie" x="1824" y="1120" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="bouffe" type="nazie" x="1920" y="1184" width="32" height="32">
+  <object id="52" name="bouffe" type="nazie" x="1920" y="1184" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="table" type="nazie" x="1792" y="1120" width="32" height="32">
+  <object id="53" name="table" type="nazie" x="1792" y="1120" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="table" type="nazie" x="1888" y="1120" width="32" height="32">
+  <object id="54" name="table" type="nazie" x="1888" y="1120" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="puit" type="nazie" x="1792" y="1216" width="32" height="32">
+  <object id="55" name="puit" type="nazie" x="1792" y="1216" width="32" height="32">
    <properties>
     <property name="text" value="31"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="puit" type="nazie" x="1888" y="1216" width="32" height="32">
+  <object id="56" name="puit" type="nazie" x="1888" y="1216" width="32" height="32">
    <properties>
     <property name="text" value="31"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object name="table" type="hans" x="992" y="288" width="32" height="32">
+  <object id="57" name="table" type="hans" x="992" y="288" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="table" type="hans" x="1088" y="288" width="32" height="32">
+  <object id="58" name="table" type="hans" x="1088" y="288" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="table" type="hans" x="1184" y="288" width="32" height="32">
+  <object id="59" name="table" type="hans" x="1184" y="288" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="vase" type="hans" x="928" y="256" width="32" height="32">
+  <object id="60" name="vase" type="hans" x="928" y="256" width="32" height="32">
    <properties>
     <property name="text" value="10"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="vase" type="hans" x="1248" y="256" width="32" height="32">
+  <object id="61" name="vase" type="hans" x="1248" y="256" width="32" height="32">
    <properties>
     <property name="text" value="10"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="1248" y="352" width="32" height="32">
+  <object id="62" name="hans" type="hans" x="1248" y="352" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="croix" type="hans" x="1312" y="320" width="32" height="32">
+  <object id="63" name="croix" type="hans" x="1312" y="320" width="32" height="32">
    <properties>
     <property name="text" value="26"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="croix" type="hans" x="1344" y="320" width="32" height="32">
+  <object id="64" name="croix" type="hans" x="1344" y="320" width="32" height="32">
    <properties>
     <property name="text" value="26"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="croix" type="hans" x="1376" y="352" width="32" height="32">
+  <object id="65" name="croix" type="hans" x="1376" y="352" width="32" height="32">
    <properties>
     <property name="text" value="26"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="1376" y="320" width="32" height="32">
+  <object id="66" name="bol" type="hans" x="1376" y="320" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="1376" y="384" width="32" height="32">
+  <object id="67" name="bol" type="hans" x="1376" y="384" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="1344" y="384" width="32" height="32">
+  <object id="68" name="bol" type="hans" x="1344" y="384" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="1312" y="384" width="32" height="32">
+  <object id="69" name="bol" type="hans" x="1312" y="384" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="608" y="512" width="32" height="32">
+  <object id="70" name="Hans" type="hans" x="608" y="512" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="Hans" type="hans" x="672" y="576" width="32" height="32">
+  <object id="71" name="Hans" type="hans" x="672" y="576" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="384" y="448" width="32" height="32">
+  <object id="72" name="bol" type="hans" x="384" y="448" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="352" y="448" width="32" height="32">
+  <object id="73" name="plant" type="hans" x="352" y="448" width="32" height="32">
    <properties>
     <property name="text" value="7"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="288" y="448" width="32" height="32">
+  <object id="74" name="plant" type="hans" x="288" y="448" width="32" height="32">
    <properties>
     <property name="text" value="7"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="croix" type="hans" x="352" y="480" width="32" height="32">
+  <object id="75" name="croix" type="hans" x="352" y="480" width="32" height="32">
    <properties>
     <property name="text" value="26"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="croix" type="hans" x="224" y="448" width="32" height="32">
+  <object id="76" name="croix" type="hans" x="224" y="448" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="789" y="707" width="32" height="32">
+  <object id="77" name="bol" type="hans" x="789" y="707" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="256" y="448" width="32" height="32">
+  <object id="78" name="bol" type="hans" x="256" y="448" width="32" height="32">
    <properties>
     <property name="text" value="25"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="224" y="480" width="32" height="32">
+  <object id="79" name="lampe" type="hans" x="224" y="480" width="32" height="32">
    <properties>
     <property name="text" value="3"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="224" y="608" width="32" height="32">
+  <object id="80" name="lampe" type="hans" x="224" y="608" width="32" height="32">
    <properties>
     <property name="text" value="3"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="416" y="608" width="32" height="32">
+  <object id="81" name="lampe" type="hans" x="416" y="608" width="32" height="32">
    <properties>
     <property name="text" value="3"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="coffre" type="hans" x="192" y="608" width="32" height="32">
+  <object id="82" name="coffre" type="hans" x="192" y="608" width="32" height="32">
    <properties>
     <property name="text" value="27"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="coffre" type="hans" x="192" y="640" width="32" height="32">
+  <object id="83" name="coffre" type="hans" x="192" y="640" width="32" height="32">
    <properties>
     <property name="text" value="27"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="coffre" type="hans" x="224" y="640" width="32" height="32">
+  <object id="84" name="coffre" type="hans" x="224" y="640" width="32" height="32">
    <properties>
     <property name="text" value="27"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="table" type="hans" x="320" y="544" width="32" height="32">
+  <object id="85" name="table" type="hans" x="320" y="544" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="flag" type="hans" x="192" y="544" width="32" height="32">
+  <object id="86" name="flag" type="hans" x="192" y="544" width="32" height="32">
    <properties>
     <property name="text" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="256" y="512" width="32" height="32">
+  <object id="87" name="hans" type="hans" x="256" y="512" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="384" y="544" width="32" height="32">
+  <object id="88" name="hans" type="hans" x="384" y="544" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="320" y="736" width="32" height="32">
+  <object id="89" name="lampe" type="hans" x="320" y="736" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="320" y="832" width="32" height="32">
+  <object id="90" name="lampe" type="hans" x="320" y="832" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="416" y="960" width="32" height="32">
+  <object id="91" name="plant" type="hans" x="416" y="960" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="416" y="1152" width="32" height="32">
+  <object id="92" name="plant" type="hans" x="416" y="1152" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="224" y="1152" width="32" height="32">
+  <object id="93" name="plant" type="hans" x="224" y="1152" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="plant" type="hans" x="224" y="960" width="32" height="32">
+  <object id="94" name="plant" type="hans" x="224" y="960" width="32" height="32">
    <properties>
     <property name="text" value="9"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="256" y="992" width="32" height="32">
+  <object id="95" name="lampe" type="hans" x="256" y="992" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="384" y="992" width="32" height="32">
+  <object id="96" name="lampe" type="hans" x="384" y="992" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="256" y="1120" width="32" height="32">
+  <object id="97" name="lampe" type="hans" x="256" y="1120" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="384" y="1120" width="32" height="32">
+  <object id="98" name="lampe" type="hans" x="384" y="1120" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="224" y="1056" width="32" height="32">
+  <object id="99" name="hans" type="hans" x="224" y="1056" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="64" y="928" width="32" height="32">
+  <object id="100" name="lampe" type="hans" x="64" y="928" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="64" y="800" width="32" height="32">
+  <object id="101" name="lampe" type="hans" x="64" y="800" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="192" y="832" width="32" height="32">
+  <object id="102" name="lampe" type="hans" x="192" y="832" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bouff" type="hans" x="224" y="800" width="32" height="32">
+  <object id="103" name="bouff" type="hans" x="224" y="800" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bol" type="hans" x="224" y="864" width="32" height="32">
+  <object id="104" name="bol" type="hans" x="224" y="864" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="224" y="832" width="32" height="32">
+  <object id="105" name="hans" type="hans" x="224" y="832" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="64" y="672" width="32" height="32">
+  <object id="106" name="lampe" type="hans" x="64" y="672" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="vie" type="hans" x="64" y="640" width="32" height="32">
+  <object id="107" name="vie" type="hans" x="64" y="640" width="32" height="32">
    <properties>
     <property name="text" value="22"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="barrile" type="hans" x="96" y="640" width="32" height="32">
+  <object id="108" name="barrile" type="hans" x="96" y="640" width="32" height="32">
    <properties>
     <property name="text" value="29"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="64" y="1216" width="32" height="32">
+  <object id="109" name="lampe" type="hans" x="64" y="1216" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="192" y="1344" width="32" height="32">
+  <object id="110" name="lampe" type="hans" x="192" y="1344" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="64" y="1408" width="32" height="32">
+  <object id="111" name="lampe" type="hans" x="64" y="1408" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="192" y="1504" width="32" height="32">
+  <object id="112" name="lampe" type="hans" x="192" y="1504" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="320" y="1344" width="32" height="32">
+  <object id="113" name="lampe" type="hans" x="320" y="1344" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="448" y="1504" width="32" height="32">
+  <object id="114" name="lampe" type="hans" x="448" y="1504" width="32" height="32">
    <properties>
     <property name="text" value="12"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="bouff" type="hans" x="160" y="1376" width="32" height="32">
+  <object id="115" name="bouff" type="hans" x="160" y="1376" width="32" height="32">
    <properties>
     <property name="text" value="20"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="160" y="1312" width="32" height="32">
+  <object id="116" name="hans" type="hans" x="160" y="1312" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="baril" type="hans" x="224" y="1312" width="32" height="32">
+  <object id="117" name="baril" type="hans" x="224" y="1312" width="32" height="32">
    <properties>
     <property name="text" value="1"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="320" y="1440" width="32" height="32">
+  <object id="118" name="hans" type="hans" x="320" y="1440" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="736" y="1472" width="32" height="32">
+  <object id="119" name="hans" type="hans" x="736" y="1472" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="hans" type="hans" x="736" y="1536" width="32" height="32">
+  <object id="120" name="hans" type="hans" x="736" y="1536" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object name="lampe" type="hans" x="416" y="480" width="32" height="32">
+  <object id="121" name="lampe" type="hans" x="416" y="480" width="32" height="32">
    <properties>
     <property name="text" value="3"/>
     <property name="type" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <imagelayer name="Image Layer 1" width="0" height="0" opacity="0.41">
+ <imagelayer name="Image Layer 1" opacity="0.41">
   <image source="textures/map.png"/>
  </imagelayer>
 </map>

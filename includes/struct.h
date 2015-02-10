@@ -155,6 +155,8 @@ typedef struct	s_map
 	int			nb_sprite;
 	int			nb_texture;
 	int			has_fc;
+	t_color		colors[4];
+	int			has_notext;
 	int			start_x;
 	int			start_y;
 	Uint8		*floor;

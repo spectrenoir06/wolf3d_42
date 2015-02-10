@@ -47,18 +47,23 @@ void	render(t_game *game, t_rend *rend)
 	rend->y = rend->drawstart;
 	while (rend->y <= rend->drawend)
 	{
-		/*if (rend->wall.id == 14)
-			rend->wall.id += rend->wall.side;*/
 		rend->tex_y = (rend->y * 2 - GAME_LY + rend->linehgt) *
 				(TEX_SIZE / 2) / rend->linehgt;
 		rend->color = &((Uint8 *)(game->map.textures[rend->wall.id]->pixels))
-				[rend->tex_x * 3 + (rend->tex_y * TEX_SIZE * 3)];
-		if (rend->wall.side == 1)
-			game_draw_pixel_black(game, GAME_X +
-					(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
-		else
+						[rend->tex_x * 3 + (rend->tex_y * TEX_SIZE * 3)];
+		if (game->map.has_notext)
 			game_draw_pixel(game, GAME_X +
-					(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
+					(GAME_LX - rend->x), GAME_Y + rend->y,
+					&game->map.colors[rend->wall.side]);
+		else
+		{
+			if (rend->wall.side == 1)
+				game_draw_pixel_black(game, GAME_X +
+						(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
+			else
+				game_draw_pixel(game, GAME_X +
+						(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
+		}
 		rend->y++;
 	}
 	draw_floor_and_ceil(game, rend);

@@ -37,6 +37,8 @@ void	check_args(t_game *game, int ac, char *av[])
 			map_init(game, 1, 2);
 		else if (!ft_strcmp(av[1], "3"))
 			map_init(game, 1, 3);
+		else if (!ft_strcmp(av[1], "4"))
+			map_init(game, 1, 4), game->map.has_notext = 1;
 		else
 			map_init(game, 1, 2);
 	}

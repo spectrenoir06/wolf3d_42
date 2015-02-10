@@ -34,17 +34,20 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
          "height":0,
          "name":"obj",
          "objects":[
                 {
                  "height":32,
+                 "id":1,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -53,12 +56,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":2,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -67,12 +72,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":3,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -81,12 +88,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":4,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -95,12 +104,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":5,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -109,12 +120,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":6,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -123,12 +136,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":7,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -137,12 +152,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":8,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -151,12 +168,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":9,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -165,12 +184,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":10,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -179,12 +200,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":11,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -193,12 +216,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":12,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -207,12 +232,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":13,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -221,12 +248,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":14,
                  "name":"lum2",
                  "properties":
                     {
                      "text":"4",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -235,12 +264,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":15,
                  "name":"lum2",
                  "properties":
                     {
                      "text":"4",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -249,12 +280,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":16,
                  "name":"lum2",
                  "properties":
                     {
                      "text":"4",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -263,12 +296,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":17,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -277,12 +312,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":18,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -291,12 +328,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":19,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -305,12 +344,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":20,
                  "name":"arm",
                  "properties":
                     {
                      "text":"14",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -319,12 +360,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":21,
                  "name":"lum2",
                  "properties":
                     {
                      "text":"4",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -333,12 +376,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":22,
                  "name":"vase",
                  "properties":
                     {
                      "text":"10",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -347,12 +392,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":23,
                  "name":"vase",
                  "properties":
                     {
                      "text":"10",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -361,12 +408,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":24,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -375,12 +424,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":25,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -389,12 +440,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":26,
                  "name":"lum1",
                  "properties":
                     {
                      "text":"12",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -403,12 +456,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":27,
                  "name":"munition",
                  "properties":
                     {
                      "text":"21",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -417,12 +472,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":28,
                  "name":"os",
                  "properties":
                     {
                      "text":"11",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -431,12 +488,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":29,
                  "name":"os",
                  "properties":
                     {
                      "text":"11",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -445,12 +504,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":30,
                  "name":"os",
                  "properties":
                     {
                      "text":"11",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -459,12 +520,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":31,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -473,12 +536,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":32,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -487,12 +552,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":33,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -501,12 +568,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":34,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -515,12 +584,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":35,
                  "name":"taun",
                  "properties":
                     {
                      "text":"29",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -529,12 +600,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":36,
                  "name":"taun",
                  "properties":
                     {
                      "text":"29",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -543,12 +616,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":37,
                  "name":"taun",
                  "properties":
                     {
                      "text":"29",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -557,12 +632,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":38,
                  "name":"taun",
                  "properties":
                     {
                      "text":"29",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -571,12 +648,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":39,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -585,12 +664,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":40,
                  "name":"hanz",
                  "properties":
                     {
                      "text":"0",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -599,12 +680,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":41,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -613,12 +696,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":42,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -627,12 +712,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":43,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -641,12 +728,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":44,
                  "name":"pla1",
                  "properties":
                     {
                      "text":"9",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"0",
                  "visible":true,
                  "width":32,
@@ -655,12 +744,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":45,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -669,12 +760,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":46,
                  "name":"dog",
                  "properties":
                     {
                      "text":"78",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -683,12 +776,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":47,
                  "name":"dog",
                  "properties":
                     {
                      "text":"78",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -697,12 +792,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":48,
                  "name":"merde",
                  "properties":
                     {
                      "text":"13",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -711,12 +808,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":49,
                  "name":"cro",
                  "properties":
                     {
                      "text":"5",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -725,12 +824,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":50,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -739,12 +840,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":51,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -753,12 +856,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":52,
                  "name":"bouffe",
                  "properties":
                     {
                      "text":"20",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -767,12 +872,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":53,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -781,12 +888,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":54,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -795,12 +904,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":55,
                  "name":"puit",
                  "properties":
                     {
                      "text":"31",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -809,12 +920,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":56,
                  "name":"puit",
                  "properties":
                     {
                      "text":"31",
                      "type":"1"
                     },
+                 "rotation":0,
                  "type":"nazie",
                  "visible":true,
                  "width":32,
@@ -823,12 +936,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":57,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -837,12 +952,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":58,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -851,12 +968,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":59,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -865,12 +984,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":60,
                  "name":"vase",
                  "properties":
                     {
                      "text":"10",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -879,12 +1000,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":61,
                  "name":"vase",
                  "properties":
                     {
                      "text":"10",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -893,12 +1016,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":62,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -907,12 +1032,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":63,
                  "name":"croix",
                  "properties":
                     {
                      "text":"26",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -921,12 +1048,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":64,
                  "name":"croix",
                  "properties":
                     {
                      "text":"26",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -935,12 +1064,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":65,
                  "name":"croix",
                  "properties":
                     {
                      "text":"26",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -949,12 +1080,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":66,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -963,12 +1096,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":67,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -977,12 +1112,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":68,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -991,12 +1128,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":69,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1005,12 +1144,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":70,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1019,12 +1160,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":71,
                  "name":"Hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1033,12 +1176,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":72,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1047,12 +1192,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":73,
                  "name":"plant",
                  "properties":
                     {
                      "text":"7",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1061,12 +1208,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":74,
                  "name":"plant",
                  "properties":
                     {
                      "text":"7",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1075,12 +1224,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":75,
                  "name":"croix",
                  "properties":
                     {
                      "text":"26",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1089,12 +1240,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":76,
                  "name":"croix",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1103,12 +1256,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":77,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1117,12 +1272,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":78,
                  "name":"bol",
                  "properties":
                     {
                      "text":"25",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1131,12 +1288,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":79,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"3",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1145,12 +1304,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":80,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"3",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1159,12 +1320,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":81,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"3",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1173,12 +1336,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":82,
                  "name":"coffre",
                  "properties":
                     {
                      "text":"27",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1187,12 +1352,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":83,
                  "name":"coffre",
                  "properties":
                     {
                      "text":"27",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1201,12 +1368,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":84,
                  "name":"coffre",
                  "properties":
                     {
                      "text":"27",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1215,12 +1384,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":85,
                  "name":"table",
                  "properties":
                     {
                      "text":"2",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1229,12 +1400,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":86,
                  "name":"flag",
                  "properties":
                     {
                      "text":"2",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1243,12 +1416,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":87,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1257,12 +1432,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":88,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1271,12 +1448,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":89,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1285,12 +1464,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":90,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1299,12 +1480,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":91,
                  "name":"plant",
                  "properties":
                     {
                      "text":"9",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1313,12 +1496,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":92,
                  "name":"plant",
                  "properties":
                     {
                      "text":"9",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1327,12 +1512,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":93,
                  "name":"plant",
                  "properties":
                     {
                      "text":"9",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1341,12 +1528,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":94,
                  "name":"plant",
                  "properties":
                     {
                      "text":"9",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1355,12 +1544,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":95,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1369,12 +1560,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":96,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1383,12 +1576,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":97,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1397,12 +1592,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":98,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1411,12 +1608,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":99,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1425,12 +1624,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":100,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1439,12 +1640,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":101,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1453,12 +1656,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":102,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1467,12 +1672,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":103,
                  "name":"bouff",
                  "properties":
                     {
                      "text":"20",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1481,12 +1688,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":104,
                  "name":"bol",
                  "properties":
                     {
                      "text":"20",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1495,12 +1704,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":105,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1509,12 +1720,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":106,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1523,12 +1736,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":107,
                  "name":"vie",
                  "properties":
                     {
                      "text":"22",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1537,12 +1752,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":108,
                  "name":"barrile",
                  "properties":
                     {
                      "text":"29",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1551,12 +1768,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":109,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1565,12 +1784,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":110,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1579,12 +1800,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":111,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1593,12 +1816,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":112,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1607,12 +1832,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":113,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1621,12 +1848,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":114,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"12",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1635,12 +1864,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":115,
                  "name":"bouff",
                  "properties":
                     {
                      "text":"20",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1649,12 +1880,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":116,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1663,12 +1896,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":117,
                  "name":"baril",
                  "properties":
                     {
                      "text":"1",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1677,12 +1912,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":118,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1691,12 +1928,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":119,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1705,12 +1944,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":120,
                  "name":"hans",
                  "properties":
                     {
                      "text":"0",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1719,12 +1960,14 @@
                 }, 
                 {
                  "height":32,
+                 "id":121,
                  "name":"lampe",
                  "properties":
                     {
                      "text":"3",
                      "type":"0"
                     },
+                 "rotation":0,
                  "type":"hans",
                  "visible":true,
                  "width":32,
@@ -1749,6 +1992,7 @@
          "x":0,
          "y":0
         }],
+ "nextobjectid":122,
  "orientation":"orthogonal",
  "properties":
     {
@@ -1759,6 +2003,7 @@
      "startX":"29",
      "startY":"57"
     },
+ "renderorder":"right-down",
  "tileheight":32,
  "tilesets":[
         {

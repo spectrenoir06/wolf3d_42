@@ -44,17 +44,13 @@ void		ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 	while (42)
 	{
 		if (ray->side.x < ray->side.y)
-		{
-			ray->side.x += ray->delta.x;
-			wall->map.x += wall->step.x;
+			ray->side.x += ray->delta.x,
+			wall->map.x += wall->step.x,
 			wall->side = 0;
-		}
 		else
-		{
-			ray->side.y += ray->delta.y;
-			wall->map.y += wall->step.y;
+			ray->side.y += ray->delta.y,
+			wall->map.y += wall->step.y,
 			wall->side = 1;
-		}
 		if (game->map.wall[wall->map.x + (wall->map.y * game->map.lx)] > 0)
 			break ;
 	}
@@ -62,13 +58,13 @@ void		ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 			wall->step.y) / 2) / ray->dir.y) : fabs((wall->map.x - ray->pos.x +
 			(1 - wall->step.x) / 2) / ray->dir.x));
 	wall->id = game->map.wall[wall->map.x + (wall->map.y * game->map.lx)];
-	/*if (wall->id == 14)
+	if (game->map.has_notext)
 	{
 		if (wall->side == 0)
 			wall->side = (wall->step.x > 0 ? 0 : 2);
 		else
 			wall->side = (wall->step.y > 0 ? 1 : 3);
-	}*/
+	}
 }
 
 void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
@@ -117,7 +113,7 @@ void		fc_choose_step(t_rend *rend, t_fc *cf)
 		cf->fl.x = rend->wall.map.x + rend->wallx;
 		cf->fl.y = rend->wall.map.y;
 	}
-	else
+	else if (rend->wall.side == 1 && rend->ray.dir.y < 0)
 	{
 		cf->fl.x = rend->wall.map.x + rend->wallx;
 		cf->fl.y = rend->wall.map.y + 1.0;
