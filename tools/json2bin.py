@@ -17,12 +17,13 @@ if len(sys.argv) == 2:
 		int(tab['properties']['startY']),
 		int(tab['properties']['has_fc'])
 	)
+	sys.stdout.write(ret)
 	for c in tab['layers'][0]['data']:
-		ret = ret + unichr(c - 1)
+		sys.stdout.write(unichr(c - 1))
 	for c in tab['layers'][1]['data']:
-		ret = ret + unichr(c - 1)
+		sys.stdout.write(unichr(c - 1))
 	for c in tab['layers'][2]['data']:
-		ret = ret + unichr(c - 1)
+		sys.stdout.write(unichr(c - 1))
 	sys.stdout.write(ret)
 	for obj in tab['layers'][3]['objects']:
 		x = Decimal((obj["x"]) + (obj["width"] / 2)) / Decimal(tab["tilewidth"])
