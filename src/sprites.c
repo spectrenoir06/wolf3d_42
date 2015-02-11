@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adoussau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/04 17:34:27 by adoussau          #+#    #+#             */
 /*   Updated: 2015/02/04 17:34:30 by adoussau         ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adoussau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 19:13:47 by adoussau          #+#    #+#             */
 /*   Updated: 2015/01/13 19:13:50 by adoussau         ###   ########.fr       */
