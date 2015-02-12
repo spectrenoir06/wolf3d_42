@@ -12,11 +12,11 @@
   - [x] nouveau format map (mur, plafont, sol, sprite)
   - [x] sound load relatif au path
   - [x] hud load relatif au path
-  - [ ] augmenter le FOV
+  - [x] augmenter le FOV
   
 - Contenue:
   - [x] sample map
-  - [ ] plein de maps
+  - [x] plein de maps
   - [ ] multimode (wolfenstein, 42stein, ...)
   - [x] clone wolfenstein 3d http://www.spriters-resource.com/pc_computer/wolfenstein3d/
   - [x] create json to binaire (lua || python)
@@ -25,7 +25,7 @@
 - Multimode:
   - [x] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)) :suspect:
   - [ ] 42stein 
-  - [ ] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
+  - [x] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
   - [ ] The Binding of Isaac
   
 - Input:
