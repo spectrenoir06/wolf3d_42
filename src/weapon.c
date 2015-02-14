@@ -29,7 +29,7 @@ int		weapon_load(t_map *map, char *path, int n)
 			nbi = ft_itoa(i + 1);
 			nbj = ft_itoa(j + 1);
 			ft_kebab(buff, path, "weapons/", nbi, "/", nbj, ".bmp", NULL);
-			ft_putendl(buff);
+			//ft_putendl(buff);
 			map->weapon_tex[i + 1][j] = SDL_LoadBMP(buff);
 			free(nbi);
 			free(nbj);

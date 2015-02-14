@@ -26,6 +26,7 @@
 # elif __linux
 #  include <SDL2/SDL.h>
 #  include <SDL/SDL_mixer.h>
+#  include <SDL/SDL_net.h>
 # endif
 
 # define WIN_X 1600

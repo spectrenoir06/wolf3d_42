@@ -118,7 +118,7 @@ typedef struct	s_sprite
 
 typedef struct	s_player
 {
-	t_vect3dd	pos;
+	t_vect2dd	pos;
 	t_vect2dd	dir;
 	t_vect2dd	plane;
 	t_vect2dd	box;
@@ -170,20 +170,31 @@ typedef struct	s_map
 	SDL_Surface	*weapon_tex[NB_WEAPON_TEX + 1][NB_WEAPON_TEX_FRAME + 1];
 }				t_map;
 
+
+typedef struct 	s_multi
+{
+	int			connect;
+	TCPsocket	socket;
+	IPaddress	ip;
+	Uint8		buffer[512];
+}				t_multi;
+
 typedef struct	s_game
 {
 	t_sdl		sdl;
 	t_player	player;
 	t_map		map;
-	double		dt;
+	t_sounds	sounds;
+	t_multi		multi;
 	t_color		texture[TEX_SIZE][TEX_SIZE];
-	Sint16		input[12];
+	double		dt;
+	double		zbuffer[WIN_X];
+	double		calcule[GAME_LY];
 	SDL_J		*joystick;
 	SDL_Haptic	*haptic;
-	double		zbuffer[WIN_X];
-	t_sounds	sounds;
-	double		calcule[GAME_LY];
 	SDL_Event	ev;
+
+	Sint16		input[12];
 }				t_game;
 
 typedef struct	s_ray
@@ -242,5 +253,6 @@ typedef struct	s_mapload
 	float		tmp_x;
 	float		tmp_y;
 }				t_mapload;
+;
 
 #endif

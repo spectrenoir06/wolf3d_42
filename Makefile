@@ -27,6 +27,7 @@ SRC		=	main.c		\
 			render.c	\
 			pixel.c		\
 			map_dlc.c	\
+			multi.c		\
 			caster.c
 
 ##HEADFILES = wolf3d.h
@@ -51,8 +52,8 @@ OPTI		= -O3
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	SDL	= -lSDL2 -lm -lSDL_mixer
-	FLAGS	= -Wall -Wextra
+	SDL	= -lm -lSDL2 -lSDL_mixer -lSDL_net
+	FLAGS	= -Wall -Wextra -Wno-unused-result
 endif
 
 ifeq ($(UNAME_S),Darwin)
