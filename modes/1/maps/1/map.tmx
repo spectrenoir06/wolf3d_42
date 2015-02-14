@@ -1,155 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="32" tileheight="32" nextobjectid="143">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" nextobjectid="145">
  <properties>
   <property name="has_fc" value="1"/>
   <property name="nbSprites" value="19"/>
   <property name="startDirX" value="1"/>
   <property name="startDirY" value="0"/>
-  <property name="startX" value="15"/>
-  <property name="startY" value="13"/>
+  <property name="startX" value="2"/>
+  <property name="startY" value="2"/>
  </properties>
  <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
   <image source="textures/tileset-32.png" trans="ff00ff" width="1184" height="32"/>
  </tileset>
- <layer name="floor" width="64" height="64">
+ <layer name="floor" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UQQqDMBRF0UBXUHTq/rdZCi1oMBCh6YN4BodSR//+GLdSygYAwMGjQ3pG/dn+mfdwpX/GHei/b3tvf3pG/QDALy2V9WP/LD3jSGvDsvtNz/jv8289S886qr8+77N78P2fnnfU+detrW9Cet7R/a13Ycb2rZx/7+o9pGcc3d+6+7PeeYC3Z4f0jPqz/TPv4Ur/jDvQf9/23v70jPoBAAAAAI5eL5INswBAAAA=
+   H4sIAAAAAAAAA5NlYGCQpQDLIOGRoHcUj2JysBAeOQAPRo0IhAMAAA==
   </data>
  </layer>
- <layer name="wall" width="64" height="64">
+ <layer name="wall" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3XQQ6AMAgEwHo0/v+/fqEmEIrMgathGgLrvda6h9c1tPj5+ev74Oc/1f98qGpPln/nW/z95iDS33EOMvydit/8239x/mpPln9y/vlz8fPz1/dxsn/6/nf/9/3d5kD+9//HH+vv9F72n/sn/9T3wX+uf/r823/7/m5zIP/Iv/yx/k7vZf+5f/JPfR/8/Pz8/Pz8/Pz8/Pz8/Pz8/Ln+yfUCZnOzfQBAAAA=
+   H4sIAAAAAAAAAxNmYGAQAWJhJJqTSAxSy4iE0fm48EDrFYHyRUjUy0mk2pGuVxyPXm4g5oGyeaB8UvTi4w+UXgkG3HmEGwsWh+oRh2IA/Zjie4QDAAA=
   </data>
  </layer>
- <layer name="ceil" width="64" height="64" opacity="0.63">
+ <layer name="ceil" width="15" height="15" opacity="0.63">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3WMQoAIQxFwcje/87WdlkQAv4pps9LoVlVtQAAOHwN0zPqn+1/eQ9/+l/cgf7c9m7/9Iz6AYCb0v9//e7/5B3oz23v9k/PqB/gvvT3T7/7J3kH+nPbu/3TM+oHAAAAADht8qH1KABAAAA=
+   H4sIAAAAAAAAA2NmYGBgRsOMRGJ0fcNd7yimHA90vKOzB4ObAZ9201+EAwAA
   </data>
  </layer>
  <objectgroup name="obj">
-  <object id="122" name="Hans" type="0" x="953.667" y="266.667" width="32" height="32">
+  <object id="122" name="Hans" type="0" x="253.667" y="87.3684" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="123" name="Hans" type="0" x="987.5" y="266.5" width="32" height="32">
+  <object id="123" name="Hans" type="0" x="287.5" y="87.2014" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="124" name="Hans" type="0" x="1021" y="266.5" width="32" height="32">
+  <object id="124" name="Hans" type="0" x="321" y="87.2014" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="125" name="Hans" type="0" x="1054.5" y="266.5" width="32" height="32">
+  <object id="125" name="Hans" type="0" x="354.5" y="87.2014" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="126" name="Hans" type="0" x="1088" y="266.5" width="32" height="32">
+  <object id="126" name="Hans" type="0" x="388" y="87.2014" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="127" name="Hans" type="0" x="987.667" y="298.917" width="32" height="32">
+  <object id="127" name="Hans" type="0" x="287.667" y="119.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="128" name="Hans" type="0" x="1054.67" y="298.917" width="32" height="32">
+  <object id="128" name="Hans" type="0" x="354.67" y="119.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="129" name="Hans" type="0" x="1088.17" y="298.917" width="32" height="32">
+  <object id="129" name="Hans" type="0" x="388.17" y="119.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="130" name="Hans" type="0" x="953.834" y="299.084" width="32" height="32">
+  <object id="130" name="Hans" type="0" x="253.834" y="119.785" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="131" name="Hans" type="0" x="1021.17" y="298.917" width="32" height="32">
+  <object id="131" name="Hans" type="0" x="321.17" y="119.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="132" name="Hans" type="0" x="987.667" y="331.417" width="32" height="32">
+  <object id="132" name="Hans" type="0" x="287.667" y="152.118" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="133" name="Hans" type="0" x="1054.67" y="331.417" width="32" height="32">
+  <object id="133" name="Hans" type="0" x="354.67" y="152.118" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="134" name="Hans" type="0" x="1088.17" y="331.417" width="32" height="32">
+  <object id="134" name="Hans" type="0" x="388.17" y="152.118" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="135" name="Hans" type="0" x="953.834" y="331.584" width="32" height="32">
+  <object id="135" name="Hans" type="0" x="253.834" y="152.285" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="136" name="Hans" type="0" x="1021.17" y="331.417" width="32" height="32">
+  <object id="136" name="Hans" type="0" x="321.17" y="152.118" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="137" name="Hans" type="0" x="987.667" y="363.917" width="32" height="32">
+  <object id="137" name="Hans" type="0" x="287.667" y="184.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="138" name="Hans" type="0" x="1054.67" y="363.917" width="32" height="32">
+  <object id="138" name="Hans" type="0" x="354.67" y="184.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="139" name="Hans" type="0" x="1088.17" y="363.917" width="32" height="32">
+  <object id="139" name="Hans" type="0" x="388.17" y="184.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="140" name="Hans" type="0" x="953.834" y="364.084" width="32" height="32">
+  <object id="140" name="Hans" type="0" x="253.834" y="184.785" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object id="141" name="Hans" type="0" x="1021.17" y="363.917" width="32" height="32">
+  <object id="141" name="Hans" type="0" x="321.17" y="184.618" width="32" height="32">
    <properties>
     <property name="text" value="0"/>
-    <property name="type" value="1"/>
-   </properties>
-  </object>
-  <object id="142" name="Hans" type="0" x="435.667" y="879.417" width="32" height="32">
-   <properties>
-    <property name="text" value="18"/>
     <property name="type" value="1"/>
    </properties>
   </object>
