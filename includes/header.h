@@ -73,4 +73,6 @@ void		joy_axis(SDL_Event ev, t_game *game);
 void		map_load_data(t_map *map, char *path, t_mapload *ml);
 void		map_load_entity(t_map *map, t_mapload *ml);
 
+void		multi_send_pos(t_game *game);
+
 #endif
