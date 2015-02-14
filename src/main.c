@@ -63,6 +63,10 @@ int		main(int ac, char **av)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
 	SDLNet_Init();
 	SDLNet_ResolveHost(&game.multi.ip,"178.62.37.249",54321);
+	game.multi.udp_socket = SDLNet_UDP_Open(0);
+
+	game.multi.packet=  SDLNet_AllocPacket(512);
+
 	if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
 	{
 		//ft_strcpy(game.multi.buffer, "hello\n");
@@ -99,6 +103,7 @@ int		main(int ac, char **av)
 				}
 				else
 					printf("error\n");*/
+
 			multi_send_pos(&game);
 			test = 0;
 		}
