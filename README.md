@@ -57,7 +57,7 @@
   - [ ] allonger accroupis
   - [ ] sauter
 
-Bonus apres rendu:
+- Bonus apres rendu:
   - [ ] multijoueur (Server LuaJIT socket TCP + UDP)
 
 ![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.10.09.png)
