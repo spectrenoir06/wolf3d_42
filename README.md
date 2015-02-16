@@ -25,7 +25,6 @@
   - [x] wolfenstein 3D ([map](http://www.playstationtrophies.org/forum/wolfenstein-3d/20241-level-key-locations-maps.html)) :suspect:
   - [ ] 42stein 
   - [x] Pacman3D ([map](http://i190.photobucket.com/albums/z120/ccrv/img/pacman.jpg))
-  - [ ] The Binding of Isaac
   
 - Input:
   - [x] mode souris + clavier
@@ -59,7 +58,7 @@
   - [ ] sauter
 
 Bonus apres rendu:
-  - [ ] multijoueur
+  - [ ] multijoueur (Server LuaJIT socket TCP + UDP)
 
 ![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.10.09.png)
 ![alt tag](img/screenshot6.png)
