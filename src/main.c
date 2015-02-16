@@ -6,7 +6,7 @@
 /*   By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/13 16:55:44 by adoussau          #+#    #+#             */
-/*   Updated: 2015/01/13 16:55:46 by adoussau         ###   ########.fr       */
+/*   Updated: 2015/02/16 23:36:13 by adoussau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		main(int ac, char **av)
 	SDLNet_ResolveHost(&game.multi.ip,"178.62.37.249",54321);
 	game.multi.udp_socket = SDLNet_UDP_Open(0);
 
-	game.multi.packet=  SDLNet_AllocPacket(512);
+//	game.multi.packet=  SDLNet_AllocPacket(512);
 
 	if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
 	{
