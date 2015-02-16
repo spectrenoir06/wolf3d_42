@@ -57,9 +57,14 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	SDL	= -F ~/Library/Frameworks -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2 -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer	
+	SDL2 = -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2
+	SDL2_MIXER = -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
+	SDL2_NET = -I ~/Library/Frameworks/SDL2_net.framework/Headers -framework SDL2_net
+	SDL	= -F ~/Library/Frameworks $(SDL2) $(SDL2_MIXER) $(SDL2_NET)
 	FLAGS	= -Wall -Wextra -Werror
 endif
+
+
 
 $(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
 

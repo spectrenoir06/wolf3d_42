@@ -23,6 +23,7 @@
 # ifdef __APPLE__
 #  include "SDL.h"
 #  include "SDL_mixer.h"
+#  include "SDL_net.h"
 # elif __linux
 #  include <SDL2/SDL.h>
 #  include <SDL/SDL_mixer.h>

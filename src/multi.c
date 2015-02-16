@@ -1,9 +1,3 @@
-/*
- * multi.c
- *
- *  Created on: 13 févr. 2015
- *      Author: spectrenoir
- */
 
 #include "wolf3d.h"
 
@@ -27,8 +21,9 @@ void	multi_send_pos(t_game *game)
 	game->multi.buffer[16] = '\n';
 	SDLNet_TCP_Send(game->multi.socket, game->multi.buffer,  17);
 }
-
+/*
 void	multi_recv_pos(t_game *game)
 {
 
 }
+*/

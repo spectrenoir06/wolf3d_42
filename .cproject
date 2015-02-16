@@ -35,6 +35,7 @@
 								<option id="gnu.c.compiler.option.include.paths.345594136" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2.framework/Versions/A/Headers&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2_mixer.framework/Versions/A/Headers&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${HOME}/Library/Frameworks/SDL2_net.framework/Versions/A/Headers&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1509937647" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
