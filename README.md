@@ -12,13 +12,13 @@
   - 
 
 - Compatibilite:
-  - [x] compatibiliter MacOS
-  - [x] compatibiliter Linux
-  - [ ] compatibiliter android (fonctionne mais pas jouable)
-  - [ ] compatibiliter Windows (pas de windows pour tester)
+  - compatibiliter MacOS
+  - compatibiliter Linux
+  - compatibiliter android (fonctionne mais pas jouable)
+  - compatibiliter Windows (pas de windows pour tester)
 
 - WIP:
-  - [ ] multijoueur (Server LuaJIT socket TCP + UDP)
+  - Multijoueur (Server LuaJIT socket TCP + UDP)
 
 ![alt tag](img/Screen%20Shot%202015-02-04%20at%2000.10.09.png)
 ![alt tag](img/screenshot9.png)
