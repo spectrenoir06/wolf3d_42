@@ -67,7 +67,7 @@ int		main(int ac, char **av)
 
 //	game.multi.packet=  SDLNet_AllocPacket(512);
 
-	if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
+	/*if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
 	{
 		//ft_strcpy(game.multi.buffer, "hello\n");
 
@@ -78,7 +78,7 @@ int		main(int ac, char **av)
 	}
 	else
 		fprintf(stderr, "SDLNet_TCP_Open: %s\n", SDLNet_GetError());
-
+*/
 	while (42)
 	{
 		setdt(&game);
@@ -104,7 +104,7 @@ int		main(int ac, char **av)
 				else
 					printf("error\n");*/
 
-			multi_send_pos(&game);
+			//multi_send_pos(&game);
 			test = 0;
 		}
 
