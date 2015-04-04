@@ -52,7 +52,7 @@ int		main(int ac, char **av)
 	char	*fps;
 	int		i;
 
-	float	test = 0;
+	//float	test = 0;
 
 	game.dt = 0;
 	gettimeofday(&tv1, NULL);
@@ -61,18 +61,18 @@ int		main(int ac, char **av)
 	i = ((GAME_LY) / 2) - 1;
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
-	SDLNet_Init();
-	SDLNet_ResolveHost(&game.multi.ip,"178.62.37.249",54321);
-	game.multi.udp_socket = SDLNet_UDP_Open(0);
+//	SDLNet_Init();
+//	SDLNet_ResolveHost(&game.multi.ip,"antoine.doussaud.org",54321);
+/*	game.multi.udp_socket = SDLNet_UDP_Open(0);
 
-//	game.multi.packet=  SDLNet_AllocPacket(512);
+	game.multi.packet=  SDLNet_AllocPacket(512);
 
-	/*if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
+	if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
 	{
-		//ft_strcpy(game.multi.buffer, "hello\n");
+		ft_strcpy((char *)game.multi.buffer, "hello\n");
 
-		//multi_send_pos(&game);
-		//SDLNet_TCP_Send(game.multi.socket, (void *)game.multi.buffer, ft_strlen(game.multi.buffer));
+		multi_send_pos(&game);
+		SDLNet_TCP_Send(game.multi.socket, (void *)game.multi.buffer, ft_strlen((char *)game.multi.buffer));
 		//SDLNet_TCP_Close(game.multi.socket);
 		//SDLNet_Quit();
 	}
@@ -92,22 +92,22 @@ int		main(int ac, char **av)
 		SDL_SetWindowTitle(game.sdl.win, fps);
 		free(fps);
 
-		test += game.dt;
+/*		test += game.dt;
 
 		if (test > 2)
 		{
-			/*int result = SDLNet_TCP_Recv(game.multi.socket, game.multi.buffer, 17);
+			int result = SDLNet_TCP_Recv(game.multi.socket, game.multi.buffer, 17);
 				if(result > 0)
 				{
 					printf("x -> %f, y -> %f\n",*((double*)game.multi.buffer),*((double*)(game.multi.buffer + 8)));
 				}
 				else
-					printf("error\n");*/
+					printf("error\n");
 
-			//multi_send_pos(&game);
+			multi_send_pos(&game);
 			test = 0;
 		}
-
+*/
 	}
 	return (0);
 }

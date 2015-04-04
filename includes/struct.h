@@ -177,7 +177,7 @@ typedef struct 	s_multi
 	TCPsocket	socket;
 	IPaddress	ip;
 	UDPsocket	udp_socket;
-	UDPpacket	packet;
+	UDPpacket	*packet;
 	Uint8		buffer[512];
 }				t_multi;
 
