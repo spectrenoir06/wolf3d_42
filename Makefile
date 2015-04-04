@@ -57,11 +57,17 @@ ifeq ($(UNAME_S),Linux)
 endif
 
 ifeq ($(UNAME_S),Darwin)
-	SDL2 = -I ~/Library/Frameworks/SDL2.framework/Headers/ -framework SDL2
-	SDL2_MIXER = -I ~/Library/Frameworks/SDL2_mixer.framework/Headers -framework SDL2_mixer
-	SDL2_NET = -I ~/Library/Frameworks/SDL2_net.framework/Headers -framework SDL2_net
-	SDL	= -F ~/Library/Frameworks $(SDL2) $(SDL2_MIXER) $(SDL2_NET)
-	FLAGS	= -Wall -Wextra -Werror
+	SDL2		= -framework SDL2
+	SDL2_MIXER	= -framework SDL2_mixer
+	SDL2_NET	= -framework SDL2_net
+
+	SDL2_HEADER			= -I ~/Library/Frameworks/SDL2.framework/Headers/
+	SDL2_HEADER_MIXER	= -I ~/Library/Frameworks/SDL2_mixer.framework/Headers/
+	SDL2_HEADER_NET		= -I ~/Library/Frameworks/SDL2_net.framework/Headers/
+
+	SDL			= -F ~/Library/Frameworks $(SDL2) $(SDL2_MIXER) $(SDL2_NET)
+	SDL_HEADER	= -F ~/Library/Frameworks $(SDL2_HEADER) $(SDL2_HEADER_MIXER) $(SDL2_HEADER_NET)
+	FLAGS		= -Wall -Wextra -Werror
 endif
 
 
@@ -79,10 +85,10 @@ $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
 	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS)
+	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ -c $< $(SDL) $(FLAGS) -g
+	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
 
 $(LIBFT_STATIC):
 	make -C libft/ libft.a

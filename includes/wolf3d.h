@@ -38,8 +38,8 @@
 # define GAME_LY 660
 # define TEX_SIZE 512
 # define SINT16_MAX 32767
-# define SINT16_MIN -32768.0
-# define DSINT16_MAX 32767.0
+# define SINT16_MIN -32768
+# define DSINT16_MAX 32767
 
 # define WALL 0x000000
 # define FLOOR 0x999999

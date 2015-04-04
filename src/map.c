@@ -90,7 +90,7 @@ void		map_unload(t_map *map)
 	SDL_FreeSurface(map->sky);
 }
 
-inline int	map_get_block(t_map *map, uint8_t *data, t_vect2dd pt)
+int	map_get_block(t_map *map, uint8_t *data, t_vect2dd pt)
 {
 	return (data[((int)pt.x) + ((int)pt.y) * map->lx]);
 }
