@@ -17,7 +17,7 @@ void	render_ray_calc(t_game *game, t_rend *rend)
 	rend->camera_x = 2.0 * rend->x / (float)GAME_LX - 1;
 	init_ray(game, &rend->ray, rend->camera_x);
 	ray_caster(game, &rend->ray, &rend->wall);
-	rend->linehgt = abs((GAME_LY) / rend->wall.dist);
+	rend->linehgt = fabs((GAME_LY) / rend->wall.dist);
 }
 
 void	render_pix_calc(t_rend *rend)
