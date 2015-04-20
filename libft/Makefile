@@ -105,7 +105,7 @@ NORMINETTE	= ~/project/colorminette/colorminette
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	FLAGS	= -Wall -Wextra #-Werror
+	FLAGS	= -Wall -Wextra -Wno-unused-result -Werror
 else
 	FLAGS	= -Wall -Wextra -Werror
 endif

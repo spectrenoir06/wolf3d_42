@@ -8,6 +8,50 @@ typedef struct s_packet_player
 	char		end;
 }				t_packet_player;
 
+int		multi_init(t_game *game)
+{
+	SDLNet_Init();
+	SDLNet_ResolveHost(&game->multi.ip, "localhost",12345);
+
+	game->multi.udp_socket = SDLNet_UDP_Open(0);
+
+
+	int channel = SDLNet_UDP_Bind(game->multi.udp_socket, -1, &game->multi.ip);
+	if(channel==-1) {
+		printf("SDLNet_UDP_Bind: %s\n", SDLNet_GetError());
+		// do something because we failed to bind
+	}
+
+	game->multi.packet=  SDLNet_AllocPacket(512);
+
+	memcpy(game->multi.packet, "test",5);
+
+	int numsent=SDLNet_UDP_Send(game->multi.udp_socket, -1, game->multi.packet);
+	if(!numsent) {
+		printf("SDLNet_UDP_Send: %s\n", SDLNet_GetError());
+		// do something because we failed to send
+		// this may just be because no addresses are bound to the channel...
+	}
+	else
+	{
+		printf("send udp\n");
+	}
+
+	/*if ((game->multi.socket = SDLNet_TCP_Open(&game->multi.ip)))
+		{
+			ft_strcpy((char *)game->multi.buffer, "hello\n");
+
+			multi_send_pos(game);
+			SDLNet_TCP_Send(game->multi.socket, (void *)game->multi.buffer, ft_strlen((char *)game->multi.buffer));
+			//SDLNet_TCP_Close(game->multi.socket);
+			//SDLNet_Quit();
+		}
+		else
+			fprintf(stderr, "SDLNet_TCP_Open: %s\n", SDLNet_GetError());
+*/
+	return (1);
+}
+
 void	multi_send_pos(t_game *game)
 {
 	t_packet_player packet;

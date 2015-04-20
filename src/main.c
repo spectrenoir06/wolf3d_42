@@ -61,34 +61,8 @@ int		main(int ac, char **av)
 	i = ((GAME_LY) / 2) - 1;
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
-	SDLNet_Init();
-	SDLNet_ResolveHost(&game.multi.ip, "10.13.1.155",54321);
 
-
-
-
-	game.multi.udp_socket = SDLNet_UDP_Open(0);
-
-
-	int channel = SDLNet_UDP_Bind(game.multi.udp_socket, -1, &game.multi.ip);
-		if(channel==-1) {
-		    printf("SDLNet_UDP_Bind: %s\n", SDLNet_GetError());
-		    // do something because we failed to bind
-		}
-
-	game.multi.packet=  SDLNet_AllocPacket(512);
-
-	if ((game.multi.socket = SDLNet_TCP_Open(&game.multi.ip)))
-	{
-		ft_strcpy((char *)game.multi.buffer, "hello\n");
-
-		multi_send_pos(&game);
-		SDLNet_TCP_Send(game.multi.socket, (void *)game.multi.buffer, ft_strlen((char *)game.multi.buffer));
-		//SDLNet_TCP_Close(game.multi.socket);
-		//SDLNet_Quit();
-	}
-	else
-		fprintf(stderr, "SDLNet_TCP_Open: %s\n", SDLNet_GetError());
+	multi_init(&game);
 
 	while (42)
 	{
@@ -112,7 +86,7 @@ int		main(int ac, char **av)
 
 			numrecv=SDLNet_UDP_Recv(game.multi.udp_socket, &packet);
 			if(numrecv) {
-			    printf("hello\n");
+			    printf("recieve udp\n");
 			}
 
 			//int result = SDLNet_TCP_Recv(game.multi.socket, game.multi.buffer, 17);
