@@ -11,9 +11,14 @@ typedef struct s_packet_player
 int		multi_init(t_game *game)
 {
 	SDLNet_Init();
-	SDLNet_ResolveHost(&game->multi.ip, "localhost",12345);
+	SDLNet_ResolveHost(&game->multi.ip, "10.13.1.155",12346);
 
 	game->multi.udp_socket = SDLNet_UDP_Open(0);
+	if(!game->multi.udp_socket)
+	{
+		printf("SDLNet_UDP_Open: %s\n", SDLNet_GetError());
+		exit(2);
+	}
 
 
 	int channel = SDLNet_UDP_Bind(game->multi.udp_socket, -1, &game->multi.ip);
@@ -22,12 +27,14 @@ int		multi_init(t_game *game)
 		// do something because we failed to bind
 	}
 
-	game->multi.packet=  SDLNet_AllocPacket(512);
+	game->multi.packet =  SDLNet_AllocPacket(512);
 
-	memcpy(game->multi.packet, "test",5);
+	memcpy(game->multi.packet->data, "test",5);
+	game->multi.packet->len = 5;
 
 	int numsent=SDLNet_UDP_Send(game->multi.udp_socket, -1, game->multi.packet);
 	if(!numsent) {
+		printf("erreur debile\n");
 		printf("SDLNet_UDP_Send: %s\n", SDLNet_GetError());
 		// do something because we failed to send
 		// this may just be because no addresses are bound to the channel...
