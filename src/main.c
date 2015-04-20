@@ -84,9 +84,9 @@ int		main(int ac, char **av)
 			UDPpacket packet;
 			int numrecv;
 
-			numrecv=SDLNet_UDP_Recv(game.multi.udp_socket, &packet);
+			numrecv = SDLNet_UDP_Recv(game.multi.udp_socket, &packet);
 			if(numrecv) {
-				printf("recieve udp\n");
+				printf("receive udp\n");
 			}
 
 			//int result = SDLNet_TCP_Recv(game.multi.socket, game.multi.buffer, 17);

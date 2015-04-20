@@ -174,8 +174,9 @@ typedef struct	s_map
 typedef struct 	s_multi
 {
 	int			connect;
-	TCPsocket	socket;
-	IPaddress	ip;
+	TCPsocket	tcp_socket;
+	IPaddress	ipTcp;
+	IPaddress	ipUdp;
 	UDPsocket	udp_socket;
 	UDPpacket	*packet;
 	Uint8		buffer[512];
