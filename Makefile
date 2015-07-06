@@ -12,6 +12,7 @@
 
 STATIC_EXE	= wolf3d
 DEBUG_EXE	= wolf3d_debug
+GPROF_EXE	= wolf3d_gprof
 
 SRC		=	main.c		\
 			game.c		\
@@ -36,6 +37,7 @@ HEAD_DIR	= includes
 SRC_DIR		= src
 DEBUG_DIR	= debug
 STATIC_DIR	= static
+GPROF_DIR	= gprof
 C_HEAD_DIR	= debug
 
 LIBFT_STATIC= libft/libft.a
@@ -44,6 +46,8 @@ LIBFT_HEAD	= libft/includes/
 
 STATIC_OBJ	= $(patsubst %.c,$(STATIC_DIR)/%.o,$(SRC))
 DEBUG_OBJ	= $(patsubst %.c,$(DEBUG_DIR)/%.o,$(SRC))
+GPROF_OBJ	= $(patsubst %.c,$(GPROF_DIR)/%.o,$(SRC))
+
 
 CC		= gcc
 NORMINETTE	= ~/project/colorminette/colorminette
@@ -72,17 +76,29 @@ endif
 
 
 
-$(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR))
+$(shell mkdir -p $(STATIC_DIR) $(DEBUG_DIR) $(GPROF_DIR))
 
 all: $(STATIC_EXE)
 	@echo "Compilation terminee. (realease)"
+
 debug: $(DEBUG_EXE)
 	@echo "Compilation terminee. (debug)"
+
+gprof: $(GPROF_EXE)
+	@echo "Compilation terminee. (gprof)"
+
+###############################################################################################################
+
 $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
 	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
 	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
+
+$(GPROF_EXE): $(GPROF_OBJ) $(LIBFT_DEBUG)
+	$(CC) $(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS)
+
+################################################################################################################
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS)
@@ -90,13 +106,18 @@ $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
 
+$(GPROF_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
+
+################################################################################################################
+
 $(LIBFT_STATIC):
 	make -C libft/ libft.a
 
 $(LIBFT_DEBUG):
 	make -C libft/ libft_debug.a
 
-.PHONY: clean fclean re debug normem sdl_install
+.PHONY: clean fclean re debug normem sdl_install gprof
 
 clean:
 	rm -f $(STATIC_OBJ) $(DEBUG_OBJ)

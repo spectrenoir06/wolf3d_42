@@ -40,8 +40,8 @@ typedef struct	s_vect2di
 
 typedef struct	s_vect2dd
 {
-	double		x;
-	double		y;
+	float		x;
+	float		y;
 }				t_vect2dd;
 
 typedef struct	s_vect3di
@@ -53,17 +53,17 @@ typedef struct	s_vect3di
 
 typedef struct	s_vect3dd
 {
-	double		x;
-	double		y;
-	double		z;
+	float		x;
+	float		y;
+	float		z;
 }				t_vect3dd;
 
 typedef struct	s_rectdd
 {
-	double		x;
-	double		y;
-	double		w;
-	double		h;
+	float		x;
+	float		y;
+	float		w;
+	float		h;
 }				t_rectdd;
 
 typedef struct	s_color
@@ -80,7 +80,7 @@ typedef struct	s_entity
 	int			texture;
 	int			tex_anim;
 	int			tex_focus;
-	double		dist;
+	float		dist;
 	int			type;
 }				t_entity;
 
@@ -88,11 +88,11 @@ typedef struct	s_drsprite
 {
 	int			y;
 	int			x;
-	double		spritex;
-	double		spritey;
-	double		invdet;
-	double		transformx;
-	double		transformy;
+	float		spritex;
+	float		spritey;
+	float		invdet;
+	float		transformx;
+	float		transformy;
 	int			spritescreenx;
 	int			spriteheight;
 	int			drawstarty;
@@ -105,7 +105,7 @@ typedef struct	s_drsprite
 	int			texx;
 	int			d;
 	int			texy;
-	double		angle;
+	float		angle;
 	t_color		*color;
 	t_vect2dd	pos;
 }				t_drsprite;
@@ -190,9 +190,9 @@ typedef struct	s_game
 	t_sounds	sounds;
 	t_multi		multi;
 	t_color		texture[TEX_SIZE][TEX_SIZE];
-	double		dt;
-	double		zbuffer[WIN_X];
-	double		calcule[GAME_LY];
+	float		dt;
+	float		zbuffer[WIN_X];
+	float		calcule[GAME_LY];
 	SDL_J		*joystick;
 	SDL_Haptic	*haptic;
 	SDL_Event	ev;
@@ -211,7 +211,7 @@ typedef struct	s_ray
 typedef struct	s_wall
 {
 	t_vect2di	map;
-	double		dist;
+	float		dist;
 	int			side;
 	int			id;
 	t_vect2di	step;
@@ -221,11 +221,11 @@ typedef struct	s_rend
 {
 	int			x;
 	int			y;
-	double		camera_x;
+	float		camera_x;
 	int			linehgt;
 	int			drawstart;
 	int			drawend;
-	double		wallx;
+	float		wallx;
 	int			tex_x;
 	int			tex_y;
 	void		*color;
@@ -236,7 +236,7 @@ typedef struct	s_rend
 typedef struct	s_fc
 {
 	t_vect2dd	fl;
-	double		w;
+	float		w;
 	t_vect2dd	c_fl;
 	t_vect2dd	fl_t;
 	t_color		*colc;

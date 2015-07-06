@@ -12,20 +12,24 @@
 
 #include "wolf3d.h"
 
-inline void	game_draw_pixel(t_game *game, int x, int y, void *c)
+inline void	game_draw_pixel(t_game *game, int x, int y, int *c)
 {
-	ft_memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], c, 3);
+	game->sdl.text_buf[x + (y * game->sdl.lx)] = *c;
 }
 
-inline void	game_draw_pixel_black(t_game *game, int x, int y, void *c)
+inline void	game_draw_pixel_black(t_game *game, int x, int y, int *c)
 {
-	t_color	color;
+	int color = *c;
 
-	ft_memcpy(&color, c, 3);
-	color.r = color.r >> 1;
-	color.g = color.g >> 1;
-	color.b = color.b >> 1;
-	ft_memcpy(&game->sdl.text_buf[x + (y * game->sdl.lx)], &color, 3);
+	//color &= 0xD7D7D7;
+
+	unsigned char *tmp = (unsigned char*)&color;
+
+	tmp[0] = tmp[0] >> 1;
+	tmp[1] = tmp[1] >> 1;
+	tmp[2] = tmp[2] >> 1;
+
+	game->sdl.text_buf[x + (y * game->sdl.lx)] = color;
 }
 
 void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)

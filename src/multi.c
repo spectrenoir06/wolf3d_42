@@ -10,6 +10,7 @@ typedef struct s_packet_player
 
 int		multi_init(t_game *game)
 {
+
 	SDLNet_Init();
 	SDLNet_ResolveHost(&game->multi.ipUdp, "localhost", 12345);
 	SDLNet_ResolveHost(&game->multi.ipTcp, "localhost", 12346);
@@ -28,8 +29,8 @@ int		multi_init(t_game *game)
 
 	game->multi.packet =  SDLNet_AllocPacket(512);
 
-	memcpy(game->multi.packet->data, "getUdp", 7);
-	game->multi.packet->len = 7;
+	//memcpy(game->multi.packet->data, "getUdp", 6);
+//	game->multi.packet->len = 6;
 
 	game->multi.packet->address.host = game->multi.ipUdp.host;
 	game->multi.packet->address.port = game->multi.ipUdp.port;
@@ -83,8 +84,8 @@ void	multi_send_pos(t_game *game)
 	SDLNet_Write32((Uint32)game->player.pos.y, &packet.y);
 	packet.end = '\n';
 
-	ft_memcpy(&(game->multi.buffer), &game->player.pos.x, sizeof(double));
-	ft_memcpy(&(game->multi.buffer[8]), &game->player.pos.y, sizeof(double));
+	memcpy(&(game->multi.buffer), &game->player.pos.x, sizeof(double));
+	memcpy(&(game->multi.buffer[8]), &game->player.pos.y, sizeof(double));
 	game->multi.buffer[16] = '\n';
 	SDLNet_TCP_Send(game->multi.tcp_socket, game->multi.buffer,  17);
 }
