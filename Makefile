@@ -96,7 +96,7 @@ $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
 	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(GPROF_EXE): $(GPROF_OBJ) $(LIBFT_STATIC)
-	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS)
+	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 ################################################################################################################
 
