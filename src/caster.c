@@ -129,15 +129,20 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 	cf.x = GAME_LX - rend->x;
 	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
-	while (cf.y <= GAME_LY)
+	if (game->map.has_fc)
 	{
-		if (game->map.has_fc)
-			draw_fc_pixel(game, &cf, rend);
-		else
+		while (cf.y <= GAME_LY)
 		{
-			game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
-			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
+			draw_fc_pixel(game, &cf, rend);
+			cf.y++;
 		}
-		cf.y++;
+	}
+	else
+	{
+		while (cf.y <= GAME_LY)
+		{	game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
+			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
+			cf.y++;
+		}
 	}
 }
