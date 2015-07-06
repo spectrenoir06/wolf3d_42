@@ -22,8 +22,8 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty);
 
 void		game_init_sdl(t_game *game);
 void		game_draw_all(t_game *game);
-inline void		game_draw_pixel(t_game *game, int x, int y, int *c);
-inline void		game_draw_pixel_black(t_game *game, int x, int y, int *c);
+void		game_draw_pixel(t_game *game, int x, int y, int *c);
+void		game_draw_pixel_black(t_game *game, int x, int y, int *c);
 void		game_draw_rect(t_game *game, int x, int y, int color);
 void		game_draw_sprites(t_game *game);
 int			sprite_compare(void *entity1, void *entity2);

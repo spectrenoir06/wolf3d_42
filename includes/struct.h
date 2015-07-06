@@ -68,7 +68,7 @@ typedef struct	s_rectdd
 
 typedef struct	s_color
 {
-	Uint8		r;
+	uint8_t		r;
 	uint8_t		g;
 	uint8_t		b;
 }				t_color;
@@ -106,7 +106,7 @@ typedef struct	s_drsprite
 	int			d;
 	int			texy;
 	float		angle;
-	t_color		*color;
+	int			*color;
 	t_vect2dd	pos;
 }				t_drsprite;
 
@@ -155,7 +155,7 @@ typedef struct	s_map
 	int			nb_sprite;
 	int			nb_texture;
 	int			has_fc;
-	t_color		colors[4];
+	int			colors[4];
 	int			has_notext;
 	int			start_x;
 	int			start_y;
@@ -239,8 +239,8 @@ typedef struct	s_fc
 	float		w;
 	t_vect2dd	c_fl;
 	t_vect2dd	fl_t;
-	t_color		*colc;
-	t_color		*colf;
+	int			*colc;
+	int			*colf;
 	int			x;
 	int			y;
 	float		agl;

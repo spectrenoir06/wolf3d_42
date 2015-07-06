@@ -62,7 +62,7 @@ int		main(int ac, char **av)
 	while (i++ < (GAME_LY) - 1)
 		game.calcule[(i) - (GAME_LY / 2)] = (GAME_LY) / (2.0 * (i) - (GAME_LY));
 
-	multi_init(&game);
+	//multi_init(&game);
 
 	while (42)
 	{
@@ -78,7 +78,7 @@ int		main(int ac, char **av)
 		free(fps);
 
 		test += game.dt;
-
+/*
 		if (test > 2)
 		{
 			UDPpacket packet;
@@ -99,8 +99,7 @@ int		main(int ac, char **av)
 			//
 		//	multi_send_pos(&game);
 			test = 0;
-		}
-
+		}*/
 	}
 	return (0);
 }

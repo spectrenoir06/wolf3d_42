@@ -54,7 +54,7 @@ void	render(t_game *game, t_rend *rend)
 		if (game->map.has_notext)
 			game_draw_pixel(game, GAME_X +
 					(GAME_LX - rend->x), GAME_Y + rend->y,
-					&game->map.colors[rend->wall.side]);
+					(int *)&game->map.colors[rend->wall.side]);
 		else
 		{
 			if (rend->wall.side == 1)

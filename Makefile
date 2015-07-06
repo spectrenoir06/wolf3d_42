@@ -51,7 +51,7 @@ GPROF_OBJ	= $(patsubst %.c,$(GPROF_DIR)/%.o,$(SRC))
 
 CC		= gcc
 NORMINETTE	= ~/project/colorminette/colorminette
-OPTI		= -O3
+OPTI		= O3
 
 UNAME_S := $(shell uname -s)
 
@@ -93,21 +93,21 @@ $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
 	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
-	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
+	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
 $(GPROF_EXE): $(GPROF_OBJ) $(LIBFT_DEBUG)
-	$(CC) $(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS)
+	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS)
 
 ################################################################################################################
 
 $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS)
+	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
 
 $(GPROF_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
+	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
 
 ################################################################################################################
 

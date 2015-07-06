@@ -74,25 +74,25 @@ void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 	cf->c_fl.y = cf->w * cf->fl.y + (1.0 - cf->w) * game->player.pos.y;
 	cf->fl_t.x = (int)(cf->c_fl.x * TEX_SIZE) % TEX_SIZE;
 	cf->fl_t.y = (int)(cf->c_fl.y * TEX_SIZE) % TEX_SIZE;
-	cf->colc = &((t_color*)(game->map.textures[(int)game->map.ceil[((int)
+	cf->colc = (int*)&((t_color*)(game->map.textures[(int)game->map.ceil[((int)
 		cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)]
 		]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
 		TEX_SIZE)];
-	cf->colf = &((t_color*)(game->map.textures[(int)game->map.floor[
+	cf->colf = (int*)&((t_color*)(game->map.textures[(int)game->map.floor[
 		((int)cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)
 		]]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
 		TEX_SIZE)];
 	cf->agl = atan2(game->player.dir.y, game->player.dir.x);
 	cf->sky = cf->x + (cf->agl) / (M_PI) * (float)(game->map.sky->w);
 	cf->sky %= game->map.sky->w;
-	game_draw_pixel(game, cf->x + GAME_X, cf->y + GAME_Y,
-		(!(cf->colc->r == 0xFF && cf->colc->g == 0x00 && cf->colc->b == 0xFF) ?
-		cf->colc : &((t_color*)(game->map.sky->pixels))[(cf->sky)
-		+ (cf->y * (game->map.sky->w))]));
+	game_draw_pixel(game,
+					cf->x + GAME_X,
+	 				cf->y + GAME_Y,
+					(*cf->colc & 0xFFFFFF) ? cf->colc : (int*)&((t_color *)(game->map.sky->pixels))[(cf->sky) + (cf->y * game->map.sky->w)]
+	);
 	game_draw_pixel(game, cf->x + GAME_X, GAME_LY +
-		GAME_Y - cf->y, (!(cf->colf->r == 0xFF && cf->colf->g == 0x00 &&
-		cf->colf->b == 0xFF)) ? cf->colf :
-		&((t_color*)(game->map.sky->pixels))[(cf->sky) +
+		GAME_Y - cf->y, ((*cf->colf & 0xFFFFFF) != 0xFF00FF) ? cf->colf :
+		(int*)&((t_color*)(game->map.sky->pixels))[(cf->sky) +
 		(((GAME_LY) - cf->y) * (game->map.sky->w))]);
 }
 
@@ -123,15 +123,9 @@ void		fc_choose_step(t_rend *rend, t_fc *cf)
 void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 {
 	t_fc		cf;
-	t_color		color1;
-	t_color		color2;
+	int			color1 = 0x646464;
+	int			color2 = 0x323232;
 
-	color1.r = 100;
-	color1.g = 100;
-	color1.b = 100;
-	color2.r = 50;
-	color2.g = 50;
-	color2.b = 50;
 	cf.x = GAME_LX - rend->x;
 	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
@@ -142,8 +136,7 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 		else
 		{
 			game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
-			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y -
-					cf.y, &color2);
+			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
 		}
 		cf.y++;
 	}

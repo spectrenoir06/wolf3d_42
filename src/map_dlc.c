@@ -14,18 +14,10 @@
 
 void		colors_init(t_map *map)
 {
-	map->colors[0].r = 255;
-	map->colors[0].g = 00;
-	map->colors[0].b = 00;
-	map->colors[1].r = 00;
-	map->colors[1].g = 255;
-	map->colors[1].b = 0;
-	map->colors[2].r = 0;
-	map->colors[2].g = 0;
-	map->colors[2].b = 255;
-	map->colors[3].r = 5;
-	map->colors[3].g = 117;
-	map->colors[3].b = 227;
+	map->colors[0] = 0xFF0000;
+	map->colors[1] = 0x00FF00;
+	map->colors[2] = 0x0000FF;
+	map->colors[3] = 0x0575E3;
 }
 
 int			sprite_compare(void *entity1, void *entity2)
