@@ -1,0 +1,1495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="32" tilewidth="32" tileheight="32" nextobjectid="747">
+ <properties>
+  <property name="has_fc" value="0"/>
+  <property name="nbSprites" value="10"/>
+  <property name="startDirX" value="1"/>
+  <property name="startDirY" value="0"/>
+  <property name="startX" value="15"/>
+  <property name="startY" value="23"/>
+ </properties>
+ <tileset firstgid="1" name="tileset-32" tilewidth="32" tileheight="32">
+  <image source="textures/tileset-32.png" trans="ff00ff" width="128" height="32"/>
+ </tileset>
+ <layer name="floor" width="30" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DAQkAAAwEoYPv33k9hoKrpqqqqs8fq2JevQAPAAA=
+  </data>
+ </layer>
+ <layer name="wall" width="30" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+WTQRKAIAwDK/9/tFfHEc22paAecgnNhIbQzKz9EBtEVHfUK9yZV2YyuBG+FaD36+1F5lfzJb2lfC9ntRuRXqkY6fuULe27qvX25EpPe0h87/YkvvTPe84ycs7a1/u+0fm39TljfqYv6aIn/16+KqfuFfGo8o1mqLwF7UakVytqaW8pT/pM9yK6FXwroN7xa9gB9t89uAAPAAA=
+  </data>
+ </layer>
+ <layer name="ceil" width="30" height="32" opacity="0.7">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DAQkAAAwEoYPv33k9hoKrpqqqqs8fq2JevQAPAAA=
+  </data>
+ </layer>
+ <objectgroup name="obj">
+  <object id="4" name="Big" x="64" y="128" width="32" height="32">
+   <properties>
+    <property name="text" value="8"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="5" name="Big" x="864" y="736" width="32" height="32">
+   <properties>
+    <property name="text" value="8"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="6" name="Big" x="64" y="736" width="32" height="32">
+   <properties>
+    <property name="text" value="8"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="7" name="Big" x="864" y="128" width="32" height="32">
+   <properties>
+    <property name="text" value="8"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="8" name="Small" x="64" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="9" name="Small" x="128" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="10" name="Small" x="256" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="11" name="Small" x="96" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="12" name="Small" x="160" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="13" name="Small" x="192" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="14" name="Small" x="224" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="22" name="Small" x="288" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="23" name="Small" x="320" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="25" name="Small" x="352" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="26" name="Small" x="384" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="27" name="Small" x="416" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="29" name="Small" x="512" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="Small" x="544" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="31" name="Small" x="672" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="32" name="Small" x="576" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="33" name="Small" x="608" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="34" name="Small" x="640" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="35" name="Small" x="864" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="36" name="Small" x="800" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="37" name="Small" x="704" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="38" name="Small" x="736" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="39" name="Small" x="768" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="40" name="Small" x="832" y="64" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="41" name="Small" x="863.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="42" name="Small" x="192.063" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="43" name="Small" x="352.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="44" name="Small" x="831.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="45" name="Small" x="671.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="46" name="Small" x="416.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="47" name="Small" x="543.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="48" name="Small" x="160.063" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="49" name="Small" x="128.063" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="50" name="Small" x="799.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="51" name="Small" x="320.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="52" name="Small" x="256.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="53" name="Small" x="64.0625" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="54" name="Small" x="639.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="55" name="Small" x="224.063" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="56" name="Small" x="607.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="57" name="Small" x="575.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="58" name="Small" x="767.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="59" name="Small" x="511.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="60" name="Small" x="703.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="61" name="Small" x="288.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="62" name="Small" x="96.0625" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="63" name="Small" x="735.995" y="928.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="64" name="Small" x="384.062" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="65" name="Small" x="480.244" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="66" name="Small" x="448.244" y="928.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="68" name="Small" x="511.995" y="895.944" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="70" name="Small" x="863.995" y="895.944" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="72" name="Small" x="64.0625" y="895.954" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="74" name="Small" x="416.062" y="895.954" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="98" name="Small" x="543.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="99" name="Small" x="352.062" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="101" name="Small" x="96.0625" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="102" name="Small" x="320.062" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="104" name="Small" x="511.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="107" name="Small" x="192.063" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="109" name="Small" x="416.062" y="863.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="110" name="Small" x="224.063" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="113" name="Small" x="384.062" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="114" name="Small" x="703.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="115" name="Small" x="831.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="117" name="Small" x="767.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="118" name="Small" x="863.995" y="863.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="122" name="Small" x="160.063" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="124" name="Small" x="607.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="126" name="Small" x="863.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="135" name="Small" x="128.063" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="136" name="Small" x="416.062" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="137" name="Small" x="64.0625" y="831.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="139" name="Small" x="735.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="140" name="Small" x="511.995" y="863.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="141" name="Small" x="64.0625" y="863.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="142" name="Small" x="575.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="143" name="Small" x="799.995" y="831.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="149" name="Small" x="703.995" y="767.944" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="153" name="Small" x="607.995" y="800.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="159" name="Small" x="607.995" y="767.944" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="160" name="Small" x="128.063" y="767.954" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="166" name="Small" x="320.062" y="800.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="169" name="Small" x="224.063" y="767.954" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="171" name="Small" x="224.063" y="800.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="172" name="Small" x="320.062" y="767.954" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="173" name="Small" x="128.063" y="800.045" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="174" name="Small" x="799.995" y="767.944" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="179" name="Small" x="703.995" y="800.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="191" name="Small" x="799.995" y="800.034" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="197" name="Small" x="575.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="201" name="Small" x="416.062" y="703.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="206" name="Small" x="64.0625" y="671.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="207" name="Small" x="735.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="209" name="Small" x="703.995" y="575.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="215" name="Small" x="639.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="220" name="Small" x="607.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="222" name="Small" x="352.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="224" name="Small" x="224.063" y="607.454" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="228" name="Small" x="703.995" y="607.444" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="230" name="Small" x="224.063" y="703.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="237" name="Small" x="863.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="241" name="Small" x="703.995" y="703.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="246" name="Small" x="703.995" y="671.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="250" name="Small" x="128.063" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="262" name="Small" x="192.063" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="264" name="Small" x="160.063" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="267" name="Small" x="703.995" y="543.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="271" name="Small" x="543.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="282" name="Small" x="224.063" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="283" name="Small" x="863.995" y="703.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="289" name="Small" x="224.063" y="671.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="290" name="Small" x="64.0625" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="292" name="Small" x="831.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="294" name="Small" x="256.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="298" name="Small" x="863.995" y="671.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="301" name="Small" x="511.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="308" name="Small" x="511.995" y="703.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="311" name="Small" x="224.063" y="543.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="315" name="Small" x="671.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="324" name="Small" x="703.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="325" name="Small" x="416.062" y="671.704" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="326" name="Small" x="96.0625" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="327" name="Small" x="384.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="330" name="Small" x="64.0625" y="703.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="331" name="Small" x="288.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="334" name="Small" x="224.063" y="575.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="342" name="Small" x="320.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="346" name="Small" x="416.062" y="639.545" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="347" name="Small" x="799.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="349" name="Small" x="767.995" y="639.534" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="350" name="Small" x="511.995" y="671.694" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="353" name="Small" x="480.911" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="354" name="Small" x="608.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="355" name="Small" x="288.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="356" name="Small" x="640.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="357" name="Small" x="416.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="358" name="Small" x="352.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="359" name="Small" x="320.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="363" name="Small" x="832.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="364" name="Small" x="96.7292" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="365" name="Small" x="128.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="366" name="Small" x="384.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="367" name="Small" x="544.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="368" name="Small" x="800.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="369" name="Small" x="224.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="370" name="Small" x="448.911" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="371" name="Small" x="256.729" y="735.795" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="372" name="Small" x="704.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="374" name="Small" x="512.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="375" name="Small" x="576.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="376" name="Small" x="672.661" y="735.784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="391" name="Small" x="703.995" y="383.701" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="398" name="Small" x="224.729" y="319.462" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="410" name="Small" x="224.063" y="415.371" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="415" name="Small" x="703.995" y="415.36" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="417" name="Small" x="224.063" y="511.712" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="426" name="Small" x="704.661" y="319.451" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="431" name="Small" x="703.995" y="511.701" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="438" name="Small" x="703.995" y="479.61" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="462" name="Small" x="703.995" y="351.61" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="480" name="Small" x="224.063" y="447.462" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="488" name="Small" x="224.063" y="479.621" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="512" name="Small" x="224.063" y="351.621" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="527" name="Small" x="703.995" y="447.451" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="538" name="Small" x="224.063" y="383.712" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="561" name="Small" x="767.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="563" name="Small" x="95.3352" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="565" name="Small" x="223.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="567" name="Small" x="511.934" y="96.1784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="570" name="Small" x="863.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="573" name="Small" x="703.934" y="96.1784" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="580" name="Small" x="703.267" y="192.087" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="583" name="Small" x="863.267" y="224.178" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="590" name="Small" x="863.267" y="192.087" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="594" name="Small" x="319.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="595" name="Small" x="607.267" y="224.178" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="598" name="Small" x="447.517" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="605" name="Small" x="831.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="607" name="Small" x="543.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="609" name="Small" x="703.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="611" name="Small" x="223.335" y="288.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="615" name="Small" x="223.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="616" name="Small" x="255.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="618" name="Small" x="543.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="620" name="Small" x="159.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="624" name="Small" x="575.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="626" name="Small" x="607.267" y="192.087" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="631" name="Small" x="95.3352" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="636" name="Small" x="319.335" y="224.189" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="637" name="Small" x="63.3352" y="192.098" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="638" name="Small" x="351.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="642" name="Small" x="383.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="645" name="Small" x="735.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="648" name="Small" x="159.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="649" name="Small" x="639.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="650" name="Small" x="63.3352" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="651" name="Small" x="287.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="652" name="Small" x="671.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="659" name="Small" x="223.335" y="224.189" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="661" name="Small" x="191.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="665" name="Small" x="575.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="668" name="Small" x="63.3352" y="224.189" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="669" name="Small" x="799.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="672" name="Small" x="383.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="674" name="Small" x="831.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="675" name="Small" x="191.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="676" name="Small" x="63.3352" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="678" name="Small" x="607.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="679" name="Small" x="703.267" y="224.178" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="685" name="Small" x="223.335" y="192.098" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="687" name="Small" x="479.517" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="689" name="Small" x="415.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="691" name="Small" x="224.002" y="96.1892" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="694" name="Small" x="351.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="696" name="Small" x="223.335" y="128.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="707" name="Small" x="607.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="709" name="Small" x="799.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="710" name="Small" x="511.267" y="128.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="712" name="Small" x="415.335" y="128.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="715" name="Small" x="127.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="717" name="Small" x="767.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="720" name="Small" x="703.267" y="288.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="721" name="Small" x="863.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="724" name="Small" x="415.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="725" name="Small" x="511.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="727" name="Small" x="127.335" y="256.348" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="728" name="Small" x="703.267" y="256.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="732" name="Small" x="703.267" y="128.337" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="733" name="Small" x="735.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="736" name="Small" x="319.335" y="160.439" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="737" name="Small" x="511.267" y="160.428" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="738" name="Small" x="319.335" y="192.098" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="740" name="Small" x="416.002" y="96.1892" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="741" name="Small" x="64" y="96" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="742" name="Small" x="864.5" y="96" width="32" height="32">
+   <properties>
+    <property name="text" value="9"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="743" name="RED" x="752.669" y="161.015" width="32" height="32">
+   <properties>
+    <property name="text" value="7"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="744" name="PINK" x="634.002" y="448.348" width="32" height="32">
+   <properties>
+    <property name="text" value="6"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="745" name="BLUE" x="590.002" y="257.015" width="32" height="32">
+   <properties>
+    <property name="text" value="5"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+  <object id="746" name="ORA" x="530.669" y="448.348" width="32" height="32">
+   <properties>
+    <property name="text" value="4"/>
+    <property name="type" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
