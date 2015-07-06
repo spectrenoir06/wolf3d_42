@@ -70,30 +70,43 @@ void		ray_caster(t_game *game, t_ray *ray, t_wall *wall)
 void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 {
 	cf->w = (game->calcule[cf->y - (GAME_LY / 2)]) / (rend->wall.dist);
+
 	cf->c_fl.x = cf->w * cf->fl.x + (1.0 - cf->w) * game->player.pos.x;
 	cf->c_fl.y = cf->w * cf->fl.y + (1.0 - cf->w) * game->player.pos.y;
+
 	cf->fl_t.x = (int)(cf->c_fl.x * TEX_SIZE) % TEX_SIZE;
 	cf->fl_t.y = (int)(cf->c_fl.y * TEX_SIZE) % TEX_SIZE;
-	cf->colc = (int*)&((t_color*)(game->map.textures[(int)game->map.ceil[((int)
+
+	cf->colf = (int*)&((t_color*)(game->map.textures[(int)game->map.ceil[((int)
 		cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)]
 		]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
 		TEX_SIZE)];
-	cf->colf = (int*)&((t_color*)(game->map.textures[(int)game->map.floor[
+	cf->colc = (int*)&((t_color*)(game->map.textures[(int)game->map.floor[
 		((int)cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)
 		]]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
 		TEX_SIZE)];
-	cf->agl = atan2(game->player.dir.y, game->player.dir.x);
-	cf->sky = cf->x + (cf->agl) / (M_PI) * (float)(game->map.sky->w);
-	cf->sky %= game->map.sky->w;
-	game_draw_pixel(game,
-					cf->x + GAME_X,
-	 				cf->y + GAME_Y,
-					(*cf->colc & 0xFFFFFF) ? cf->colc : (int*)&((t_color *)(game->map.sky->pixels))[(cf->sky) + (cf->y * game->map.sky->w)]
-	);
-	game_draw_pixel(game, cf->x + GAME_X, GAME_LY +
-		GAME_Y - cf->y, ((*cf->colf & 0xFFFFFF) != 0xFF00FF) ? cf->colf :
-		(int*)&((t_color*)(game->map.sky->pixels))[(cf->sky) +
-		(((GAME_LY) - cf->y) * (game->map.sky->w))]);
+	if ((*(cf->colc) & 0xFFFFFF) == 0xFF00FF)
+	{
+	//printf("%x %f\n",*(cf->colc), cf->agl);
+		game_draw_pixel(game,
+						cf->x + GAME_X,
+						GAME_LY + GAME_Y - cf->y,
+						(int*)&((t_color*)(game->map.sky->pixels))[(cf->sky) + (((GAME_LY) - cf->y) * (game->map.sky->w))]
+						);
+	}
+	else
+	{
+		game_draw_pixel(game,
+						cf->x + GAME_X,
+						GAME_LY + GAME_Y - cf->y,
+						cf->colc
+						);
+	}
+		game_draw_pixel(game,
+						cf->x + GAME_X,
+						cf->y + GAME_Y,
+						cf->colf
+						);
 }
 
 void		fc_choose_step(t_rend *rend, t_fc *cf)
@@ -129,6 +142,11 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 	cf.x = GAME_LX - rend->x;
 	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
+
+	cf.agl = atan2(game->player.dir.y, game->player.dir.x);
+	cf.sky = cf.x + (cf.agl) / (M_PI) * (float)(game->map.sky->w);
+	cf.sky %= game->map.sky->w;
+
 	if (game->map.has_fc)
 	{
 		while (cf.y <= GAME_LY)

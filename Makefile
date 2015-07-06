@@ -95,7 +95,7 @@ $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
 	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
 
-$(GPROF_EXE): $(GPROF_OBJ) $(LIBFT_DEBUG)
+$(GPROF_EXE): $(GPROF_OBJ) $(LIBFT_STATIC)
 	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(GPROF_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS)
 
 ################################################################################################################
@@ -120,11 +120,11 @@ $(LIBFT_DEBUG):
 .PHONY: clean fclean re debug normem sdl_install gprof
 
 clean:
-	rm -f $(STATIC_OBJ) $(DEBUG_OBJ)
+	rm -f $(STATIC_OBJ) $(DEBUG_OBJ) $(GPROF_OBJ)
 	make -C libft clean
 
 fclean: clean
-	rm -f $(STATIC_EXE) $(DEBUG_EXE)
+	rm -f $(STATIC_EXE) $(DEBUG_EXE) $(GPROF_EXE)
 	make -C libft fclean
 
 norme:

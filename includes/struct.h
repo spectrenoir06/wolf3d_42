@@ -238,7 +238,7 @@ typedef struct	s_fc
 	t_vect2dd	fl;
 	float		w;
 	t_vect2dd	c_fl;
-	t_vect2dd	fl_t;
+	t_vect2di	fl_t;
 	int			*colc;
 	int			*colf;
 	int			x;
