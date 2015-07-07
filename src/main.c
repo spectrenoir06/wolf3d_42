@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 	int		i;
 
 	float	test = 0;
-
+	int		test2 = 0;
 	game.dt = 0;
 	gettimeofday(&tv1, NULL);
 	game_init_sdl(&game);
@@ -73,14 +73,20 @@ int		main(int ac, char **av)
 		game_render(&game);
 		hud_render(&game);
 		game_draw_all(&game);
-		fps = ft_itoa(1 / game.dt);
-		SDL_SetWindowTitle(game.sdl.win, fps);
-		free(fps);
-
+		SDL_UpdateTexture(game.sdl.tex, 0, game.sdl.text_buf, game.sdl.lx * sizeof(Uint32));
 		test += game.dt;
-/*
-		if (test > 2)
+		test2++;
+
+		if (test > 1)
 		{
+
+			fps = ft_itoa(test2);
+			SDL_SetWindowTitle(game.sdl.win, fps);
+			free(fps);
+			test = 0;
+			test2 = 0;
+		}
+			/*
 			UDPpacket packet;
 			int numrecv;
 

@@ -12,12 +12,12 @@
 
 #include "wolf3d.h"
 
-inline void	game_draw_pixel(t_game *game, int x, int y, int *c)
+inline void	game_draw_pixel(t_game *game, int x, int y, uint32_t *c)
 {
 	game->sdl.text_buf[x + (y * game->sdl.lx)] = *c;
 }
 
-inline void	game_draw_pixel_black(t_game *game, int x, int y, int *c)
+inline void	game_draw_pixel_black(t_game *game, int x, int y, uint32_t *c)
 {
 	int color = *c;
 
@@ -34,9 +34,9 @@ inline void	game_draw_pixel_black(t_game *game, int x, int y, int *c)
 
 void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 {
-	int		x;
-	int		y;
-	t_color *color;
+	int			x;
+	int			y;
+	uint32_t	*color;
 
 	x = 0;
 	while (x < img->w && x + startx < game->sdl.lx)
@@ -44,8 +44,8 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 		y = 0;
 		while (y < img->h && y + starty < game->sdl.ly)
 		{
-			color = &((t_color *)img->pixels)[x + (y * img->w)];
-			if (*color != (t_color)0xFF00FF)
+			color = (uint32_t*)&((t_color *)img->pixels)[x + (y * img->w)];
+			if (((*color) & 0xFFFFFF) != 0xFF00FF)
 				game_draw_pixel(game, x + startx, y + starty, color);
 			y++;
 		}

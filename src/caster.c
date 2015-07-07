@@ -74,16 +74,16 @@ void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 	cf->c_fl.x = cf->w * cf->fl.x + (1.0 - cf->w) * game->player.pos.x;
 	cf->c_fl.y = cf->w * cf->fl.y + (1.0 - cf->w) * game->player.pos.y;
 
-	cf->fl_t.x = (int)(cf->c_fl.x * TEX_SIZE) % TEX_SIZE;
-	cf->fl_t.y = (int)(cf->c_fl.y * TEX_SIZE) % TEX_SIZE;
+	cf->fl_t.x = (uint32_t)(cf->c_fl.x * TEX_SIZE) % TEX_SIZE;
+	cf->fl_t.y = (uint32_t)(cf->c_fl.y * TEX_SIZE) % TEX_SIZE;
 
-	cf->colf = (int*)&((t_color*)(game->map.textures[(int)game->map.ceil[((int)
-		cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)]
-		]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
+	cf->colf = (uint32_t*)&((t_color*)(game->map.textures[(uint32_t)game->map.ceil[((uint32_t)
+		cf->c_fl.x) + ((uint32_t)(cf->c_fl.y) * game->map.lx)]
+		]->pixels))[(uint32_t)cf->fl_t.x + ((uint32_t)cf->fl_t.y *
 		TEX_SIZE)];
-	cf->colc = (int*)&((t_color*)(game->map.textures[(int)game->map.floor[
-		((int)cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)
-		]]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
+	cf->colc = (uint32_t*)&((t_color*)(game->map.textures[(uint32_t)game->map.floor[
+		((uint32_t)cf->c_fl.x) + ((uint32_t)(cf->c_fl.y) * game->map.lx)
+		]]->pixels))[(uint32_t)cf->fl_t.x + ((uint32_t)cf->fl_t.y *
 		TEX_SIZE)];
 	if (*(cf->colc) == 0xFFFF00FF)
 	{

@@ -1,20 +1,20 @@
 # wolf3d_42 :suspect:
 
-- Fonctionaliter
+- Fonctionnalité
   - 60 FPS en 1600x900
   - Sprites et Textures en 512x512
   - Textures plafond, sol, mur
   - Skybox
   - Sprite 360°
   - Editeur de map
-  - sons et musiques
-  - Jouable full clavier, claver + souris, manette
+  - Sons et musiques
+  - Jouable full clavier, clavier + souris, manette
   - 
 
 - Compatibilite:
   - compatibiliter MacOS
   - compatibiliter Linux
-  - compatibiliter android (fonctionne mais pas jouable)
+  - compatibiliter Android (fonctionne mais pas jouable)
   - compatibiliter Windows (pas de windows pour tester)
 
 - WIP:
