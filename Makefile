@@ -6,7 +6,7 @@
 #    By: adoussau <antoine@doussaud.org>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/06 10:11:24 by adoussau          #+#    #+#              #
-#*   Updated: 2015/02/05 22:37:42 by adoussau         ###   ########.fr       *#
+#*   Updated: 2015/07/07 13:40:58 by adoussau         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ GPROF_OBJ	= $(patsubst %.c,$(GPROF_DIR)/%.o,$(SRC))
 CC		= gcc
 NORMINETTE	= ~/project/colorminette/colorminette
 OPTI		= O3
+OPTI_DEBUG	= O0
 
 UNAME_S := $(shell uname -s)
 
@@ -90,7 +91,7 @@ gprof: $(GPROF_EXE)
 ###############################################################################################################
 
 $(DEBUG_EXE): $(DEBUG_OBJ) $(LIBFT_DEBUG)
-	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
+	$(CC) -$(OPTI_DEBUG) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $(DEBUG_EXE) $(DEBUG_OBJ) $(LIBFT_DEBUG) $(SDL) $(FLAGS) -g
 
 $(STATIC_EXE): $(STATIC_OBJ) $(LIBFT_STATIC)
 	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(STATIC_OBJ) $(LIBFT_STATIC) $(SDL) $(FLAGS)
@@ -104,7 +105,7 @@ $(STATIC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -$(OPTI) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS)
 
 $(DEBUG_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -O0 -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
+	$(CC) -$(OPTI_DEBUG) -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g
 
 $(GPROF_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) -$(OPTI) -pg -I $(HEAD_DIR) -I $(LIBFT_HEAD) -o $@ $(SDL_HEADER) -c $< $(FLAGS) -g

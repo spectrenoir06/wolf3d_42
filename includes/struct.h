@@ -125,6 +125,7 @@ typedef struct	s_player
 	int			speed;
 	char		weapon;
 	float		w_anim;
+	float		agl;
 }				t_player;
 
 typedef struct	s_sounds
@@ -239,11 +240,10 @@ typedef struct	s_fc
 	float		w;
 	t_vect2dd	c_fl;
 	t_vect2di	fl_t;
-	int			*colc;
-	int			*colf;
+	uint32_t	*colc;
+	uint32_t	*colf;
 	int			x;
 	int			y;
-	float		agl;
 	int			sky;
 }				t_fc;
 

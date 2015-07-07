@@ -85,7 +85,7 @@ void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 		((int)cf->c_fl.x) + ((int)(cf->c_fl.y) * game->map.lx)
 		]]->pixels))[(int)cf->fl_t.x + ((int)cf->fl_t.y *
 		TEX_SIZE)];
-	if ((*(cf->colc) & 0xFFFFFF) == 0xFF00FF)
+	if (*(cf->colc) == 0xFFFF00FF)
 	{
 	//printf("%x %f\n",*(cf->colc), cf->agl);
 		game_draw_pixel(game,
@@ -143,8 +143,7 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 	cf.y = rend->y;
 	fc_choose_step(rend, &cf);
 
-	cf.agl = atan2(game->player.dir.y, game->player.dir.x);
-	cf.sky = cf.x + (cf.agl) / (M_PI) * (float)(game->map.sky->w);
+	cf.sky = cf.x + (game->player.agl) / (M_PI) * (float)(game->map.sky->w);
 	cf.sky %= game->map.sky->w;
 
 	if (game->map.has_fc)

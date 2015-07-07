@@ -29,7 +29,7 @@ void	game_init_sdl(t_game *game)
 		exit(EXIT_FAILURE);
 	SDL_CreateWindowAndRenderer(game->sdl.lx, game->sdl.ly,
 			SDL_WINDOW_RESIZABLE, &(game->sdl.win), &(game->sdl.rd));
-	game->sdl.tex = SDL_CreateTexture(game->sdl.rd, SDL_PIXELFORMAT_RGB888,
+	game->sdl.tex = SDL_CreateTexture(game->sdl.rd, SDL_PIXELFORMAT_ARGB8888,
 			SDL_TEXTUREACCESS_STREAMING, game->sdl.lx, game->sdl.ly);
 	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
 	if (game->sdl.win == NULL)
@@ -71,6 +71,7 @@ void	game_draw_all(t_game *game)
 {
 	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf,
 			game->sdl.lx * sizeof(Uint32));
+	//SDL_RenderClear(game->sdl.rd);
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
 }

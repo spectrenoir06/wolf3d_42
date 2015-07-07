@@ -100,4 +100,5 @@ void	player_update(t_player *player, t_game *game)
 		player->dir = vect2dd_rotate(player->dir, motion);
 		player->plane = vect2dd_rotate(player->plane, motion);
 	}
+	player->agl = atan2(player->dir.y, player->dir.x);
 }

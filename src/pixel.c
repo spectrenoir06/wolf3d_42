@@ -36,7 +36,7 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 {
 	int		x;
 	int		y;
-	int		*color;
+	t_color *color;
 
 	x = 0;
 	while (x < img->w && x + startx < game->sdl.lx)
@@ -44,8 +44,8 @@ void		bmp_draw(t_game *game, SDL_Surface *img, int startx, int starty)
 		y = 0;
 		while (y < img->h && y + starty < game->sdl.ly)
 		{
-			color = (int *)&((t_color *)img->pixels)[x + (y * img->w)];
-			if ((*color & 0x00FFFFFF) != 0xFF00FF)
+			color = &((t_color *)img->pixels)[x + (y * img->w)];
+			if (*color != (t_color)0xFF00FF)
 				game_draw_pixel(game, x + startx, y + starty, color);
 			y++;
 		}
