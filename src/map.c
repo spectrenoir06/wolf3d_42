@@ -50,7 +50,7 @@ void		map_init(t_game *game, int mode, int map)
 		game->input[x++] = 0;
 	player_init(game);
 	hud_background(game, mode);
-	//game_init_sdl_mixer(&game->sounds, path);
+	game_init_sdl_mixer(&game->sounds, path);
 }
 
 int			map_load(t_map *map, char *path)
@@ -90,7 +90,7 @@ void		map_unload(t_map *map)
 	SDL_FreeSurface(map->sky);
 }
 
-int	map_get_block(t_map *map, uint8_t *data, t_vect2dd pt)
+int			map_get_block(t_map *map, uint8_t *data, t_vect2dd pt)
 {
 	return (data[((int)pt.x) + ((int)pt.y) * map->lx]);
 }

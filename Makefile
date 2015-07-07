@@ -71,7 +71,7 @@ ifeq ($(UNAME_S),Darwin)
 
 	SDL			= -F ~/Library/Frameworks $(SDL2) $(SDL2_MIXER) $(SDL2_NET)
 	SDL_HEADER	= -F ~/Library/Frameworks $(SDL2_HEADER) $(SDL2_HEADER_MIXER) $(SDL2_HEADER_NET)
-	FLAGS		= -Wall -Wextra -Werror
+	FLAGS		= -Wall -Wextra
 endif
 
 

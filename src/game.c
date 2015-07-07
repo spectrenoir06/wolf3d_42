@@ -28,7 +28,7 @@ void	game_init_sdl(t_game *game)
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
 	SDL_CreateWindowAndRenderer(game->sdl.lx, game->sdl.ly,
-			SDL_WINDOW_RESIZABLE, &(game->sdl.win), &(game->sdl.rd));
+			SDL_WINDOW_FULLSCREEN, &(game->sdl.win), &(game->sdl.rd));
 	game->sdl.tex = SDL_CreateTexture(game->sdl.rd, SDL_PIXELFORMAT_RGB888,
 			SDL_TEXTUREACCESS_STREAMING, game->sdl.lx, game->sdl.ly);
 	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
@@ -69,8 +69,9 @@ void	game_draw_rect(t_game *game, int x, int y, int color)
 
 void	game_draw_all(t_game *game)
 {
-	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf,
-			game->sdl.lx * sizeof(Uint32));
+	//SDL_Rect r = {GAME_X , GAME_Y, GAME_LX, GAME_LY};
+	//SDL_Rect r = {GAME_X ,GAME_Y,GAME_X + GAME_LX, GAME_Y + GAME_LY};
+	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
 }
