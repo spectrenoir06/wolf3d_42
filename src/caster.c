@@ -85,26 +85,26 @@ void		draw_fc_pixel(t_game *game, t_fc *cf, t_rend *rend)
 		((uint32_t)cf->c_fl.x) + ((uint32_t)(cf->c_fl.y) * game->map.lx)
 		]]->pixels))[(uint32_t)cf->fl_t.x + ((uint32_t)cf->fl_t.y *
 		TEX_SIZE)];
-	if (*(cf->colc) == 0xFFFF00FF)
+	if ((*(cf->colc) & 0x00FFFFFF) == 0xFF00FF)
 	{
 	//printf("%x %f\n",*(cf->colc), cf->agl);
 		game_draw_pixel(game,
-						cf->x + GAME_X,
-						GAME_LY + GAME_Y - cf->y,
-						(int*)&((t_color*)(game->map.sky->pixels))[(cf->sky) + (((GAME_LY) - cf->y) * (game->map.sky->w))]
+						cf->x + GAME_X1,
+						GAME_LY + GAME_Y1 - cf->y,
+						(uint32_t*)&((t_color*)(game->map.sky->pixels))[(cf->sky) + (((GAME_LY) - cf->y) * (game->map.sky->w))]
 						);
 	}
 	else
 	{
 		game_draw_pixel(game,
-						cf->x + GAME_X,
-						GAME_LY + GAME_Y - cf->y,
+						cf->x + GAME_X1,
+						GAME_LY + GAME_Y1 - cf->y,
 						cf->colc
 						);
 	}
 		game_draw_pixel(game,
-						cf->x + GAME_X,
-						cf->y + GAME_Y,
+						cf->x + GAME_X1,
+						cf->y + GAME_Y1,
 						cf->colf
 						);
 }
@@ -136,8 +136,8 @@ void		fc_choose_step(t_rend *rend, t_fc *cf)
 void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 {
 	t_fc		cf;
-	int			color1 = 0x646464;
-	int			color2 = 0x323232;
+	uint32_t	color1 = 0x646464;
+	uint32_t	color2 = 0x323232;
 
 	cf.x = GAME_LX - rend->x;
 	cf.y = rend->y;
@@ -157,8 +157,8 @@ void		draw_floor_and_ceil(t_game *game, t_rend *rend)
 	else
 	{
 		while (cf.y <= GAME_LY)
-		{	game_draw_pixel(game, cf.x + GAME_X, cf.y + GAME_Y, &color1);
-			game_draw_pixel(game, cf.x + GAME_X, GAME_LY + GAME_Y - cf.y, &color2);
+		{	game_draw_pixel(game, cf.x + GAME_X1, cf.y + GAME_Y1, &color1);
+			game_draw_pixel(game, cf.x + GAME_X1, GAME_LY + GAME_Y1 - cf.y, &color2);
 			cf.y++;
 		}
 	}

@@ -52,17 +52,22 @@ void	render(t_game *game, t_rend *rend)
 		rend->color = &((Uint8 *)(game->map.textures[rend->wall.id]->pixels))
 						[rend->tex_x * 3 + (rend->tex_y * TEX_SIZE * 3)];
 		if (game->map.has_notext)
-			game_draw_pixel(game, GAME_X +
-					(GAME_LX - rend->x), GAME_Y + rend->y,
-					(int *)&game->map.colors[rend->wall.side]);
+			game_draw_pixel(game,
+							GAME_X1 + (GAME_LX - rend->x),
+							GAME_Y1 + rend->y,
+							(uint32_t *)&game->map.colors[rend->wall.side]);
 		else
 		{
 			if (rend->wall.side == 1)
-				game_draw_pixel_black(game, GAME_X +
-						(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
+				game_draw_pixel_black(	game,
+										GAME_X1 + (GAME_LX - rend->x),
+										GAME_Y1 + rend->y,
+										rend->color);
 			else
-				game_draw_pixel(game, GAME_X +
-						(GAME_LX - rend->x), GAME_Y + rend->y, rend->color);
+				game_draw_pixel(game,
+								GAME_X1 + (GAME_LX - rend->x),
+								GAME_Y1 + rend->y,
+								rend->color);
 		}
 		rend->y++;
 	}
@@ -78,8 +83,8 @@ void	game_render(t_game *game)
 	{
 		render_ray_calc(game, &rend);
 		render_pix_calc(&rend);
-		render(game, &rend);
-		game->zbuffer[rend.x] = rend.wall.dist;
+		render(game, &rend);						// dessine une colonne
+		game->zbuffer[rend.x] = rend.wall.dist;		// save dist mur
 		rend.x++;
 	}
 	game_draw_sprites(game);

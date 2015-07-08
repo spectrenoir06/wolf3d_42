@@ -74,7 +74,10 @@ void	weapon_draw(t_game *game)
 
 	weapon = (int)game->player.weapon;
 	anim = (int)(game->player.w_anim);
-	bmp_draw(game,
+	bmp_draw(
+			game,
 			game->map.weapon_tex[weapon][anim],
-			game->sdl.lx / 2 - 256, (game->sdl.ly - 512 - 220));
+			WIN_LX / 2 - (512/2),
+			WIN_LY - 512 - 220
+			);
 }

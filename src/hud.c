@@ -31,9 +31,9 @@ void		hud_background(t_game *game, int mode)
 	hud[3] = SDL_LoadBMP(path);
 	free(strmode);
 	bmp_draw(game, hud[0], 0, 0);
-	bmp_draw(game, hud[1], 0, 20);
-	bmp_draw(game, hud[2], game->sdl.lx - 40, 20);
-	bmp_draw(game, hud[3], 0, game->sdl.ly - 220);
+	bmp_draw(game, hud[1], 0, GAME_Y1);
+	bmp_draw(game, hud[2], GAME_X2, GAME_Y1);
+	bmp_draw(game, hud[3], 0, GAME_Y2);
 	i = 0;
 	while (i < 4)
 		SDL_FreeSurface(hud[i++]);
@@ -75,17 +75,13 @@ void		hud_map(t_game *game)
 		while (y < game->map.ly)
 		{
 			color = (game->map.wall[x + (y * game->map.lx)] ? WALL : FLOOR);
-			bcolor = ((Uint32 *)game->sdl.text_buf)[GAME_X + x * 4
-					+ (GAME_Y + y * 4) * game->sdl.lx];
+			bcolor = game->sdl.text_buf[(GAME_X1 + (x * 4)) + ((GAME_Y1 + (y * 4)) * WIN_LX)];
 			color = bgr_average(color, bcolor);
-			game_draw_rect(game, GAME_X + x * 4, GAME_Y + y * 4, color);
+			game_draw_rect(game, GAME_X1 + x * 4, GAME_Y1 + y * 4, color);
 			y++;
 		}
 		x++;
 	}
-	game_draw_rect(game, GAME_X + game->player.pos.x * 4,
-			GAME_Y + game->player.pos.y * 4, PLAYER);
-	game_draw_rect(game, GAME_X + game->player.pos.x * 4
-			+ (game->player.dir.x * 4), GAME_Y + game->player.pos.y * 4
-			+ (game->player.dir.y * 4), FACE);
+	game_draw_rect(game, GAME_X1 + game->player.pos.x * 4, GAME_Y1 + game->player.pos.y * 4, PLAYER);
+	game_draw_rect(game, GAME_X1 + game->player.pos.x * 4 + (game->player.dir.x * 4), GAME_Y1 + game->player.pos.y * 4 + (game->player.dir.y * 4), FACE);
 }

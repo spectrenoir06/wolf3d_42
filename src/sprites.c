@@ -65,12 +65,12 @@ void			game_draw_sprites_draw(t_drsprite *sprt, t_game *game)
 {
 	sprt->d = sprt->y - (GAME_LY) / 2.0 + sprt->spriteheight / 2.0;
 	sprt->texy = ((sprt->d * 512) / sprt->spriteheight);
-	sprt->color = (int *)&((Uint8*)(game->map.sprite[game->map.entity_ptr
+	sprt->color = (uint32_t *)&((Uint8*)(game->map.sprite[game->map.entity_ptr
 		[sprt->x]->texture].tex->pixels))[(int)sprt->texx * 3 + (sprt->texy * 3 *
 		game->map.sprite[game->map.entity_ptr[sprt->x]->texture].tex->w) +
 		(sprt->i * 3 * TEX_SIZE)];
 	if ((*(sprt->color) & 0x00FFFFFF) != 0xFF00FF)
-		game_draw_pixel(game, GAME_X + GAME_LX - sprt->stripe, GAME_Y + sprt->y, sprt->color);
+		game_draw_pixel(game, GAME_X1 + GAME_LX - sprt->stripe, GAME_Y1 + sprt->y, sprt->color);
 }
 
 void			game_sort_sprites(t_drsprite *sprt, t_game *game)

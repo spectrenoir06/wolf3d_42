@@ -106,7 +106,7 @@ typedef struct	s_drsprite
 	int			d;
 	int			texy;
 	float		angle;
-	int			*color;
+	uint32_t	*color;
 	t_vect2dd	pos;
 }				t_drsprite;
 
@@ -143,8 +143,6 @@ typedef struct	s_sdl
 	SDL_R		*rd;
 	Uint32		*text_buf;
 	Uint32		*hud_buf;
-	int			lx;
-	int			ly;
 
 }				t_sdl;
 
@@ -192,8 +190,8 @@ typedef struct	s_game
 	t_multi		multi;
 	t_color		texture[TEX_SIZE][TEX_SIZE];
 	float		dt;
-	float		zbuffer[WIN_X];
-	float		calcule[GAME_LY];
+	float		zbuffer[GAME_LX];
+	float		calcule[GAME_LY / 2];
 	SDL_J		*joystick;
 	SDL_Haptic	*haptic;
 	SDL_Event	ev;

@@ -15,6 +15,9 @@
 #include <math.h>
 #include <time.h>
 #include <sys/time.h>
+#include <stdlib.h>
+#include <string.h>
+
 
 struct timeval tv1;
 struct timeval tv2;
@@ -49,7 +52,7 @@ void	check_args(t_game *game, int ac, char *av[])
 int		main(int ac, char **av)
 {
 	t_game	game;
-	char	*fps;
+	char	fps[30] = "Wolf3d : FPS = ";
 	int		i;
 
 	float	test = 0;
@@ -64,6 +67,8 @@ int		main(int ac, char **av)
 
 	//multi_init(&game);
 
+
+	i = 0;
 	while (42)
 	{
 		setdt(&game);
@@ -73,18 +78,16 @@ int		main(int ac, char **av)
 		game_render(&game);
 		hud_render(&game);
 		game_draw_all(&game);
-		SDL_UpdateTexture(game.sdl.tex, 0, game.sdl.text_buf, game.sdl.lx * sizeof(Uint32));
 		test += game.dt;
 		test2++;
 
-		if (test > 1)
-		{
-
-			fps = ft_itoa(test2);
+		if (test > 2)
+		{	i++;
+			sprintf(fps + 15, "%d", test2/2);
 			SDL_SetWindowTitle(game.sdl.win, fps);
-			free(fps);
 			test = 0;
 			test2 = 0;
+			//memset(game.sdl.text_buf, i%2 ? 0xFFFFFF: 0x0, WIN_LX * WIN_LY * 4);
 		}
 			/*
 			UDPpacket packet;

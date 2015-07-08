@@ -24,7 +24,7 @@ void		game_init_sdl(t_game *game);
 void		game_draw_all(t_game *game);
 void		game_draw_pixel(t_game *game, int x, int y, uint32_t *c);
 void		game_draw_pixel_black(t_game *game, int x, int y, uint32_t *c);
-void		game_draw_rect(t_game *game, int x, int y, int color);
+void		game_draw_rect(t_game *game, int x, int y, uint32_t color);
 void		game_draw_sprites(t_game *game);
 int			sprite_compare(void *entity1, void *entity2);
 int			game_event_handler(t_game *game);

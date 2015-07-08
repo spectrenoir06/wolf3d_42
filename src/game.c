@@ -23,21 +23,28 @@ void	joystick_init(t_game *game)
 
 void	game_init_sdl(t_game *game)
 {
-	game->sdl.lx = WIN_X;
-	game->sdl.ly = WIN_Y;
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC) < 0)
 		exit(EXIT_FAILURE);
-	SDL_CreateWindowAndRenderer(game->sdl.lx, game->sdl.ly,
-			SDL_WINDOW_RESIZABLE, &(game->sdl.win), &(game->sdl.rd));
-	game->sdl.tex = SDL_CreateTexture(game->sdl.rd, SDL_PIXELFORMAT_ARGB8888,
-			SDL_TEXTUREACCESS_STREAMING, game->sdl.lx, game->sdl.ly);
+	SDL_CreateWindowAndRenderer(	WIN_LX,
+									WIN_LY,
+									SDL_WINDOW_RESIZABLE,
+									&(game->sdl.win),
+									&(game->sdl.rd)
+								);
+
+	game->sdl.tex = SDL_CreateTexture(	game->sdl.rd,
+										SDL_PIXELFORMAT_ARGB8888,
+										SDL_TEXTUREACCESS_STREAMING,
+										WIN_LX,
+										WIN_LY
+										);
 	SDL_SetWindowTitle(game->sdl.win, "Wolf3d");
 	if (game->sdl.win == NULL)
 	{
 		ft_putstr("Wolf3D: Error windows can't load\n");
 		exit(1);
 	}
-	game->sdl.text_buf = malloc(sizeof(Uint32) * game->sdl.lx * game->sdl.ly);
+	game->sdl.text_buf = malloc(sizeof(Uint32) * WIN_LX * WIN_LY);
 	if (game->sdl.text_buf == NULL)
 	{
 		ft_putstr("Wolf3D: Error can't allocate buffer\n");
@@ -48,7 +55,7 @@ void	game_init_sdl(t_game *game)
 	SDL_SetRelativeMouseMode(1);
 }
 
-void	game_draw_rect(t_game *game, int x, int y, int color)
+void	game_draw_rect(t_game *game, int x, int y, uint32_t color)
 {
 	int		a;
 	int		b;
@@ -69,9 +76,8 @@ void	game_draw_rect(t_game *game, int x, int y, int color)
 
 void	game_draw_all(t_game *game)
 {
-	//SDL_Rect r = {GAME_X , GAME_Y, GAME_LX, GAME_LY};
-	//SDL_Rect r = {GAME_X ,GAME_Y,GAME_X + GAME_LX, GAME_Y + GAME_LY};
-	SDL_UpdateTexture(game->sdl.tex, NULL, game->sdl.text_buf, game->sdl.lx * sizeof(Uint32));
+//	SDL_Rect r = {GAME_X1, GAME_Y1, GAME_LX, GAME_LY};
+	SDL_UpdateTexture(game->sdl.tex, 0, game->sdl.text_buf, WIN_LX * sizeof(Uint32));
 	SDL_RenderCopy(game->sdl.rd, game->sdl.tex, NULL, NULL);
 	SDL_RenderPresent(game->sdl.rd);
 }

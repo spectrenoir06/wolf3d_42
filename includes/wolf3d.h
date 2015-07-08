@@ -30,12 +30,17 @@
 #  include <SDL/SDL_net.h>
 # endif
 
-# define WIN_X 1600
-# define WIN_Y 900
-# define GAME_X 40
-# define GAME_Y 20
+# define WIN_LX 1600	//
+# define WIN_LY 900		//
+# define GAME_X1 40		// decalage X
+# define GAME_Y1 20		// decalage Y
+
 # define GAME_LX 1520
 # define GAME_LY 660
+
+# define GAME_X2 (GAME_X1 + GAME_LX)
+# define GAME_Y2 (GAME_Y1 + GAME_LY)
+
 # define TEX_SIZE 512
 # define SINT16_MAX 32767
 # define SINT16_MIN -32768
