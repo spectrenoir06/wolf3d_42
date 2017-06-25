@@ -57,7 +57,7 @@ OPTI_DEBUG	= O0
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	SDL	= -lm -lSDL2 -lSDL_mixer -lSDL_net
+	SDL	= -lm -lSDL2 -lSDL2_mixer -lSDL2_net
 	FLAGS	= -Wall -Wextra -Wno-unused-result
 endif
 
